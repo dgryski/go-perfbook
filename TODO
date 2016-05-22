@@ -8,6 +8,10 @@
 	- http://bravenewgeek.com/so-you-wanna-go-fast/
 	- https://medium.com/%40hackintoshrao/daily-code-optimization-using-benchmarks-and-profiling-in-golang-gophercon-india-2016-talk-874c8b4dc3c5
 	- If you're writing benchmarks, read http://dave.cheney.net/2013/06/30/how-to-write-benchmarks-in-go
+  - cache line explanation: http://mechanitis.blogspot.com/2011/07/dissecting-disruptor-why-its-so-fast_22.html
+  - avoiding false sharing: http://www.drdobbs.com/parallel/eliminate-false-sharing/217500206
+  - how does this translate to go? http://www.catb.org/esr/structure-packing/
+
 
 videos:
     https://gophervids.appspot.com/#tags=optimization
@@ -33,9 +37,14 @@ videos:
 
     https://talks.golang.org/2013/highperf.slide#1
 
+    Machine Architecture: Things Your Programming Language Never Told You
+    https://www.youtube.com/watch?v=L7zSU9HI-6I
+
 posts:
     http://www.eecs.berkeley.edu/~rcs/research/interactive_latency.html
     https://arxiv.org/abs/1509.05053
+    http://grokbase.com/t/gg/golang-nuts/155ea0t5hf/go-nuts-after-set-gomaxprocs-different-machines-have-different-bahaviors-some-speed-up-some-slow-down
+    http://grokbase.com/t/gg/golang-nuts/14138jw64s/go-nuts-concurrent-read-write-of-different-parts-of-a-slice
 
 
 tools:
@@ -51,3 +60,11 @@ tools:
     https://github.com/MiniProfiler/go
     https://perf.wiki.kernel.org/index.php/Main_Page
     https://github.com/dominikh/go-structlayout
+    http://www.brendangregg.com/perf.html
+
+papers:
+    https://www.akkadia.org/drepper/cpumemory.pdf
+
+stackoverflow:
+    https://stackoverflow.com/questions/19397699/why-struct-with-padding-fields-works-faster/19397791#19397791
+    https://stackoverflow.com/questions/10017026/no-speedup-in-multithread-program/10017482#10017482
