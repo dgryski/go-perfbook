@@ -4,6 +4,8 @@ At the moment, it's a collection of links to videos, slides, and blog posts
 ("awesome-go-performance"), but I would like this to evolve into a longer book
 format where the content is here instead of external.  The links should be sorted into categories.
 
+All the content will be licensed under CC-BY-SA.
+
 * All optimizations should follow these steps:
 
     1. determine your performance goals and confirm you are not meeting them
