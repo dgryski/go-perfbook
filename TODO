@@ -1,0 +1,53 @@
+
+* blog posts
+	- http://jmoiron.net/blog/go-performance-tales/
+	- http://blog.golang.org/profiling-go-programs
+	- http://slideshare.net/cloudflare/go-profiling-john-graham-cumming ( https://www.youtu.be/_41bkNr7eik )
+	- https://software.intel.com/en-us/blogs/2014/05/10/debugging-performance-issues-in-go-programs
+	- https://methane.github.io/2015/02/reduce-allocation-in-go-code
+	- http://bravenewgeek.com/so-you-wanna-go-fast/
+	- https://medium.com/%40hackintoshrao/daily-code-optimization-using-benchmarks-and-profiling-in-golang-gophercon-india-2016-talk-874c8b4dc3c5
+	- If you're writing benchmarks, read http://dave.cheney.net/2013/06/30/how-to-write-benchmarks-in-go
+
+videos:
+    https://gophervids.appspot.com/#tags=optimization
+        -- figure out which of these are specifically worth listing
+
+    "Profiling and Optimizng Go" (Uber)
+    https://www.youtube.com/watch?v=N3PWzBeLX2M
+
+    https://go-talks.appspot.com/github.com/davecheney/presentations/writing-high-performance-go.slide
+    https://www.youtube.com/watch?v=zWp0N9unJFc
+
+    Björn Rabenstein
+    https://docs.google.com/presentation/d/1Zu0BdbhMRar7ycEwDi8jepGokTXTDXlKFf7C13tusuI/edit
+    https://www.youtube.com/watch?v=ZuQcbqYK0BY
+
+    https://go-talks.appspot.com/github.com/mkevac/golangmoscow2016/gomeetup.slide
+
+    CppCon 2014: Chandler Carruth "Efficiency with Algorithms, Performance with Data Structures"
+    https://www.youtube.com/watch?v=fHNmRkzxHWs
+
+    Performance Engineering of Software Systems
+    http://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-172-performance-engineering-of-software-systems-fall-2010/
+
+    https://talks.golang.org/2013/highperf.slide#1
+
+posts:
+    http://www.eecs.berkeley.edu/~rcs/research/interactive_latency.html
+    https://arxiv.org/abs/1509.05053
+
+
+tools:
+    https://github.com/golang/go/issues/14304 (creation of /x/perf )
+
+    https://godoc.org/github.com/aclements/go-perf
+    https://godoc.org/rsc.io/benchstat
+    https://github.com/uber/go-torch
+    https://github.com/rakyll/gom
+    https://github.com/tam7t/sigprof
+    https://github.com/aybabtme/dpprof
+    https://github.com/wblakecaldwell/profiler
+    https://github.com/MiniProfiler/go
+    https://perf.wiki.kernel.org/index.php/Main_Page
+    https://github.com/dominikh/go-structlayout
