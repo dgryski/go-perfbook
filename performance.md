@@ -18,6 +18,9 @@ format where the content is here instead of external.  The links should be sorte
 	5) use https://github.com/tsenart/vegeta for load testing http services
 	6) make sure your latency numbers make sense: https://youtu.be/lJ8ydIuPFeU
 
+Step 0 is important.  It tells you when and where to start optimizing.  More
+importantly, it also tells you when to stop.
+
 The basic rules of the game are:
 
     1) minimize CPU usage
@@ -45,6 +48,12 @@ Advanced Techniques:
 
     Comment about Jeff Dean's 2002 numbers (plus updates)
         cpus have gotten faster, but memory hasn't kept up
+
+Runtime:
+    cost of calls via interfaces (indirect calls on the CPU level)
+    runtime.convT2E / runtime.convT2I
+    type assertions vs. type switches
+    defer
 
 Common gotchas with the standard library:
     time.After() leaks until it fires
