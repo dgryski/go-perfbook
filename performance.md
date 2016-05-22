@@ -47,6 +47,9 @@ Techniques applicable to source code in general
 
 * Techniques specific to the architecture running the code
  * introduction to CPU caches
+   * building intuition around cache-lines: sizes, padding, alignment
+   * false-sharing
+   * OS tools to view cache-misses
  * (also branch prediction)
 
 * Comment about Jeff Dean's 2002 numbers (plus updates)
