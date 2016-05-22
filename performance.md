@@ -80,8 +80,8 @@ Techniques applicable to source code in general
   * net/http -> fasthttp
   * regexp -> ragel (or other regular expression package)
   * encoding/gob -> <https://github.com/alecthomas/go_serialization_benchmarks>
- * serialization is all about tradeoffs
- * protobuf -> <https://github.com/gogo/protobuf>
+  * protobuf -> <https://github.com/gogo/protobuf>
+  * serialization is all about tradeoffs
 
 ## Tooling
 
