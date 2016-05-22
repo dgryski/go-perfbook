@@ -57,6 +57,7 @@ Techniques applicable to source code in general
 * runtime.convT2E / runtime.convT2I
 * type assertions vs. type switches
 * defer
+* special-case map implementations for ints, strings
 
 ## Common gotchas with the standard library
 
