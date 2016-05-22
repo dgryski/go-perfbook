@@ -72,7 +72,9 @@ Techniques applicable to source code in general
 * serialization
 
 ## Assembly
+* Stuff about writing assembly code for Go
 
+## Alternate implementations
 * Popular replacements for standard library packages:
   * encoding/json -> ffjson
   * net/http -> fasthttp
