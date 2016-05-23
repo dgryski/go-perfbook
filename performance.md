@@ -6,6 +6,8 @@ format where the content is here instead of external.  The links should be sorte
 
 All the content will be licensed under CC-BY-SA.
 
+## Optimization Workflow
+
 * All optimizations should follow these steps:
 
     1. determine your performance goals and confirm you are not meeting them
@@ -20,8 +22,10 @@ All the content will be licensed under CC-BY-SA.
     1. use <https://github.com/tsenart/vegeta> for load testing http services
     1. make sure your latency numbers make sense: <https://youtu.be/lJ8ydIuPFeU>
 
-Step 0 is important.  It tells you when and where to start optimizing.  More
-importantly, it also tells you when to stop.
+The first step is important. It tells you when and where to start optimizing.
+More importantly, it also tells you when to stop.  Pretty much all
+optimizations add code complexity in exchange for speed.  And you can *always*
+make code faster.  It's a balancing act.
 
 The basic rules of the game are:
 
@@ -37,6 +41,7 @@ The basic rules of the game are:
 Techniques applicable to source code in general
 
 1. introduction to pprof
+ * (micro)benchmarks
  * -cpuprofile
  * net/http/pprof
   * go tool pprof (and <https://github.com/google/pprof>)
@@ -72,7 +77,7 @@ Techniques applicable to source code in general
 * And all the dangers that go with it
 * Common uses for unsafe
 * mmap'ing data files
-* serialization
+* speedy de-serialization
 
 ## Assembly
 * Stuff about writing assembly code for Go
@@ -82,9 +87,10 @@ Techniques applicable to source code in general
   * encoding/json -> ffjson
   * net/http -> fasthttp
   * regexp -> ragel (or other regular expression package)
-  * encoding/gob -> <https://github.com/alecthomas/go_serialization_benchmarks>
-  * protobuf -> <https://github.com/gogo/protobuf>
-  * serialization is all about tradeoffs
+  * serialization
+      * encoding/gob -> <https://github.com/alecthomas/go_serialization_benchmarks>
+      * protobuf -> <https://github.com/gogo/protobuf>
+      * all formats have trade-offs; choose one that matches what you need
 
 ## Tooling
 

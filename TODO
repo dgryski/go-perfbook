@@ -11,7 +11,9 @@
   - cache line explanation: http://mechanitis.blogspot.com/2011/07/dissecting-disruptor-why-its-so-fast_22.html
   - avoiding false sharing: http://www.drdobbs.com/parallel/eliminate-false-sharing/217500206
   - how does this translate to go? http://www.catb.org/esr/structure-packing/
-
+  - https://en.wikipedia.org/wiki/Amdahl%27s_law
+  - https://github.com/ardanlabs/gotraining/tree/master/topics/profiling
+  - https://github.com/ardanlabs/gotraining/tree/master/topics/benchmarking
 
 videos:
     https://gophervids.appspot.com/#tags=optimization
@@ -39,6 +41,11 @@ videos:
 
     Machine Architecture: Things Your Programming Language Never Told You
     https://www.youtube.com/watch?v=L7zSU9HI-6I
+
+asm:
+    https://golang.org/doc/asm
+    https://goroutines.com/asm
+    http://www.doxsey.net/blog/go-and-assembly
 
 posts:
     http://www.eecs.berkeley.edu/~rcs/research/interactive_latency.html
