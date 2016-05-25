@@ -71,6 +71,7 @@ tools:
 
 papers:
     https://www.akkadia.org/drepper/cpumemory.pdf
+    https://software.intel.com/sites/default/files/article/392271/aos-to-soa-optimizations-using-iterative-closest-point-mini-app.pdf
 
 stackoverflow:
     https://stackoverflow.com/questions/19397699/why-struct-with-padding-fields-works-faster/19397791#19397791
