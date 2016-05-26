@@ -13,10 +13,10 @@ All the content will be licensed under CC-BY-SA.
     1. determine your performance goals and confirm you are not meeting them
     1. profile to identify the areas to improve.  This can be CPU, heap allocations, or goroutine blocking.
     1. benchmark to determine the speed up your solution will provide using
-       the built-in benchmarking framework (<http://golang.org/pkg/testing/> and benchcmp).
+       the built-in benchmarking framework (<http://golang.org/pkg/testing/>)
     1. profile again afterwards to verify the issue is gone
     1. use <https://godoc.org/rsc.io/benchstat> or
-       <https://github.com/codahale/tinystat> to verify if a set of timings
+       <https://github.com/codahale/tinystat> to verify that a set of timings
        are 'sufficiently' different for an optimization to be worth the
        added code complexity.
     1. use <https://github.com/tsenart/vegeta> for load testing http services
@@ -41,12 +41,13 @@ The basic rules of the game are:
 Techniques applicable to source code in general
 
 1. introduction to pprof
- * (micro)benchmarks
- * -cpuprofile
- * net/http/pprof
-  * go tool pprof (and <https://github.com/google/pprof>)
-1. How to read it
+ * go tool pprof (and <https://github.com/google/pprof>)
+1. Writing and running (micro)benchmarks
+ * -cpuprofile / -memprofile / -benchmem
+1. How to read it pprof output
 1. What are the different pieces of the runtime that show up
+1. Macro-benchmarks (Profiling in production)
+ * net/http/pprof
 
 ## Advanced Techniques
 
