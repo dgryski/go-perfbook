@@ -53,6 +53,9 @@ posts:
     http://grokbase.com/t/gg/golang-nuts/155ea0t5hf/go-nuts-after-set-gomaxprocs-different-machines-have-different-bahaviors-some-speed-up-some-slow-down
     http://grokbase.com/t/gg/golang-nuts/14138jw64s/go-nuts-concurrent-read-write-of-different-parts-of-a-slice
 
+    Escape Analysis Flaws
+    https://docs.google.com/document/d/1CxgUBPlx9iJzkz9JWkb6tIpTe5q32QDmz8l0BouG0Cw/preview
+
 
 tools:
     https://github.com/golang/go/issues/14304 (creation of /x/perf )
