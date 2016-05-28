@@ -1,11 +1,53 @@
 
 * blog posts
 	- http://jmoiron.net/blog/go-performance-tales/
-	- http://blog.golang.org/profiling-go-programs
+                - use integer map keys if possible
+                - hard to compete with Go's map implementation; esp. if your data structure has lots of pointer chasing
+                - aes-ni instructions make string hashing much faster
+                - prefer structs to maps if you know the map keys (esp. coming from perl, etc)
+                - channels are useful, but slow; raw atomics can help with performance
+                - cgo has overhead
+                - profile before optimizing
 	- http://slideshare.net/cloudflare/go-profiling-john-graham-cumming ( https://www.youtu.be/_41bkNr7eik )
-	- https://software.intel.com/en-us/blogs/2014/05/10/debugging-performance-issues-in-go-programs
+            - don't waste programmer cycles saving the wrong CPU cycles (or memory allocations)
+            - bash$ time; time.Now()/time.Since(); pprof.StartCPUProfile/pprof.StopCPUProfile; go tool pprof http://.../profile
+            - bash$ ps; runtime.ReadMemStats(); runtime.WriteHeapProfile(); go tool pprof http://.../heap
+            - slice operations are sometimes O(n)
+            - https://golang.org/pkg/runtime/debug/
+            - sync.Pool (basically)
 	- https://methane.github.io/2015/02/reduce-allocation-in-go-code
+            - 1. correctness is important
+            - 2. BenchmarkXXX with b.ReportAllocs() (or -benchmem when running)
+            - 3. allocfreetrace=1 produces stack trace on every allocation
+            - strategies:
+                - avoid string concat; use []byte+append() (+strconv.AppendInt(), ...)
+                - benchcmp
+                - avoid time.Format
+                - avoid range when iterating strings ([]rune conversion + utf8 decoding)
+                - can append string to []byte
+                - write two versions, one for string, one for []byte (avoids conversion+copy (sometimes...))
+                - reuse existing buffers instead of creating new ones
 	- http://bravenewgeek.com/so-you-wanna-go-fast/
+            - performance fast vs. delivery fast; make the right decision
+            - lock-free ring buffer vs. channels: faster except with GOMAXPROCS=1
+            - defer has a cost (allocation+cpu)
+                BenchmarkMutexDeferUnlock-8 20000000 96.6 ns/op
+                BenchmarkMutexUnlock-8 100000000 19.5 ns/op
+            - reflection+json
+                - ffjson avoids reflection
+                - msgp avoids json
+                - interfaces have dynamic dispatch which can't be inlined
+                - => use concrete types (+ code duplication)
+            - heap vs. stack; escape analysis
+            - lots of short-lived objects is expensive for the gc
+            - sync.Pool reuses objects *between* gc runs
+            - you need your own free list to hold onto things between gc runs
+                (but now you're subverting the purpose of a garbage collector)
+            - false sharing
+            - custom lock-free data structures: fast but *hard*
+            - "Speed comes at the cost of simplicity, at the cost of development time, and at the cost of continued maintenance. Choose wisely."
+	- https://software.intel.com/en-us/blogs/2014/05/10/debugging-performance-issues-in-go-programs
+	- http://blog.golang.org/profiling-go-programs
 	- https://medium.com/%40hackintoshrao/daily-code-optimization-using-benchmarks-and-profiling-in-golang-gophercon-india-2016-talk-874c8b4dc3c5
 	- If you're writing benchmarks, read http://dave.cheney.net/2013/06/30/how-to-write-benchmarks-in-go
   - cache line explanation: http://mechanitis.blogspot.com/2011/07/dissecting-disruptor-why-its-so-fast_22.html
@@ -14,6 +56,12 @@
   - https://en.wikipedia.org/wiki/Amdahl%27s_law
   - https://github.com/ardanlabs/gotraining/tree/master/topics/profiling
   - https://github.com/ardanlabs/gotraining/tree/master/topics/benchmarking
+
+cgo:
+    cgo has overhead
+        (which has only gotten more expensive over time) -- ~200 ns/call
+    ssa backend means less difference in codegen
+    really thing if you want cgo: http://dave.cheney.net/2016/01/18/cgo-is-not-go
 
 videos:
     https://gophervids.appspot.com/#tags=optimization
