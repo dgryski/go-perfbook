@@ -56,6 +56,7 @@
   - https://en.wikipedia.org/wiki/Amdahl%27s_law
   - https://github.com/ardanlabs/gotraining/tree/master/topics/profiling
   - https://github.com/ardanlabs/gotraining/tree/master/topics/benchmarking
+  - http://dave.cheney.net/2015/11/29/a-whirlwind-tour-of-gos-runtime-environment-variables
 
 cgo:
     cgo has overhead
