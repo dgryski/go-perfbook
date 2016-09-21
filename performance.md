@@ -86,6 +86,11 @@ Techniques applicable to source code in general
 * mmap'ing data files
 * speedy de-serialization
 
+## cgo
+* Performance characteristics of cgo calls
+* Tricks to reduce the costs
+* Passing pointers between Go and C
+
 ## Assembly
 * Stuff about writing assembly code for Go
 * brief into to syntax
