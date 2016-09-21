@@ -61,6 +61,12 @@ Techniques applicable to source code in general
 * Comment about Jeff Dean's 2002 numbers (plus updates)
   * cpus have gotten faster, but memory hasn't kept up
 
+## Heap Allocations
+* Stack vs. heap allocations
+* What causes heap allocations?
+* Understanding escape analysis
+* Using sync.Pool effectively
+
 ## Runtime
 * cost of calls via interfaces (indirect calls on the CPU level)
 * runtime.convT2E / runtime.convT2I
@@ -79,6 +85,11 @@ Techniques applicable to source code in general
 * Common uses for unsafe
 * mmap'ing data files
 * speedy de-serialization
+
+## cgo
+* Performance characteristics of cgo calls
+* Tricks to reduce the costs
+* Passing pointers between Go and C
 
 ## Assembly
 * Stuff about writing assembly code for Go
