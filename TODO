@@ -125,6 +125,8 @@ tools:
     https://perf.wiki.kernel.org/index.php/Main_Page
     https://github.com/dominikh/go-structlayout
     http://www.brendangregg.com/perf.html
+    https://github.com/davecheney/gcvis
+    https://github.com/pavel-paulau/gcterm
 
 papers:
     https://www.akkadia.org/drepper/cpumemory.pdf
