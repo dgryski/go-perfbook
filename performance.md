@@ -14,6 +14,7 @@ All the content will be licensed under CC-BY-SA.
     1. profile to identify the areas to improve.  This can be CPU, heap allocations, or goroutine blocking.
     1. benchmark to determine the speed up your solution will provide using
        the built-in benchmarking framework (<http://golang.org/pkg/testing/>)
+       Make sure you're benchmarking the right thing.
     1. profile again afterwards to verify the issue is gone
     1. use <https://godoc.org/rsc.io/benchstat> or
        <https://github.com/codahale/tinystat> to verify that a set of timings
