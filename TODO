@@ -63,7 +63,7 @@ cgo:
     cgo has overhead
         (which has only gotten more expensive over time) -- ~200 ns/call
     ssa backend means less difference in codegen
-    really thing if you want cgo: http://dave.cheney.net/2016/01/18/cgo-is-not-go
+    really think if you want cgo: http://dave.cheney.net/2016/01/18/cgo-is-not-go
 
 videos:
     https://gophervids.appspot.com/#tags=optimization
@@ -100,6 +100,8 @@ asm:
     https://goroutines.com/asm
     http://www.doxsey.net/blog/go-and-assembly
     https://www.youtube.com/watch?v=9jpnFmJr2PE
+    https://blog.gopheracademy.com/advent-2016/peachpy/
+    https://blog.sgmansfield.com/2017/04/a-foray-into-go-assembly-programming/
 
 posts:
     http://www.eecs.berkeley.edu/~rcs/research/interactive_latency.html
@@ -110,10 +112,10 @@ posts:
     Escape Analysis Flaws
     https://docs.google.com/document/d/1CxgUBPlx9iJzkz9JWkb6tIpTe5q32QDmz8l0BouG0Cw/preview
 
+    https://hackernoon.com/optimizing-optimizing-some-insights-that-led-to-a-400-speedup-of-powerdns-5e1a44b58f1c
+    http://leto.net/docs/C-optimization.php
 
 tools:
-    https://github.com/golang/go/issues/14304 (creation of /x/perf )
-
     https://godoc.org/github.com/aclements/go-perf
     https://godoc.org/rsc.io/benchstat
     https://github.com/uber/go-torch
@@ -128,10 +130,24 @@ tools:
     https://github.com/davecheney/gcvis
     https://github.com/pavel-paulau/gcterm
 
+trace:
+    https://making.pusher.com/go-tool-trace/
+    https://www.youtube.com/watch?v=mmqDlbWk_XA
+    https://www.youtube.com/watch?v=nsM_m4hZ-bA
+
 papers:
     https://www.akkadia.org/drepper/cpumemory.pdf
     https://software.intel.com/sites/default/files/article/392271/aos-to-soa-optimizations-using-iterative-closest-point-mini-app.pdf
 
+
+optimization guides:
+    http://developer.amd.com/resources/developer-guides-manuals/
+    http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.uan0015b/index.html
+    https://www-ssl.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-optimization-manual.html
+
 stackoverflow:
     https://stackoverflow.com/questions/19397699/why-struct-with-padding-fields-works-faster/19397791#19397791
     https://stackoverflow.com/questions/10017026/no-speedup-in-multithread-program/10017482#10017482
+
+practice:
+    https://twitter.com/dgryski/status/584682584942194689
