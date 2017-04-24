@@ -36,6 +36,25 @@ The basic rules of the game are:
 1. minimize allocations (which leads to less CPU stolen by the GC)
 1. make your data quick to access
 
+This book is split into different sections:
+   1) basic tips for writing not-slow software
+     * CS 101-level stuff
+   2) tips for writing fast software
+     * Go-specific sections on how to get the best from Go
+   3) advanced tips for writing *really* fast software
+     * For when your optimized code isn't fast enough
+
+## Basics
+
+1. choose the best algorithm
+ * traditional computer science analysis
+ * O(n^2) vs O(n log n) vs O(log n) vs O(1)
+ * this should handle the majority of your optimization cases
+ * be aware of http://accidentallyquadratic.tumblr.com/
+ * https://agtb.wordpress.com/2010/12/23/progress-in-algorithms-beats-moore%E2%80%99s-law/
+1. pre-compute things you need
+1. add a cache -> reduces work
+
 ## Introductory Profiling
 
 Techniques applicable to source code in general
@@ -48,6 +67,9 @@ Techniques applicable to source code in general
 1. What are the different pieces of the runtime that show up
 1. Macro-benchmarks (Profiling in production)
  * net/http/pprof
+
+## Tracer
+
 
 ## Advanced Techniques
 
