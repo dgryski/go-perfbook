@@ -95,6 +95,9 @@ videos:
     7 Ways to Profile Go Applications
     https://www.youtube.com/watch?v=2h_NFBFrciI
 
+    dotGo 2016 - Damian Gryski - Slices: Performance through cache-friendliness
+    https://www.youtube.com/watch?v=jEG4Qyo_4Bc
+
 asm:
     https://golang.org/doc/asm
     https://goroutines.com/asm
