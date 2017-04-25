@@ -102,6 +102,7 @@ asm:
     https://www.youtube.com/watch?v=9jpnFmJr2PE
     https://blog.gopheracademy.com/advent-2016/peachpy/
     https://blog.sgmansfield.com/2017/04/a-foray-into-go-assembly-programming/
+    http://lemire.me/blog/2016/12/21/performance-overhead-when-calling-assembly-from-go/
 
 posts:
     http://www.eecs.berkeley.edu/~rcs/research/interactive_latency.html
