@@ -16,7 +16,7 @@ All the content will be licensed under CC-BY-SA.
        the built-in benchmarking framework (<http://golang.org/pkg/testing/>)
        Make sure you're benchmarking the right thing.
     1. profile again afterwards to verify the issue is gone
-    1. use <https://godoc.org/rsc.io/benchstat> or
+    1. use <https://godoc.org/x/perf/cmd/benchstat> or
        <https://github.com/codahale/tinystat> to verify that a set of timings
        are 'sufficiently' different for an optimization to be worth the
        added code complexity.
