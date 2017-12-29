@@ -134,6 +134,11 @@ tools:
     https://github.com/davecheney/gcvis
     https://github.com/pavel-paulau/gcterm
 
+pprof:
+    https://rakyll.org/pprof-ui/
+    https://rakyll.org/profiler-labels/
+    https://rakyll.org/custom-profiles/
+
 trace:
     https://making.pusher.com/go-tool-trace/
     https://www.youtube.com/watch?v=mmqDlbWk_XA
