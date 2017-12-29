@@ -123,7 +123,6 @@ posts:
 tools:
     https://godoc.org/github.com/aclements/go-perf
     https://godoc.org/x/perf/cmd/benchstat
-    https://github.com/uber/go-torch
     https://github.com/rakyll/gom
     https://github.com/tam7t/sigprof
     https://github.com/aybabtme/dpprof

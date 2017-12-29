@@ -136,4 +136,3 @@ Techniques applicable to source code in general
 Look at some more interesting/advanced tooling
 
 * perf  (perf2pprof)
-* go-torch (+flamegraphs)
