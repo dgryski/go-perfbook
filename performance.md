@@ -116,7 +116,7 @@ Techniques applicable to source code in general
 
 ## Assembly
 * Stuff about writing assembly code for Go
-* brief into to syntax
+* brief intro to syntax
 * calling convention
 * using opcodes unsupported by the asm
 * notes about why intrinsics are hard
