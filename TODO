@@ -138,6 +138,7 @@ trace:
     https://making.pusher.com/go-tool-trace/
     https://www.youtube.com/watch?v=mmqDlbWk_XA
     https://www.youtube.com/watch?v=nsM_m4hZ-bA
+    https://blog.gopheracademy.com/advent-2017/go-execution-tracer/
 
 papers:
     https://www.akkadia.org/drepper/cpumemory.pdf
