@@ -58,6 +58,7 @@
   - https://github.com/ardanlabs/gotraining/tree/master/topics/benchmarking
   - http://dave.cheney.net/2015/11/29/a-whirlwind-tour-of-gos-runtime-environment-variables
   - https://github.com/davecheney/high-performance-go-workshop
+  - Mutex profile: https://rakyll.org/mutexprofile
 
 cgo:
     cgo has overhead
