@@ -88,7 +88,6 @@ Techniques applicable to source code in general
 * Stack vs. heap allocations
 * What causes heap allocations?
 * Understanding escape analysis
-* Using sync.Pool effectively
 
 ## Runtime
 * cost of calls via interfaces (indirect calls on the CPU level)
