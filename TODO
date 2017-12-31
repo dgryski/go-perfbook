@@ -133,6 +133,7 @@ tools:
     http://www.brendangregg.com/perf.html
     https://github.com/davecheney/gcvis
     https://github.com/pavel-paulau/gcterm
+    https://github.com/jonlawlor/benchls
 
 pprof:
     https://rakyll.org/pprof-ui/
@@ -161,3 +162,6 @@ stackoverflow:
 
 practice:
     https://twitter.com/dgryski/status/584682584942194689
+
+Writing Efficient Programs
+Algorithm Engineering: https://www.springer.com/gp/book/9783642148651
