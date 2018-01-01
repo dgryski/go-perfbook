@@ -65,6 +65,9 @@ optimization at all. Sometimes it's not an actual CPU optimization, but a
 user-experience one. Making something start up faster by doing computation in
 the background after drawing the main window, for example.
 
+Just because something is easy to optimize doesn't mean it's worth
+optimizing. Ignoring low-hanging fruit is a valid development strategy.
+
 Think of this as optimizing *your* time.
 
 Choosing what to optimize.  Choosing when to optimize.
@@ -80,32 +83,36 @@ Once you've decided you're going to do this, keep reading.
 
 ### How to Optimize
 
-Optimization is refactoring, but with an extra constraint on performance. You
-need to check after each step that you haven't broken either of these.
+Optimization is a form of refactoring. But each step, rather than improving
+some aspect of the source code (code duplication, clarity, etc), improves
+some aspect of the performance: lower CPU or memory usage, latency, etc. This
+means that in addition to a comprehensive set of unit tests (to ensuring your
+changes haven't broken anything), you also need a good set of benchmarks to
+ensure your changes are having the desired effect on performance. You must be
+able to verify that your change really *is* lowering CPU, for example.
 
-Make sure the benchmarks you're using to check (CPU, memory, reqs/second) are
-consistent and reproducible. If the individual runs have too high variance,
-it makes improvements more difficult to spot.  Then you *really* need benchstat
-or equivalent statistical tests and can't just eyeball it.
+This also means that the benchmarks you're using must be correct and provide
+reproducible numbers. If indivudual runs have too high a variance, it will
+make improvements more difficult to spot. You will need to use benchstat or
+equivalent statistical tests and won't be able just eye-ball it.
 
-Decide what it is you're optimizing for. Are you trying to reduce memory
+Next, decide what it is you're optimizing for. Are you trying to reduce memory
 usage? By how much? How much slower is acceptable for what change in memory
 usage?
-
-Just because something is easy to optimize doesn't mean it's worth optimizing.
-Ignoring low-hanging fruit is a valid development strategy.
 
 Anything that can be measured can be optimized. Make sure you're measuring
 the right thing. Beware bad metrics. There are generally competing factors.
 
 This book is mostly going to talk about reducing CPU uage, reducing memory
-usage, and reducing latency. Although remember that you can very rarely do
-all three. Maybe CPU time is faster, but now it's using more memory. Maybe
+usage, and reducing latency. It's good to point out that you can very rarely
+do all three. Maybe CPU time is faster, but now it's using more memory. Maybe
 you need to reduce memory space, but now the program takes longer.
 
-Amdals Law: focus on the bottlenecks. If double the speed of routine that
-only takes 5% of the runtime, that's only a 2.5% speedup in total runtime. A
-good profile will help identify where time is actually spent.
+Amdahl's Law tells us to focus on the bottlenecks. If double the speed of
+routine that only takes 5% of the runtime, that's only a 2.5% speedup in
+total runtime. On the other hand, speeding up routine that takes 80% of the
+time by 10% will improve runtime by almost 8%. Profiles will help identify
+where time is actually spent.
 
 In general, optimizations should procede from top to bottom. Optimizations
 at the system level will have more impact than expression-level ones.
