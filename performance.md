@@ -97,7 +97,7 @@ ensure your changes are having the desired effect on performance. You must be
 able to verify that your change really *is* lowering CPU, for example.
 
 This also means that the benchmarks you're using must be correct and provide
-reproducible numbers. If indivudual runs have too high a variance, it will
+reproducible numbers. If individual runs have too high a variance, it will
 make improvements more difficult to spot. You will need to use benchstat or
 equivalent statistical tests and won't be able just eye-ball it.
 
@@ -108,7 +108,7 @@ usage?
 Anything that can be measured can be optimized. Make sure you're measuring
 the right thing. Beware bad metrics. There are generally competing factors.
 
-This book is mostly going to talk about reducing CPU uage, reducing memory
+This book is mostly going to talk about reducing CPU usage, reducing memory
 usage, or reducing latency. It's good to point out that you can very rarely
 do all three. Maybe CPU time is faster, but now your program uses more
 memory. Maybe you need to reduce memory space, but now the program will take
@@ -120,7 +120,7 @@ total wall-clock. On the other hand, speeding up routine that takes 80% of
 the time by 10% will improve runtime by almost 8%. Profiles will help
 identify where time is actually spent.
 
-In general, optimizations should procede from top to bottom. Optimizations
+In general, optimizations should proceed from top to bottom. Optimizations
 at the system level will have more impact than expression-level ones.
 
 Do we have to do this at all?  The fastest code is the code that's not there.
@@ -222,7 +222,7 @@ can provoke different behaviours in your algorithm: think of the classic
 
 Cache common cases: Your cache doesn't even need to be huge.
   Optimized a log processing script to cache the previous time passed to time.parse() for significant speedup
-  But beware cache invalidatation, thread issues, etc
+  But beware cache invalidation, thread issues, etc
 
 ## Basics
 
