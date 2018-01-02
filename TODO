@@ -99,6 +99,9 @@ videos:
     dotGo 2016 - Damian Gryski - Slices: Performance through cache-friendliness
     https://www.youtube.com/watch?v=jEG4Qyo_4Bc
 
+    Performance Bugs
+    https://www.youtube.com/watch?v=89qiHoDjeDg
+
 asm:
     https://golang.org/doc/asm
     https://goroutines.com/asm

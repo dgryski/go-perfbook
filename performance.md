@@ -65,12 +65,17 @@ optimization at all. Sometimes it's not an actual CPU optimization, but a
 user-experience one. Making something start up faster by doing computation in
 the background after drawing the main window, for example.
 
+Some times this will be obvious: an hourly report that completes in three hours
+is probably less useful that one that completes in less than one.
+
 Just because something is easy to optimize doesn't mean it's worth
 optimizing. Ignoring low-hanging fruit is a valid development strategy.
 
 Think of this as optimizing *your* time.
 
 Choosing what to optimize.  Choosing when to optimize.
+
+Clarify "Premature optimization" quote.
 
 Fast software or fast deployment.
 
@@ -104,15 +109,16 @@ Anything that can be measured can be optimized. Make sure you're measuring
 the right thing. Beware bad metrics. There are generally competing factors.
 
 This book is mostly going to talk about reducing CPU uage, reducing memory
-usage, and reducing latency. It's good to point out that you can very rarely
-do all three. Maybe CPU time is faster, but now it's using more memory. Maybe
-you need to reduce memory space, but now the program takes longer.
+usage, or reducing latency. It's good to point out that you can very rarely
+do all three. Maybe CPU time is faster, but now your program uses more
+memory. Maybe you need to reduce memory space, but now the program will take
+longer.
 
-Amdahl's Law tells us to focus on the bottlenecks. If double the speed of
+Amdahl's Law tells us to focus on the bottlenecks. If you double the speed of
 routine that only takes 5% of the runtime, that's only a 2.5% speedup in
-total runtime. On the other hand, speeding up routine that takes 80% of the
-time by 10% will improve runtime by almost 8%. Profiles will help identify
-where time is actually spent.
+total wall-clock. On the other hand, speeding up routine that takes 80% of
+the time by 10% will improve runtime by almost 8%. Profiles will help
+identify where time is actually spent.
 
 In general, optimizations should procede from top to bottom. Optimizations
 at the system level will have more impact than expression-level ones.
@@ -120,6 +126,9 @@ at the system level will have more impact than expression-level ones.
 Do we have to do this at all?  The fastest code is the code that's not there.
 If yes, is this the best algorithm.
 If yes, is this the best *implementation* of this algorithm.
+
+Given a profile that says a particular routine is expensive, before
+optimizing that routine, see if you can eliminate calls to it all together.
 
 Basic techniques:
 
@@ -129,6 +138,9 @@ Basic techniques:
     tips from Bentley are now done automatically by compilers (for example,
     all the "loop" and "expression" ones). It's the programmers job to use
     transformations that compilers can't do.
+
+    But the engineering approach is correct:
+     Benchmark. Analyze. Improve. Verify. Iterate.
 
 Trade space for time:
   - smaller data structures: pack things, compress data structures in memory
@@ -175,6 +187,16 @@ Empty program gives the wrong answer in no time at all. It's easy to be fast
 if you don't have to be correct. But it means you can use an optimization
 some of the time if you're sure it's in range.
 
+Have an intuitive grasp of the different O() levels:
+  - simple loop, O(n)
+  - nested loop, O(n*m)
+  - binary-search O(log n)
+  - divide-and-conquer O(n log n)
+  - combinatoric - look out!!
+
+Know how big each of these input sizes is likely to be when coding. You don't
+always have to shave cycles, but also don't be dumb.
+
 Beware high constants Look for simpler algorithms with small constants.
 Debugging an optimized algorithm is harder than debugging a simple one. Look
 for algorithm the paper you're implementing claims to best and do that one
@@ -182,6 +204,21 @@ instead.
 
 Choose algorithms based on problem size: (stdlib quicksort)
 Detect and specialize for common or easy cases: stdlib string
+
+Beware algorithms with high startup costs.  For example,
+   search is O(log n), but you have to sort first.
+   If you just have a single search to do, a linear scan will be faster.
+   But if you're doing many sorts, the O(n log n) sort overhead will not matter as much
+
+
+Your benchmarks must use appropriately-sized inputs. As we've seen, different
+algorithms make sense at different input sizes. If your expected input range
+in <100, then your benchmarks should reflect that. Otherwise, choosing an
+algorithm which is optimal for n=10^6 might not be the fastest.
+
+Be able to generate representative test data. Different distributions of data
+can provoke different behaviours in your algorithm: think of the classic
+"quicksort is O(n^2) when the data is sorted" example.
 
 Cache common cases: Your cache doesn't even need to be huge.
   Optimized a log processing script to cache the previous time passed to time.parse() for significant speedup
