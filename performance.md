@@ -77,6 +77,10 @@ Choosing what to optimize.  Choosing when to optimize.
 
 Clarify "Premature optimization" quote.
 
+TPOP: Should you optimize? "Yes, but only if the problem is important, the
+program is guinely too slow, and there is some expectation that it can be
+made faster while maintaining correctness, robustness, and clarity."
+
 Fast software or fast deployment.
 
 http://bitfunnel.org/strangeloop . has numbers. Hypothetical search engine
