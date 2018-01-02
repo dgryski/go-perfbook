@@ -126,6 +126,7 @@ identify where time is actually spent.
 
 In general, optimizations should proceed from top to bottom. Optimizations
 at the system level will have more impact than expression-level ones.
+Make sure you're solving the problem at the appropriate level.
 
 Do we have to do this at all?  The fastest code is the code that's not there.
 If yes, is this the best algorithm.
@@ -176,11 +177,20 @@ program tuning:
    best done in tiny steps, a few statements at a time
    moving from floating point math to integer math
    or mandelbrot removing sqrt, or lttb removing abs
-
+   
 some tunings are working around runtime or compiler code generation issue:
   always flag these with the appropriate issue so you can revisit
   assembly math.Abs() vs code generation vs function call overhead
   exploit a mathematical identity: https://go-review.googlesource.com/c/go/+/85477
+  just clearing the parts you used, rather than an entire array
+
+Program tuning used to be an art form, but then compilers got better. So now
+it turns out that compilers can optimize straight-forward code better than
+complicated code. The Go compiler still has a long way to go to match gcc and
+clang, but it does mean that you need to be careful when tuning and
+especially when upgrading that your code doesn't become "worse". There are
+definitely cases where tweaks to work around the lack of a particular
+compiler optimization became slower once the compiler was improved.
 
 Keep comments. If something doesn't need to be done, explain why.  Frequently
 when optimizing an algorithm you'll discover steps that don't need to be
@@ -227,6 +237,12 @@ can provoke different behaviours in your algorithm: think of the classic
 Cache common cases: Your cache doesn't even need to be huge.
   Optimized a log processing script to cache the previous time passed to time.parse() for significant speedup
   But beware cache invalidation, thread issues, etc
+
+This also means your benchmark data needs to be representative of the real
+world. If repeated requests are sufficiently rare, it's more expensive to
+keep them around than to recompute them. If your benchmark data consists of
+only the same repeated request, your cache will give an inaccurate view of
+the performance.
 
 ## Basics
 
