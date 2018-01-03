@@ -63,8 +63,12 @@
 cgo:
     cgo has overhead
         (which has only gotten more expensive over time) -- ~200 ns/call
+        (reduced in 1.8 to <100ns; still not free)
     ssa backend means less difference in codegen
     really think if you want cgo: http://dave.cheney.net/2016/01/18/cgo-is-not-go
+    https://www.youtube.com/watch?v=lhMhApWQp2E : cgo gophercon
+    cgo performance tracking bug: https://github.com/golang/go/issues/9704
+
 
 videos:
     https://gophervids.appspot.com/#tags=optimization
@@ -110,10 +114,11 @@ asm:
     https://blog.gopheracademy.com/advent-2016/peachpy/
     https://blog.sgmansfield.com/2017/04/a-foray-into-go-assembly-programming/
     http://lemire.me/blog/2016/12/21/performance-overhead-when-calling-assembly-from-go/
+    minio posts + tooling
 
 posts:
     http://www.eecs.berkeley.edu/~rcs/research/interactive_latency.html
-    https://arxiv.org/abs/1509.05053
+    https://arxiv.org/abs/1509.05053 (array layouts for comparison-based searching)
     http://grokbase.com/t/gg/golang-nuts/155ea0t5hf/go-nuts-after-set-gomaxprocs-different-machines-have-different-bahaviors-some-speed-up-some-slow-down
     http://grokbase.com/t/gg/golang-nuts/14138jw64s/go-nuts-concurrent-read-write-of-different-parts-of-a-slice
 
@@ -166,6 +171,11 @@ stackoverflow:
 practice:
     https://twitter.com/dgryski/status/584682584942194689
 
+distributed system design: (out of scope for this book)
+    http://highscalability.com/blog/2010/12/20/netflix-use-less-chatty-protocols-in-the-cloud-plus-26-fixes.html
+
+books:
 Writing Efficient Programs
 Algorithm Engineering: https://www.springer.com/gp/book/9783642148651
 http://www.cs.tufts.edu/~nr/cs257/archive/don-knuth/empirical-fortran.pdf
+
