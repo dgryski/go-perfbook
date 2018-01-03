@@ -291,6 +291,7 @@ Techniques applicable to source code in general
 * Stack vs. heap allocations
 * What causes heap allocations?
 * Understanding escape analysis
+* API design to limit allocations: allow passing in buffers so caller can reuse rather than forcing an allocation
 
 ## Runtime
 * cost of calls via interfaces (indirect calls on the CPU level)
@@ -326,12 +327,13 @@ Techniques applicable to source code in general
 ## Alternate implementations
 * Popular replacements for standard library packages:
   * encoding/json -> ffjson
-  * net/http -> fasthttp
+  * net/http -> fasthttp (but incompatible API)
   * regexp -> ragel (or other regular expression package)
   * serialization
       * encoding/gob -> <https://github.com/alecthomas/go_serialization_benchmarks>
       * protobuf -> <https://github.com/gogo/protobuf>
-      * all formats have trade-offs; choose one that matches what you need
+      * all formats have trade-offs: choose one that matches what you need
+        encoded space, decoding speed, language/tooling compatibility, ...
 
 ## Tooling
 
