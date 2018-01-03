@@ -92,28 +92,32 @@ Once you've decided you're going to do this, keep reading.
 
 ### How to Optimize
 
+Before we get into the specifics, lets talk about the general process of
+optimization.
+
 Optimization is a form of refactoring. But each step, rather than improving
 some aspect of the source code (code duplication, clarity, etc), improves
-some aspect of the performance: lower CPU or memory usage, latency, etc. This
+some aspect of the performance: lower CPU, memory usage, latency, etc. This
 means that in addition to a comprehensive set of unit tests (to ensuring your
 changes haven't broken anything), you also need a good set of benchmarks to
 ensure your changes are having the desired effect on performance. You must be
-able to verify that your change really *is* lowering CPU, for example.
+able to verify that your change really *is* lowering CPU.
 
-This also means that the benchmarks you're using must be correct and provide
-reproducible numbers. If individual runs have too high a variance, it will
-make improvements more difficult to spot. You will need to use benchstat or
-equivalent statistical tests and won't be able just eye-ball it.
+That the benchmarks you're using must be correct and provide reproducible
+numbers on representative workloads. If individual runs have too high a
+variance, it will make improvements more difficult to spot. You will need to
+use benchstat or equivalent statistical tests and won't be able just eye-ball
+it.
 
-Next, decide what it is you're optimizing for. Are you trying to reduce memory
-usage? By how much? How much slower is acceptable for what change in memory
-usage?
+Next, decide what it is you're optimizing for. Are you trying to reduce
+memory usage? By how much? How much slower is acceptable for what change in
+memory usage? What are you willing to give up in exchange for lower space?
 
 Anything that can be measured can be optimized. Make sure you're measuring
 the right thing. Beware bad metrics. There are generally competing factors.
 
 This book is mostly going to talk about reducing CPU usage, reducing memory
-usage, or reducing latency. It's good to point out that you can very rarely
+usage, and reducing latency. It's good to point out that you can very rarely
 do all three. Maybe CPU time is faster, but now your program uses more
 memory. Maybe you need to reduce memory space, but now the program will take
 longer.
