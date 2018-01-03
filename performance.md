@@ -1,8 +1,9 @@
 This document outlines best practices for writing high-performance Go code.
 
 At the moment, it's a collection of links to videos, slides, and blog posts
-("awesome-go-performance"), but I would like this to evolve into a longer book
-format where the content is here instead of external.  The links should be sorted into categories.
+("awesome-golang-performance"), but I would like this to evolve into a longer
+book format where the content is here instead of external.  The links should be
+sorted into categories.
 
 While some discussions will be made for indivudial services faster (caching,
 etc), designing performant distributed systems is beyond the scope of this
