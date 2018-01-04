@@ -287,7 +287,11 @@ Techniques applicable to source code in general
    * building intuition around cache-lines: sizes, padding, alignment
    * false-sharing
    * OS tools to view cache-misses
- * (also branch prediction)
+   * maps vs. slices
+   * SOA vs AOS layouts
+   * reducing pointer chasing
+ * branch prediction
+ * function call overhead
 
 * Comment about Jeff Dean's 2002 numbers (plus updates)
   * cpus have gotten faster, but memory hasn't kept up
@@ -297,6 +301,7 @@ Techniques applicable to source code in general
 * What causes heap allocations?
 * Understanding escape analysis
 * API design to limit allocations: allow passing in buffers so caller can reuse rather than forcing an allocation
+* reducing pointers
 
 ## Runtime
 * cost of calls via interfaces (indirect calls on the CPU level)
@@ -321,6 +326,7 @@ Techniques applicable to source code in general
 * Performance characteristics of cgo calls
 * Tricks to reduce the costs
 * Passing pointers between Go and C
+* syso files
 
 ## Assembly
 * Stuff about writing assembly code for Go
