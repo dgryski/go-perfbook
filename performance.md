@@ -121,6 +121,9 @@ memory usage? What are you willing to give up in exchange for lower space?
 Anything that can be measured can be optimized. Make sure you're measuring
 the right thing. Beware bad metrics. There are generally competing factors.
 
+Good performance work requires knowledge at many different levels, from
+system design, networking, hardware (CPU, caches, storage).
+
 This book is mostly going to talk about reducing CPU usage, reducing memory
 usage, and reducing latency. It's good to point out that you can very rarely
 do all three. Maybe CPU time is faster, but now your program uses more
@@ -155,6 +158,13 @@ Basic techniques:
 
     But the engineering approach is correct:
      Benchmark. Analyze. Improve. Verify. Iterate.
+
+Augment your data structure with more information:
+    - precomputed fields (size, etc)
+    - extra indexes for searching, "search fingers"
+    - limitations of when this is applicable:
+       must be cheap to keep updated
+    - all these fall under "do less work" (at the data structure level)
 
 Trade space for time:
   - smaller data structures: pack things, compress data structures in memory
@@ -301,7 +311,7 @@ Techniques applicable to source code in general
 * What causes heap allocations?
 * Understanding escape analysis
 * API design to limit allocations: allow passing in buffers so caller can reuse rather than forcing an allocation
-* reducing pointers
+* reducing pointers to reduce gc scan times
 
 ## Runtime
 * cost of calls via interfaces (indirect calls on the CPU level)
@@ -324,8 +334,8 @@ Techniques applicable to source code in general
 
 ## cgo
 * Performance characteristics of cgo calls
-* Tricks to reduce the costs
-* Passing pointers between Go and C
+* Tricks to reduce the costs: batching
+* Rules on passing pointers between Go and C
 * syso files
 
 ## Assembly
@@ -334,6 +344,7 @@ Techniques applicable to source code in general
 * calling convention
 * using opcodes unsupported by the asm
 * notes about why intrinsics are hard
+* all the tooling to make this easier: asmfmt, peachpy, c2goasm, ...
 
 ## Alternate implementations
 * Popular replacements for standard library packages:
