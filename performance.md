@@ -122,7 +122,10 @@ Anything that can be measured can be optimized. Make sure you're measuring
 the right thing. Beware bad metrics. There are generally competing factors.
 
 Good performance work requires knowledge at many different levels, from
-system design, networking, hardware (CPU, caches, storage).
+system design, networking, hardware (CPU, caches, storage), algorithms,
+tuning, and debugging. With limited time and resources, consider which level
+will give the most improvement: it won't always be algorithm or program
+tuning.
 
 This book is mostly going to talk about reducing CPU usage, reducing memory
 usage, and reducing latency. It's good to point out that you can very rarely
