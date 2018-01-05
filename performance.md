@@ -204,6 +204,8 @@ program tuning:
    best done in tiny steps, a few statements at a time
    moving from floating point math to integer math
    or mandelbrot removing sqrt, or lttb removing abs
+   cheap checks before more expensive checks:
+    e.g., strcmp before regexp, (q.v., bloom filter before query)
    
 some tunings are working around runtime or compiler code generation issue:
   always flag these with the appropriate issue so you can revisit
