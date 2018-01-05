@@ -251,7 +251,7 @@ for algorithm the paper you're implementing claims to best and do that one
 instead.
 
 Sometimes the best algorithm for a particular problem is not a single
-algorith, but a collection of algorithms specialized for slightly different
+algorithm, but a collection of algorithms specialized for slightly different
 input classes. This "polyalgorithm" quickly detects what kind of input it
 needs to deal with and then dispatches to the appropriate code path.
 
@@ -278,6 +278,13 @@ can provoke different behaviours in your algorithm: think of the classic
 Cache common cases: Your cache doesn't even need to be huge.
   Optimized a log processing script to cache the previous time passed to time.parse() for significant speedup
   But beware cache invalidation, thread issues, etc
+  Random cache eviction is fast and sufficiently effective.
+     - only put "some" items in cache (probabilistically) to limit cache size to popular items with minimal logic
+  Compare cost of cache logic to cost of refetching the data.
+
+The standard library implementations need to be "fast enough" for most cases.
+If you have higher performance needs you will probably need specialized
+implementations.
 
 This also means your benchmark data needs to be representative of the real
 world. If repeated requests are sufficiently rare, it's more expensive to
