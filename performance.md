@@ -115,7 +115,7 @@ use benchstat or equivalent statistical tests and won't be able just eye-ball
 it. The steps to run the benchmarks should be documented, any custom scripts
 and tooling should be commited to the repository with instructions for how to
 run it.  Be mindful of large benchmark suites that take a long time to get the
-results you need.
+results you need: it will make the development interations slower.
 
 Next, decide what it is you're optimizing for. Are you trying to reduce
 memory usage? By how much? How much slower is acceptable for what change in
