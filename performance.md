@@ -239,6 +239,14 @@ Debugging an optimized algorithm is harder than debugging a simple one. Look
 for algorithm the paper you're implementing claims to best and do that one
 instead.
 
+Sometimes the best algorithm for a particular problem is not a single
+algorith, but a collection of algorithms specialized for slightly different
+input classes. This "polyalgorithm" quickly detects what kind of input it
+needs to deal with and then dispatches to the appropriate code path.
+
+There are examples of this are in the standard library sorting and string
+packages.
+
 Choose algorithms based on problem size: (stdlib quicksort)
 Detect and specialize for common or easy cases: stdlib string
 
