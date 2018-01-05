@@ -112,7 +112,10 @@ That the benchmarks you're using must be correct and provide reproducible
 numbers on representative workloads. If individual runs have too high a
 variance, it will make improvements more difficult to spot. You will need to
 use benchstat or equivalent statistical tests and won't be able just eye-ball
-it.
+it. The steps to run the benchmarks should be documented, any custom scripts
+and tooling should be commited to the repository with instructions for how to
+run it.  Be mindful of large benchmark suites that take a long time to get the
+results you need.
 
 Next, decide what it is you're optimizing for. Are you trying to reduce
 memory usage? By how much? How much slower is acceptable for what change in
@@ -310,6 +313,7 @@ Techniques applicable to source code in general
 
 * Techniques specific to the architecture running the code
  * introduction to CPU caches
+   * performance cliffs
    * building intuition around cache-lines: sizes, padding, alignment
    * false-sharing
    * OS tools to view cache-misses
@@ -342,12 +346,16 @@ Techniques applicable to source code in general
 * time.After() leaks until it fires
 * Reusing HTTP connections...
 * ....
+* rand.Int() and friends are 1) mutex protected and 2) expensive to create
+  - consider alternate random number generation
 
 ## Unsafe
 * And all the dangers that go with it
 * Common uses for unsafe
 * mmap'ing data files
+  - struct padding
 * speedy de-serialization
+* string <-> slice conversion, []byte <-> []uint32, ...
 
 ## cgo
 * Performance characteristics of cgo calls
@@ -357,6 +365,7 @@ Techniques applicable to source code in general
 
 ## Assembly
 * Stuff about writing assembly code for Go
+* always have pure-Go version (noasm build tag): testing,
 * brief intro to syntax
 * calling convention
 * using opcodes unsupported by the asm
