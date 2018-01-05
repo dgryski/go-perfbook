@@ -166,12 +166,13 @@ Basic techniques:
      Benchmark. Analyze. Improve. Verify. Iterate.
 
 Augment your data structure with more information:
-    - precomputed fields (size, etc)
-    - extra indexes for searching, "search fingers"
+    - precomputed fields (size instead of interating linked list, etc)
+    - extra indexes for searching, "search fingers", doubly-linked list for O(1) removal
     - limitations of when this is applicable:
        must be cheap to keep updated
     - all these fall under "do less work" (at the data structure level)
-    - bloom filter (for example)
+    - bloom filter (for example): these need to be small and fast to not
+      overwhelm the rest of the data structure: (e.g, matcher bench)
 
 Trade space for time:
   - smaller data structures: pack things, compress data structures in memory
