@@ -128,6 +128,8 @@ posts:
     https://hackernoon.com/optimizing-optimizing-some-insights-that-led-to-a-400-speedup-of-powerdns-5e1a44b58f1c
     http://leto.net/docs/C-optimization.php
 
+    http://www.stochasticlifestyle.com/algorithm-efficiency-comes-problem-information/
+
 tools:
     https://godoc.org/github.com/aclements/go-perf
     https://godoc.org/x/perf/cmd/benchstat

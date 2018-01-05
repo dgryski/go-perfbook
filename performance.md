@@ -165,6 +165,7 @@ Augment your data structure with more information:
     - limitations of when this is applicable:
        must be cheap to keep updated
     - all these fall under "do less work" (at the data structure level)
+    - bloom filter (for example)
 
 Trade space for time:
   - smaller data structures: pack things, compress data structures in memory
@@ -311,6 +312,7 @@ Techniques applicable to source code in general
 * What causes heap allocations?
 * Understanding escape analysis
 * API design to limit allocations: allow passing in buffers so caller can reuse rather than forcing an allocation
+  - you can even modify a slice in place carefully while you scan over it
 * reducing pointers to reduce gc scan times
 
 ## Runtime
