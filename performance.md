@@ -215,6 +215,11 @@ especially when upgrading that your code doesn't become "worse". There are
 definitely cases where tweaks to work around the lack of a particular
 compiler optimization became slower once the compiler was improved.
 
+Iterative program improvements:
+  - ensure progress at each step
+  - but frequently one improvement will enable others
+  - which means you need to keep looking at the entire picture
+
 Keep comments. If something doesn't need to be done, explain why.  Frequently
 when optimizing an algorithm you'll discover steps that don't need to be
 performed under some circumstances.  Document them. Somebody else might think
@@ -254,7 +259,6 @@ Beware algorithms with high startup costs.  For example,
    search is O(log n), but you have to sort first.
    If you just have a single search to do, a linear scan will be faster.
    But if you're doing many sorts, the O(n log n) sort overhead will not matter as much
-
 
 Your benchmarks must use appropriately-sized inputs. As we've seen, different
 algorithms make sense at different input sizes. If your expected input range
