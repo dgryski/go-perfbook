@@ -181,3 +181,12 @@ Writing Efficient Programs
 Algorithm Engineering: https://www.springer.com/gp/book/9783642148651
 http://www.cs.tufts.edu/~nr/cs257/archive/don-knuth/empirical-fortran.pdf
 
+Quotes: (Bumper Sticker Computer Science)
+    [The First Rule of Program Optimization] Don't do it.
+    [The Second Rule of Program Optimization---For experts only] Don't do it yet.
+            Michael Jackson
+            Michael Jackson Systems Ltd.
+
+    The fastest algorithm can frequently be replaced by one that is almost as fast and much easier to understand.
+            Douglas W. Jones
+            University of Iowa
