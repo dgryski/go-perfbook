@@ -117,6 +117,10 @@ and tooling should be commited to the repository with instructions for how to
 run it.  Be mindful of large benchmark suites that take a long time to get the
 results you need: it will make the development interations slower.
 
+Entire books have been written on how to performance test web servers.
+Performance is a distribution. Latency distributions at different
+request/second levels.
+
 Next, decide what it is you're optimizing for. Are you trying to reduce
 memory usage? By how much? How much slower is acceptable for what change in
 memory usage? What are you willing to give up in exchange for lower space?
@@ -273,7 +277,10 @@ algorithm which is optimal for n=10^6 might not be the fastest.
 
 Be able to generate representative test data. Different distributions of data
 can provoke different behaviours in your algorithm: think of the classic
-"quicksort is O(n^2) when the data is sorted" example.
+"quicksort is O(n^2) when the data is sorted" example. Similarly,
+interpolation search is O(log log n) for uniform random data, but O(n) worst
+case. Knowing what your inputs look like is the key to both representative
+benchmarks and for choosing the best algorithm.
 
 Cache common cases: Your cache doesn't even need to be huge.
   Optimized a log processing script to cache the previous time passed to time.parse() for significant speedup
