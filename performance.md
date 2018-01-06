@@ -361,6 +361,7 @@ Techniques applicable to source code in general
   - you can even modify a slice in place carefully while you scan over it
 * reducing pointers to reduce gc scan times
 * GOGC
+* buffer reuse (sync.Pool vs or custom via go-slab, etc)
 
 ## Runtime
 * cost of calls via interfaces (indirect calls on the CPU level)
