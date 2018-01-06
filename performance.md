@@ -338,6 +338,7 @@ Techniques applicable to source code in general
    * performance cliffs
    * building intuition around cache-lines: sizes, padding, alignment
    * false-sharing
+   * true sharing -> sharding
    * OS tools to view cache-misses
    * maps vs. slices
    * SOA vs AOS layouts
@@ -405,6 +406,7 @@ Techniques applicable to source code in general
       * protobuf -> <https://github.com/gogo/protobuf>
       * all formats have trade-offs: choose one that matches what you need
         encoded space, decoding speed, language/tooling compatibility, ...
+   * database/sql -> jackx/pgx, ...
 
 ## Tooling
 
