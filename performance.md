@@ -299,6 +299,11 @@ keep them around than to recompute them. If your benchmark data consists of
 only the same repeated request, your cache will give an inaccurate view of
 the performance.
 
+Profile regularly to ensure the track the performance characteristics of your
+system and be prepared to re-optimize as your traffic changes. Know the
+limits of your system and have good metrics that allow you to predict when
+you will hit those limits.
+
 ## Basics
 
 1. choose the best algorithm
@@ -343,13 +348,14 @@ Techniques applicable to source code in general
 * Comment about Jeff Dean's 2002 numbers (plus updates)
   * cpus have gotten faster, but memory hasn't kept up
 
-## Heap Allocations
+## Garbage Collection
 * Stack vs. heap allocations
 * What causes heap allocations?
-* Understanding escape analysis
+* Understanding escape analysis (and the current limitation)
 * API design to limit allocations: allow passing in buffers so caller can reuse rather than forcing an allocation
   - you can even modify a slice in place carefully while you scan over it
 * reducing pointers to reduce gc scan times
+* GOGC
 
 ## Runtime
 * cost of calls via interfaces (indirect calls on the CPU level)
