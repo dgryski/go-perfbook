@@ -177,6 +177,7 @@ Augment your data structure with more information:
     - all these fall under "do less work" (at the data structure level)
     - bloom filter (for example): these need to be small and fast to not
       overwhelm the rest of the data structure: (e.g, matcher bench)
+      : punchline: regular map is still the fastest
 
 Trade space for time:
   - smaller data structures: pack things, compress data structures in memory
@@ -303,6 +304,9 @@ Profile regularly to ensure the track the performance characteristics of your
 system and be prepared to re-optimize as your traffic changes. Know the
 limits of your system and have good metrics that allow you to predict when
 you will hit those limits.
+
+De-optimize when possible. I removed from mmap + reflect + unsafe when it
+stopped being necessary.
 
 ## Basics
 
