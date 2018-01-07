@@ -103,27 +103,37 @@ optimization.
 Optimization is a form of refactoring. But each step, rather than improving
 some aspect of the source code (code duplication, clarity, etc), improves
 some aspect of the performance: lower CPU, memory usage, latency, etc. This
-means that in addition to a comprehensive set of unit tests (to ensuring your
+means that in addition to a comprehensive set of unit tests (to ensure your
 changes haven't broken anything), you also need a good set of benchmarks to
 ensure your changes are having the desired effect on performance. You must be
-able to verify that your change really *is* lowering CPU.
+able to verify that your change really *is* lowering CPU. Sometimes a change
+you thought would improve will actually turn out to have a zero or negative
+change.  Always make sure you undo your fix in these cases.
 
-That the benchmarks you're using must be correct and provide reproducible
-numbers on representative workloads. If individual runs have too high a
-variance, it will make improvements more difficult to spot. You will need to
-use benchstat or equivalent statistical tests and won't be able just eye-ball
-it. The steps to run the benchmarks should be documented, any custom scripts
-and tooling should be commited to the repository with instructions for how to
-run it.  Be mindful of large benchmark suites that take a long time to get the
-results you need: it will make the development interations slower.
+The benchmarks you are using must be correct and provide reproducible numbers
+on representative workloads. If individual runs have too high a variance, it
+will make small improvements more difficult to spot. You will need to use
+benchstat or equivalent statistical tests and won't be able just eyeball it.
+(Note that using statisical tests is a good idea anyways.) The steps to run
+the benchmarks should be documented, and any custom scripts and tooling
+should be commited to the repository with instructions for how to run them.
+Be mindful of large benchmark suites that take a long time to run: it will
+make the development interations slower.
 
-Entire books have been written on how to performance test web servers.
-Performance is a distribution. Latency distributions at different
-request/second levels.
 
-Next, decide what it is you're optimizing for. Are you trying to reduce
-memory usage? By how much? How much slower is acceptable for what change in
-memory usage? What are you willing to give up in exchange for lower space?
+The next step is to decide what you are optimizing for. If the goal is to
+improve CPU, what is an acceptable speed. Do you want to improve the current
+performance by 2x? 10x? Can you state it as "problem of size N in less than
+time T"? Are you trying to reduce memory usage? By how much? How much slower
+is acceptable for what change in memory usage? What are you willing to give
+up in exchange for lower space?
+
+Optimizing for service latency is a trickier proposition. Entire books have
+been written on how to performance test web servers. The primary issue is
+that for single-threaded code, the performance is fairly consistent for a
+given problem size. For webservices, you don't have a single number. A proper
+web-service benchmark suite will provide a latency distribution for a given
+reqs/second level. ...
 
 Anything that can be measured can be optimized. Make sure you're measuring
 the right thing. Beware bad metrics. There are generally competing factors.
