@@ -421,7 +421,8 @@ Techniques applicable to source code in general
       * protobuf -> <https://github.com/gogo/protobuf>
       * all formats have trade-offs: choose one that matches what you need
         encoded space, decoding speed, language/tooling compatibility, ...
-   * database/sql -> jackx/pgx, ...
+  * database/sql -> jackx/pgx, ...
+  * gccgo
 
 ## Tooling
 
