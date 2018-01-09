@@ -336,6 +336,7 @@ Techniques applicable to source code in general
 1. introduction to pprof
  * go tool pprof (and <https://github.com/google/pprof>)
 1. Writing and running (micro)benchmarks
+ * profile, extract hot code to benchmark, optimize benchmark, profile.
  * -cpuprofile / -memprofile / -benchmem
 1. How to read it pprof output
 1. What are the different pieces of the runtime that show up
@@ -379,6 +380,7 @@ Techniques applicable to source code in general
 * type assertions vs. type switches
 * defer
 * special-case map implementations for ints, strings
+* bounds check elimination
 
 ## Common gotchas with the standard library
 
