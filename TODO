@@ -59,6 +59,7 @@
   - http://dave.cheney.net/2015/11/29/a-whirlwind-tour-of-gos-runtime-environment-variables
   - https://github.com/davecheney/high-performance-go-workshop
   - Mutex profile: https://rakyll.org/mutexprofile
+  - https://segment.com/blog/allocation-efficiency-in-high-performance-go-services/
 
 cgo:
     cgo has overhead
@@ -165,6 +166,8 @@ optimization guides:
     http://developer.amd.com/resources/developer-guides-manuals/
     http://infocenter.arm.com/help/index.jsp?topic=/com.arm.doc.uan0015b/index.html
     https://www-ssl.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-optimization-manual.html
+    https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines.html#S-performance
+    https://github.com/fenbf/AwesomePerfCpp
 
 stackoverflow:
     https://stackoverflow.com/questions/19397699/why-struct-with-padding-fields-works-faster/19397791#19397791
