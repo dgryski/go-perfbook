@@ -338,6 +338,7 @@ Techniques applicable to source code in general
 1. Writing and running (micro)benchmarks
  * profile, extract hot code to benchmark, optimize benchmark, profile.
  * -cpuprofile / -memprofile / -benchmem
+ * 0.5 ns/op means it was optimized away -> how to avoid
 1. How to read it pprof output
 1. What are the different pieces of the runtime that show up
 1. Macro-benchmarks (Profiling in production)
