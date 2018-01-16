@@ -61,6 +61,7 @@
   - Mutex profile: https://rakyll.org/mutexprofile
   - https://segment.com/blog/allocation-efficiency-in-high-performance-go-services/
   - http://brendanjryan.com/2018/01/15/go-benchmarks.html
+  - https://lemire.me/blog/2018/01/16/microbenchmarking-calls-for-idealized-conditions/
 
 cgo:
     cgo has overhead
