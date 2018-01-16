@@ -185,13 +185,20 @@ when the data you need is cheap to store and keep up-to-date.
 - extra search indexes: Most data structures are designed for a single type of query.
 If you need two different query types, having an additional "view" onto your data can be large improvement.
 For example, []struct, referenced by ID but sometimes string -> map[string]id (or \*struct)
-TODO: Sometimes this can be as simple as a "search finger"
 
 - extra information about elements: for example, a bloom filter. These need to
 be small and fast to not overwhelm the rest of the data structure.
 
-Both of these are clear examples of "do less work" at the data structure
-level. They all cost space.
+- if queries are expensive, add a cache.  We're all familiar with memcache, but there are in-process caches.
+* over the wire, the network + cost of serialization will hurt
+* in-process caches, but now you need to worry about expiration
+* even a single item can help (logfile time parse example)
+
+TODO: "cache" might not even be key-value, just a pointer to where you were
+working. This can be as simple as a "search finger"
+
+These are all clear examples of "do less work" at the data structure level.
+They all cost space.
 
 Trade space for time:
   - smaller data structures: pack things, compress data structures in memory
