@@ -1,3 +1,5 @@
+# Writing and Optimizing Go code
+
 This document outlines best practices for writing high-performance Go code.
 
 At the moment, it's a collection of links to videos, slides, and blog posts
@@ -11,37 +13,6 @@ work.
 
 All the content will be licensed under CC-BY-SA.
 
-## Optimization Workflow
-
-* All optimizations should follow these steps:
-
-    1. determine your performance goals and confirm you are not meeting them
-    1. profile to identify the areas to improve.  This can be CPU, heap allocations, or goroutine blocking.
-    1. benchmark to determine the speed up your solution will provide using
-       the built-in benchmarking framework (<http://golang.org/pkg/testing/>)
-       Make sure you're benchmarking the right thing on your target operating system and architecture.
-    1. profile again afterwards to verify the issue is gone
-    1. use <https://godoc.org/golang.org/x/perf/benchstat> or
-       <https://github.com/codahale/tinystat> to verify that a set of timings
-       are 'sufficiently' different for an optimization to be worth the
-       added code complexity.
-    1. use <https://github.com/tsenart/vegeta> for load testing http services
-    1. make sure your latency numbers make sense: <https://youtu.be/lJ8ydIuPFeU>
-
-The first step is important. It tells you when and where to start optimizing.
-More importantly, it also tells you when to stop.  Pretty much all
-optimizations add code complexity in exchange for speed.  And you can *always*
-make code faster.  It's a balancing act.
-
-The basic rules of the game are:
-
-1. minimize CPU usage
- * do less work
- * this generally means "a faster algorithm"
- * but CPU caches and the hidden constants in O() can play tricks on you
-1. minimize allocations (which leads to less CPU stolen by the GC)
-1. make your data quick to access
-
 This book is split into different sections:
    1) basic tips for writing not-slow software
      * CS 101-level stuff
@@ -49,6 +20,7 @@ This book is split into different sections:
      * Go-specific sections on how to get the best from Go
    3) advanced tips for writing *really* fast software
      * For when your optimized code isn't fast enough
+
 
 ### When and Where to Optimize
 
@@ -97,6 +69,8 @@ Once you've decided you're going to do this, keep reading.
 
 ### How to Optimize
 
+## Optimization Workflow
+
 Before we get into the specifics, lets talk about the general process of
 optimization.
 
@@ -120,6 +94,8 @@ should be committed to the repository with instructions for how to run them.
 Be mindful of large benchmark suites that take a long time to run: it will
 make the development iterations slower.
 
+(Note also that anything that can be measured can be optimized. Make sure
+you're measuring the right thing.)
 
 The next step is to decide what you are optimizing for. If the goal is to
 improve CPU, what is an acceptable speed. Do you want to improve the current
@@ -135,8 +111,16 @@ given problem size. For webservices, you don't have a single number. A proper
 web-service benchmark suite will provide a latency distribution for a given
 reqs/second level. ...
 
-Anything that can be measured can be optimized. Make sure you're measuring
-the right thing. Beware bad metrics. There are generally competing factors.
+The performance goals must be specific. You will (almost) always be able to
+make something faster. Optimizing is frequently a game of diminishing
+returns. You need to know when to stop.
+
+The difference between what your target is and the current performance will
+also give you an idea of where to start. If you need only a 10%-20%
+performance improvement, you can probably get that with some implementation
+tweaks and smaller fixes. If you need a factor of 10x or more, then just
+replacing a multiplication with a left-shift isn't going to cut it. That's
+probably going to call for changes up and down your stack.
 
 Good performance work requires knowledge at many different levels, from
 system design, networking, hardware (CPU, caches, storage), algorithms,
@@ -156,16 +140,21 @@ total wall-clock. On the other hand, speeding up routine that takes 80% of
 the time by 10% will improve runtime by almost 8%. Profiles will help
 identify where time is actually spent.
 
-In general, optimizations should proceed from top to bottom. Optimizations
-at the system level will have more impact than expression-level ones.
-Make sure you're solving the problem at the appropriate level.
+A profiler might show you that lots of time is spent in a particular routine.
+It could be this is an expensive routine, or it could be a cheap routine that
+is just called many many times. Rather than immediately trying to speed up
+that one routine, see if you can reduce the number of times it's called or
+eliminate it completely.
 
-Do we have to do this at all?  The fastest code is the code that's not there.
-If yes, is this the best algorithm.
-If yes, is this the best *implementation* of this algorithm.
+In general, optimizations should proceed from top to bottom. Optimizations at
+the system level will have more impact than expression-level ones. Make sure
+you're solving the problem at the appropriate level.
 
-Given a profile that says a particular routine is expensive, before
-optimizing that routine, see if you can eliminate calls to it all together.
+The three optimization questions:
+
+- Do we have to do this at all?  The fastest code is the code that's not there.
+- If yes, is this the best algorithm.
+- If yes, is this the best *implementation* of this algorithm.
 
 Basic techniques:
 
@@ -318,7 +307,36 @@ you will hit those limits.
 De-optimize when possible. I removed from mmap + reflect + unsafe when it
 stopped being necessary.
 
-## Basics
+## Optimization workflow summary
+
+* All optimizations should follow these steps:
+
+    1. determine your performance goals and confirm you are not meeting them
+    1. profile to identify the areas to improve.  This can be CPU, heap allocations, or goroutine blocking.
+    1. benchmark to determine the speed up your solution will provide using
+       the built-in benchmarking framework (<http://golang.org/pkg/testing/>)
+       Make sure you're benchmarking the right thing on your target operating system and architecture.
+    1. profile again afterwards to verify the issue is gone
+    1. use <https://godoc.org/golang.org/x/perf/benchstat> or
+       <https://github.com/codahale/tinystat> to verify that a set of timings
+       are 'sufficiently' different for an optimization to be worth the
+       added code complexity.
+    1. use <https://github.com/tsenart/vegeta> for load testing http services
+    1. make sure your latency numbers make sense: <https://youtu.be/lJ8ydIuPFeU>
+
+The first step is important. It tells you when and where to start optimizing.
+More importantly, it also tells you when to stop.  Pretty much all
+optimizations add code complexity in exchange for speed.  And you can *always*
+make code faster.  It's a balancing act.
+
+The basic rules of the game are:
+
+1. minimize CPU usage
+* do less work
+* this generally means "a faster algorithm"
+* but CPU caches and the hidden constants in O() can play tricks on you
+1. minimize allocations (which leads to less CPU stolen by the GC)
+1. make your data quick to access
 
 1. choose the best algorithm
  * traditional computer science analysis
