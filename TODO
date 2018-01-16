@@ -60,6 +60,7 @@
   - https://github.com/davecheney/high-performance-go-workshop
   - Mutex profile: https://rakyll.org/mutexprofile
   - https://segment.com/blog/allocation-efficiency-in-high-performance-go-services/
+  - http://brendanjryan.com/2018/01/15/go-benchmarks.html
 
 cgo:
     cgo has overhead
