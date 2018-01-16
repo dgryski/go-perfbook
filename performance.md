@@ -174,16 +174,24 @@ you can either change your data or you can change your code.
 Changing your data means either adding to or altering the representation of
 the data you're processing.
 
+Ideas for augmenting your data structure:
 
-Augment your data structure with more information:
-    - precomputed fields (size instead of iterating linked list, etc)
-    - extra indexes for searching, "search fingers", doubly-linked list for O(1) removal
-    - limitations of when this is applicable:
-       must be cheap to keep updated
-    - all these fall under "do less work" (at the data structure level)
-    - bloom filter (for example): these need to be small and fast to not
-      overwhelm the rest of the data structure: (e.g, matcher bench)
-      : punchline: regular map is still the fastest
+- extra fields: For example, store the size of a linked lists rather than
+iterating when asked for it. Or storing additional pointers to frequently
+needed other nodes to multiple searches (for example, "backwards" links in a
+doubly-linked list to make removal O(1) ). These sorts of changes are useful
+when the data you need is cheap to store and keep up-to-date.
+
+- extra search indexes: Most data structures are designed for a single type of query.
+If you need two different query types, having an additional "view" onto your data can be large improvement.
+For example, []struct, referenced by ID but sometimes string -> map[string]id (or \*struct)
+TODO: Sometimes this can be as simple as a "search finger"
+
+- extra information about elements: for example, a bloom filter. These need to
+be small and fast to not overwhelm the rest of the data structure.
+
+Both of these are clear examples of "do less work" at the data structure
+level. They all cost space.
 
 Trade space for time:
   - smaller data structures: pack things, compress data structures in memory
