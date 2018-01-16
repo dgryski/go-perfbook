@@ -263,6 +263,8 @@ especially when upgrading that your code doesn't become "worse". There are
 definitely cases where tweaks to work around the lack of a particular
 compiler optimization became slower once the compiler was improved.
 
+If you're not changing the data, the other main option is to change the code.
+
 Iterative program improvements:
   - ensure progress at each step
   - but frequently one improvement will enable others
@@ -278,6 +280,7 @@ if you don't have to be correct. But it means you can use an optimization
 some of the time if you're sure it's in range.
 
 Have an intuitive grasp of the different O() levels:
+  - field access, array or map lookup, O(1)
   - simple loop, O(n)
   - nested loop, O(n*m)
   - binary-search O(log n)
@@ -287,10 +290,18 @@ Have an intuitive grasp of the different O() levels:
 Know how big each of these input sizes is likely to be when coding. You don't
 always have to shave cycles, but also don't be dumb.
 
-Beware high constants Look for simpler algorithms with small constants.
-Debugging an optimized algorithm is harder than debugging a simple one. Look
-for algorithm the paper you're implementing claims to best and do that one
-instead.
+Tips for implementing papers:  (For `algorithm` read also `data structure`)
+* Don't.  Start with the obvious solution and reasonable data structures.
+* "Modern" algorithms tend to have lower theoretical complexities but high constants and lots of implementation complexity.
+* Look for the paper their algorithm claims to beat and implement that.
+* Make sure you understand the algorithm.  This sounds obvious, but it will be impossible to debug otherwise.
+* The original paper for a data structure or algorithm isn't always the best.  Later papers may have better explanations.
+* Make sure the assumptions the algorithm makes about your data hold. 
+* Some papers release reference source code which you can compare against, but
+   - 1) academic code is almost universally terrible
+   - 2) beware licensing restrictions
+   - 3) beware bugs
+Also look out for other implementations on GitHub: they may have the same (or different!) bugs as yours.
 
 Sometimes the best algorithm for a particular problem is not a single
 algorithm, but a collection of algorithms specialized for slightly different
@@ -307,6 +318,10 @@ Beware algorithms with high startup costs.  For example,
    search is O(log n), but you have to sort first.
    If you just have a single search to do, a linear scan will be faster.
    But if you're doing many sorts, the O(n log n) sort overhead will not matter as much
+
+But you can also limit the search space by bucketing your data:
+But if you just need to test membership, maybe you want a hash.
+You can also bucket your data to reduce the size you need to scan.
 
 Your benchmarks must use appropriately-sized inputs. As we've seen, different
 algorithms make sense at different input sizes. If your expected input range
