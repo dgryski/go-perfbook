@@ -198,32 +198,46 @@ TODO: "cache" might not even be key-value, just a pointer to where you were
 working. This can be as simple as a "search finger"
 
 These are all clear examples of "do less work" at the data structure level.
-They all cost space.
+They all cost space. Most of the time if you're optimizing for CPU, your
+program will use more memory. This is the classic space-time trade-off:
+https://en.wikipedia.org/wiki/Space%E2%80%93time_tradeoff
+
+If your program uses too much memory, it's also possible to go the other way.
+Reduce space usage in exchange for increased computation. Rather than storing
+things, calculate them every time. You can also compress the data in memory
+and decompress it on the fly when you need it.
+
+There's a book available on line covering techniques for reducing the space
+used by your programs. While it was originally written targetting embedded
+developers, the ideas are applicable for programs on modern hardware dealing
+with huge amounts of data. http://www.smallmemory.com/
+
+Rearrange your data: Eliminate padding. Remove extra fields.
+Change to a slower data structure.
+Skip pointer-heavy tree structure and use slice and linear search instead.
+Custom compression format for your data: floating point (go-tsz), integers (delta, xor + huffman)
 
 We will talk more about data layouts later.
 
-Trade space for time:
-  - smaller data structures: pack things, compress data structures in memory
-  - precompute things you need (size of a linked list)
-    http://www.smallmemory.com/
-
-Most of the time if you're optimizing for CPU, your program will use more
-memory. This is the classic space-time trade-off:
-https://en.wikipedia.org/wiki/Space%E2%80%93time_tradeoff
-
-Note that modern computers and the memory hierarchy make this trade-off less
+Modern computers and the memory hierarchy make the space/time trade-off less
 clear. It's very easy for lookup tables to be "far away" in memory (and
-therefore expensive to access) making it faster to just recompute every time
-it's needed. This also means that benchmarking will frequently show
-improvements that are not realized in the production system due to cache
-contention (e.g., lookup tables are in the processor cache during
-benchmarking but always flushed by "real data" when used in a real system.
-See the graphs 4 and 5 in the Jump Hash paper:  https://arxiv.org/pdf/1406.2294.pdf )
+therefore expensive to access) making it faster to just recompute a value
+every time it's needed.
 
-Further, while data compression increases CPU time, if there are data
-transfers involved (disk or network), the CPU time spent decompressing will
-be trivial compared to the saved transfer time which will be orders of
-magnitude slower.
+This also means that benchmarking will frequently show improvements that are
+not realized in the production system due to cache contention (e.g., lookup
+tables are in the processor cache during benchmarking but always flushed by
+"real data" when used in a real system. Google's Jump Hash paper in fact
+addressed this directly, comparing performance on both a contented and
+uncontended processor cache. See graphs 4 and 5 in the Jump Hash paper:
+https://arxiv.org/pdf/1406.2294.pdf )
+
+TODO: how to simulate a contented cache, show incremental cost
+
+Another aspect to consider is data-transfer time. Generally network and disk
+access is very slow, and so being able to load a compressed chunk will be
+much faster than the extra CPU time required to decompress the data once it
+has been fetched.  As always, benchmark.
 
 algorithmic tuning:
   keep the old implementation around for testing
