@@ -200,6 +200,8 @@ working. This can be as simple as a "search finger"
 These are all clear examples of "do less work" at the data structure level.
 They all cost space.
 
+We will talk more about data layouts later.
+
 Trade space for time:
   - smaller data structures: pack things, compress data structures in memory
   - precompute things you need (size of a linked list)
