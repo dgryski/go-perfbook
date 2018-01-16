@@ -5,7 +5,7 @@ At the moment, it's a collection of links to videos, slides, and blog posts
 book format where the content is here instead of external.  The links should be
 sorted into categories.
 
-While some discussions will be made for indivudial services faster (caching,
+While some discussions will be made for individual services faster (caching,
 etc), designing performant distributed systems is beyond the scope of this
 work.
 
@@ -83,7 +83,7 @@ Choosing what to optimize.  Choosing when to optimize.
 Clarify "Premature optimization" quote.
 
 TPOP: Should you optimize? "Yes, but only if the problem is important, the
-program is guinely too slow, and there is some expectation that it can be
+program is genuinely too slow, and there is some expectation that it can be
 made faster while maintaining correctness, robustness, and clarity."
 
 Fast software or fast deployment.
@@ -114,11 +114,11 @@ The benchmarks you are using must be correct and provide reproducible numbers
 on representative workloads. If individual runs have too high a variance, it
 will make small improvements more difficult to spot. You will need to use
 benchstat or equivalent statistical tests and won't be able just eyeball it.
-(Note that using statisical tests is a good idea anyways.) The steps to run
+(Note that using statistical tests is a good idea anyways.) The steps to run
 the benchmarks should be documented, and any custom scripts and tooling
-should be commited to the repository with instructions for how to run them.
+should be committed to the repository with instructions for how to run them.
 Be mindful of large benchmark suites that take a long time to run: it will
-make the development interations slower.
+make the development iterations slower.
 
 
 The next step is to decide what you are optimizing for. If the goal is to
@@ -180,7 +180,7 @@ Basic techniques:
      Benchmark. Analyze. Improve. Verify. Iterate.
 
 Augment your data structure with more information:
-    - precomputed fields (size instead of interating linked list, etc)
+    - precomputed fields (size instead of iterating linked list, etc)
     - extra indexes for searching, "search fingers", doubly-linked list for O(1) removal
     - limitations of when this is applicable:
        must be cheap to keep updated
