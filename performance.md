@@ -128,6 +128,10 @@ tuning, and debugging. With limited time and resources, consider which level
 will give the most improvement: it won't always be algorithm or program
 tuning.
 
+In general, optimizations should proceed from top to bottom. Optimizations at
+the system level will have more impact than expression-level ones. Make sure
+you're solving the problem at the appropriate level.
+
 This book is mostly going to talk about reducing CPU usage, reducing memory
 usage, and reducing latency. It's good to point out that you can very rarely
 do all three. Maybe CPU time is faster, but now your program uses more
@@ -137,8 +141,10 @@ longer.
 Amdahl's Law tells us to focus on the bottlenecks. If you double the speed of
 routine that only takes 5% of the runtime, that's only a 2.5% speedup in
 total wall-clock. On the other hand, speeding up routine that takes 80% of
-the time by 10% will improve runtime by almost 8%. Profiles will help
+the time by only 10% will improve runtime by almost 8%. Profiles will help
 identify where time is actually spent.
+
+When optimizing, you want to reduce the amount of work the CPU has to do.
 
 A profiler might show you that lots of time is spent in a particular routine.
 It could be this is an expensive routine, or it could be a cheap routine that
@@ -146,27 +152,28 @@ is just called many many times. Rather than immediately trying to speed up
 that one routine, see if you can reduce the number of times it's called or
 eliminate it completely.
 
-In general, optimizations should proceed from top to bottom. Optimizations at
-the system level will have more impact than expression-level ones. Make sure
-you're solving the problem at the appropriate level.
-
-The three optimization questions:
+The Three Optimization Questions:
 
 - Do we have to do this at all?  The fastest code is the code that's not there.
 - If yes, is this the best algorithm.
 - If yes, is this the best *implementation* of this algorithm.
 
-Basic techniques:
+### Concrete optimization tips
 
-    http://www.crowl.org/lawrence/programming/Bentley82.html
+Jon Bentley's 1982 work "Writing Efficient Programs" approached program
+optimization as an engineering problem: Benchmark. Analyze. Improve. Verify.
+Iterate. A number of his tips are now done automatically by compilers. A
+programmers job is to use the transformations compilers *can't* do.
 
-    Approached program optimization as an engineering problem. Many of the
-    tips from Bentley are now done automatically by compilers (for example,
-    all the "loop" and "expression" ones). It's the programmers job to use
-    transformations that compilers can't do.
+There's a summary of this book:
+http://www.crowl.org/lawrence/programming/Bentley82.html
 
-    But the engineering approach is correct:
-     Benchmark. Analyze. Improve. Verify. Iterate.
+When thinking changes you can make to your program, there are two basic options:
+you can either change your data or you can change your code.
+
+Changing your data means either adding to or altering the representation of
+the data you're processing.
+
 
 Augment your data structure with more information:
     - precomputed fields (size instead of iterating linked list, etc)
@@ -344,8 +351,10 @@ The basic rules of the game are:
  * this should handle the majority of your optimization cases
  * be aware of http://accidentallyquadratic.tumblr.com/
  * https://agtb.wordpress.com/2010/12/23/progress-in-algorithms-beats-moore%E2%80%99s-law/
-1. pre-compute things you need
 1. add a cache -> reduces work
+1. if you add a cache up front, then it becomes pre-compute things you need
+
+# Tooling
 
 ## Introductory Profiling
 
