@@ -239,21 +239,7 @@ access is very slow, and so being able to load a compressed chunk will be
 much faster than the extra CPU time required to decompress the data once it
 has been fetched.  As always, benchmark.
 
-algorithmic tuning:
-  keep the old implementation around for testing
-
-program tuning:
-   best done in tiny steps, a few statements at a time
-   moving from floating point math to integer math
-   or mandelbrot removing sqrt, or lttb removing abs
-   cheap checks before more expensive checks:
-    e.g., strcmp before regexp, (q.v., bloom filter before query)
-   
-some tunings are working around runtime or compiler code generation issue:
-  always flag these with the appropriate issue so you can revisit
-  assembly math.Abs() vs code generation vs function call overhead
-  exploit a mathematical identity: https://go-review.googlesource.com/c/go/+/85477
-  just clearing the parts you used, rather than an entire array
+If you're not changing the data, the other main option is to change the code.
 
 Program tuning used to be an art form, but then compilers got better. So now
 it turns out that compilers can optimize straight-forward code better than
@@ -263,7 +249,22 @@ especially when upgrading that your code doesn't become "worse". There are
 definitely cases where tweaks to work around the lack of a particular
 compiler optimization became slower once the compiler was improved.
 
-If you're not changing the data, the other main option is to change the code.
+If you are working around a specific runtime or compiler code generation
+issue, always document your change with a link to the upstream issue. This
+will allow you to quickly revisit your optimization once the bug is fixed.
+
+Fight the temptation to cargo cult folklore-based "performance tips".
+
+program tuning:
+   if possible, keep the old implementation around for testing
+   if not possible, generate sufficient golden test cases to compare output
+   exploit a mathematical identity: https://go-review.googlesource.com/c/go/+/85477
+   just clearing the parts you used, rather than an entire array
+   best done in tiny steps, a few statements at a time
+   moving from floating point math to integer math
+   or mandelbrot removing sqrt, or lttb removing abs
+   cheap checks before more expensive checks:
+    e.g., strcmp before regexp, (q.v., bloom filter before query)
 
 Iterative program improvements:
   - ensure progress at each step
