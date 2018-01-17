@@ -241,7 +241,49 @@ has been fetched.  As always, benchmark.
 
 If you're not changing the data, the other main option is to change the code.
 
-Algorithmic Changes
+The biggest improvement is likely to come from an algorithmic changes. This
+is the equivalent of replacing bubble sort with quicksort to from O(n^2) sort
+to O(n log n), or replacing a linear scan through an array that used to be
+small O(n) with a map lookup (O(1)).
+
+It's important to have an intuitive grasp of the different big-O levels.
+Choose the right data structure for your problem. You don't have to alway
+shave cycles, but this just prevents dumb performance issues that might not
+be noticed until much later.
+
+The basic classes of complexity are:
+* field access, array or map lookup, O(1)
+* simple loop, O(n)
+* nested loop, O(n*m)
+* binary-search O(log n)
+* divide-and-conquer O(n log n)
+* combinatoric - look out!!
+
+Link: bigocheatsheet.com
+
+Let's say you need to search through of an unsorted set of data. "I should
+use a binary search" you think, knowing that a binary search O(log n) which
+is faster than the O(n) linear scan. However, a binary search requires that
+the data is sorted, which means you'll need to sort it first, which will take
+O(n log n) time. If you're doing lots of searches, then the upfront cost of
+sorting will pay off. On the other hand, if you're mostly doing lookups,
+maybe having an array was the wrong choice and you'd be better off paying the
+O(1) lookup cost for a map instead.
+
+Know how big each of these input sizes is likely to be when coding.
+
+Don't ignore the constants. (re: dotGo talk)
+
+Sometimes the best algorithm for a particular problem is not a single
+algorithm, but a collection of algorithms specialized for slightly different
+input classes. This "polyalgorithm" quickly detects what kind of input it
+needs to deal with and then dispatches to the appropriate code path.
+
+There are examples of this are in the standard library sorting and string
+packages.
+
+Choose algorithms based on problem size: (stdlib quicksort)
+Detect and specialize for common or easy cases: stdlib string
 
 Keep comments. If something doesn't need to be done, explain why.  Frequently
 when optimizing an algorithm you'll discover steps that don't need to be
@@ -251,17 +293,6 @@ it's a bug and needs to be put back.
 Empty program gives the wrong answer in no time at all. It's easy to be fast
 if you don't have to be correct. But it means you can use an optimization
 some of the time if you're sure it's in range.
-
-Have an intuitive grasp of the different O() levels:
-  - field access, array or map lookup, O(1)
-  - simple loop, O(n)
-  - nested loop, O(n*m)
-  - binary-search O(log n)
-  - divide-and-conquer O(n log n)
-  - combinatoric - look out!!
-
-Know how big each of these input sizes is likely to be when coding. You don't
-always have to shave cycles, but also don't be dumb.
 
 Tips for implementing papers:  (For `algorithm` read also `data structure`)
 * Don't.  Start with the obvious solution and reasonable data structures.
@@ -276,21 +307,7 @@ Tips for implementing papers:  (For `algorithm` read also `data structure`)
    - 3) beware bugs
 Also look out for other implementations on GitHub: they may have the same (or different!) bugs as yours.
 
-Sometimes the best algorithm for a particular problem is not a single
-algorithm, but a collection of algorithms specialized for slightly different
-input classes. This "polyalgorithm" quickly detects what kind of input it
-needs to deal with and then dispatches to the appropriate code path.
-
-There are examples of this are in the standard library sorting and string
-packages.
-
-Choose algorithms based on problem size: (stdlib quicksort)
-Detect and specialize for common or easy cases: stdlib string
-
-Beware algorithms with high startup costs.  For example,
-   search is O(log n), but you have to sort first.
-   If you just have a single search to do, a linear scan will be faster.
-   But if you're doing many sorts, the O(n log n) sort overhead will not matter as much
+Beware algorithms with high startup costs.
 
 But you can also limit the search space by bucketing your data:
 But if you just need to test membership, maybe you want a hash.
