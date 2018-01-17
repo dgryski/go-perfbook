@@ -241,35 +241,7 @@ has been fetched.  As always, benchmark.
 
 If you're not changing the data, the other main option is to change the code.
 
-Program tuning used to be an art form, but then compilers got better. So now
-it turns out that compilers can optimize straight-forward code better than
-complicated code. The Go compiler still has a long way to go to match gcc and
-clang, but it does mean that you need to be careful when tuning and
-especially when upgrading that your code doesn't become "worse". There are
-definitely cases where tweaks to work around the lack of a particular
-compiler optimization became slower once the compiler was improved.
-
-If you are working around a specific runtime or compiler code generation
-issue, always document your change with a link to the upstream issue. This
-will allow you to quickly revisit your optimization once the bug is fixed.
-
-Fight the temptation to cargo cult folklore-based "performance tips".
-
-program tuning:
-   if possible, keep the old implementation around for testing
-   if not possible, generate sufficient golden test cases to compare output
-   exploit a mathematical identity: https://go-review.googlesource.com/c/go/+/85477
-   just clearing the parts you used, rather than an entire array
-   best done in tiny steps, a few statements at a time
-   moving from floating point math to integer math
-   or mandelbrot removing sqrt, or lttb removing abs
-   cheap checks before more expensive checks:
-    e.g., strcmp before regexp, (q.v., bloom filter before query)
-
-Iterative program improvements:
-  - ensure progress at each step
-  - but frequently one improvement will enable others
-  - which means you need to keep looking at the entire picture
+Algorithmic Changes
 
 Keep comments. If something doesn't need to be done, explain why.  Frequently
 when optimizing an algorithm you'll discover steps that don't need to be
@@ -352,6 +324,38 @@ world. If repeated requests are sufficiently rare, it's more expensive to
 keep them around than to recompute them. If your benchmark data consists of
 only the same repeated request, your cache will give an inaccurate view of
 the performance.
+
+Program tuning used to be an art form, but then compilers got better. So now
+it turns out that compilers can optimize straight-forward code better than
+complicated code. The Go compiler still has a long way to go to match gcc and
+clang, but it does mean that you need to be careful when tuning and
+especially when upgrading that your code doesn't become "worse". There are
+definitely cases where tweaks to work around the lack of a particular
+compiler optimization became slower once the compiler was improved.
+
+If you are working around a specific runtime or compiler code generation
+issue, always document your change with a link to the upstream issue. This
+will allow you to quickly revisit your optimization once the bug is fixed.
+
+Fight the temptation to cargo cult folklore-based "performance tips".
+
+Iterative program improvements:
+  - ensure progress at each step
+  - but frequently one improvement will enable others
+  - which means you need to keep looking at the entire picture
+
+program tuning:
+   if possible, keep the old implementation around for testing
+   if not possible, generate sufficient golden test cases to compare output
+   exploit a mathematical identity: https://go-review.googlesource.com/c/go/+/85477
+   just clearing the parts you used, rather than an entire array
+   best done in tiny steps, a few statements at a time
+   moving from floating point math to integer math
+   or mandelbrot removing sqrt, or lttb removing abs
+   cheap checks before more expensive checks:
+    e.g., strcmp before regexp, (q.v., bloom filter before query)
+
+
 
 Profile regularly to ensure the track the performance characteristics of your
 system and be prepared to re-optimize as your traffic changes. Know the
