@@ -252,11 +252,11 @@ shave cycles, but this just prevents dumb performance issues that might not
 be noticed until much later.
 
 The basic classes of complexity are:
-* field access, array or map lookup, O(1)
-* simple loop, O(n)
-* nested loop, O(n*m)
-* binary-search O(log n)
-* divide-and-conquer O(n log n)
+* O(1): a field access, array or map lookup
+* O(log n): binary search
+* O(n): simple loop
+* O(n\*m): nested loop
+* O(n log n): divide-and-conquer
 * combinatoric - look out!!
 
 Link: bigocheatsheet.com
