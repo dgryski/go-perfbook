@@ -52,11 +52,13 @@ Think of this as optimizing *your* time.
 
 Choosing what to optimize.  Choosing when to optimize.
 
-Clarify "Premature optimization" quote.
+Clarify "Premature optimization" quote.  97% of the time.
+But work on those important 3%.
 
 TPOP: Should you optimize? "Yes, but only if the problem is important, the
 program is genuinely too slow, and there is some expectation that it can be
 made faster while maintaining correctness, robustness, and clarity."
+
 
 Fast software or fast deployment.
 
@@ -270,6 +272,12 @@ sorting will pay off. On the other hand, if you're mostly doing lookups,
 maybe having an array was the wrong choice and you'd be better off paying the
 O(1) lookup cost for a map instead.
 
+Sometimes hybrid data structures will provide the performance improvement you
+need. For example, by bucketing your data you can limit your search to a
+single bucket. This still pays the theoretical cost of O(n), but the constant
+will be smaller. We'll revisit these kinds of tweaks when we get to program
+tuning.
+
 Two things that people forget when discussion big-O notation
 
 One: there's a constant factor involved. Two algorithms which have the same
@@ -292,10 +300,25 @@ when the partition size drops below 12 elements.
 
 Know how big each of your input sizes is likely to be in production.
 
+Your benchmarks must use appropriately-sized inputs. As we've seen, different
+algorithms make sense at different input sizes. If your expected input range
+in <100, then your benchmarks should reflect that. Otherwise, choosing an
+algorithm which is optimal for n=10^6 might not be the fastest.
+
+Be able to generate representative test data. Different distributions of data
+can provoke different behaviours in your algorithm: think of the classic
+"quicksort is O(n^2) when the data is sorted" example. Similarly,
+interpolation search is O(log log n) for uniform random data, but O(n) worst
+case. Knowing what your inputs look like is the key to both representative
+benchmarks and for choosing the best algorithm.
+
 The memory hierarchy in modern computers confuses the issue here a little
 bit, in that caches prefer the predictable access of scanning a slice to the
-effectively random access of chasing a pointer. We will talk about this in
-the hardware-specific section.
+effectively random access of chasing a pointer. Still, it's best to begin
+with a good algorithm. We will talk about this in the hardware-specific
+section.
+
+"The fight may not always go to the strongest, nor the race to the fastest, but that's the way to bet." -- Rudyard Kipling.
 
 Sometimes the best algorithm for a particular problem is not a single
 algorithm, but a collection of algorithms specialized for slightly different
@@ -303,16 +326,19 @@ input classes. This "polyalgorithm" quickly detects what kind of input it
 needs to deal with and then dispatches to the appropriate code path. This is
 what the sorting package mentioned above does: determine the problem size and
 choose a different algorithm. The `string` and `bytes` packages do something
-similar, detecting and specializing for different cases.
+similar, detecting and specializing for different cases. As with data
+compression, the more you know about what your input looks like, the better
+your custom solution can be.  Even if an optimization is not always applicable,
+complicating your code by determining that it's safe to use and executing
+different logic can be worth it.
 
-Keep comments. If something doesn't need to be done, explain why.  Frequently
+Keep comments. If something doesn't need to be done, explain why. Frequently
 when optimizing an algorithm you'll discover steps that don't need to be
-performed under some circumstances.  Document them. Somebody else might think
+performed under some circumstances. Document them. Somebody else might think
 it's a bug and needs to be put back.
 
-Empty program gives the wrong answer in no time at all. It's easy to be fast
-if you don't have to be correct. But it means you can use an optimization
-some of the time if you're sure it's in range.
+Empty program gives the wrong answer in no time at all.
+It's easy to be fast if you don't have to be correct.
 
 Tips for implementing papers:  (For `algorithm` read also `data structure`)
 * Don't.  Start with the obvious solution and reasonable data structures.
@@ -326,24 +352,6 @@ Tips for implementing papers:  (For `algorithm` read also `data structure`)
    - 2) beware licensing restrictions
    - 3) beware bugs
 Also look out for other implementations on GitHub: they may have the same (or different!) bugs as yours.
-
-Beware algorithms with high startup costs.
-
-But you can also limit the search space by bucketing your data:
-But if you just need to test membership, maybe you want a hash.
-You can also bucket your data to reduce the size you need to scan.
-
-Your benchmarks must use appropriately-sized inputs. As we've seen, different
-algorithms make sense at different input sizes. If your expected input range
-in <100, then your benchmarks should reflect that. Otherwise, choosing an
-algorithm which is optimal for n=10^6 might not be the fastest.
-
-Be able to generate representative test data. Different distributions of data
-can provoke different behaviours in your algorithm: think of the classic
-"quicksort is O(n^2) when the data is sorted" example. Similarly,
-interpolation search is O(log log n) for uniform random data, but O(n) worst
-case. Knowing what your inputs look like is the key to both representative
-benchmarks and for choosing the best algorithm.
 
 Cache common cases: Your cache doesn't even need to be huge.
   Optimized a log processing script to cache the previous time passed to time.parse() for significant speedup
@@ -381,7 +389,13 @@ Iterative program improvements:
   - but frequently one improvement will enable others
   - which means you need to keep looking at the entire picture
 
+Once you've settled on the right algorithm, program tuning is the process of
+improving the implementation of that algorithm. In Big-O notation, this is
+the process of reducing the constants associated with your program.
+
+
 program tuning:
+
    if possible, keep the old implementation around for testing
    if not possible, generate sufficient golden test cases to compare output
    exploit a mathematical identity: https://go-review.googlesource.com/c/go/+/85477
@@ -397,8 +411,12 @@ system and be prepared to re-optimize as your traffic changes. Know the
 limits of your system and have good metrics that allow you to predict when
 you will hit those limits.
 
-De-optimize when possible. I removed from mmap + reflect + unsafe when it
-stopped being necessary.
+When the usage of your application changes, different pieces may become
+hotspots. Revisit previous optimizations and decide if they're still worth
+it, and revert to more readable code when possible. I had one system that I
+had optimized process startup time with a complex set of mmap, reflect, and
+unsafe. Once we changed how the system was deployed, this code was no longer
+required and I replaced it with much more readable regular file operations.
 
 ## Optimization workflow summary
 
