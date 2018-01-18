@@ -270,20 +270,35 @@ sorting will pay off. On the other hand, if you're mostly doing lookups,
 maybe having an array was the wrong choice and you'd be better off paying the
 O(1) lookup cost for a map instead.
 
-Know how big each of these input sizes is likely to be when coding.
+Two things that people forget when discussion big-O notation
 
-Don't ignore the constants. (re: dotGo talk)
+One: there's a constant factor involved. Two algorithms which have the same
+algorithmic complexity can have different constant factors. Imagine running a
+looping over a list 100 times vs just looping over it once Even though both
+are O(n), one has a constant factor that's 100 times higher.
+
+These constant factors are why even though merge sort, quicksort, and
+heapsort all O(n log n), everybody uses quicksort because it's the fastest.
+It has the smallest constant factor.
+
+The second thing is that big-O only says "as n grows to infinity". It says
+nothing about small n. "As the numbers get big, this is the growth factor
+that will dominate the run time."
+
+There's frequently a cut-off point below which a dumber algorithm is faster.
+A nice example from the Go standard library's `sort` package. Most of the
+time it's using quicksort, but it has a shell-sort pass then insertion sort
+when the partition size drops below 12 elements.
+
+Know how big each of your input sizes is likely to be in production.
 
 Sometimes the best algorithm for a particular problem is not a single
 algorithm, but a collection of algorithms specialized for slightly different
 input classes. This "polyalgorithm" quickly detects what kind of input it
-needs to deal with and then dispatches to the appropriate code path.
-
-There are examples of this are in the standard library sorting and string
-packages.
-
-Choose algorithms based on problem size: (stdlib quicksort)
-Detect and specialize for common or easy cases: stdlib string
+needs to deal with and then dispatches to the appropriate code path. This is
+what the sorting package mentioned above does: determine the problem size and
+choose a different algorithm. The `string` and `bytes` packages do something
+similar, detecting and specializing for different cases.
 
 Keep comments. If something doesn't need to be done, explain why.  Frequently
 when optimizing an algorithm you'll discover steps that don't need to be
