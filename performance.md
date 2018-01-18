@@ -422,25 +422,7 @@ More importantly, it also tells you when to stop.  Pretty much all
 optimizations add code complexity in exchange for speed.  And you can *always*
 make code faster.  It's a balancing act.
 
-The basic rules of the game are:
-
-1. minimize CPU usage
-- do less work
-- this generally means "a faster algorithm"
-- but CPU caches and the hidden constants in O() can play tricks on you
-1. minimize allocations (which leads to less CPU stolen by the GC)
-1. make your data quick to access
-
-1. choose the best algorithm
- - traditional computer science analysis
- - O(n^2) vs O(n log n) vs O(log n) vs O(1)
- - this should handle the majority of your optimization cases
- - be aware of http://accidentallyquadratic.tumblr.com/
- - https://agtb.wordpress.com/2010/12/23/progress-in-algorithms-beats-moore%E2%80%99s-law/
-1. add a cache -> reduces work
-1. if you add a cache up front, then it becomes pre-compute things you need
-
-# Tooling
+## Tooling
 
 ## Introductory Profiling
 
