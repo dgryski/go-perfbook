@@ -292,6 +292,11 @@ when the partition size drops below 12 elements.
 
 Know how big each of your input sizes is likely to be in production.
 
+The memory hierarchy in modern computers confuses the issue here a little
+bit, in that caches prefer the predictable access of scanning a slice to the
+effectively random access of chasing a pointer. We will talk about this in
+the hardware-specific section.
+
 Sometimes the best algorithm for a particular problem is not a single
 algorithm, but a collection of algorithms specialized for slightly different
 input classes. This "polyalgorithm" quickly detects what kind of input it
