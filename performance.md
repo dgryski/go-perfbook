@@ -402,7 +402,7 @@ stopped being necessary.
 
 ## Optimization workflow summary
 
-* All optimizations should follow these steps:
+- All optimizations should follow these steps:
 
     1. determine your performance goals and confirm you are not meeting them
     1. profile to identify the areas to improve.  This can be CPU, heap allocations, or goroutine blocking.
@@ -425,18 +425,18 @@ make code faster.  It's a balancing act.
 The basic rules of the game are:
 
 1. minimize CPU usage
-* do less work
-* this generally means "a faster algorithm"
-* but CPU caches and the hidden constants in O() can play tricks on you
+- do less work
+- this generally means "a faster algorithm"
+- but CPU caches and the hidden constants in O() can play tricks on you
 1. minimize allocations (which leads to less CPU stolen by the GC)
 1. make your data quick to access
 
 1. choose the best algorithm
- * traditional computer science analysis
- * O(n^2) vs O(n log n) vs O(log n) vs O(1)
- * this should handle the majority of your optimization cases
- * be aware of http://accidentallyquadratic.tumblr.com/
- * https://agtb.wordpress.com/2010/12/23/progress-in-algorithms-beats-moore%E2%80%99s-law/
+ - traditional computer science analysis
+ - O(n^2) vs O(n log n) vs O(log n) vs O(1)
+ - this should handle the majority of your optimization cases
+ - be aware of http://accidentallyquadratic.tumblr.com/
+ - https://agtb.wordpress.com/2010/12/23/progress-in-algorithms-beats-moore%E2%80%99s-law/
 1. add a cache -> reduces work
 1. if you add a cache up front, then it becomes pre-compute things you need
 
@@ -447,105 +447,111 @@ The basic rules of the game are:
 Techniques applicable to source code in general
 
 1. introduction to pprof
- * go tool pprof (and <https://github.com/google/pprof>)
+ - go tool pprof (and <https://github.com/google/pprof>)
 1. Writing and running (micro)benchmarks
- * profile, extract hot code to benchmark, optimize benchmark, profile.
- * -cpuprofile / -memprofile / -benchmem
- * 0.5 ns/op means it was optimized away -> how to avoid
- * tips for writing good microbenchmarks (remove unnecessary work, but add baselines)
+ - profile, extract hot code to benchmark, optimize benchmark, profile.
+ - -cpuprofile / -memprofile / -benchmem
+ - 0.5 ns/op means it was optimized away -> how to avoid
+ - tips for writing good microbenchmarks (remove unnecessary work, but add baselines)
 1. How to read it pprof output
 1. What are the different pieces of the runtime that show up
 1. Macro-benchmarks (Profiling in production)
- * net/http/pprof
+ - net/http/pprof
 
 ## Tracer
 
 
 ## Advanced Techniques
 
-* Techniques specific to the architecture running the code
- * introduction to CPU caches
-   * performance cliffs
-   * building intuition around cache-lines: sizes, padding, alignment
-   * false-sharing
-   * true sharing -> sharding
-   * OS tools to view cache-misses
-   * maps vs. slices
-   * SOA vs AOS layouts
-   * reducing pointer chasing
- * branch prediction
- * function call overhead
+- Techniques specific to the architecture running the code
+ - introduction to CPU caches
+   - performance cliffs
+   - building intuition around cache-lines: sizes, padding, alignment
+   - false-sharing
+   - true sharing -> sharding
+   - OS tools to view cache-misses
+   - maps vs. slices
+   - SOA vs AOS layouts
+   - reducing pointer chasing
+ - branch prediction
+ - function call overhead
 
-* Comment about Jeff Dean's 2002 numbers (plus updates)
-  * cpus have gotten faster, but memory hasn't kept up
+- Comment about Jeff Dean's 2002 numbers (plus updates)
+  - cpus have gotten faster, but memory hasn't kept up
 
 ## Garbage Collection
-* Stack vs. heap allocations
-* What causes heap allocations?
-* Understanding escape analysis (and the current limitation)
-* API design to limit allocations: allow passing in buffers so caller can reuse rather than forcing an allocation
+
+- Stack vs. heap allocations
+- What causes heap allocations?
+- Understanding escape analysis (and the current limitation)
+- API design to limit allocations: allow passing in buffers so caller can reuse rather than forcing an allocation
   - you can even modify a slice in place carefully while you scan over it
-* reducing pointers to reduce gc scan times
-* GOGC
-* buffer reuse (sync.Pool vs or custom via go-slab, etc)
+- reducing pointers to reduce gc scan times
+- GOGC
+- buffer reuse (sync.Pool vs or custom via go-slab, etc)
 
 ## Runtime and compiler
-* cost of calls via interfaces (indirect calls on the CPU level)
-* runtime.convT2E / runtime.convT2I
-* type assertions vs. type switches
-* defer
-* special-case map implementations for ints, strings
-* bounds check elimination
-* []byte <-> string copies, map optimizations
+
+- cost of calls via interfaces (indirect calls on the CPU level)
+- runtime.convT2E / runtime.convT2I
+- type assertions vs. type switches
+- defer
+- special-case map implementations for ints, strings
+- bounds check elimination
+- []byte <-> string copies, map optimizations
 
 ## Common gotchas with the standard library
 
-* time.After() leaks until it fires
-* Reusing HTTP connections...
-* ....
-* rand.Int() and friends are 1) mutex protected and 2) expensive to create
+- time.After() leaks until it fires
+- Reusing HTTP connections...
+- ....
+- rand.Int() and friends are 1) mutex protected and 2) expensive to create
   - consider alternate random number generation (go-pcgr, xorshift)
 
 ## Unsafe
-* And all the dangers that go with it
-* Common uses for unsafe
-* mmap'ing data files
+
+- And all the dangers that go with it
+- Common uses for unsafe
+- mmap'ing data files
   - struct padding
-* speedy de-serialization
-* string <-> slice conversion, []byte <-> []uint32, ...
+- speedy de-serialization
+- string <-> slice conversion, []byte <-> []uint32, ...
 
 ## cgo
-* Performance characteristics of cgo calls
-* Tricks to reduce the costs: batching
-* Rules on passing pointers between Go and C
-* syso files
+
+- Performance characteristics of cgo calls
+- Tricks to reduce the costs: batching
+- Rules on passing pointers between Go and C
+- syso files
 
 ## Assembly
-* Stuff about writing assembly code for Go
-* replace as little as possible to make an impact
-* very important to benchmark: improvements can be huge (10x for go-highway) zero (go-speck),  or even slower (no inlining)
-* always have pure-Go version (noasm build tag): testing,
-* brief intro to syntax
-* calling convention
-* using opcodes unsupported by the asm
-* notes about why intrinsics are hard
-* all the tooling to make this easier: asmfmt, peachpy, c2goasm, ...
+
+- Stuff about writing assembly code for Go
+- replace as little as possible to make an impact
+- very important to benchmark: improvements can be huge (10x for go-highway) zero (go-speck),  or even slower (no inlining)
+- always have pure-Go version (noasm build tag): testing,
+- brief intro to syntax
+- calling convention
+- using opcodes unsupported by the asm
+- notes about why intrinsics are hard
+- all the tooling to make this easier: asmfmt, peachpy, c2goasm, ...
 
 ## Alternate implementations
-* Popular replacements for standard library packages:
-  * encoding/json -> ffjson
-  * net/http -> fasthttp (but incompatible API)
-  * regexp -> ragel (or other regular expression package)
-  * serialization
-      * encoding/gob -> <https://github.com/alecthomas/go_serialization_benchmarks>
-      * protobuf -> <https://github.com/gogo/protobuf>
-      * all formats have trade-offs: choose one that matches what you need
+
+- Popular replacements for standard library packages:
+  - encoding/json -> ffjson
+  - net/http -> fasthttp (but incompatible API)
+  - regexp -> ragel (or other regular expression package)
+  - serialization
+      - encoding/gob -> <https://github.com/alecthomas/go_serialization_benchmarks>
+      - protobuf -> <https://github.com/gogo/protobuf>
+      - all formats have trade-offs: choose one that matches what you need
         encoded space, decoding speed, language/tooling compatibility, ...
-  * database/sql -> jackx/pgx, ...
-  * gccgo
+  - database/sql -> jackx/pgx, ...
+  - gccgo
 
 ## Tooling
 
 Look at some more interesting/advanced tooling
 
-* perf  (perf2pprof)
+- perf  (perf2pprof)
