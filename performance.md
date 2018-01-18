@@ -392,8 +392,6 @@ program tuning:
    cheap checks before more expensive checks:
     e.g., strcmp before regexp, (q.v., bloom filter before query)
 
-
-
 Profile regularly to ensure the track the performance characteristics of your
 system and be prepared to re-optimize as your traffic changes. Know the
 limits of your system and have good metrics that allow you to predict when
@@ -491,13 +489,14 @@ Techniques applicable to source code in general
 * GOGC
 * buffer reuse (sync.Pool vs or custom via go-slab, etc)
 
-## Runtime
+## Runtime and compiler
 * cost of calls via interfaces (indirect calls on the CPU level)
 * runtime.convT2E / runtime.convT2I
 * type assertions vs. type switches
 * defer
 * special-case map implementations for ints, strings
 * bounds check elimination
+* []byte <-> string copies, map optimizations
 
 ## Common gotchas with the standard library
 
@@ -505,7 +504,7 @@ Techniques applicable to source code in general
 * Reusing HTTP connections...
 * ....
 * rand.Int() and friends are 1) mutex protected and 2) expensive to create
-  - consider alternate random number generation
+  - consider alternate random number generation (go-pcgr, xorshift)
 
 ## Unsafe
 * And all the dangers that go with it
@@ -523,6 +522,8 @@ Techniques applicable to source code in general
 
 ## Assembly
 * Stuff about writing assembly code for Go
+* replace as little as possible to make an impact
+* very important to benchmark: improvements can be huge (10x for go-highway) zero (go-speck),  or even slower (no inlining)
 * always have pure-Go version (noasm build tag): testing,
 * brief intro to syntax
 * calling convention
