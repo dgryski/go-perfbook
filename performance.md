@@ -393,6 +393,9 @@ Once you've settled on the right algorithm, program tuning is the process of
 improving the implementation of that algorithm. In Big-O notation, this is
 the process of reducing the constants associated with your program.
 
+Find cheaper ways of doing the same thing. Replace SHA1 or hash/fnv1 with a
+faster hash function.
+
 program tuning:
 
    if possible, keep the old implementation around for testing
