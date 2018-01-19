@@ -393,7 +393,6 @@ Once you've settled on the right algorithm, program tuning is the process of
 improving the implementation of that algorithm. In Big-O notation, this is
 the process of reducing the constants associated with your program.
 
-
 program tuning:
 
    if possible, keep the old implementation around for testing
@@ -405,6 +404,17 @@ program tuning:
    or mandelbrot removing sqrt, or lttb removing abs
    cheap checks before more expensive checks:
     e.g., strcmp before regexp, (q.v., bloom filter before query)
+
+Program tuning improvements are cumulative. 5x 3% improvements is a 15%
+improvement. Making optimizations it's worth it to think about the expected
+performance improvement. Replacing a hash function with a faster one is a
+constant factor improvement.
+
+Log parsing example:
+   - time parsing is slow
+   - adding a single item cache is good
+   - removing time parsing and doing some integer math by hand is against faster
+   - general algorithm is slow, you can be faster because you know more about your problem
 
 Profile regularly to ensure the track the performance characteristics of your
 system and be prepared to re-optimize as your traffic changes. Know the
