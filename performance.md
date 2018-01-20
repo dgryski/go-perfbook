@@ -66,7 +66,10 @@ needing 30k machines @ $1k USD / year. Doubling the speed of your software
 can save $15M/year. Even a developer spending an entire year to shave off 1%
 will pay for itself
 
-Once you've decided you're going to do this, keep reading.
+Easiest optimization is not having to do it. The second easiest optimization
+is just buying faster hardware.
+
+Once you've decided you're going to change your program, keep reading.
 
 ### How to Optimize
 
@@ -123,7 +126,11 @@ For greenfield development, you shouldn't leave all benchmarking and
 performance numbers until the end. It's easy to say "we'll fix it later", but
 if performance is really important it will be a design consideration from the
 start. Any significant architectural changes required to fix performance
-issues will be too risky near the deadline.
+issues will be too risky near the deadline. Note that *during* development,
+the focus should be on reasonable program design, algorithms, and data
+structures. Optimizing at lowel-levels of the stack should wait until later
+in the development cycle when a more complete view of the system performance
+is available.
 
 The difference between what your target is and the current performance will
 also give you an idea of where to start. If you need only a 10%-20%
@@ -247,7 +254,9 @@ TODO: how to simulate a contented cache, show incremental cost
 Another aspect to consider is data-transfer time. Generally network and disk
 access is very slow, and so being able to load a compressed chunk will be
 much faster than the extra CPU time required to decompress the data once it
-has been fetched.  As always, benchmark.
+has been fetched.  As always, benchmark.  A binary format will generally
+be smaller and faster to parse than a text one, but at the cost of no longer
+being as human readable.
 
 If you're not changing the data, the other main option is to change the code.
 
@@ -282,6 +291,14 @@ O(n log n) time. If you're doing lots of searches, then the upfront cost of
 sorting will pay off. On the other hand, if you're mostly doing lookups,
 maybe having an array was the wrong choice and you'd be better off paying the
 O(1) lookup cost for a map instead.
+
+Choose the simplest reasonable data structure and move on. When writing a
+package to be used to by others, avoid the temptation to optimize up front
+for every single use case. This will result in unreadable code. Data
+structures by design are effectively single-purpose. You can neither read
+minds nor predict the future. If a user says "Your package is too slow for
+this use case", a reasonable answer might be "Then use this other package
+over here".  "Do one this well."
 
 Sometimes hybrid data structures will provide the performance improvement you
 need. For example, by bucketing your data you can limit your search to a
