@@ -59,7 +59,6 @@ TPOP: Should you optimize? "Yes, but only if the problem is important, the
 program is genuinely too slow, and there is some expectation that it can be
 made faster while maintaining correctness, robustness, and clarity."
 
-
 Fast software or fast deployment.
 
 http://bitfunnel.org/strangeloop . has numbers. Hypothetical search engine
@@ -116,6 +115,15 @@ reqs/second level. ...
 The performance goals must be specific. You will (almost) always be able to
 make something faster. Optimizing is frequently a game of diminishing
 returns. You need to know when to stop.
+
+Dan Luu's talk also points out the advantage of rough calculations to
+determine if your target performance figures are reasonable.
+
+For greenfield development, you shouldn't leave all benchmarking and
+performance numbers until the end. It's easy to say "we'll fix it later", but
+if performance is really important it will be a design consideration from the
+start. Any significant architectural changes required to fix performance
+issues will be too risky near the deadline.
 
 The difference between what your target is and the current performance will
 also give you an idea of where to start. If you need only a 10%-20%
@@ -248,6 +256,9 @@ is the equivalent of replacing bubble sort with quicksort to from O(n^2) sort
 to O(n log n), or replacing a linear scan through an array that used to be
 small O(n) with a map lookup (O(1)).
 
+This is how software becomes slow. Structures originally designed for one use
+is repurposed for something it wasn't designed for. This happens gradually.
+
 It's important to have an intuitive grasp of the different big-O levels.
 Choose the right data structure for your problem. You don't have to alway
 shave cycles, but this just prevents dumb performance issues that might not
@@ -310,7 +321,10 @@ can provoke different behaviours in your algorithm: think of the classic
 "quicksort is O(n^2) when the data is sorted" example. Similarly,
 interpolation search is O(log log n) for uniform random data, but O(n) worst
 case. Knowing what your inputs look like is the key to both representative
-benchmarks and for choosing the best algorithm.
+benchmarks and for choosing the best algorithm. If the data you're using to
+test isn't representative of real workloads, you can easily end up optimizing
+for one particular data set, "overfitting" your code to work best with one specific
+set of inputs.
 
 The memory hierarchy in modern computers confuses the issue here a little
 bit, in that caches prefer the predictable access of scanning a slice to the
@@ -418,6 +432,7 @@ Log parsing example:
    - adding a single item cache is good
    - removing time parsing and doing some integer math by hand is against faster
    - general algorithm is slow, you can be faster because you know more about your problem
+   - but the code is more closely tied to exactly what you need; harder to change
 
 Profile regularly to ensure the track the performance characteristics of your
 system and be prepared to re-optimize as your traffic changes. Know the
