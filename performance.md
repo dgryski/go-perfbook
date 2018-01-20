@@ -82,12 +82,13 @@ optimization.
 Optimization is a form of refactoring. But each step, rather than improving
 some aspect of the source code (code duplication, clarity, etc), improves
 some aspect of the performance: lower CPU, memory usage, latency, etc. This
-means that in addition to a comprehensive set of unit tests (to ensure your
-changes haven't broken anything), you also need a good set of benchmarks to
-ensure your changes are having the desired effect on performance. You must be
-able to verify that your change really *is* lowering CPU. Sometimes a change
-you thought would improve will actually turn out to have a zero or negative
-change.  Always make sure you undo your fix in these cases.
+improvement generally comes at the cost of readability. This means that in
+addition to a comprehensive set of unit tests (to ensure your changes haven't
+broken anything), you also need a good set of benchmarks to ensure your
+changes are having the desired effect on performance. You must be able to
+verify that your change really *is* lowering CPU. Sometimes a change you
+thought would improve will actually turn out to have a zero or negative
+change. Always make sure you undo your fix in these cases.
 
 The benchmarks you are using must be correct and provide reproducible numbers
 on representative workloads. If individual runs have too high a variance, it
@@ -186,6 +187,9 @@ programmers job is to use the transformations compilers *can't* do.
 
 There's a summary of this book:
 http://www.crowl.org/lawrence/programming/Bentley82.html
+
+and the program tuning rules:
+https://web.archive.org/web/20080513070949/http://www.cs.bell-labs.com/cm/cs/pearls/apprules.html
 
 When thinking changes you can make to your program, there are two basic options:
 you can either change your data or you can change your code.
@@ -350,6 +354,10 @@ test isn't representative of real workloads, you can easily end up optimizing
 for one particular data set, "overfitting" your code to work best with one specific
 set of inputs.
 
+Also note that some issues that are not apparent on your laptop might be
+visible once you deploy to production and hitting 250k reqs/second on a 40
+core server.
+
 The memory hierarchy in modern computers confuses the issue here a little
 bit, in that caches prefer the predictable access of scanning a slice to the
 effectively random access of chasing a pointer. Still, it's best to begin
@@ -435,16 +443,26 @@ Find cheaper ways of doing the same thing. Replace SHA1 or hash/fnv1 with a
 faster hash function.
 
 program tuning:
-
    if possible, keep the old implementation around for testing
    if not possible, generate sufficient golden test cases to compare output
-   exploit a mathematical identity: https://go-review.googlesource.com/c/go/+/85477
+   exploit a mathematical identity: https://go-review.googlesource.com/c/go/+/85477, multiplication with addition, ...
    just clearing the parts you used, rather than an entire array
    best done in tiny steps, a few statements at a time
    moving from floating point math to integer math
    or mandelbrot removing sqrt, or lttb removing abs
    cheap checks before more expensive checks:
     e.g., strcmp before regexp, (q.v., bloom filter before query)
+   common cases before rare cases
+    i.e., avoid extra tests that always fail
+  remove branches from inner loops
+
+Many folk-lore performance tips for tuning rely on poorly optimizing
+compilers and encourge the programmer to do these transformations by hand:
+hoisting invariant calculations out of loops, using shift instead of multiply,
+loop unrolling, common sub-expression elimination, ...
+
+
+The barrier for rewriting something in assembler is higher.
 
 Program tuning improvements are cumulative. 5x 3% improvements is a 15%
 improvement. Making optimizations it's worth it to think about the expected
