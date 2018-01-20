@@ -66,6 +66,7 @@ needing 30k machines @ $1k USD / year. Doubling the speed of your software
 can save $15M/year. Even a developer spending an entire year to shave off 1%
 will pay for itself
 
+In the vast majority of cases, the size and speed of a program is not a concern.
 Easiest optimization is not having to do it. The second easiest optimization
 is just buying faster hardware.
 
@@ -296,7 +297,8 @@ O(1) lookup cost for a map instead.
 
 Choose the simplest reasonable data structure and move on. CS 101, writing
 "not-slow software". Don't be dumb. This should be your default development
-mode.
+mode.  If you know you need random access, don't choose a linked-list.
+If you know you need in-order traversal, don't use a map.
 
 When writing a package to be used to by others, avoid the temptation to
 optimize up front for every single use case. This will result in unreadable
@@ -455,6 +457,9 @@ Log parsing example:
    - removing time parsing and doing some integer math by hand is against faster
    - general algorithm is slow, you can be faster because you know more about your problem
    - but the code is more closely tied to exactly what you need; harder to change
+
+Optimization is specialization, and specialized code is more fragile to
+change than general purpose code.
 
 Profile regularly to ensure the track the performance characteristics of your
 system and be prepared to re-optimize as your traffic changes. Know the
