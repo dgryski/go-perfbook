@@ -135,6 +135,11 @@ in the development cycle when a more complete view of the system performance
 is available.  Any full-system profiles you do while the system is incomplete
 will give a skewed view of where the bottlenecks will be in the finished system.
 
+Write code that you can benchmark. Profiling you can do on larger systems.
+Benchmarking you want to test isolated pieces. You need to be able to extract
+and setup sufficient context that benchmarks test enough and are
+representative.
+
 The difference between what your target is and the current performance will
 also give you an idea of where to start. If you need only a 10%-20%
 performance improvement, you can probably get that with some implementation
@@ -398,6 +403,9 @@ Tips for implementing papers:  (For `algorithm` read also `data structure`)
    - 2) beware licensing restrictions
    - 3) beware bugs
 Also look out for other implementations on GitHub: they may have the same (or different!) bugs as yours.
+
+http://www.geoffprewett.com/BookReviews/WritingEfficientPrograms.html
+https://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf
 
 Cache common cases: Your cache doesn't even need to be huge.
   Optimized a log processing script to cache the previous time passed to time.parse() for significant speedup
