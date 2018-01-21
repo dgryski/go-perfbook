@@ -404,7 +404,6 @@ Tips for implementing papers:  (For `algorithm` read also `data structure`)
    - 3) beware bugs
 Also look out for other implementations on GitHub: they may have the same (or different!) bugs as yours.
 
-http://www.geoffprewett.com/BookReviews/WritingEfficientPrograms.html
 https://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf
 
 Cache common cases: Your cache doesn't even need to be huge.
