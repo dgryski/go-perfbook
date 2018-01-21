@@ -187,6 +187,7 @@ programmers job is to use the transformations compilers *can't* do.
 
 There's a summary of this book:
 http://www.crowl.org/lawrence/programming/Bentley82.html
+http://www.geoffprewett.com/BookReviews/WritingEfficientPrograms.html
 
 and the program tuning rules:
 https://web.archive.org/web/20080513070949/http://www.cs.bell-labs.com/cm/cs/pearls/apprules.html
@@ -297,7 +298,6 @@ O(n log n) time. If you're doing lots of searches, then the upfront cost of
 sorting will pay off. On the other hand, if you're mostly doing lookups,
 maybe having an array was the wrong choice and you'd be better off paying the
 O(1) lookup cost for a map instead.
-
 
 Choose the simplest reasonable data structure and move on. CS 101, writing
 "not-slow software". Don't be dumb. This should be your default development
@@ -430,17 +430,24 @@ will allow you to quickly revisit your optimization once the bug is fixed.
 
 Fight the temptation to cargo cult folklore-based "performance tips".
 
-Iterative program improvements:
-  - ensure progress at each step
-  - but frequently one improvement will enable others
-  - which means you need to keep looking at the entire picture
+Program tuning is an iterative process. Keep revisiting your code and seeing
+what changes can be made. Ensure you're making progress at each step.
+Frequently one improvement will enable others to be made. (Now that I'm not
+doing A, I can simplify B by doing C instead.) This means you need to keep
+looking at the entire picture and not get to obsessed with one small set of
+lines.
 
 Once you've settled on the right algorithm, program tuning is the process of
 improving the implementation of that algorithm. In Big-O notation, this is
 the process of reducing the constants associated with your program.
 
-Find cheaper ways of doing the same thing. Replace SHA1 or hash/fnv1 with a
-faster hash function.
+All program tuning is either making a slow thing fast, or doing a slow thing
+fewer times.
+
+Making a slow thing fast might be replacing SHA1 or hash/fnv1 with a faster
+hash function. Doing a slow thing fewer times might be saving the result of
+the hash calculation of a large file so you don't have to do it a multiple
+times.
 
 program tuning:
    if possible, keep the old implementation around for testing
@@ -460,7 +467,6 @@ Many folk-lore performance tips for tuning rely on poorly optimizing
 compilers and encourge the programmer to do these transformations by hand:
 hoisting invariant calculations out of loops, using shift instead of multiply,
 loop unrolling, common sub-expression elimination, ...
-
 
 The barrier for rewriting something in assembler is higher.
 
