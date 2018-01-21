@@ -405,6 +405,7 @@ Tips for implementing papers:  (For `algorithm` read also `data structure`)
 Also look out for other implementations on GitHub: they may have the same (or different!) bugs as yours.
 
 https://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf
+https://www.youtube.com/watch?v=8eRx5Wo3xYA
 
 Cache common cases: Your cache doesn't even need to be huge.
   Optimized a log processing script to cache the previous time passed to time.parse() for significant speedup
@@ -449,7 +450,9 @@ improving the implementation of that algorithm. In Big-O notation, this is
 the process of reducing the constants associated with your program.
 
 All program tuning is either making a slow thing fast, or doing a slow thing
-fewer times.
+fewer times. Exactly how you do this varies as technologies change. Doing a
+slow thing fewer times might be an algorithmic change, but in this context
+we're looking at something which keeps the asymptotic complexity the same.
 
 Making a slow thing fast might be replacing SHA1 or hash/fnv1 with a faster
 hash function. Doing a slow thing fewer times might be saving the result of
@@ -471,11 +474,18 @@ program tuning:
   remove branches from inner loops
 
 Many folk-lore performance tips for tuning rely on poorly optimizing
-compilers and encourge the programmer to do these transformations by hand:
+compilers and encourage the programmer to do these transformations by hand:
 hoisting invariant calculations out of loops, using shift instead of multiply,
 loop unrolling, common sub-expression elimination, ...
 
-The barrier for rewriting something in assembler is higher.
+The transformations the compiler can't do rely on you knowing things
+about the algorithm, about your input data, about invariants in your system,
+and other assumptions you can make, and factoring that implicit knowledge into removing
+or altering steps in the data structure.
+
+These *must* be documented and even better tested for. These assumptions are
+going to be where your program crashes, slow down, or starts returning
+incorrect data as the system evolves.
 
 Program tuning improvements are cumulative. 5x 3% improvements is a 15%
 improvement. Making optimizations it's worth it to think about the expected
@@ -613,9 +623,10 @@ Techniques applicable to source code in general
 ## Assembly
 
 - Stuff about writing assembly code for Go
+- compilers improve; the bar is high
 - replace as little as possible to make an impact
 - very important to benchmark: improvements can be huge (10x for go-highway) zero (go-speck),  or even slower (no inlining)
-- always have pure-Go version (noasm build tag): testing,
+- always have pure-Go version (noasm build tag): testing, arm, gccgo
 - brief intro to syntax
 - calling convention
 - using opcodes unsupported by the asm
