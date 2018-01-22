@@ -489,6 +489,8 @@ improvement. Making optimizations it's worth it to think about the expected
 performance improvement. Replacing a hash function with a faster one is a
 constant factor improvement.
 
+Hashing map k/v: iterate over sorted keys/values, *or* track hashes as everything comes in and xor them together
+
 Log parsing example:
    - time parsing is slow
    - adding a single item cache is good
