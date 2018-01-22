@@ -316,6 +316,8 @@ Choose the simplest reasonable data structure and move on. CS 101, writing
 mode.  If you know you need random access, don't choose a linked-list.
 If you know you need in-order traversal, don't use a map.
 
+http://daslab.seas.harvard.edu/rum-conjecture/
+
 When writing a package to be used to by others, avoid the temptation to
 optimize up front for every single use case. This will result in unreadable
 code. Data structures by design are effectively single-purpose. You can
