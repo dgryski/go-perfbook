@@ -200,8 +200,13 @@ https://web.archive.org/web/20080513070949/http://www.cs.bell-labs.com/cm/cs/pea
 When thinking changes you can make to your program, there are two basic options:
 you can either change your data or you can change your code.
 
+## Data Changes
+
 Changing your data means either adding to or altering the representation of
 the data you're processing.
+
+(Some of these rely on changing the O() associated with different aspects of
+the data structure)
 
 Ideas for augmenting your data structure:
 
@@ -269,6 +274,8 @@ much faster than the extra CPU time required to decompress the data once it
 has been fetched.  As always, benchmark.  A binary format will generally
 be smaller and faster to parse than a text one, but at the cost of no longer
 being as human readable.
+
+## Algorithmic Changes
 
 If you're not changing the data, the other main option is to change the code.
 
@@ -342,6 +349,28 @@ A nice example from the Go standard library's `sort` package. Most of the
 time it's using quicksort, but it has a shell-sort pass then insertion sort
 when the partition size drops below 12 elements.
 
+The memory hierarchy in modern computers confuses the issue here a little
+bit, in that caches prefer the predictable access of scanning a slice to the
+effectively random access of chasing a pointer. Still, it's best to begin
+with a good algorithm. We will talk about this in the hardware-specific
+section.
+
+"The fight may not always go to the strongest, nor the race to the fastest, but that's the way to bet." -- Rudyard Kipling.
+
+Sometimes the best algorithm for a particular problem is not a single
+algorithm, but a collection of algorithms specialized for slightly different
+input classes. This "polyalgorithm" quickly detects what kind of input it
+needs to deal with and then dispatches to the appropriate code path. This is
+what the sorting package mentioned above does: determine the problem size and
+choose a different algorithm. The `string` and `bytes` packages do something
+similar, detecting and specializing for different cases. As with data
+compression, the more you know about what your input looks like, the better
+your custom solution can be.  Even if an optimization is not always applicable,
+complicating your code by determining that it's safe to use and executing
+different logic can be worth it.
+
+## Benchmark Inputs
+
 Know how big each of your input sizes is likely to be in production.
 
 Your benchmarks must use appropriately-sized inputs. As we've seen, different
@@ -363,66 +392,7 @@ Also note that some issues that are not apparent on your laptop might be
 visible once you deploy to production and hitting 250k reqs/second on a 40
 core server.
 
-The memory hierarchy in modern computers confuses the issue here a little
-bit, in that caches prefer the predictable access of scanning a slice to the
-effectively random access of chasing a pointer. Still, it's best to begin
-with a good algorithm. We will talk about this in the hardware-specific
-section.
-
-"The fight may not always go to the strongest, nor the race to the fastest, but that's the way to bet." -- Rudyard Kipling.
-
-Sometimes the best algorithm for a particular problem is not a single
-algorithm, but a collection of algorithms specialized for slightly different
-input classes. This "polyalgorithm" quickly detects what kind of input it
-needs to deal with and then dispatches to the appropriate code path. This is
-what the sorting package mentioned above does: determine the problem size and
-choose a different algorithm. The `string` and `bytes` packages do something
-similar, detecting and specializing for different cases. As with data
-compression, the more you know about what your input looks like, the better
-your custom solution can be.  Even if an optimization is not always applicable,
-complicating your code by determining that it's safe to use and executing
-different logic can be worth it.
-
-Keep comments. If something doesn't need to be done, explain why. Frequently
-when optimizing an algorithm you'll discover steps that don't need to be
-performed under some circumstances. Document them. Somebody else might think
-it's a bug and needs to be put back.
-
-Empty program gives the wrong answer in no time at all.
-It's easy to be fast if you don't have to be correct.
-
-Tips for implementing papers:  (For `algorithm` read also `data structure`)
-* Don't.  Start with the obvious solution and reasonable data structures.
-* "Modern" algorithms tend to have lower theoretical complexities but high constants and lots of implementation complexity.
-* Look for the paper their algorithm claims to beat and implement that.
-* Make sure you understand the algorithm.  This sounds obvious, but it will be impossible to debug otherwise.
-* The original paper for a data structure or algorithm isn't always the best.  Later papers may have better explanations.
-* Make sure the assumptions the algorithm makes about your data hold. 
-* Some papers release reference source code which you can compare against, but
-   - 1) academic code is almost universally terrible
-   - 2) beware licensing restrictions
-   - 3) beware bugs
-Also look out for other implementations on GitHub: they may have the same (or different!) bugs as yours.
-
-https://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf
-https://www.youtube.com/watch?v=8eRx5Wo3xYA
-
-Cache common cases: Your cache doesn't even need to be huge.
-  Optimized a log processing script to cache the previous time passed to time.parse() for significant speedup
-  But beware cache invalidation, thread issues, etc
-  Random cache eviction is fast and sufficiently effective.
-     - only put "some" items in cache (probabilistically) to limit cache size to popular items with minimal logic
-  Compare cost of cache logic to cost of refetching the data.
-
-The standard library implementations need to be "fast enough" for most cases.
-If you have higher performance needs you will probably need specialized
-implementations.
-
-This also means your benchmark data needs to be representative of the real
-world. If repeated requests are sufficiently rare, it's more expensive to
-keep them around than to recompute them. If your benchmark data consists of
-only the same repeated request, your cache will give an inaccurate view of
-the performance.
+## Program Tuning
 
 Program tuning used to be an art form, but then compilers got better. So now
 it turns out that compilers can optimize straight-forward code better than
@@ -458,6 +428,27 @@ Making a slow thing fast might be replacing SHA1 or hash/fnv1 with a faster
 hash function. Doing a slow thing fewer times might be saving the result of
 the hash calculation of a large file so you don't have to do it a multiple
 times.
+
+Keep comments. If something doesn't need to be done, explain why. Frequently
+when optimizing an algorithm you'll discover steps that don't need to be
+performed under some circumstances. Document them. Somebody else might think
+it's a bug and needs to be put back.
+
+Empty program gives the wrong answer in no time at all.
+It's easy to be fast if you don't have to be correct.
+
+Cache common cases: Your cache doesn't even need to be huge.
+  Optimized a log processing script to cache the previous time passed to time.parse() for significant speedup
+  But beware cache invalidation, thread issues, etc
+  Random cache eviction is fast and sufficiently effective.
+     - only put "some" items in cache (probabilistically) to limit cache size to popular items with minimal logic
+  Compare cost of cache logic to cost of refetching the data.
+
+This also means your benchmark data needs to be representative of the real
+world. If repeated requests are sufficiently rare, it's more expensive to
+keep them around than to recompute them. If your benchmark data consists of
+only the same repeated request, your cache will give an inaccurate view of
+the performance.
 
 program tuning:
    if possible, keep the old implementation around for testing
@@ -501,6 +492,10 @@ Log parsing example:
 
 Optimization is specialization, and specialized code is more fragile to
 change than general purpose code.
+
+The standard library implementations need to be "fast enough" for most cases.
+If you have higher performance needs you will probably need specialized
+implementations.
 
 Profile regularly to ensure the track the performance characteristics of your
 system and be prepared to re-optimize as your traffic changes. Know the
@@ -652,3 +647,22 @@ Techniques applicable to source code in general
 Look at some more interesting/advanced tooling
 
 - perf  (perf2pprof)
+
+## Appendix: Implementing Research Papers
+
+Tips for implementing papers:  (For `algorithm` read also `data structure`)
+* Don't.  Start with the obvious solution and reasonable data structures.
+* "Modern" algorithms tend to have lower theoretical complexities but high constants and lots of implementation complexity.
+* Look for the paper their algorithm claims to beat and implement that.
+* Make sure you understand the algorithm.  This sounds obvious, but it will be impossible to debug otherwise.
+* The original paper for a data structure or algorithm isn't always the best.  Later papers may have better explanations.
+* Make sure the assumptions the algorithm makes about your data hold.
+* Some papers release reference source code which you can compare against, but
+   - 1) academic code is almost universally terrible
+   - 2) beware licensing restrictions
+   - 3) beware bugs
+Also look out for other implementations on GitHub: they may have the same (or different!) bugs as yours.
+
+https://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf
+https://www.youtube.com/watch?v=8eRx5Wo3xYA
+http://codecapsule.com/2012/01/18/how-to-implement-a-paper/
