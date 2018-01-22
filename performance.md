@@ -651,18 +651,57 @@ Look at some more interesting/advanced tooling
 ## Appendix: Implementing Research Papers
 
 Tips for implementing papers:  (For `algorithm` read also `data structure`)
-* Don't.  Start with the obvious solution and reasonable data structures.
-* "Modern" algorithms tend to have lower theoretical complexities but high constants and lots of implementation complexity.
+
+* Don't. Start with the obvious solution and reasonable data structures.
+* "Modern" algorithms tend to have lower theoretical complexities but high constant factors and lots of implementation complexity.
+
+    The fastest algorithm can frequently be replaced by one that is almost as fast and much easier to understand.
+            Douglas W. Jones
+            University of Iowa
+
+  The added complexity has to be enough that the payoff is actually worth it.
+  Cache algorithms for example; much higher complexity for only a small
+  improvement in hit ratio Of course, you may not be able to test this until
+  you have a working implementation and have integrated it into your program.
+
+  Sometimes the paper will have graphs, but much like the trend towards
+  publishing only positive results, these will tend to be skewed in favour of
+  showing how good the new algorithm is.
+
+* Choose the right paper.
 * Look for the paper their algorithm claims to beat and implement that.
+
+   Frequently earlier papers will easier to understand and necessarily have
+   simpler algorithms.
+
+   Not all papers are good.
+
+   Look at the context the paper was written in. Determine assumptions about
+   the hardware: disk space, memory usage, etc. Some older papers make
+   different tradeoffs that were reasonable in the 70s or 80s but don't
+   necessarily apply to your use case. For example, some streaming algorithms
+   are designed for router hardware, which make it a pain to translate into
+   software.
+
+   Make sure the assumptions the algorithm makes about your data hold.
+
+   This will take some digging. You probably don't want to implement the
+   first paper you find.
+
 * Make sure you understand the algorithm.  This sounds obvious, but it will be impossible to debug otherwise.
+  https://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf
+
+  A good understanding may allows you to extract the key idea from the paper
+  and possibly apply just that to your problem, which may be simpler than
+  reimplementing the entire thing.
+
 * The original paper for a data structure or algorithm isn't always the best.  Later papers may have better explanations.
-* Make sure the assumptions the algorithm makes about your data hold.
+
 * Some papers release reference source code which you can compare against, but
    - 1) academic code is almost universally terrible
    - 2) beware licensing restrictions
    - 3) beware bugs
 Also look out for other implementations on GitHub: they may have the same (or different!) bugs as yours.
 
-https://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf
 https://www.youtube.com/watch?v=8eRx5Wo3xYA
 http://codecapsule.com/2012/01/18/how-to-implement-a-paper/
