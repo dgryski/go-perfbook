@@ -371,6 +371,10 @@ your custom solution can be.  Even if an optimization is not always applicable,
 complicating your code by determining that it's safe to use and executing
 different logic can be worth it.
 
+The `sort` package mentioned above is another example of a polyalgorithm. In
+addition to combining quicksort, shell sort, and insertion sort, it also
+tracks recursion depth of quicksort and calls heapsort if necessary.
+
 ## Benchmark Inputs
 
 Know how big each of your input sizes is likely to be in production.
@@ -660,6 +664,10 @@ Tips for implementing papers:  (For `algorithm` read also `data structure`)
     The fastest algorithm can frequently be replaced by one that is almost as fast and much easier to understand.
             Douglas W. Jones
             University of Iowa
+
+  Treap vs. RB/AVL trees
+  Raft was "easier" to understand Paxos
+  Fibonacci heaps are notoriously difficult to get right *and* have a huge constant factor
 
   The added complexity has to be enough that the payoff is actually worth it.
   Cache algorithms for example; much higher complexity for only a small
