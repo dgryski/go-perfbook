@@ -586,6 +586,7 @@ Techniques applicable to source code in general
 - API design to limit allocations: allow passing in buffers so caller can reuse rather than forcing an allocation
   - you can even modify a slice in place carefully while you scan over it
 - reducing pointers to reduce gc scan times
+  - pointer-free map keys
 - GOGC
 - buffer reuse (sync.Pool vs or custom via go-slab, etc)
 
