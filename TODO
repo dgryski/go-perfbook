@@ -170,6 +170,7 @@ optimization guides:
     https://www-ssl.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-optimization-manual.html
     https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines.html#S-performance
     https://github.com/fenbf/AwesomePerfCpp
+    https://www.kernel.org/pub/linux/kernel/people/paulmck/perfbook/perfbook.2017.11.22a.pdf
 
 stackoverflow:
     https://stackoverflow.com/questions/19397699/why-struct-with-padding-fields-works-faster/19397791#19397791

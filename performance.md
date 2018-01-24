@@ -171,15 +171,24 @@ identify where time is actually spent.
 
 When optimizing, you want to reduce the amount of work the CPU has to do.
 
+A smarter algorithm can drastically reduce CPU time.
+30k x improvement
+Compiler optimizations double performance every 18 years.
+
+Program tuning, like compiler optimizations can only make a small dent in the
+total runtime. Large wins will almost always come from an algorithmic change
+or data structure change, a fundamental shift in how your program is
+organized.
+
 A profiler might show you that lots of time is spent in a particular routine.
 It could be this is an expensive routine, or it could be a cheap routine that
 is just called many many times. Rather than immediately trying to speed up
 that one routine, see if you can reduce the number of times it's called or
-eliminate it completely.
+eliminate it completely.  We'll discuss more concrete optimization strategies in the next section.
 
 The Three Optimization Questions:
 
-- Do we have to do this at all?  The fastest code is the code that's not there.
+- Do we have to do this at all?  The fastest code is the code that's never run.
 - If yes, is this the best algorithm.
 - If yes, is this the best *implementation* of this algorithm.
 
@@ -426,9 +435,9 @@ improving the implementation of that algorithm. In Big-O notation, this is
 the process of reducing the constants associated with your program.
 
 All program tuning is either making a slow thing fast, or doing a slow thing
-fewer times. Exactly how you do this varies as technologies change. Doing a
-slow thing fewer times might be an algorithmic change, but in this context
-we're looking at something which keeps the asymptotic complexity the same.
+fewer times. Algorithmic changes also fall into these categories, but we're
+going to be looking at smaller changes. Exactly how you do this varies as
+technologies change.
 
 Making a slow thing fast might be replacing SHA1 or hash/fnv1 with a faster
 hash function. Doing a slow thing fewer times might be saving the result of
@@ -449,6 +458,12 @@ Cache common cases: Your cache doesn't even need to be huge.
   Random cache eviction is fast and sufficiently effective.
      - only put "some" items in cache (probabilistically) to limit cache size to popular items with minimal logic
   Compare cost of cache logic to cost of refetching the data.
+
+I've done experiments with a network trace that showed even an optimal
+cache wasn't worth it. Your expected hit ratio is important. You'll want to
+export the ratio to your monitoring stack. Changing ratios will show a
+shift in traffic. Then it's time to revisit the cache size or the
+expiration policy.
 
 This also means your benchmark data needs to be representative of the real
 world. If repeated requests are sufficiently rare, it's more expensive to
@@ -472,17 +487,18 @@ program tuning:
 
 Many folk-lore performance tips for tuning rely on poorly optimizing
 compilers and encourage the programmer to do these transformations by hand:
-hoisting invariant calculations out of loops, using shift instead of multiply,
-loop unrolling, common sub-expression elimination, ...
+hoisting invariant calculations out of loops, using shift instead of
+multiply, loop unrolling, common sub-expression elimination, ...
 
-The transformations the compiler can't do rely on you knowing things
-about the algorithm, about your input data, about invariants in your system,
-and other assumptions you can make, and factoring that implicit knowledge into removing
-or altering steps in the data structure.
+The transformations the compiler can't do rely on you knowing things about
+the algorithm, about your input data, about invariants in your system, and
+other assumptions you can make, and factoring that implicit knowledge into
+removing or altering steps in the data structure.
 
-These *must* be documented and even better tested for. These assumptions are
-going to be where your program crashes, slow down, or starts returning
-incorrect data as the system evolves.
+Every optimization codifies an assumption about your data. These *must* be
+documented and even better tested for. These assumptions are going to be
+where your program crashes, slow down, or starts returning incorrect data as
+the system evolves.
 
 Program tuning improvements are cumulative. 5x 3% improvements is a 15%
 improvement. Making optimizations it's worth it to think about the expected
@@ -704,7 +720,7 @@ Tips for implementing papers:  (For `algorithm` read also `data structure`)
 * Make sure you understand the algorithm.  This sounds obvious, but it will be impossible to debug otherwise.
   https://blizzard.cs.uwaterloo.ca/keshav/home/Papers/data/07/paper-reading.pdf
 
-  A good understanding may allows you to extract the key idea from the paper
+  A good understanding may allow you to extract the key idea from the paper
   and possibly apply just that to your problem, which may be simpler than
   reimplementing the entire thing.
 
