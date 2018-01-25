@@ -403,6 +403,12 @@ test isn't representative of real workloads, you can easily end up optimizing
 for one particular data set, "overfitting" your code to work best with one specific
 set of inputs.
 
+This also means your benchmark data needs to be representative of the real
+world. If repeated requests are sufficiently rare, it's more expensive to
+keep them around than to recompute them. If your benchmark data consists of
+only the same repeated request, your cache will give an inaccurate view of
+the performance.
+
 Also note that some issues that are not apparent on your laptop might be
 visible once you deploy to production and hitting 250k reqs/second on a 40
 core server.
@@ -465,11 +471,7 @@ export the ratio to your monitoring stack. Changing ratios will show a
 shift in traffic. Then it's time to revisit the cache size or the
 expiration policy.
 
-This also means your benchmark data needs to be representative of the real
-world. If repeated requests are sufficiently rare, it's more expensive to
-keep them around than to recompute them. If your benchmark data consists of
-only the same repeated request, your cache will give an inaccurate view of
-the performance.
+
 
 program tuning:
    if possible, keep the old implementation around for testing
