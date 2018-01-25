@@ -576,24 +576,6 @@ Techniques applicable to source code in general
 ## Tracer
 
 
-## Advanced Techniques
-
-- Techniques specific to the architecture running the code
- - introduction to CPU caches
-   - performance cliffs
-   - building intuition around cache-lines: sizes, padding, alignment
-   - false-sharing
-   - true sharing -> sharding
-   - OS tools to view cache-misses
-   - maps vs. slices
-   - SOA vs AOS layouts
-   - reducing pointer chasing
- - branch prediction
- - function call overhead
-
-- Comment about Jeff Dean's 2002 numbers (plus updates)
-  - cpus have gotten faster, but memory hasn't kept up
-
 ## Garbage Collection
 
 - Stack vs. heap allocations
@@ -616,14 +598,6 @@ Techniques applicable to source code in general
 - bounds check elimination
 - []byte <-> string copies, map optimizations
 
-## Common gotchas with the standard library
-
-- time.After() leaks until it fires
-- Reusing HTTP connections...
-- ....
-- rand.Int() and friends are 1) mutex protected and 2) expensive to create
-  - consider alternate random number generation (go-pcgr, xorshift)
-
 ## Unsafe
 
 - And all the dangers that go with it
@@ -633,25 +607,13 @@ Techniques applicable to source code in general
 - speedy de-serialization
 - string <-> slice conversion, []byte <-> []uint32, ...
 
-## cgo
+## Common gotchas with the standard library
 
-- Performance characteristics of cgo calls
-- Tricks to reduce the costs: batching
-- Rules on passing pointers between Go and C
-- syso files
-
-## Assembly
-
-- Stuff about writing assembly code for Go
-- compilers improve; the bar is high
-- replace as little as possible to make an impact
-- very important to benchmark: improvements can be huge (10x for go-highway) zero (go-speck),  or even slower (no inlining)
-- always have pure-Go version (noasm build tag): testing, arm, gccgo
-- brief intro to syntax
-- calling convention
-- using opcodes unsupported by the asm
-- notes about why intrinsics are hard
-- all the tooling to make this easier: asmfmt, peachpy, c2goasm, ...
+- time.After() leaks until it fires
+- Reusing HTTP connections...
+- ....
+- rand.Int() and friends are 1) mutex protected and 2) expensive to create
+  - consider alternate random number generation (go-pcgr, xorshift)
 
 ## Alternate implementations
 
@@ -666,6 +628,48 @@ Techniques applicable to source code in general
         encoded space, decoding speed, language/tooling compatibility, ...
   - database/sql -> jackx/pgx, ...
   - gccgo
+
+
+
+## cgo
+
+- Performance characteristics of cgo calls
+- Tricks to reduce the costs: batching
+- Rules on passing pointers between Go and C
+- syso files
+
+## Advanced Techniques
+
+- Techniques specific to the architecture running the code
+ - introduction to CPU caches
+   - performance cliffs
+   - building intuition around cache-lines: sizes, padding, alignment
+   - false-sharing
+   - true sharing -> sharding
+   - OS tools to view cache-misses
+   - maps vs. slices
+   - SOA vs AOS layouts
+   - reducing pointer chasing
+ - branch prediction
+ - function call overhead
+
+- Comment about Jeff Dean's 2002 numbers (plus updates)
+  - cpus have gotten faster, but memory hasn't kept up
+
+
+## Assembly
+
+- Stuff about writing assembly code for Go
+- compilers improve; the bar is high
+- replace as little as possible to make an impact
+- very important to benchmark: improvements can be huge (10x for go-highway) zero (go-speck),  or even slower (no inlining)
+- always have pure-Go version (noasm build tag): testing, arm, gccgo
+- brief intro to syntax
+- calling convention
+- using opcodes unsupported by the asm
+- notes about why intrinsics are hard
+- all the tooling to make this easier: asmfmt, peachpy, c2goasm, ...
+
 
 ## Tooling
 
