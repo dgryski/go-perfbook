@@ -21,6 +21,11 @@ This book is split into different sections:
    3) advanced tips for writing *really* fast software
      * For when your optimized code isn't fast enough
 
+We can summarize these three sections as:
+- "Don't be dumb"
+- "Be smart"
+- "Be dangerous"
+
 
 ### When and Where to Optimize
 
