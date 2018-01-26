@@ -505,7 +505,14 @@ improvement. Making optimizations it's worth it to think about the expected
 performance improvement. Replacing a hash function with a faster one is a
 constant factor improvement.
 
-Hashing map k/v: iterate over sorted keys/values, *or* track hashes as everything comes in and xor them together
+Understanding your requirements and where they can be altered can lead to
+performance improvements. One issue that was presented in the \#performance
+Gophers Slack channel was the amount of tine that was spent creating a unique
+identifer for a map of string key/value pairs. The original solution was to
+extract the keys, sort them, and pass the resulting string to a hash
+function. The improved solution we came up was to individually hash the
+keys/values as they were added to the map, then xor all these hashes together
+to create the identifier.
 
 Log parsing example:
    - time parsing is slow
