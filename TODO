@@ -117,6 +117,7 @@ asm:
     https://blog.gopheracademy.com/advent-2016/peachpy/
     https://blog.sgmansfield.com/2017/04/a-foray-into-go-assembly-programming/
     http://lemire.me/blog/2016/12/21/performance-overhead-when-calling-assembly-from-go/
+    http://davidwong.fr/goasm/
     minio posts + tooling
 
 posts:
