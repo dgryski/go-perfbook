@@ -11,4 +11,5 @@ Eventually sample programs to optimize and exercises will be needed (maybe).
 Coordination will be done in the #performance channel on the Gophers slack.
 
 The `draft` branch contains the current rough work, with sections being merged
-into master as the they are more fleshed out.
+into master as the they are more fleshed out.  The in-development text can be
+read https://github.com/dgryski/go-perfbook/blob/draft/performance.md
