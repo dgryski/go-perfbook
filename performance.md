@@ -26,7 +26,6 @@ We can summarize these three sections as:
 - "Be smart"
 - "Be dangerous"
 
-
 ### When and Where to Optimize
 
 I'm putting this first because it's really the most important step. Should
@@ -95,6 +94,8 @@ verify that your change really *is* lowering CPU. Sometimes a change you
 thought would improve will actually turn out to have a zero or negative
 change. Always make sure you undo your fix in these cases.
 
+- "hours wasted here" comment
+
 The benchmarks you are using must be correct and provide reproducible numbers
 on representative workloads. If individual runs have too high a variance, it
 will make small improvements more difficult to spot. You will need to use
@@ -113,7 +114,7 @@ improve CPU, what is an acceptable speed. Do you want to improve the current
 performance by 2x? 10x? Can you state it as "problem of size N in less than
 time T"? Are you trying to reduce memory usage? By how much? How much slower
 is acceptable for what change in memory usage? What are you willing to give
-up in exchange for lower space?
+up in exchange for lower space requirements?
 
 Optimizing for service latency is a trickier proposition. Entire books have
 been written on how to performance test web servers. The primary issue is
@@ -175,6 +176,9 @@ the time by only 10% will improve runtime by almost 8%. Profiles will help
 identify where time is actually spent.
 
 When optimizing, you want to reduce the amount of work the CPU has to do.
+Quicksort is faster than bubble sort because it solves then same problem
+(sorting) in fewer steps. It's a more efficient algorithm. You've reduced the
+work the CPU needs to do in order to accomplish the same task.
 
 Program tuning, like compiler optimizations, will generally make only a small
 dent in the total runtime. Large wins will almost always come from an
