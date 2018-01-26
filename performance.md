@@ -471,8 +471,6 @@ export the ratio to your monitoring stack. Changing ratios will show a
 shift in traffic. Then it's time to revisit the cache size or the
 expiration policy.
 
-
-
 program tuning:
    if possible, keep the old implementation around for testing
    if not possible, generate sufficient golden test cases to compare output
@@ -695,9 +693,10 @@ Tips for implementing papers:  (For `algorithm` read also `data structure`)
   Fibonacci heaps are notoriously difficult to get right *and* have a huge constant factor
 
   The added complexity has to be enough that the payoff is actually worth it.
-  Cache algorithms for example; much higher complexity for only a small
-  improvement in hit ratio Of course, you may not be able to test this until
-  you have a working implementation and have integrated it into your program.
+  Cache eviction algorithms are a good example. Different algorithms can have
+  much higher complexity for only a small improvement in hit ratio. Of
+  course, you may not be able to test this until you have a working
+  implementation and have integrated it into your program.
 
   Sometimes the paper will have graphs, but much like the trend towards
   publishing only positive results, these will tend to be skewed in favour of
