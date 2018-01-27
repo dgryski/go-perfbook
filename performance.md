@@ -196,14 +196,16 @@ work the CPU needs to do in order to accomplish the same task.
 Program tuning, like compiler optimizations, will generally make only a small
 dent in the total runtime. Large wins will almost always come from an
 algorithmic change or data structure change, a fundamental shift in how your
-program is organized. As an example, while compiler technology doubles
-performance every 18 *years*, ("[Proebsting's
-Law](http://proebsting.cs.arizona.edu/law.html)", improvements in the
-algorithms for mixer integer programming [improved by a factor of 30,000
-between 1991 and
-2008](https://agtb.wordpress.com/2010/12/23/progress-in-algorithms-beats-moore%E2%80%99s-law/)
-
-TODO: replace with https://medium.com/@buckhx/unwinding-uber-s-most-efficient-service-406413c5871d
+program is organized. Compiler technology improves, but slowly. [Proebsting's
+Law](http://proebsting.cs.arizona.edu/law.html) says compilers double in
+performance every 18 *years*, a stark contrast with the (slightly
+misunderstood interpretation) of Moore's Law that doubles processor
+performance every 18 *months*.  Algorithmic improvements work at larger magnitudes.
+Algorithms for mixer integer programming [improved by a factor of 30,000
+between 1991 and 2008](https://agtb.wordpress.com/2010/12/23/progress-in-algorithms-beats-moore%E2%80%99s-law/)
+For a more concrete example, consider this breakdown of replacing a brute force geo-spacial algorithm
+described in an Uber blog post with more specialized one more suited to the presented task:
+https://medium.com/@buckhx/unwinding-uber-s-most-efficient-service-406413c5871d
 
 A profiler might show you that lots of time is spent in a particular routine.
 It could be this is an expensive routine, or it could be a cheap routine that
