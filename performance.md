@@ -94,7 +94,19 @@ verify that your change really *is* lowering CPU. Sometimes a change you
 thought would improve will actually turn out to have a zero or negative
 change. Always make sure you undo your fix in these cases.
 
-- "hours wasted here" comment
+https://stackoverflow.com/questions/184618/what-is-the-best-comment-in-source-code-you-have-ever-encountered
+```
+//
+// Dear maintainer:
+//
+// Once you are done trying to 'optimize' this routine,
+// and have realized what a terrible mistake that was,
+// please increment the following counter as a warning
+// to the next guy:
+//
+// total_hours_wasted_here = 42
+//
+```
 
 The benchmarks you are using must be correct and provide reproducible numbers
 on representative workloads. If individual runs have too high a variance, it
