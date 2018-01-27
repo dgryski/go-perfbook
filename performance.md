@@ -456,7 +456,11 @@ If you are working around a specific runtime or compiler code generation
 issue, always document your change with a link to the upstream issue. This
 will allow you to quickly revisit your optimization once the bug is fixed.
 
-Fight the temptation to cargo cult folklore-based "performance tips".
+Fight the temptation to cargo cult folklore-based "performance tips", or even
+over-generalize from your own experience. Each performance bug needs to be
+approached on its own merits. Even if something has worked previously, make
+sure to profile to ensure  fix is still applicable.  Your previous
+work can guide you, but don't apply previous optimizations blindly.
 
 Program tuning is an iterative process. Keep revisiting your code and seeing
 what changes can be made. Ensure you're making progress at each step.
