@@ -9,7 +9,9 @@ sorted into categories.
 
 While some discussions will be made for individual services faster (caching,
 etc), designing performant distributed systems is beyond the scope of this
-work.
+work. There are already good texts on monitoring and distributed system
+design. It encompasses an entirely different set of research and design
+trade-offs.
 
 All the content will be licensed under CC-BY-SA.
 
