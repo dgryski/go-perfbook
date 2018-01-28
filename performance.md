@@ -717,6 +717,14 @@ Look at some more interesting/advanced tooling
 
 - perf  (perf2pprof)
 
+## What if your program isn't CPU bound?
+
+- references for system design.
+- extra tooling: more logging + analysis
+- The two basic rules: either speed up the slow things or do them less frequently.
+- distributed tracing to track bottlenecks ata higher level
+- query patterns for querying a single server instead of in bulk
+
 ## Appendix: Implementing Research Papers
 
 Tips for implementing papers:  (For `algorithm` read also `data structure`)
