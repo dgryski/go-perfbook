@@ -353,8 +353,15 @@ Choose the simplest reasonable data structure and move on. CS 101, writing
 "not-slow software". Don't be dumb. This should be your default development
 mode.  If you know you need random access, don't choose a linked-list.
 If you know you need in-order traversal, don't use a map.
+Requirements change and you can't always guess the future. Make a reasonable
+guess at the workload.
 
 http://daslab.seas.harvard.edu/rum-conjecture/
+
+Data structures for similar problems will differ in when they do a piece of
+work. A binary tree sorts a little at a time as inserts happen. A unsorted
+array is faster to insert but it's unsorted: at the end to "finalize" you
+need to do the sorting all at once.
 
 When writing a package to be used to by others, avoid the temptation to
 optimize up front for every single use case. This will result in unreadable
@@ -497,6 +504,7 @@ Cache common cases: Your cache doesn't even need to be huge.
   Random cache eviction is fast and sufficiently effective.
      - only put "some" items in cache (probabilistically) to limit cache size to popular items with minimal logic
   Compare cost of cache logic to cost of refetching the data.
+  A large cache can increase gc pressure and keep blowing processor cache
 
 I've done experiments with a network trace that showed even an optimal
 cache wasn't worth it. Your expected hit ratio is important. You'll want to
