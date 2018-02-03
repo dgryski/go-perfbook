@@ -725,7 +725,13 @@ Look at some more interesting/advanced tooling
 
 - perf  (perf2pprof)
 
-## What if your program isn't CPU bound?
+## Optimizing an entire service
+
+Most of the time you won't be presented with a single CPU-bound routine.  That's the easy case.
+If you have a service to optimize, you need to look at the entire system.
+Monitoring.  Metrics.  Log lots of things over time so you can see them getting worse and so you can see the impact your changes have in production.
+
+tip.golang.org/doc/diagnostics.html
 
 - references for system design.
 - extra tooling: more logging + analysis
