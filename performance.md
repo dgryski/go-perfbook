@@ -626,9 +626,14 @@ Techniques applicable to source code in general
 
 ## Garbage Collection
 
+You pay for memory allocation more than once. The first is obviously when you
+allocate it. But you also pay every time the garbage collection runs.
+
+Reduce/Reuse/Recycle. -- @bboreham
 - Stack vs. heap allocations
 - What causes heap allocations?
 - Understanding escape analysis (and the current limitation)
+- /debug/pprof/heap , and -base
 - API design to limit allocations: allow passing in buffers so caller can reuse rather than forcing an allocation
   - you can even modify a slice in place carefully while you scan over it
 - reducing pointers to reduce gc scan times
