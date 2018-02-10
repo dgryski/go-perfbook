@@ -449,6 +449,9 @@ Also note that some issues that are not apparent on your laptop might be
 visible once you deploy to production and hitting 250k reqs/second on a 40
 core server.
 
+Writing good benchmarks can be difficult.
+- https://timharris.uk/misc/five-ways.pdf
+
 ## Program Tuning
 
 Program tuning used to be an art form, but then compilers got better. So now
