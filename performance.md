@@ -670,6 +670,7 @@ Reduce/Reuse/Recycle. -- @bboreham
 - ....
 - rand.Int() and friends are 1) mutex protected and 2) expensive to create
   - consider alternate random number generation (go-pcgr, xorshift)
+- binary.Read and binary.Write use reflection and are slow; do it by hand.
 
 ## Alternate implementations
 
