@@ -528,6 +528,7 @@ program tuning:
    common cases before rare cases
     i.e., avoid extra tests that always fail
   remove branches from inner loops
+  unrolling still effective: https://play.golang.org/p/6tnySwNxG6O
 
 Many folk-lore performance tips for tuning rely on poorly optimizing
 compilers and encourage the programmer to do these transformations by hand:
