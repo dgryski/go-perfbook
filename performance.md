@@ -121,8 +121,8 @@ should be committed to the repository with instructions for how to run them.
 Be mindful of large benchmark suites that take a long time to run: it will
 make the development iterations slower.
 
-(Note also that anything that can be measured can be optimized. Make sure
-you're measuring the right thing.)
+Note also that anything that can be measured can be optimized. Make sure
+you're measuring the right thing.
 
 The next step is to decide what you are optimizing for. If the goal is to
 improve CPU, what is an acceptable speed. Do you want to improve the current
@@ -136,11 +136,12 @@ been written on how to performance test web servers. The primary issue is
 that for single-threaded code, the performance is fairly consistent for a
 given problem size. For webservices, you don't have a single number. A proper
 web-service benchmark suite will provide a latency distribution for a given
-reqs/second level. ...
+reqs/second level. ... (Link to Gil Tene's talk)
 
 The performance goals must be specific. You will (almost) always be able to
 make something faster. Optimizing is frequently a game of diminishing
-returns. You need to know when to stop.
+returns. You need to know when to stop.  How much effort are you going to put into getting the last little bit of work.
+How much uglier and harder to maintain are you willing to make the code?
 
 Dan Luu's talk also points out the advantage of rough calculations to
 determine if your target performance figures are reasonable.
@@ -155,6 +156,9 @@ structures. Optimizing at lower-levels of the stack should wait until later
 in the development cycle when a more complete view of the system performance
 is available.  Any full-system profiles you do while the system is incomplete
 will give a skewed view of where the bottlenecks will be in the finished system.
+
+Death by 1000 cuts.
+
 
 Write code that you can benchmark. Profiling you can do on larger systems.
 Benchmarking you want to test isolated pieces. You need to be able to extract
@@ -560,6 +564,7 @@ keys/values as they were added to the map, then xor all these hashes together
 to create the identifier.
 
 Log parsing example:
+
    - time parsing is slow
    - adding a single item cache is good
    - removing time parsing and doing some integer math by hand is against faster
@@ -599,7 +604,7 @@ required and I replaced it with much more readable regular file operations.
        <https://github.com/codahale/tinystat> to verify that a set of timings
        are 'sufficiently' different for an optimization to be worth the
        added code complexity.
-    1. use <https://github.com/tsenart/vegeta> for load testing http services
+    1. use <https://github.com/tsenart/vegeta> for load testing http services (+ other fancy ones)
     1. make sure your latency numbers make sense: <https://youtu.be/lJ8ydIuPFeU>
 
 The first step is important. It tells you when and where to start optimizing.
@@ -743,7 +748,7 @@ Monitoring.  Metrics.  Log lots of things over time so you can see them getting 
 
 tip.golang.org/doc/diagnostics.html
 
-- references for system design.
+- references for system design: SRE Book, practical distributed system design
 - extra tooling: more logging + analysis
 - The two basic rules: either speed up the slow things or do them less frequently.
 - distributed tracing to track bottlenecks ata higher level
