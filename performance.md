@@ -43,10 +43,10 @@ you could be working on for your project, which bugs to fix, which features
 to add. Optimizing things is fun, but it's not always the right task to
 choose. Performance is a feature, but so is shipping, and so is correctness.
 
-Choosing the most important thing to work on. Sometimes this isn't an
-optimization at all. Sometimes it's not an actual CPU optimization, but a
-user-experience one. Making something start up faster by doing computation in
-the background after drawing the main window, for example.
+Choosing the most important thing to work on. Sometimes it's not an actual
+CPU optimization, but a user-experience one. Something as simple as adding a
+progress bar, or making a page more responsive by doing computation in the
+background after rendering the page.
 
 Some times this will be obvious: an hourly report that completes in three hours
 is probably less useful that one that completes in less than one.
