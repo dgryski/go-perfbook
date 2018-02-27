@@ -522,8 +522,11 @@ expiration policy.
 program tuning:
    if possible, keep the old implementation around for testing
    if not possible, generate sufficient golden test cases to compare output
-   exploit a mathematical identity: https://github.com/golang/go/commit/ed6c6c9c11496ed8e458f6e0731103126ce60223, multiplication with addition, ...
-   just clearing the parts you used, rather than an entire array
+   exploit a mathematical identity:
+    https://github.com/golang/go/commit/ed6c6c9c11496ed8e458f6e0731103126ce60223,
+    https://gist.github.com/dgryski/67e6a7ff94c3a1add30eb26ec0ad8b0f
+    multiplication with addition, (Also, https://users.ece.cmu.edu/~franzf/papers/gttse07.pdf)
+    just clearing the parts you used, rather than an entire array
    best done in tiny steps, a few statements at a time
    moving from floating point math to integer math
    or mandelbrot removing sqrt, or lttb removing abs
