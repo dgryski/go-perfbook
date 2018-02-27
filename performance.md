@@ -522,7 +522,7 @@ expiration policy.
 program tuning:
    if possible, keep the old implementation around for testing
    if not possible, generate sufficient golden test cases to compare output
-   exploit a mathematical identity: https://go-review.googlesource.com/c/go/+/85477, multiplication with addition, ...
+   exploit a mathematical identity: https://github.com/golang/go/commit/ed6c6c9c11496ed8e458f6e0731103126ce60223, multiplication with addition, ...
    just clearing the parts you used, rather than an entire array
    best done in tiny steps, a few statements at a time
    moving from floating point math to integer math
