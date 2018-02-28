@@ -41,3 +41,5 @@ There are different ways to contribute:
 Eventually sample programs to optimize and exercises will be needed (maybe).
 
 Coordination will be done in the #performance channel on the Gophers slack.
+
+You can [buy me a coffee](https://buymeacoff.ee/dgryski)
