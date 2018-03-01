@@ -391,14 +391,20 @@ These constant factors are why even though merge sort, quicksort, and
 heapsort all O(n log n), everybody uses quicksort because it's the fastest.
 It has the smallest constant factor.
 
-The second thing is that big-O only says "as n grows to infinity". It says
-nothing about small n. "As the numbers get big, this is the growth factor
-that will dominate the run time."
+The second thing is that big-O only says "as n grows to infinity". It talks
+about the growth trend. As the numbers get big, this is the growth factor
+that will dominate the run time." It says nothing about the actual
+performance, or how it behaves with small n.
 
 There's frequently a cut-off point below which a dumber algorithm is faster.
 A nice example from the Go standard library's `sort` package. Most of the
 time it's using quicksort, but it has a shell-sort pass then insertion sort
 when the partition size drops below 12 elements.
+
+For some algorithms, the constant factor might be so large that this cut-off
+point may be larger than all reasonable inputs. That is, the O(n^2) algorithm
+is faster than the O(n) algorithm for all inputs that you're ever likely to
+deal with.
 
 The memory hierarchy in modern computers confuses the issue here a little
 bit, in that caches prefer the predictable access of scanning a slice to the
