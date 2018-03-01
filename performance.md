@@ -668,6 +668,7 @@ Reduce/Reuse/Recycle. -- @bboreham
 - special-case map implementations for ints, strings
 - bounds check elimination
 - []byte <-> string copies, map optimizations
+- two-value range will copy an array, use the slice instead: https://play.golang.org/p/4b181zkB1O , https://github.com/mdempsky/rangerdanger )
 
 ## Unsafe
 
