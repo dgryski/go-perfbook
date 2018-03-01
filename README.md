@@ -2,6 +2,11 @@
 
 This document outlines best practices for writing high-performance Go code.
 
+### Multiple Language Versions
+
+* [English](performance.md)
+* [中文](performance-zh.md)
+
 ### Table of Contents
 
 1. [Writing and Optimizing Go code](performance.md#writing-and-optimizing-go-code)
