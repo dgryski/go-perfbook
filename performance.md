@@ -335,14 +335,22 @@ shave cycles, but this just prevents dumb performance issues that might not
 be noticed until much later.
 
 The basic classes of complexity are:
-* O(1): a field access, array or map lookup
-* O(log n): binary search
-* O(n): simple loop
-* O(n\*m): nested loop
-* O(n log n): divide-and-conquer
-* combinatoric - look out!!
+* O(1): a field access, array or map lookup  
+     Advice: don't worry about it
+* O(log n): binary search  
+     Advice: only a problem if it's in a loop
+* O(n): simple loop  
+     Advice: you're doing this all the time
+* O(n log n): divide-and-conquer, sorting  
+     Advice: still fairly fast
+* O(n\*m): nested loop / quadratic  
+     Advice: be careful and constrain your set sizes
+* Anything else between quadratic and subexponential  
+     Advice: don't run this on a million rows
+* O(b ^ n), O(n!): exponential and up  
+     Advice: good luck if you have more than a dozen or two data points
 
-Link: bigocheatsheet.com
+Link: http://bigocheatsheet.com
 
 Let's say you need to search through of an unsorted set of data. "I should
 use a binary search" you think, knowing that a binary search O(log n) which
