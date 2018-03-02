@@ -284,7 +284,7 @@ things, calculate them every time. You can also compress the data in memory
 and decompress it on the fly when you need it.
 
 There's a book available on line covering techniques for reducing the space
-used by your programs. While it was originally written targetting embedded
+used by your programs. While it was originally written targeting embedded
 developers, the ideas are applicable for programs on modern hardware dealing
 with huge amounts of data. http://www.smallmemory.com/
 
@@ -566,7 +566,7 @@ constant factor improvement.
 Understanding your requirements and where they can be altered can lead to
 performance improvements. One issue that was presented in the \#performance
 Gophers Slack channel was the amount of tine that was spent creating a unique
-identifer for a map of string key/value pairs. The original solution was to
+identifier for a map of string key/value pairs. The original solution was to
 extract the keys, sort them, and pass the resulting string to a hash
 function. The improved solution we came up was to individually hash the
 keys/values as they were added to the map, then xor all these hashes together
