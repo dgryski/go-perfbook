@@ -212,6 +212,8 @@ between 1991 and 2008](https://agtb.wordpress.com/2010/12/23/progress-in-algorit
 For a more concrete example, consider this breakdown of replacing a brute force geo-spacial algorithm
 described in an Uber blog post with more specialized one more suited to the presented task:
 https://medium.com/@buckhx/unwinding-uber-s-most-efficient-service-406413c5871d
+Optimizing floating point FFT and MMM algorithm differences. gttse07.pdf
+There is no compiler switch that will give you an equivalent boost in performance.
 
 A profiler might show you that lots of time is spent in a particular routine.
 It could be this is an expensive routine, or it could be a cheap routine that
@@ -239,7 +241,7 @@ http://www.geoffprewett.com/BookReviews/WritingEfficientPrograms.html
 and the program tuning rules:
 https://web.archive.org/web/20080513070949/http://www.cs.bell-labs.com/cm/cs/pearls/apprules.html
 
-When thinking changes you can make to your program, there are two basic options:
+When thinking of changes you can make to your program, there are two basic options:
 you can either change your data or you can change your code.
 
 ## Data Changes
@@ -289,8 +291,8 @@ developers, the ideas are applicable for programs on modern hardware dealing
 with huge amounts of data. http://www.smallmemory.com/
 
 Rearrange your data: Eliminate padding. Remove extra fields.
-Change to a slower data structure.
-Skip pointer-heavy tree structure and use slice and linear search instead.
+Change to a slower data structure; simpler data structures frequently have lower memory requirements.
+For example, moving from a pointer-heavy tree structure to use slice and linear search instead.
 Custom compression format for your data: floating point (go-tsz), integers (delta, xor + huffman)
 
 We will talk more about data layouts later.
@@ -316,6 +318,10 @@ much faster than the extra CPU time required to decompress the data once it
 has been fetched.  As always, benchmark.  A binary format will generally
 be smaller and faster to parse than a text one, but at the cost of no longer
 being as human readable.
+
+For data transfer, move to a less chatty protocol, or augment the API to
+allow partial queries. For example, an incremental query rather than being
+forced to fetch the entire data set each time.
 
 ## Algorithmic Changes
 
@@ -646,6 +652,8 @@ Techniques applicable to source code in general
 1. What are the different pieces of the runtime that show up
 1. Macro-benchmarks (Profiling in production)
  - net/http/pprof
+1. Using -base to look at differences
+1. Memory options: -inuse_space, -inuse_objects, -alloc_space, -alloc_objects
 
 ## Tracer
 
