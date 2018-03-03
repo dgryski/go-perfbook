@@ -745,6 +745,7 @@ Reduce/Reuse/Recycle. -- @bboreham
    - maps vs. slices
    - SOA vs AOS layouts
    - reducing pointer chasing
+   - temporal and spacial locality: use what you have and what's nearby as much as possible
  - branch prediction
  - function call overhead
 
@@ -756,8 +757,9 @@ Reduce/Reuse/Recycle. -- @bboreham
 
 - Stuff about writing assembly code for Go
 - compilers improve; the bar is high
-- replace as little as possible to make an impact
+- replace as little as possible to make an impact; maintenance cost is high
 - very important to benchmark: improvements can be huge (10x for go-highway) zero (go-speck),  or even slower (no inlining)
+- rebenchmark with new versions to see if you can delete your code yet
 - always have pure-Go version (noasm build tag): testing, arm, gccgo
 - brief intro to syntax
 - calling convention
