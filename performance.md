@@ -420,6 +420,12 @@ point may be larger than all reasonable inputs. That is, the O(n^2) algorithm
 is faster than the O(n) algorithm for all inputs that you're ever likely to
 deal with.
 
+This also goes the other way: For example, choosing to use a more complicated
+data structure to give you O(n) scaling instead of O(n^2), even though the
+benchmarks for small inputs got slower. This also applies to most lock-free
+data structures. They're generally slower in the single-threaded case but
+more scalable when many threads are using it.
+
 The memory hierarchy in modern computers confuses the issue here a little
 bit, in that caches prefer the predictable access of scanning a slice to the
 effectively random access of chasing a pointer. Still, it's best to begin
