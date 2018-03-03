@@ -743,6 +743,9 @@ allocate it. But you also pay every time the garbage collection runs.
 * type assertions vs. type switches
 * defer
 * special-case map implementations for ints, strings
+  * map for byte/uint16 not optimized; use a slice instead.
+  * You can fake a float64-optimized with math.Float{32,64}{from,}bits, but beware float equality issues
+  * https://github.com/dgryski/go-gk/blob/master/exact.go says 100x faster; need benchmarks
 * bounds check elimination
 * []byte <-> string copies, map optimizations
 * two-value range will copy an array, use the slice instead:
