@@ -589,6 +589,7 @@ Cache common cases:
 * Random cache insertion can limit cache to popular items with minimal logic.
 * Compare cost of cache logic to cost of refetching the data.
 * A large cache can increase GC pressure and keep blowing processor cache.
+* At the extreme (little or no eviction, caching all requests to an expensive function) this can turn into [memoization](https://en.wikipedia.org/wiki/Memoization)
 
 I've done experiments with a network trace for a service that showed even an optimal
 cache wasn't worth it. Your expected hit ratio is important. You'll want to
