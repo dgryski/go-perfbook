@@ -646,7 +646,7 @@ function. The improved solution we came up was to individually hash the
 keys/values as they were added to the map, then xor all these hashes together
 to create the identifier.
 
-Log parsing example:
+TODO: flesh out log parsing example:
 
 * time parsing is slow
 * adding a single item cache is good
