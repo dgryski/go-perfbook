@@ -149,8 +149,9 @@ You need to know when to stop. How much effort are you going to put into
 getting the last little bit of work. How much uglier and harder to maintain
 are you willing to make the code?
 
-Dan Luu's talk also points out the advantage of rough calculations to
-determine if your target performance figures are reasonable.
+Dan Luu's previously mentioned talk on [BitFunnel performance
+estimation](http://bitfunnel.org/strangeloop) shows an example of using rough
+calculations to determine if your target performance figures are reasonable.
 
 For greenfield development, you shouldn't leave all benchmarking and
 performance numbers until the end. It's easy to say "we'll fix it later", but
