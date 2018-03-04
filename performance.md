@@ -258,10 +258,9 @@ you can either change your data or you can change your code.
 ### Data Changes
 
 Changing your data means either adding to or altering the representation of
-the data you're processing.
-
-(Some of these rely on changing the O() associated with different aspects of
-the data structure.)
+the data you're processing. From a performance perspective, some of these
+will end up changing the O() associated with different aspects of the data
+structure.
 
 Ideas for augmenting your data structure:
 
