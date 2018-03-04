@@ -826,6 +826,7 @@ Techniques specific to the architecture running the code
 * Stuff about writing assembly code for Go
 * compilers improve; the bar is high
 * replace as little as possible to make an impact; maintenance cost is high
+* good reasons: SIMD instructions or other things outside of what Go and the compiler can provide
 * very important to benchmark: improvements can be huge (10x for go-highway)
   zero (go-speck), or even slower (no inlining)
 * rebenchmark with new versions to see if you can delete your code yet
