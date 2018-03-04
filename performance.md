@@ -586,8 +586,7 @@ Cache common cases:
   `time.Parse()` for significant speedup.
 * But beware cache invalidation, thread issues, etc.
 * Random cache eviction is fast and sufficiently effective.
-* Only put "some" items in cache (probabilistically) to limit cache size
-  to popular items with minimal logic.
+* Random cache insertion can limit cache to popular items with minimal logic.
 * Compare cost of cache logic to cost of refetching the data.
 * A large cache can increase GC pressure and keep blowing processor cache.
 
