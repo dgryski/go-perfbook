@@ -821,6 +821,11 @@ Techniques specific to the architecture running the code
 * Comment about Jeff Dean's 2002 numbers (plus updates)
   * cpus have gotten faster, but memory hasn't kept up
 
+## Concurrency
+
+* Optimizing multi-threaded code
+* Overlap with previous section on caches and false/true sharing
+
 ## Assembly
 
 * Stuff about writing assembly code for Go
