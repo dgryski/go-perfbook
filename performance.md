@@ -208,7 +208,7 @@ Law](http://proebsting.cs.arizona.edu/law.html) says compilers double in
 performance every 18 *years*, a stark contrast with the (slightly
 misunderstood interpretation) of Moore's Law that doubles processor
 performance every 18 *months*. Algorithmic improvements work at larger magnitudes.
-Algorithms for mixer integer programming [improved by a factor of 30,000
+Algorithms for mixed integer programming [improved by a factor of 30,000
 between 1991 and 2008](https://agtb.wordpress.com/2010/12/23/progress-in-algorithms-beats-moore%E2%80%99s-law/).
 For a more concrete example, consider [this breakdown](https://medium.com/@buckhx/unwinding-uber-s-most-efficient-service-406413c5871d)
 of replacing a brute force geo-spacial algorithm described in an Uber blog post with
