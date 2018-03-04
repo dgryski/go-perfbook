@@ -118,7 +118,7 @@ negative change. Always make sure you undo your fix in these cases.
 The benchmarks you are using must be correct and provide reproducible numbers
 on representative workloads. If individual runs have too high a variance, it
 will make small improvements more difficult to spot. You will need to use
-benchstat or equivalent statistical tests and won't be able just eyeball it.
+(https://golang.org/x/perf/benchstat](benchstat) or equivalent statistical tests and won't be able just eyeball it.
 (Note that using statistical tests is a good idea anyway.) The steps to run
 the benchmarks should be documented, and any custom scripts and tooling
 should be committed to the repository with instructions for how to run them.
@@ -140,7 +140,8 @@ been written on how to performance test web servers. The primary issue is
 that for single-threaded code, the performance is fairly consistent for a
 given problem size. For webservices, you don't have a single number. A proper
 web-service benchmark suite will provide a latency distribution for a given
-reqs/second level. ... (Link to Gil Tene's talk)
+reqs/second level. This talk gives a good overview of some of the issues:
+["How NOT to Measure Latency" by Gil Tene](https://youtu.be/lJ8ydIuPFeU)
 
 The performance goals must be specific. You will (almost) always be able to
 make something faster. Optimizing is frequently a game of diminishing returns.
@@ -687,7 +688,6 @@ All optimizations should follow these steps:
 1. use <https://github.com/tsenart/vegeta> for load testing http services
     (+ other fancy ones)
 1. make sure your latency numbers make sense:
-   ["How NOT to Measure Latency" by Gil Tene](https://youtu.be/lJ8ydIuPFeU)
 
 The first step is important. It tells you when and where to start optimizing.
 More importantly, it also tells you when to stop. Pretty much all optimizations
