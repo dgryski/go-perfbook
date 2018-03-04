@@ -221,7 +221,7 @@ of replacing a brute force geo-spacial algorithm described in an Uber blog post 
 more specialized one more suited to the presented task. There is no compiler switch
 that will give you an equivalent boost in performance.
 
-Optimizing floating point FFT and MMM algorithm differences. gttse07.pdf
+TODO: Optimizing floating point FFT and MMM algorithm differences in gttse07.pdf
 
 A profiler might show you that lots of time is spent in a particular routine.
 It could be this is an expensive routine, or it could be a cheap routine that
