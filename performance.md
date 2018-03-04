@@ -69,10 +69,13 @@ made faster while maintaining correctness, robustness, and clarity."
 
 Fast software or fast deployment.
 
-[BitFunnel performance estimation](http://bitfunnel.org/strangeloop) has numbers.
-Hypothetical search engine needing 30k machines @ $1k USD / year. Doubling the
-speed of your software can save $15M/year. Even a developer spending an entire
-year to shave off 1% will pay for itself.
+[BitFunnel performance estimation](http://bitfunnel.org/strangeloop) has some
+numbers that make this trade-off explicit. Imagine a hypothetical search
+engine needing 30,000 machines across multiple data centers. These machines
+have a cost of approximately $1,000 USD per year. If you can double the speed
+of the software, this can save the company $15M USD per year. Even a single
+developer spending an entire year to improve performance by only 1% will pay
+for itself.
 
 In the vast majority of cases, the size and speed of a program is not a concern.
 Easiest optimization is not having to do it. The second easiest optimization
