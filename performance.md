@@ -647,13 +647,43 @@ function. The improved solution we came up was to individually hash the
 keys/values as they were added to the map, then xor all these hashes together
 to create the identifier.
 
-TODO: flesh out log parsing example:
+Here's an example of specialization.
 
-* time parsing is slow
-* adding a single item cache is good
-* removing time parsing and doing some integer math by hand is again faster
-* general algorithm is slow, you can be faster because you know more about your problem
-* but the code is more closely tied to exactly what you need; harder to change
+Let's say we're processing a massive log file for a single day, and each line
+begins with a time stamp.
+
+```
+Sun  4 Mar 2018 14:35:09 PST <...........................>
+```
+
+For each line, we're going to call `time.Parse()` to turn it into a epoch. If
+profiling shows us `time.Parse()` is the bottleneck, we have a few options to
+speed things up.
+
+The easiest is to keep a single-item cache of the previously seen time stamp
+and the associated epoch.  As long as our log file has multiple lines for a single
+second, this will be a win.  For the case of a 10 million line log file,
+this strategy reduces the nunmber of expensive calls to `time.Parse()` from
+10,000,000 to 86400 -- one for each unique second.
+
+TODO: code example for single-item cache
+
+Can we do more? Because we know exactly what format the timestamps are in
+*and* that they all fall in a single day, we can write custom time parsing
+*logic that takes this into account. We can calculate the epoch for midnight,
+then extract hour, minute, and second from the timestamp string -- they'll
+all be in fixed offsets in the string -- and do some integer math.
+
+TODO: code example for string offset version
+
+In my benchmarks, this reduced the time parsing from 275ns/op to 5ns/op.
+(Of course, even at 275 ns/op, you're more likely to be blocked on I/O and
+not CPU for time parsing.)
+
+The general alorithm is slow because it has to handle more cases. Your
+algorithm can be faster because you know more about your problem. But the
+code is more closely tied to exactly what you need. It's much more difficult
+to update if the time format changes.
 
 Optimization is specialization, and specialized code is more fragile to
 change than general purpose code.
