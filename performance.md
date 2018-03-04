@@ -58,7 +58,8 @@ optimizing. Ignoring low-hanging fruit is a valid development strategy.
 
 Think of this as optimizing *your* time.
 
-Choosing what to optimize. Choosing when to optimize.
+You get to choose what to optimize and when to optimize. You can move the
+slider between "Fast Software" and "Fast Deployment"
 
 Clarify "Premature optimization" quote. 97% of the time.
 But work on those important 3%.
@@ -66,8 +67,6 @@ But work on those important 3%.
 TPOP: Should you optimize? "Yes, but only if the problem is important, the
 program is genuinely too slow, and there is some expectation that it can be
 made faster while maintaining correctness, robustness, and clarity."
-
-Fast software or fast deployment.
 
 [BitFunnel performance estimation](http://bitfunnel.org/strangeloop) has some
 numbers that make this trade-off explicit. Imagine a hypothetical search
