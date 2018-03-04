@@ -590,7 +590,7 @@ Cache common cases:
 * Compare cost of cache logic to cost of refetching the data.
 * A large cache can increase GC pressure and keep blowing processor cache.
 
-I've done experiments with a network trace that showed even an optimal
+I've done experiments with a network trace for a service that showed even an optimal
 cache wasn't worth it. Your expected hit ratio is important. You'll want to
 export the ratio to your monitoring stack. Changing ratios will show a
 shift in traffic. Then it's time to revisit the cache size or the
