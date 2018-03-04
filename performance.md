@@ -607,6 +607,7 @@ Program tuning:
     i.e., avoid extra tests that always fail
   * remove branches from inner loops
   * unrolling still effective: https://play.golang.org/p/6tnySwNxG6O
+  * this is where pieces of Hacker's Delight falls
 
 Many folklore performance tips for tuning rely on poorly optimizing
 compilers and encourage the programmer to do these transformations by hand:
