@@ -152,6 +152,8 @@ Dan Luu's previously mentioned talk on [BitFunnel performance
 estimation](http://bitfunnel.org/strangeloop) shows an example of using rough
 calculations to determine if your target performance figures are reasonable.
 
+TODO: Programming Pearls has "Fermi Problems".  Knowing Jeff Dean's slide helps.
+
 For greenfield development, you shouldn't leave all benchmarking and
 performance numbers until the end. It's easy to say "we'll fix it later", but
 if performance is really important it will be a design consideration from the
@@ -163,7 +165,7 @@ in the development cycle when a more complete view of the system performance
 is available. Any full-system profiles you do while the system is incomplete
 will give a skewed view of where the bottlenecks will be in the finished system.
 
-Death by 1000 cuts.
+TODO: How to avoid/detect "Death by 1000 cuts" from poorly written software.
 
 Write code that you can benchmark. Profiling you can do on larger systems.
 Benchmarking you want to test isolated pieces. You need to be able to extract
