@@ -311,7 +311,7 @@ applicable for programs on modern hardware dealing with huge amounts of data.
 
 * Rearrange your data
 
-  Eliminate padding. Remove extra fields.
+  Eliminate structure padding. Remove extra fields.  Use a smaller data type.
 
 * Change to a slower data structure
 
