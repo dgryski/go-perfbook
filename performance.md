@@ -117,7 +117,7 @@ negative change. Always make sure you undo your fix in these cases.
 The benchmarks you are using must be correct and provide reproducible numbers
 on representative workloads. If individual runs have too high a variance, it
 will make small improvements more difficult to spot. You will need to use
-(https://golang.org/x/perf/benchstat](benchstat) or equivalent statistical tests and won't be able just eyeball it.
+[benchstat](https://golang.org/x/perf/benchstat) or equivalent statistical tests and won't be able just eyeball it.
 (Note that using statistical tests is a good idea anyway.) The steps to run
 the benchmarks should be documented, and any custom scripts and tooling
 should be committed to the repository with instructions for how to run them.
