@@ -125,6 +125,7 @@ asm:
     http://lemire.me/blog/2016/12/21/performance-overhead-when-calling-assembly-from-go/
     http://davidwong.fr/goasm/
     minio posts + tooling
+    https://github.com/teh-cmc/go-internals/blob/master/chapter1_assembly_primer/README.md
 
 posts:
     http://www.eecs.berkeley.edu/~rcs/research/interactive_latency.html
