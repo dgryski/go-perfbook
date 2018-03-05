@@ -847,6 +847,7 @@ Techniques specific to the architecture running the code
   * temporal and spacial locality: use what you have and what's nearby as much as possible
 * branch prediction
 * function call overhead
+* reduce data copies
 
 * Comment about Jeff Dean's 2002 numbers (plus updates)
   * cpus have gotten faster, but memory hasn't kept up
