@@ -299,7 +299,7 @@ Reduce space usage in exchange for increased computation. Rather than storing
 things, calculate them every time. You can also compress the data in memory
 and decompress it on the fly when you need it.
 
-[Small Memory Software](http://www.smallmemory.com/) is a book available
+[Small Memory Software](https://gamehacking.org/faqs/Small_Memory_Software.pdf) is a book available
 online covering techniques for reducing the space used by your programs.
 While it was originally written targeting embedded developers, the ideas are
 applicable for programs on modern hardware dealing with huge amounts of data.
