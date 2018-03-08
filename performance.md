@@ -819,7 +819,7 @@ Popular replacements for standard library packages:
   * all formats have trade-offs: choose one that matches what you need
     encoded space, decoding speed, language/tooling compatibility, ...
 * database/sql -> jackx/pgx, ...
-* gccgo
+* gccgo (benchmark!), gollvm (WIP)
 
 ## cgo
 
