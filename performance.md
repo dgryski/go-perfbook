@@ -730,8 +730,9 @@ faster. It's a balancing act.
 
 Techniques applicable to source code in general
 
-1. introduction to pprof
+1. Introduction to pprof
    * go tool pprof (and <https://github.com/google/pprof>)
+1. Profiling in production; localhost+ssh tunnels
 1. Writing and running (micro)benchmarks
    * profile, extract hot code to benchmark, optimize benchmark, profile.
    * -cpuprofile / -memprofile / -benchmem
