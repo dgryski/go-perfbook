@@ -56,8 +56,15 @@ Think of this as optimizing *your* time.
 You get to choose what to optimize and when to optimize. You can move the
 slider between "Fast Software" and "Fast Deployment"
 
-Clarify "Premature optimization" quote. 97% of the time.
-But work on those important 3%.
+People here and mindlessly repeat "premature optimization is the root of all
+evil", but they miss the full context of the quote.
+
+"Programmers waste enormous amounts of time thinking about, or worrying about,
+the speed of noncritical parts of their programs, and these attempts at
+efficiency actually have a strong negative impact when debugging and
+maintenance are considered. We should forget about small efficiencies, say
+about 97% of the time: premature optimization is the root of all evil. Yet we
+should not pass up our opportunities in that critical 3%." -- Knuth
 
 TPOP: Should you optimize? "Yes, but only if the problem is important, the
 program is genuinely too slow, and there is some expectation that it can be
