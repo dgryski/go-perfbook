@@ -769,6 +769,7 @@ allocate it. But you also pay every time the garbage collection runs.
   * pointer-free map keys
 * GOGC
 * buffer reuse (sync.Pool vs or custom via go-slab, etc)
+* slicing vs. offset: pointer writes while GC is running need writebarrier: https://github.com/golang/go/commit/b85433975aedc2be2971093b6bbb0a7dc264c8fd
 
 ## Runtime and compiler
 
