@@ -826,7 +826,7 @@ Popular replacements for standard library packages:
 * Performance characteristics of cgo calls
 * Tricks to reduce the costs: batching
 * Rules on passing pointers between Go and C
-* syso files
+* syso files (race detector, dev.boringssl)
 
 ## Advanced Techniques
 
