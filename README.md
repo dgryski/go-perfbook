@@ -2,6 +2,9 @@
 
 This document outlines best practices for writing high-performance Go code.
 
+The first sections cover writing optimized code in any language.
+The later sections cover Go-specific techniques.
+
 ### Multiple Language Versions
 
 * [English](performance.md)
