@@ -732,7 +732,6 @@ Techniques applicable to source code in general
 
 1. Introduction to pprof
    * go tool pprof (and <https://github.com/google/pprof>)
-1. Profiling in production; localhost+ssh tunnels
 1. Writing and running (micro)benchmarks
    * profile, extract hot code to benchmark, optimize benchmark, profile.
    * -cpuprofile / -memprofile / -benchmem
@@ -744,6 +743,7 @@ Techniques applicable to source code in general
    * net/http/pprof
 1. Using -base to look at differences
 1. Memory options: -inuse_space, -inuse_objects, -alloc_space, -alloc_objects
+1. Profiling in production; localhost+ssh tunnels, auth headers, using curl.
 
 ### Tracer
 
