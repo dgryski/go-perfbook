@@ -859,6 +859,22 @@ Techniques specific to the architecture running the code
   * reducing pointer chasing
   * temporal and spacial locality: use what you have and what's nearby as much as possible
 * branch prediction
+  * remove branches from inner loops:
+    if a { for { } } else { for { } }
+    instead of
+    for { if a { } else { } }
+    benchmark due to branch prediction
+    structure to avoid branch
+
+    if i % 2 == 0 {
+        evens++
+    } else {
+        odds++
+    }
+
+    counts[i & 1] ++
+    "branch-free code", benchmark; not always faster, but frequently harder to read
+
 * function call overhead
 * reduce data copies
 
