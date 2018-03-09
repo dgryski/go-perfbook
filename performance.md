@@ -612,13 +612,14 @@ Program tuning:
   * just clearing the parts you used, rather than an entire array
   * best done in tiny steps, a few statements at a time
   * moving from floating point math to integer math
-  * or mandelbrot removing sqrt, or lttb removing abs
+  * or mandelbrot removing sqrt, or lttb removing abs,  `a < b/c` => `a * c < b`
   * cheap checks before more expensive checks:
     * e.g., strcmp before regexp, (q.v., bloom filter before query)
+    "do expensive things fewer times"
   * common cases before rare cases
     i.e., avoid extra tests that always fail
-  * remove branches from inner loops
   * unrolling still effective: https://play.golang.org/p/6tnySwNxG6O
+  * using offsets instead of slice assignment also improves bounds checks and data dependencies
   * this is where pieces of Hacker's Delight falls
 
 Many folklore performance tips for tuning rely on poorly optimizing
@@ -747,6 +748,8 @@ Techniques applicable to source code in general
    * tips for writing good microbenchmarks (remove unnecessary work, but add baselines)
 1. How to read it pprof output
 1. What are the different pieces of the runtime that show up
+  * malloc, gc workers
+  * runtime._ExternalCode
 1. Macro-benchmarks (Profiling in production)
    * net/http/pprof
 1. Using -base to look at differences
@@ -779,6 +782,8 @@ allocate it. But you also pay every time the garbage collection runs.
 * GOGC
 * buffer reuse (sync.Pool vs or custom via go-slab, etc)
 * slicing vs. offset: pointer writes while GC is running need writebarrier: https://github.com/golang/go/commit/b85433975aedc2be2971093b6bbb0a7dc264c8fd
+* use error variables instead of errors.New() / fmt.Errorf() at call site
+* use structured errors to reduce allocation (pass struct value), create string at error printing time
 
 ## Runtime and compiler
 
@@ -795,6 +800,7 @@ allocate it. But you also pay every time the garbage collection runs.
 * two-value range will copy an array, use the slice instead:
   * <https://play.golang.org/p/4b181zkB1O>
   * <https://github.com/mdempsky/rangerdanger>
+* use string concatenation instead of fmt.Sprintf where possible; runtime has optimized routines for it
 
 ## Unsafe
 
@@ -807,11 +813,12 @@ allocate it. But you also pay every time the garbage collection runs.
 
 ## Common gotchas with the standard library
 
-* time.After() leaks until it fires
-* Reusing HTTP connections...
+* time.After() leaks until it fires; use t := NewTimer(); t.Stop() / t.Reset()
+* Reusing HTTP connections...; ensure the body is drained (issue #?)
 * rand.Int() and friends are 1) mutex protected and 2) expensive to create
   * consider alternate random number generation (go-pcgr, xorshift)
 * binary.Read and binary.Write use reflection and are slow; do it by hand.
+* use strconv insted of fmt if possible
 * ...
 
 ## Alternate implementations
@@ -828,6 +835,7 @@ Popular replacements for standard library packages:
     encoded space, decoding speed, language/tooling compatibility, ...
 * database/sql -> jackx/pgx, ...
 * gccgo (benchmark!), gollvm (WIP)
+* container/list: use a slice instead (almost always)
 
 ## cgo
 
