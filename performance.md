@@ -66,9 +66,10 @@ maintenance are considered. We should forget about small efficiencies, say
 about 97% of the time: premature optimization is the root of all evil. Yet we
 should not pass up our opportunities in that critical 3%." -- Knuth
 
-TPOP: Should you optimize? "Yes, but only if the problem is important, the
-program is genuinely too slow, and there is some expectation that it can be
-made faster while maintaining correctness, robustness, and clarity."
+"Should you optimize? "Yes, but only if the problem is important, the program
+is genuinely too slow, and there is some expectation that it can be made
+faster while maintaining correctness, robustness, and clarity."
+-- The Practice of Programming
 
 [BitFunnel performance estimation](http://bitfunnel.org/strangeloop) has some
 numbers that make this trade-off explicit. Imagine a hypothetical search
