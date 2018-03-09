@@ -69,7 +69,7 @@ should not pass up our opportunities in that critical 3%." -- Knuth
 "Should you optimize? "Yes, but only if the problem is important, the program
 is genuinely too slow, and there is some expectation that it can be made
 faster while maintaining correctness, robustness, and clarity."
--- The Practice of Programming
+-- The Practice of Programming, Kernighan and Pike
 
 [BitFunnel performance estimation](http://bitfunnel.org/strangeloop) has some
 numbers that make this trade-off explicit. Imagine a hypothetical search
