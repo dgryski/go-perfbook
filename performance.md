@@ -530,6 +530,9 @@ a 40 core server.
 
 Writing good benchmarks can be difficult.
 
+TODO: cases where microbenchmarks show a slow down but macro (real-world)
+performance improves.
+
 * <https://timharris.uk/misc/five-ways.pdf>
 
 ### Program Tuning
