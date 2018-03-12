@@ -622,7 +622,7 @@ Program tuning:
   * common cases before rare cases
     i.e., avoid extra tests that always fail
   * unrolling still effective: https://play.golang.org/p/6tnySwNxG6O
-  * using offsets instead of slice assignment also improves bounds checks and data dependencies
+  * using offsets instead of slice assignment also improves bounds checks and data dependencies, assigns fewer elements, no write barrier
   * this is where pieces of Hacker's Delight falls
 
 Many folklore performance tips for tuning rely on poorly optimizing
