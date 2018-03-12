@@ -687,7 +687,7 @@ In my benchmarks, this reduced the time parsing from 275ns/op to 5ns/op.
 (Of course, even at 275 ns/op, you're more likely to be blocked on I/O and
 not CPU for time parsing.)
 
-The general alorithm is slow because it has to handle more cases. Your
+The general algorithm is slow because it has to handle more cases. Your
 algorithm can be faster because you know more about your problem. But the
 code is more closely tied to exactly what you need. It's much more difficult
 to update if the time format changes.
