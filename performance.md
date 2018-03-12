@@ -585,6 +585,10 @@ it's a bug and needs to be put back.
 
 > It's easy to be fast if you don't have to be correct.
 
+But correctness can depend on the problem. Heuristic algorithms that are
+mostly-right most of the time can be fast, as can algorithms which guess and
+improve allowing you to stop when you hit an acceptable limit.
+
 Cache common cases:
 
 * Your cache doesn't even need to be huge.
@@ -611,6 +615,7 @@ Program tuning:
   * <https://github.com/golang/go/commit/ed6c6c9c11496ed8e458f6e0731103126ce60223>
   * <https://gist.github.com/dgryski/67e6a7ff94c3a1add30eb26ec0ad8b0f>
   * multiplication with addition
+  * use WolframAlpha, Maxima, sympy and similar to specialize, optimize or create lookup-tables
   * (Also, https://users.ece.cmu.edu/~franzf/papers/gttse07.pdf)
   * just clearing the parts you used, rather than an entire array
   * best done in tiny steps, a few statements at a time
@@ -624,6 +629,8 @@ Program tuning:
   * unrolling still effective: https://play.golang.org/p/6tnySwNxG6O
   * using offsets instead of slice assignment also improves bounds checks and data dependencies, assigns fewer elements, no write barrier
   * this is where pieces of Hacker's Delight falls
+  * consider different number representations: fixed-point, floating-point, (smaller) integers,
+    * fancier: integers with error accumulators (e.g. Bresenham's line and circle), multi-base numbers / redundant number systems
 
 Many folklore performance tips for tuning rely on poorly optimizing
 compilers and encourage the programmer to do these transformations by hand:
@@ -861,6 +868,7 @@ Techniques specific to the architecture running the code
   * SOA vs AOS layouts
   * reducing pointer chasing
   * temporal and spacial locality: use what you have and what's nearby as much as possible
+  * memory prefetching
 * branch prediction
   * remove branches from inner loops:
     if a { for { } } else { for { } }
