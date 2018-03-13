@@ -822,6 +822,7 @@ allocate it. But you also pay every time the garbage collection runs.
 * Common uses for unsafe
 * mmap'ing data files
   * struct padding
+  * but not always sufficiently faster to justify cost
 * speedy de-serialization
 * string <-> slice conversion, []byte <-> []uint32, ...
 
