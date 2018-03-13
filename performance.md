@@ -499,6 +499,10 @@ solution can be. Even if an optimization is not always applicable,
 complicating your code by determining that it's safe to use and executing
 different logic can be worth it.
 
+This also applies to subproblems your algorithm needs to solve. For example,
+being able to use radix sort can have a significant impact on performance, or
+using quickselect if you only need a partial sort.
+
 ### Benchmark Inputs
 
 Know how big each of your input sizes is likely to be in production.
@@ -887,7 +891,6 @@ Techniques specific to the architecture running the code
     "branch-free code", benchmark; not always faster, but frequently harder to read
 
 * sorting data can help improve performance via both cache locality and branch prediction, even taking into account the time it takes to sort
-   * use a specialized sort, such as radix sort, if possible
 * function call overhead
 * reduce data copies
 
