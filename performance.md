@@ -132,18 +132,20 @@ you're measuring the right thing.
 
 The next step is to decide what you are optimizing for. If the goal is to
 improve CPU, what is an acceptable speed? Do you want to improve the current
-performance by 2x? 10x? Can you state it as "problem of size N in less than
+performance by 2x? 10x? Can you state it as "a problem of size N in less than
 time T"? Are you trying to reduce memory usage? By how much? How much slower
 is acceptable for what change in memory usage? What are you willing to give
 up in exchange for lower space requirements?
 
 Optimizing for service latency is a trickier proposition. Entire books have
 been written on how to performance test web servers. The primary issue is
-that for single-threaded code, the performance is fairly consistent for a
+that for a single function, performance is fairly consistent for a
 given problem size. For webservices, you don't have a single number. A proper
 web-service benchmark suite will provide a latency distribution for a given
 reqs/second level. This talk gives a good overview of some of the issues:
 ["How NOT to Measure Latency" by Gil Tene](https://youtu.be/lJ8ydIuPFeU)
+
+TODO: See the later section on optimizing web services
 
 The performance goals must be specific. You will (almost) always be able to
 make something faster. Optimizing is frequently a game of diminishing returns.
@@ -246,7 +248,7 @@ optimization as an engineering problem: Benchmark. Analyze. Improve. Verify.
 Iterate. A number of his tips are now done automatically by compilers. A
 programmers job is to use the transformations compilers *can't* do.
 
-There's a summary of this book:
+There are summaries of the book:
 
 * <http://www.crowl.org/lawrence/programming/Bentley82.html>
 * <http://www.geoffprewett.com/BookReviews/WritingEfficientPrograms.html>
@@ -292,7 +294,7 @@ Ideas for augmenting your data structure:
   We're all familiar with memcache, but there are in-process caches.
 
   * Over the wire, the network + cost of serialization will hurt.
-  * In-process caches, but now you need to worry about expiration.
+  * In-process caches, but now you need to worry about expiration and added GC pressure
   * Even a single item can help (logfile time parse example).
 
   TODO: "cache" might not even be key-value, just a pointer to where you were
@@ -631,7 +633,7 @@ Program tuning:
     i.e., avoid extra tests that always fail
   * unrolling still effective: https://play.golang.org/p/6tnySwNxG6O
   * using offsets instead of slice assignment also improves bounds checks and data dependencies, assigns fewer elements, no write barrier
-  * this is where pieces of Hacker's Delight falls
+  * this is where pieces of Hacker's Delight fall
   * consider different number representations: fixed-point, floating-point, (smaller) integers,
     * fancier: integers with error accumulators (e.g. Bresenham's line and circle), multi-base numbers / redundant number systems
 
@@ -680,14 +682,14 @@ speed things up.
 The easiest is to keep a single-item cache of the previously seen time stamp
 and the associated epoch.  As long as our log file has multiple lines for a single
 second, this will be a win.  For the case of a 10 million line log file,
-this strategy reduces the nunmber of expensive calls to `time.Parse()` from
+this strategy reduces the number of expensive calls to `time.Parse()` from
 10,000,000 to 86400 -- one for each unique second.
 
 TODO: code example for single-item cache
 
 Can we do more? Because we know exactly what format the timestamps are in
 *and* that they all fall in a single day, we can write custom time parsing
-*logic that takes this into account. We can calculate the epoch for midnight,
+logic that takes this into account. We can calculate the epoch for midnight,
 then extract hour, minute, and second from the timestamp string -- they'll
 all be in fixed offsets in the string -- and do some integer math.
 
