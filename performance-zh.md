@@ -292,7 +292,7 @@ sort上面提到的包是多算法的另一个例子。除了结合quicksort，s
 	- 2.配置文件来识别要改进的区域。这可以是CPU，堆分配或goroutine阻塞。
 	- 3.基准测试来确定你的解决方案将使用内置基准测试框架提供的加速( http://golang.org/pkg/testing/ ) 确保你在目标操作系统和体系结构上进行了正确的基准测试。
 	- 4.之后再次进行配置以验证问题已消失
-	- 5.使用 https://godoc.org/golang.org/x/perf/benchstat或 https://github.com/codahale/tinystat 来验证一组时间“充分”不同，以便优化值得添加代码复杂性。
+	- 5.使用 https://godoc.org/golang.org/x/perf/benchstat 或 https://github.com/codahale/tinystat 来验证一组时间“充分”不同，以便优化值得添加代码复杂性。
 	- 6.使用 https://github.com/tsenart/vegeta 负载测试HTTP服务(+其他花哨的人)
 	- 7.确保你的延迟数字有意义: https://youtu.be/lJ8ydIuPFeU
 
