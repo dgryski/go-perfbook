@@ -1,5 +1,7 @@
 # go-perfbook
 
+[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/dgryski)
+
 This document outlines best practices for writing high-performance Go code.
 
 The first sections cover writing optimized code in any language.
@@ -50,4 +52,3 @@ Eventually sample programs to optimize and exercises will be needed (maybe).
 
 Coordination will be done in the #performance channel on the Gophers slack.
 
-[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/dgryski)
