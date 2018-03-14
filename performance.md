@@ -797,11 +797,11 @@ allocate it. But you also pay every time the garbage collection runs.
   * allow passing in buffers so caller can reuse rather than forcing an allocation
   * you can even modify a slice in place carefully while you scan over it
 * reducing pointers to reduce gc scan times
-  * pointer-free map keys
+  * pointer-free map keys/values
 * GOGC
 * buffer reuse (sync.Pool vs or custom via go-slab, etc)
 * slicing vs. offset: pointer writes while GC is running need writebarrier: https://github.com/golang/go/commit/b85433975aedc2be2971093b6bbb0a7dc264c8fd
-* use error variables instead of errors.New() / fmt.Errorf() at call site
+* use error variables instead of errors.New() / fmt.Errorf() at call site  (performance or style? interface requires pointer, so it escapes to heap anyway)
 * use structured errors to reduce allocation (pass struct value), create string at error printing time
 
 ## Runtime and compiler
@@ -828,8 +828,10 @@ allocate it. But you also pay every time the garbage collection runs.
 * mmap'ing data files
   * struct padding
   * but not always sufficiently faster to justify cost
+  * but "off-heap", so ignored by gc (but so would a pointerless slice)
 * speedy de-serialization
 * string <-> slice conversion, []byte <-> []uint32, ...
+* int to bool unsafe hack (but cmov)
 
 ## Common gotchas with the standard library
 
@@ -878,7 +880,7 @@ Techniques specific to the architecture running the code
   * SOA vs AOS layouts
   * reducing pointer chasing
   * temporal and spacial locality: use what you have and what's nearby as much as possible
-  * memory prefetching
+  * memory prefetching; frequently ineffective; lack of intrinsics means function call overhead
 * branch prediction
   * remove branches from inner loops:
     if a { for { } } else { for { } }
@@ -907,6 +909,7 @@ Techniques specific to the architecture running the code
 
 * Optimizing multi-threaded code
 * Overlap with previous section on caches and false/true sharing
+* Lazy synchronization; it's expensive, so duplicating work may be cheaper
 
 ## Assembly
 
@@ -937,7 +940,7 @@ tip.golang.org/doc/diagnostics.html
 * references for system design: SRE Book, practical distributed system design
 * extra tooling: more logging + analysis
 * The two basic rules: either speed up the slow things or do them less frequently.
-* distributed tracing to track bottlenecks ata higher level
+* distributed tracing to track bottlenecks at a higher level
 * query patterns for querying a single server instead of in bulk
 
 ## Appendix: Implementing Research Papers
@@ -1000,8 +1003,8 @@ first paper you find.
 
 * Some papers release reference source code which you can compare against, but
   1) academic code is almost universally terrible
-  2) beware licensing restrictions
-  3) beware bugs
+  2) beware licensing restrictions ("research purposes only")
+  3) beware bugs; edge cases, error checking, etc
 
   Also look out for other implementations on GitHub: they may have the same (or different!) bugs as yours.
 
