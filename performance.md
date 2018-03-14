@@ -66,6 +66,10 @@ maintenance are considered. We should forget about small efficiencies, say
 about 97% of the time: premature optimization is the root of all evil. Yet we
 should not pass up our opportunities in that critical 3%." -- Knuth
 
+Add: https://www.youtube.com/watch?time_continue=429&v=RT46MpK39rQ
+   * don't ignore the the easy optimizations
+   * more knowledge of algorithms and data structures makes more optimizations "easy" or "obvious"
+
 "Should you optimize? "Yes, but only if the problem is important, the program
 is genuinely too slow, and there is some expectation that it can be made
 faster while maintaining correctness, robustness, and clarity."
