@@ -596,8 +596,7 @@ improve allowing you to stop when you hit an acceptable limit.
 Cache common cases:
 
 * Your cache doesn't even need to be huge.
-* Optimized a log processing script to cache the previous time passed to
-  `time.Parse()` for significant speedup.
+  * see `time.Parse() example below; just a single value made an impact
 * But beware cache invalidation, thread issues, etc.
 * Random cache eviction is fast and sufficiently effective.
 * Random cache insertion can limit cache to popular items with minimal logic.
