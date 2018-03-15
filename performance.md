@@ -957,23 +957,30 @@ tip.golang.org/doc/diagnostics.html
 Tips for implementing papers: (For `algorithm` read also `data structure`)
 
 * Don't. Start with the obvious solution and reasonable data structures.
-* "Modern" algorithms tend to have lower theoretical complexities but
-  high constant factors and lots of implementation complexity.
+
+"Modern" algorithms tend to have lower theoretical complexities but high constant
+factors and lots of implementation complexity. One of the classic examples of
+this is Fibonacci heaps. They're notoriously difficult to get right and have
+a huge constant factor. There has been a number of papers published comparing
+different heap implementations on different workloads, and in general the 4-
+or 8-ary implicit heaps consistently come out on top. And even in the cases
+where Fibonacci heap should be faster (due to O(1) "decrease-key"),
+experiments with Dijkstra's depth-first search algorithm show it's faster
+when they use the straight heap removal and addition.
+
+Similarly, treaps or skiplists vs. the more complex red-black or AVL trees.
+On modern hardware, the "slower" algorithm may be fast enough, or even
+faster.
 
 > The fastest algorithm can frequently be replaced by one that is almost as fast and much easier to understand.
 >
 > Douglas W. Jones, University of Iowa
 
-* Treap vs. RB/AVL trees
-* Raft was "easier" to understand Paxos
-* Fibonacci heaps are notoriously difficult to get right *and* have a huge
-  constant factor
-
 The added complexity has to be enough that the payoff is actually worth it.
-Cache eviction algorithms are a good example. Different algorithms can have
-much higher complexity for only a small improvement in hit ratio. Of
-course, you may not be able to test this until you have a working
-implementation and have integrated it into your program.
+Another example is cache eviction algorithms. Different algorithms can have
+much higher complexity for only a small improvement in hit ratio. Of course,
+you may not be able to test this until you have a working implementation and
+have integrated it into your program.
 
 Sometimes the paper will have graphs, but much like the trend towards
 publishing only positive results, these will tend to be skewed in favour of
