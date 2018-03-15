@@ -509,6 +509,12 @@ This also applies to subproblems your algorithm needs to solve. For example,
 being able to use radix sort can have a significant impact on performance, or
 using quickselect if you only need a partial sort.
 
+Sometimes rather than specialization for your particular task, the best
+approach is to abstract it into a more general problem space that has been
+well-studied by researchers.  Then you can apply the more general solution to
+your specific problem.  Mapping your problem into a domain that already has
+well-researched implementations can be a significant win.
+
 ### Benchmark Inputs
 
 Know how big each of your input sizes is likely to be in production.
