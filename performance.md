@@ -637,6 +637,8 @@ Tunings can take many forms.
 
 * If possible, keep the old implementation around for testing.
 * If not possible, generate sufficient golden test cases to compare output to.
+* "Sufficient" means including edge cases, as those are the ones likely to get
+   affected by tuning as you aim to improve performance in the general case.
 * Exploit a mathematical identity:
   * <https://github.com/golang/go/commit/ed6c6c9c11496ed8e458f6e0731103126ce60223>
   * <https://gist.github.com/dgryski/67e6a7ff94c3a1add30eb26ec0ad8b0f>
