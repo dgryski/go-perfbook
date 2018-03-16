@@ -647,10 +647,14 @@ Program tuning:
   * consider different number representations: fixed-point, floating-point, (smaller) integers,
     * fancier: integers with error accumulators (e.g. Bresenham's line and circle), multi-base numbers / redundant number systems
 
-Many folklore performance tips for tuning rely on poorly optimizing
-compilers and encourage the programmer to do these transformations by hand:
-hoisting invariant calculations out of loops, using shift instead of
-multiply, loop unrolling, common sub-expression elimination, ...
+Many folklore performance tips for tuning rely on poorly optimizing compilers
+and encourage the programmer to do these transformations by hand. Compilers
+have been using shifts instead of multiplying or dividing by a power of two
+for 15 years now -- nobody should be doing that by hand. Similarly, hoisting
+invariant calculations out of loops, basic loop unrolling, common
+sub-expression elimination and many others are all done automatically by gcc
+and clang and the like. Go's compiler does many of these and continues to
+improve.  As always, benchmark before committing to the new version.
 
 The transformations the compiler can't do rely on you knowing things about
 the algorithm, about your input data, about invariants in your system, and
