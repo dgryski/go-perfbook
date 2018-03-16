@@ -849,7 +849,7 @@ allocate it. But you also pay every time the garbage collection runs.
 * rand.Int() and friends are 1) mutex protected and 2) expensive to create
   * consider alternate random number generation (go-pcgr, xorshift)
 * binary.Read and binary.Write use reflection and are slow; do it by hand.
-* use strconv insted of fmt if possible
+* use strconv instead of fmt if possible
 * ...
 
 ## Alternate implementations
