@@ -934,6 +934,7 @@ Techniques specific to the architecture running the code
 ## Concurrency
 
 * Figure out which pieces can be done in parallel and which must be sequential
+* goroutines are cheap, but not free.
 * Optimizing multi-threaded code
   * false-sharing -> pad to cache-line size
   * true sharing -> sharding
