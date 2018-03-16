@@ -787,7 +787,7 @@ Techniques applicable to source code in general
 
 * other tooling in /x/perf
 * perf (perf2pprof)
-* intel vtune / amd codexl
+* intel vtune / amd codexl / apple instruments
 * https://godoc.org/github.com/aclements/go-perf
 
 ## Garbage Collection
