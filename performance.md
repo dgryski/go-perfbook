@@ -836,11 +836,12 @@ allocate it. But you also pay every time the garbage collection runs.
 * Common uses for unsafe
 * mmap'ing data files
   * struct padding
-  * but not always sufficiently faster to justify cost
+  * but not always sufficiently faster to justify complexity/safety cost
   * but "off-heap", so ignored by gc (but so would a pointerless slice)
+* need to think about serialization format: how to deal with pointers, indexing (mph, index header)
 * speedy de-serialization
 * string <-> slice conversion, []byte <-> []uint32, ...
-* int to bool unsafe hack (but cmov)
+* int to bool unsafe hack (but cmov) (but != 0 is also branch-free)
 
 ## Common gotchas with the standard library
 
