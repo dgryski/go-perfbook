@@ -940,6 +940,7 @@ Techniques specific to the architecture running the code
   * true sharing -> sharding
 * Overlap with previous section on caches and false/true sharing
 * Lazy synchronization; it's expensive, so duplicating work may be cheaper
+* things you can control: number of workers, batch size
 
 ## Assembly
 
