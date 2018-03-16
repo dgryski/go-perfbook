@@ -882,8 +882,6 @@ Techniques specific to the architecture running the code
 * introduction to CPU caches
   * performance cliffs
   * building intuition around cache-lines: sizes, padding, alignment
-  * false-sharing
-  * true sharing -> sharding
   * OS tools to view cache-misses
   * maps vs. slices
   * SOA vs AOS layouts
@@ -916,7 +914,10 @@ Techniques specific to the architecture running the code
 
 ## Concurrency
 
+* Figure out which pieces can be done in parallel and which must be sequential
 * Optimizing multi-threaded code
+  * false-sharing -> pad to cache-line size
+  * true sharing -> sharding
 * Overlap with previous section on caches and false/true sharing
 * Lazy synchronization; it's expensive, so duplicating work may be cheaper
 
