@@ -954,6 +954,7 @@ tip.golang.org/doc/diagnostics.html
 * The two basic rules: either speed up the slow things or do them less frequently.
 * distributed tracing to track bottlenecks at a higher level
 * query patterns for querying a single server instead of in bulk
+* your performance issues may not be your code, but you'll have to work around them anyway
 
 ## Appendix: Implementing Research Papers
 
