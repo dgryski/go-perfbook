@@ -334,7 +334,7 @@ applicable for programs on modern hardware dealing with huge amounts of data.
   Lots of resources on compression.  Do you need to inspect the data or can it stay compressed?
   Do you need random access or only streaming?  Compress blocks with extra index.
   If not just in-process but written to disk, what about migration or adding/removing fields.
-  You'll now be dealing with raw []byte instead of nice structued Go types.
+  You'll now be dealing with raw []byte instead of nice structured Go types.
 
 We will talk more about data layouts later.
 
