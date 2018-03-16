@@ -598,10 +598,10 @@ performed under some circumstances. Document them. Somebody else might think
 it's a bug and needs to be put back.
 
 > Empty programs gives the wrong answer in no time at all.
-
+>
 > It's easy to be fast if you don't have to be correct.
 
-But correctness can depend on the problem. Heuristic algorithms that are
+"Correctness" can depend on the problem. Heuristic algorithms that are
 mostly-right most of the time can be fast, as can algorithms which guess and
 improve allowing you to stop when you hit an acceptable limit.
 
