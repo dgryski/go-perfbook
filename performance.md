@@ -1024,7 +1024,7 @@ first paper you find.
 * Some papers release reference source code which you can compare against, but
   1) academic code is almost universally terrible
   2) beware licensing restrictions ("research purposes only")
-  3) beware bugs; edge cases, error checking, etc
+  3) beware bugs; edge cases, error checking, performance etc.
 
   Also look out for other implementations on GitHub: they may have the same (or different!) bugs as yours.
 
