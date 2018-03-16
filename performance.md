@@ -889,6 +889,7 @@ Techniques specific to the architecture running the code
   * reducing pointer chasing
   * temporal and spacial locality: use what you have and what's nearby as much as possible
   * memory prefetching; frequently ineffective; lack of intrinsics means function call overhead
+  * make the first 64-bytes of your struct count
 * branch prediction
   * remove branches from inner loops:
     if a { for { } } else { for { } }
