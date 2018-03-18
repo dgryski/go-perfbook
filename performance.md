@@ -627,9 +627,9 @@ Program tuning:
 Program tuning is the art of iteratively improving a program in small steps.
 Egon Elbre lays out his procedure:
 
-* Come up with N hypotheses as to why your program is slow.
-* Come up with a solution for each hypothesis.
-* Benchmark them all and keep the fastest.
+* Come up with a hypothesis as to why your program is slow.
+* Come up with N solutions to solve it
+* Try them all and keep the fastest.
 * Keep the second fastest just in case.
 * Repeat.
 
