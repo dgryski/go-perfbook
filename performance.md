@@ -21,8 +21,8 @@ This book is split into different sections:
 
 We can summarize these three sections as:
 
-1. "Don't be dumb"
-1. "Be smart"
+1. "Be reasonable"
+1. "Be deliberate"
 1. "Be dangerous"
 
 ## When and Where to Optimize
@@ -422,8 +422,8 @@ sorting will pay off. On the other hand, if you're mostly doing lookups,
 maybe having an array was the wrong choice and you'd be better off paying the
 O(1) lookup cost for a map instead.
 
-Choose the simplest reasonable data structure and move on. CS 101, writing
-"not-slow software". Don't be dumb. This should be your default development
+Choose the simplest reasonable data structure and move on. This is CS 101 for
+writing "not-slow software". This should be your default development
 mode. If you know you need random access, don't choose a linked-list.
 If you know you need in-order traversal, don't use a map.
 Requirements change and you can't always guess the future. Make a reasonable
