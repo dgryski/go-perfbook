@@ -56,7 +56,7 @@ Think of this as optimizing *your* time.
 You get to choose what to optimize and when to optimize. You can move the
 slider between "Fast Software" and "Fast Deployment"
 
-People here and mindlessly repeat "premature optimization is the root of all
+People hear and mindlessly repeat "premature optimization is the root of all
 evil", but they miss the full context of the quote.
 
 "Programmers waste enormous amounts of time thinking about, or worrying about,
