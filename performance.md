@@ -176,6 +176,15 @@ will give a skewed view of where the bottlenecks will be in the finished system.
 
 TODO: How to avoid/detect "Death by 1000 cuts" from poorly written software.
 
+Benchmarking as part of CI is hard due to noisy neighbours and even different
+CI boxes if it's just you.  Hard to gate on performance metrics.  A good middle
+ground is to have benchmarks run by the developer (on appropriate hardware) and
+included in the commit message for commits that specifically address
+performance.  For those that are just general patches, try to catch performance
+degradations "by eye" in code review.
+
+TODO: how to track performance over time?
+
 Write code that you can benchmark. Profiling you can do on larger systems.
 Benchmarking you want to test isolated pieces. You need to be able to extract
 and setup sufficient context that benchmarks test enough and are
