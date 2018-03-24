@@ -1023,7 +1023,7 @@ showing how good the new algorithm is.
 * Choose the right paper.
 * Look for the paper their algorithm claims to beat and implement that.
 
-Frequently earlier papers will easier to understand and necessarily have
+Frequently, earlier papers will be easier to understand and necessarily have
 simpler algorithms.
 
 Not all papers are good.
