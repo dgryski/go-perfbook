@@ -964,6 +964,7 @@ Techniques specific to the architecture running the code
 * rebenchmark with new versions to see if you can delete your code yet
 * always have pure-Go version (noasm build tag): testing, arm, gccgo
 * brief intro to syntax
+* how to type the middle dot
 * calling convention
 * using opcodes unsupported by the asm (asm2plan9, but this is getting rarer)
 * notes about why intrinsics are hard
