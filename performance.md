@@ -967,7 +967,7 @@ Techniques specific to the architecture running the code
 * how to type the middle dot
 * calling convention
 * using opcodes unsupported by the asm (asm2plan9, but this is getting rarer)
-* notes about why intrinsics are hard
+* notes about why inline assembly is hard
 * all the tooling to make this easier: asmfmt, peachpy, c2goasm, ...
 
 ## Optimizing an entire service
