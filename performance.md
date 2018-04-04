@@ -445,7 +445,7 @@ work. A binary tree sorts a little at a time as inserts happen. A unsorted
 array is faster to insert but it's unsorted: at the end to "finalize" you
 need to do the sorting all at once.
 
-When writing a package to be used to by others, avoid the temptation to
+When writing a package to be used by others, avoid the temptation to
 optimize up front for every single use case. This will result in unreadable
 code. Data structures by design are effectively single-purpose. You can
 neither read minds nor predict the future. If a user says "Your package is
