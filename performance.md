@@ -957,7 +957,13 @@ You need a mutex to protect shared mutable state.  If you have lots of mutex
 contention, you need to either reduce the shared, or reduce the mutable.  Two
 ways to reduce the shared are 1) shard the locks or 2) process independently
 and combine afterwards.  To reduce mutable: well, make your data structure
-read-only
+read-only.  You can also reduce the time the data needs be shared by reducing
+the critical section -- hold the lock as little as needed.  Sometimes a RWMutex
+will be sufficient, although note that they're slower but they allow multiple
+readers in.
+
+If you're sharding the locks, be careful of shared cache-lines.  You'll need to pad
+to avoid cache-line ownership bouncing between processors.
 
 ## Assembly
 
