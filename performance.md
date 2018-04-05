@@ -953,6 +953,12 @@ Techniques specific to the architecture running the code
 * Lazy synchronization; it's expensive, so duplicating work may be cheaper
 * things you can control: number of workers, batch size
 
+You need a mutex to protect shared mutable state.  If you have lots of mutex
+contention, you need to either reduce the shared, or reduce the mutable.  Two
+ways to reduce the shared are 1) shard the locks or 2) process independently
+and combine afterwards.  To reduce mutable: well, make your data structure
+read-only
+
 ## Assembly
 
 * Stuff about writing assembly code for Go
