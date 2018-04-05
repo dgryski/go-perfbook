@@ -965,6 +965,8 @@ readers in.
 If you're sharding the locks, be careful of shared cache-lines.  You'll need to pad
 to avoid cache-line ownership bouncing between processors.
 
+var stripe [8]struct{ sync.Mutex; _ [7]uint64 } // mutex is 64-bits; padding fills the rest of the cacheline
+
 ## Assembly
 
 * Stuff about writing assembly code for Go
