@@ -870,6 +870,12 @@ allocate it. But you also pay every time the garbage collection runs.
 * speedy de-serialization
 * string <-> slice conversion, []byte <-> []uint32, ...
 * int to bool unsafe hack (but cmov) (but != 0 is also branch-free)
+* padding:
+  - https://dave.cheney.net/2015/10/09/padding-is-hard
+  - http://www.catb.org/esr/structure-packing/#_go_and_rust
+  - https://golang.org/ref/spec#Size_and_alignment_guarantees
+  - https://github.com/dominikh/go-tools structlayout, structlayout-optimize
+  - encode struct layout via Offsetof to notice breakage from unsafe or asm
 
 ## Common gotchas with the standard library
 
