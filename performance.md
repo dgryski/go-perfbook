@@ -840,6 +840,7 @@ allocate it. But you also pay every time the garbage collection runs.
 * slicing vs. offset: pointer writes while GC is running need writebarrier: https://github.com/golang/go/commit/b85433975aedc2be2971093b6bbb0a7dc264c8fd
 * use error variables instead of errors.New() / fmt.Errorf() at call site  (performance or style? interface requires pointer, so it escapes to heap anyway)
 * use structured errors to reduce allocation (pass struct value), create string at error printing time
+* size classes
 
 ## Runtime and compiler
 
