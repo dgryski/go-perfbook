@@ -943,6 +943,7 @@ Techniques specific to the architecture running the code
 
     counts[i & 1] ++
     "branch-free code", benchmark; not always faster, but frequently harder to read
+    TODO: ASCII class counts example, with benchmarks
 
 * sorting data can help improve performance via both cache locality and branch prediction, even taking into account the time it takes to sort
 * function call overhead
