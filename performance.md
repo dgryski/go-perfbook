@@ -986,6 +986,7 @@ var stripe [8]struct{ sync.Mutex; _ [7]uint64 } // mutex is 64-bits; padding fil
 * very important to benchmark: improvements can be huge (10x for go-highway)
   zero (go-speck), or even slower (no inlining)
 * rebenchmark with new versions to see if you can delete your code yet
+   * TODO: link to 1.11 patches removing asm code
 * always have pure-Go version (noasm build tag): testing, arm, gccgo
 * brief intro to syntax
 * how to type the middle dot
