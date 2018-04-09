@@ -656,7 +656,8 @@ Tunings can take many forms.
   * multiplication with addition
   * use WolframAlpha, Maxima, sympy and similar to specialize, optimize or create lookup-tables
   * (Also, https://users.ece.cmu.edu/~franzf/papers/gttse07.pdf)
-  * just clearing the parts you used, rather than an entire array
+  * zero only part of an array, rather than the whole thing
+       * "pay only for what you use, not what you could have used"
   * best done in tiny steps, a few statements at a time
   * moving from floating point math to integer math
   * or mandelbrot removing sqrt, or lttb removing abs,  `a < b/c` => `a * c < b`
