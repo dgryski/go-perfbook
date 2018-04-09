@@ -1081,5 +1081,6 @@ first paper you find.
 
   Also look out for other implementations on GitHub: they may have the same (or different!) bugs as yours.
 
-  * <https://www.youtube.com/watch?v=8eRx5Wo3xYA>
-  * <http://codecapsule.com/2012/01/18/how-to-implement-a-paper/>
+Other resources on this topic:
+* <https://www.youtube.com/watch?v=8eRx5Wo3xYA>
+* <http://codecapsule.com/2012/01/18/how-to-implement-a-paper/>
