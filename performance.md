@@ -901,7 +901,8 @@ Popular replacements for standard library packages:
   * protobuf -> <https://github.com/gogo/protobuf>
   * all formats have trade-offs: choose one that matches what you need
     encoded space, decoding speed, language/tooling compatibility, ...
-* database/sql -> jackx/pgx, ...
+* database/sql -> has tradeoffs that affect performance
+  *  look for drivers that don't use it: jackx/pgx, crawshaw sqlite, ...
 * gccgo (benchmark!), gollvm (WIP)
 * container/list: use a slice instead (almost always)
 
