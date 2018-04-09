@@ -1057,9 +1057,11 @@ Not all papers are good.
 Look at the context the paper was written in. Determine assumptions about
 the hardware: disk space, memory usage, etc. Some older papers make
 different tradeoffs that were reasonable in the 70s or 80s but don't
-necessarily apply to your use case. For example, some streaming algorithms
-are designed for router hardware, which can make it a pain to translate into
-software.
+necessarily apply to your use case. For example, what they determine to be
+"reasonable" memory vs. disk usage tradeoffs. Memory sizes are now orders of
+magnitude larger, and SSDs have altered the latency penalty for using disk.
+Simiarly, some streaming algorithms are designed for router hardware, which
+can make it a pain to translate into software.
 
 Make sure the assumptions the algorithm makes about your data hold.
 
