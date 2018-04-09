@@ -922,10 +922,10 @@ Techniques specific to the architecture running the code
   * building intuition around cache-lines: sizes, padding, alignment
   * OS tools to view cache-misses
   * maps vs. slices
-  * SOA vs AOS layouts
-  * reducing pointer chasing
+  * SOA vs AOS layouts: row-major vs. column major; when you have an X, do you need another X or do you need a Y?
   * temporal and spacial locality: use what you have and what's nearby as much as possible
-  * memory prefetching; frequently ineffective; lack of intrinsics means function call overhead
+  * reducing pointer chasing
+  * explicit memory prefetching; frequently ineffective; lack of intrinsics means function call overhead (removed from runtime)
   * make the first 64-bytes of your struct count
 * branch prediction
   * remove branches from inner loops:
