@@ -667,7 +667,8 @@ Tunings can take many forms.
   * common cases before rare cases
     i.e., avoid extra tests that always fail
   * unrolling still effective: https://play.golang.org/p/6tnySwNxG6O
-  * using offsets instead of slice assignment also improves bounds checks and data dependencies, assigns fewer elements, no write barrier
+    * code size. vs branch test overhead
+  * using offsets instead of slice assignment can help with bounds checks, data dependencies, and code gen (less to copy in inner loop).
   * this is where pieces of Hacker's Delight fall
   * consider different number representations: fixed-point, floating-point, (smaller) integers,
     * fancier: integers with error accumulators (e.g. Bresenham's line and circle), multi-base numbers / redundant number systems
