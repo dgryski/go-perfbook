@@ -974,7 +974,7 @@ will be sufficient, although note that they're slower but they allow multiple
 readers in.
 
 If you're sharding the locks, be careful of shared cache-lines.  You'll need to pad
-to avoid cache-line ownership bouncing between processors.
+to avoid cache-line bouncing between processors.
 
 var stripe [8]struct{ sync.Mutex; _ [7]uint64 } // mutex is 64-bits; padding fills the rest of the cacheline
 
