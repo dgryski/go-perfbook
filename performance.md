@@ -895,7 +895,7 @@ allocate it. But you also pay every time the garbage collection runs.
 Popular replacements for standard library packages:
 
 * encoding/json -> ffjson, easyjson, etc
-* net/http -> fasthttp (but incompatible API)
+* net/http -> fasthttp (but incompatible API, not RFC compliant in subtle ways)
 * regexp -> ragel (or other regular expression package)
 * serialization
   * encoding/gob -> <https://github.com/alecthomas/go_serialization_benchmarks>
