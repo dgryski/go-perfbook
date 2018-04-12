@@ -980,6 +980,8 @@ to avoid cache-line bouncing between processors.
 
 var stripe [8]struct{ sync.Mutex; _ [7]uint64 } // mutex is 64-bits; padding fills the rest of the cacheline
 
+Don't do anything expensive in your critical section if you can help it.  This includes things like I/O (which are cheap but slow).
+
 ## Assembly
 
 * Stuff about writing assembly code for Go
