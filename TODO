@@ -62,6 +62,12 @@
   - https://segment.com/blog/allocation-efficiency-in-high-performance-go-services/
   - http://brendanjryan.com/2018/01/15/go-benchmarks.html
   - https://lemire.me/blog/2018/01/16/microbenchmarking-calls-for-idealized-conditions/
+  - https://signalfx.com/blog/a-pattern-for-optimizing-go-2/
+  - https://medium.com/@hackintoshrao/daily-code-optimization-using-benchmarks-and-profiling-in-golang-gophercon-india-2016-talk-874c8b4dc3c5
+  - https://artem.krylysov.com/blog/2017/03/13/profiling-and-optimizing-go-web-applications/
+  - https://segment.com/blog/allocation-efficiency-in-high-performance-go-services/
+  - https://www.cockroachlabs.com/blog/how-to-optimize-garbage-collection-in-go/
+  - https://hashrocket.com/blog/posts/go-performance-observations
 
 cgo:
     cgo has overhead
