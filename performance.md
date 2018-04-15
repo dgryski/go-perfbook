@@ -531,6 +531,15 @@ well-studied by researchers.  Then you can apply the more general solution to
 your specific problem.  Mapping your problem into a domain that already has
 well-researched implementations can be a significant win.
 
+
+TODO:
+  improve worst-case behaviour at slight cost to average runtime
+  linear-time regexp matching
+  randomized algorithms
+    improve worse-case running time
+    skip-list, treap, randomized marking,
+    primality testing, randomized pivot for quicksort
+
 ### Benchmark Inputs
 
 Know how big each of your input sizes is likely to be in production.
@@ -555,6 +564,9 @@ world. If repeated requests are sufficiently rare, it's more expensive to
 keep them around than to recompute them. If your benchmark data consists of
 only the same repeated request, your cache will give an inaccurate view of
 the performance.
+
+TODO: randomized inputs may have nice properties but not be representative of
+real-world inputs (random graphs, random trees, etc)
 
 Also note that some issues that are not apparent on your laptop might be
 visible once you deploy to production and are hitting 250k reqs/second on
