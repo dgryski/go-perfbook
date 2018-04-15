@@ -431,6 +431,13 @@ sorting will pay off. On the other hand, if you're mostly doing lookups,
 maybe having an array was the wrong choice and you'd be better off paying the
 O(1) lookup cost for a map instead.
 
+If your data structure is static, then you can generally do much better than
+the dynamic case. It becomes easier to build an optimal data structure
+customized for exactly your lookup patterns. Solutions like minimal perfect
+hashing can make sense here, or precomputed bloom filters. This also make
+sense if your data structure is "static" for long enough and you can amortize
+the up-front cost of construction across many lookups.
+
 Choose the simplest reasonable data structure and move on. This is CS 101 for
 writing "not-slow software". This should be your default development
 mode. If you know you need random access, don't choose a linked-list.
