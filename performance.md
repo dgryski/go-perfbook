@@ -491,6 +491,10 @@ point may be larger than all reasonable inputs. That is, the O(n^2) algorithm
 is faster than the O(n) algorithm for all inputs that you're ever likely to
 deal with.
 
+This also means you need to know representative input sizes, both for
+choosing the most appropriate algorithm and for writing good benchmarks.
+10 items?  1000 items?  1000000 items?
+
 This also goes the other way: For example, choosing to use a more complicated
 data structure to give you O(n) scaling instead of O(n^2), even though the
 benchmarks for small inputs got slower. This also applies to most lock-free
