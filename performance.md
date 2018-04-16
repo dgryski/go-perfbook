@@ -539,7 +539,6 @@ Similarly, using a simpler algorithm means that tradeoffs, analysis, and
 implementation deals are more likely to be more studied and well understood
 than more esoteric or exotic and complex ones.
 
-
 TODO:
   improve worst-case behaviour at slight cost to average runtime
   linear-time regexp matching
@@ -547,6 +546,8 @@ TODO:
     improve worse-case running time
     skip-list, treap, randomized marking,
     primality testing, randomized pivot for quicksort
+    power of two random choices
+    statistical approximations (frequently depend on sample size and not population size)
 
 ### Benchmark Inputs
 
