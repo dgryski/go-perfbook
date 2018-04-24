@@ -67,7 +67,7 @@ about 97% of the time: premature optimization is the root of all evil. Yet we
 should not pass up our opportunities in that critical 3%." -- Knuth
 
 Add: https://www.youtube.com/watch?time_continue=429&v=RT46MpK39rQ
-   * don't ignore the the easy optimizations
+   * don't ignore the easy optimizations
    * more knowledge of algorithms and data structures makes more optimizations "easy" or "obvious"
 
 "Should you optimize? "Yes, but only if the problem is important, the program
@@ -220,7 +220,7 @@ speeding up routine that takes 80% of the time by only 10% will improve runtime
 by almost 8%. Profiles will help identify where time is actually spent.
 
 When optimizing, you want to reduce the amount of work the CPU has to do.
-Quicksort is faster than bubble sort because it solves then same problem
+Quicksort is faster than bubble sort because it solves the same problem
 (sorting) in fewer steps. It's a more efficient algorithm. You've reduced the
 work the CPU needs to do in order to accomplish the same task.
 
