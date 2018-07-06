@@ -46,7 +46,7 @@ progress bar, or making a page more responsive by doing computation in the
 background after rendering the page.
 
 Sometimes this will be obvious: an hourly report that completes in three hours
-is probably less useful that one that completes in less than one.
+is probably less useful than one that completes in less than one.
 
 Just because something is easy to optimize doesn't mean it's worth
 optimizing. Ignoring low-hanging fruit is a valid development strategy.
