@@ -549,6 +549,9 @@ TODO:
     power of two random choices
     statistical approximations (frequently depend on sample size and not population size)
 
+
+ TODO: batching to reduce overhead: https://lemire.me/blog/2018/04/17/iterating-in-batches-over-data-structures-can-be-much-faster/
+
 ### Benchmark Inputs
 
 Know how big each of your input sizes is likely to be in production.
@@ -1009,6 +1012,9 @@ to avoid cache-line bouncing between processors.
 var stripe [8]struct{ sync.Mutex; _ [7]uint64 } // mutex is 64-bits; padding fills the rest of the cacheline
 
 Don't do anything expensive in your critical section if you can help it.  This includes things like I/O (which are cheap but slow).
+
+TODO: how to decompose problem for concurrency
+TODO: reasons parallel implementation might be slower (communication overhead, best algorithm is sequential, ... )
 
 ## Assembly
 
