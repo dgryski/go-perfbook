@@ -1027,6 +1027,7 @@ Don't do anything expensive in your critical section if you can help it.  This i
 * using opcodes unsupported by the asm (asm2plan9, but this is getting rarer)
 * notes about why inline assembly is hard
 * all the tooling to make this easier: asmfmt, peachpy, c2goasm, ...
+* https://github.com/golang/go/wiki/AssemblyPolicy
 
 ## Optimizing an entire service
 
