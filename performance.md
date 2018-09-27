@@ -357,10 +357,10 @@ not realized in the production system due to cache contention (e.g., lookup
 tables are in the processor cache during benchmarking but always flushed by
 "real data" when used in a real system.
 Google's [Jump Hash paper](https://arxiv.org/pdf/1406.2294.pdf) in fact
-addressed this directly, comparing performance on both a contented and
+addressed this directly, comparing performance on both a contended and
 uncontended processor cache. (See graphs 4 and 5 in the Jump Hash paper)
 
-TODO: how to simulate a contented cache, show incremental cost
+TODO: how to simulate a contended cache, show incremental cost
 
 Another aspect to consider is data-transfer time. Generally network and disk
 access is very slow, and so being able to load a compressed chunk will be
@@ -650,7 +650,7 @@ improve allowing you to stop when you hit an acceptable limit.
 Cache common cases:
 
 * Your cache doesn't even need to be huge.
-  * see `time.Parse() example below; just a single value made an impact
+  * see `time.Parse()` example below; just a single value made an impact
 * But beware cache invalidation, thread issues, etc.
 * Random cache eviction is fast and sufficiently effective.
 * Random cache insertion can limit cache to popular items with minimal logic.
@@ -724,9 +724,9 @@ where your program crashes, slows down, or starts returning incorrect data
 as the system evolves.
 
 Program tuning improvements are cumulative. 5x 3% improvements is a 15%
-improvement. Making optimizations it's worth it to think about the expected
-performance improvement. Replacing a hash function with a faster one is a
-constant factor improvement.
+improvement. When making optimizations, it's worth it to think about the
+expected performance improvement. Replacing a hash function with a faster one
+is a constant factor improvement.
 
 Understanding your requirements and where they can be altered can lead to
 performance improvements. One issue that was presented in the \#performance
@@ -835,7 +835,7 @@ Techniques applicable to source code in general
 1. How to read it pprof output
 1. What are the different pieces of the runtime that show up
   * malloc, gc workers
-  * runtime._ExternalCode
+  * runtime.\_ExternalCode
 1. Macro-benchmarks (Profiling in production)
    * net/http/pprof
 1. Using -base to look at differences
