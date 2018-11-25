@@ -671,7 +671,7 @@ Cache common cases:
 * But beware cache invalidation, thread issues, etc.
 * Random cache eviction is fast and sufficiently effective.
 * Random cache insertion can limit cache to popular items with minimal logic.
-* Compare cost of cache logic to cost of refetching the data.
+* Compare cost (time, complexity) of cache logic to cost of refetching the data.
 * A large cache can increase GC pressure and keep blowing processor cache.
 * At the extreme (little or no eviction, caching all requests to an expensive function) this can turn into [memoization](https://en.wikipedia.org/wiki/Memoization)
 
