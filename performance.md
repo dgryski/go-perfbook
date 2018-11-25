@@ -717,6 +717,7 @@ Tunings can take many forms.
   * unrolling still effective: https://play.golang.org/p/6tnySwNxG6O
     * code size. vs branch test overhead
   * using offsets instead of slice assignment can help with bounds checks, data dependencies, and code gen (less to copy in inner loop).
+  * remove bounds checks and nil checks from loops: https://go-review.googlesource.com/c/go/+/151158
   * this is where pieces of Hacker's Delight fall
   * consider different number representations: fixed-point, floating-point, (smaller) integers,
     * fancier: integers with error accumulators (e.g. Bresenham's line and circle), multi-base numbers / redundant number systems
