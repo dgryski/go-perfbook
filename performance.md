@@ -926,7 +926,7 @@ allocate it. But you also pay every time the garbage collection runs.
   - http://www.catb.org/esr/structure-packing/#_go_and_rust
   - https://golang.org/ref/spec#Size_and_alignment_guarantees
   - https://github.com/dominikh/go-tools structlayout, structlayout-optimize
-  - encode struct layout via Offsetof to notice breakage from unsafe or asm
+  - write tests for struct layout with unsafe.Offsetof to notice breakage from unsafe or asm
 
 ## Common gotchas with the standard library
 
