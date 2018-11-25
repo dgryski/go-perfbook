@@ -175,6 +175,13 @@ is available. Any full-system profiles you do while the system is incomplete
 will give a skewed view of where the bottlenecks will be in the finished system.
 
 TODO: How to avoid/detect "Death by 1000 cuts" from poorly written software.
+Solution: "Premature pessimization is the root of all evil".  This matches with
+my Rule 1: Be deliberate.  You don't need to write every line of code to be code
+to be fast, but neither should by default do wasteful things.
+
+"Premature pessimization is when you write code that is slower than it needs to
+be, usually by asking for unnecessary extra work, when equivalently complex code
+would be faster and should just naturally flow out of your fingers." -- Herb Sutter
 
 Benchmarking as part of CI is hard due to noisy neighbours and even different
 CI boxes if it's just you.  Hard to gate on performance metrics.  A good middle
