@@ -612,7 +612,13 @@ especially when upgrading Go versions that your code doesn't become "worse".
 There are definitely cases where tweaks to work around the lack of a particular
 compiler optimization became slower once the compiler was improved.
 
-TODO: https://github.com/golang/go/commit/9eb219480e8de08d380ee052b7bff293856955f8)
+My RC6 cipher implementation had a 10% speed up for the inner loop just by
+switching to `encoding/binary` and `math/bits` instead of my hand-rolled
+version.
+
+Similarly, the `compress/bzip2` package was sped by by switching to [simpler
+code the compiler was better able to
+optimize](https://github.com/golang/go/commit/9eb219480e8de08d380ee052b7bff293856955f8)
 
 If you are working around a specific runtime or compiler code generation
 issue, always document your change with a link to the upstream issue. This
