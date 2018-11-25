@@ -315,10 +315,14 @@ Ideas for augmenting your data structure:
 
   * Over the wire, the network + cost of serialization will hurt.
   * In-process caches, but now you need to worry about expiration and added GC pressure
-  * Even a single item can help (logfile time parse example).
 
-  TODO: "cache" might not even be key-value, just a pointer to where you were
-  working. This can be as simple as a "search finger"
+A cache saves information you've just spent time computing in the hopes that
+you'll be able to reuse it again soon and save the computation time. A cache
+doesn't need to be complex.  Even storing a single item -- the most recently
+seen query/response -- can be a big win. This "single item" idea can be extended
+to a "search finger", where you store an pointer to where your just were in your
+data structure on the assumption it's a good starting point for your next
+operation.
 
 These are all clear examples of "do less work" at the data structure level.
 They all cost space. Most of the time if you're optimizing for CPU, your
