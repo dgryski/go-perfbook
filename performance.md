@@ -549,13 +549,12 @@ than more esoteric or exotic and complex ones.
 TODO:
   improve worst-case behaviour at slight cost to average runtime
   linear-time regexp matching
-  randomized algorithms
+  randomized algorithms: MC vs. LV
     improve worse-case running time
     skip-list, treap, randomized marking,
     primality testing, randomized pivot for quicksort
     power of two random choices
     statistical approximations (frequently depend on sample size and not population size)
-
 
  TODO: batching to reduce overhead: https://lemire.me/blog/2018/04/17/iterating-in-batches-over-data-structures-can-be-much-faster/
 
