@@ -311,18 +311,14 @@ Ideas for augmenting your data structure:
 
 * If queries are expensive, add a cache.
 
-  We're all familiar with memcache, but there are in-process caches.
-
-  * Over the wire, the network + cost of serialization will hurt.
-  * In-process caches, but now you need to worry about expiration and added GC pressure
-
-A cache saves information you've just spent time computing in the hopes that
-you'll be able to reuse it again soon and save the computation time. A cache
-doesn't need to be complex.  Even storing a single item -- the most recently
-seen query/response -- can be a big win. This "single item" idea can be extended
-to a "search finger", where you store an pointer to where your just were in your
-data structure on the assumption it's a good starting point for your next
-operation.
+  The classic example of this is storing the length of a linked list in a field in
+  the root node. It takes a bit more work to keep it updated, but then querying
+  the length becomes a simple field lookup instead of an O(n) traversal.  Your
+  data structure might present a similar win: a bit of bookkeeping during some
+  operations in exchange for some faster performance on a common use case. For
+  example, some skips lists keep a "search finger", where you store an pointer to
+  where your just were in your data structure on the assumption it's a good
+  starting point for your next operation.
 
 These are all clear examples of "do less work" at the data structure level.
 They all cost space. Most of the time if you're optimizing for CPU, your
@@ -666,9 +662,19 @@ improve allowing you to stop when you hit an acceptable limit.
 
 Cache common cases:
 
+  We're all familiar with memcache, but there are in-process caches.
+
+  * Over the wire, the network + cost of serialization will hurt.
+  * In-process caches, but now you need to worry about expiration and added GC pressure
+
+A cache saves information you've just spent time computing in the hopes that
+you'll be able to reuse it again soon and save the computation time. A cache
+doesn't need to be complex.  Even storing a single item -- the most recently
+seen query/response -- can be a big win.
+
 * Your cache doesn't even need to be huge.
   * see `time.Parse()` example below; just a single value made an impact
-* But beware cache invalidation, thread issues, etc.
+* But beware cache invalidation, concurrent access / updates, etc.
 * Random cache eviction is fast and sufficiently effective.
 * Random cache insertion can limit cache to popular items with minimal logic.
 * Compare cost (time, complexity) of cache logic to cost of refetching the data.
