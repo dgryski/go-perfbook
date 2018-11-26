@@ -598,6 +598,10 @@ performance improves.
 
 * <https://timharris.uk/misc/five-ways.pdf>
 
+Use geometric mean to compare groups of benchmarks.
+
+* <https://www.cse.unsw.edu.au/~cs9242/current/papers/Fleming_Wallace_86.pdf>
+
 ### Program Tuning
 
 Program tuning used to be an art form, but then compilers got better. So now
