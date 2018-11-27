@@ -589,14 +589,15 @@ benchmark input consists only a single query, then every request will hit the
 cache giving potentially a very unrealistic view of how the system will behave
 in the real world with a more varied request pattern.
 
-Also note that some issues that are not apparent on your laptop might be
-visible once you deploy to production and are hitting 250k reqs/second on
-a 40 core server.
+Also note that some issues that are not apparent on your laptop might be visible
+once you deploy to production and are hitting 250k reqs/second on a 40 core
+server. Similarly, the behaviour of the garbage collector during benchmarking
+can misrepresent real-world impact.  There are (rare) cases where a
+microbenchmark will show a slow-down, but real-world performance improves.
+Microbenchmarks can help nudge you in the right direction, but being able to
+fully test the impact of a change across the entire system is best.
 
 Writing good benchmarks can be difficult.
-
-TODO: cases where microbenchmarks show a slow down but macro (real-world)
-performance improves.
 
 * <https://timharris.uk/misc/five-ways.pdf>
 
