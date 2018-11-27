@@ -584,7 +584,10 @@ only the same repeated request, your cache will give an inaccurate view of
 the performance.
 
 TODO: randomized inputs may have nice properties but not be representative of
-real-world inputs (random graphs, random trees, etc)
+real-world inputs (random graphs, random trees, etc.  Caching and compression
+algorithms both exploit skewed distributions not present in random data, while a
+binary tree will perform better with random values as they will tend to keep the
+tree balanced.
 
 Also note that some issues that are not apparent on your laptop might be
 visible once you deploy to production and are hitting 250k reqs/second on
