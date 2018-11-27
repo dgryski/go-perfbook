@@ -578,16 +578,16 @@ for one particular data set, "overfitting" your code to work best with one
 specific set of inputs.
 
 This also means your benchmark data needs to be representative of the real
-world. If repeated requests are sufficiently rare, it's more expensive to
-keep them around than to recompute them. If your benchmark data consists of
-only the same repeated request, your cache will give an inaccurate view of
-the performance.
+world. Using purely randomized inputs may skew the behaviour of your algorithm.
+Caching and compression algorithms both exploit skewed distributions not present
+in random data and so will perform worse, while a binary tree will perform
+better with random values as they will tend to keep the tree balanced. (This is
+the idea behind a treap, by the way.)
 
-TODO: randomized inputs may have nice properties but not be representative of
-real-world inputs (random graphs, random trees, etc.  Caching and compression
-algorithms both exploit skewed distributions not present in random data, while a
-binary tree will perform better with random values as they will tend to keep the
-tree balanced.
+On the other hand, consider the case of testing a system with a cache. If your
+benchmark input consists only a single query, then every request will hit the
+cache giving potentially a very unrealistic view of how the system will behave
+in the real world with a more varied request pattern.
 
 Also note that some issues that are not apparent on your laptop might be
 visible once you deploy to production and are hitting 250k reqs/second on
@@ -686,6 +686,10 @@ seen query/response -- can be a big win.
 * Compare cost (time, complexity) of cache logic to cost of refetching the data.
 * A large cache can increase GC pressure and keep blowing processor cache.
 * At the extreme (little or no eviction, caching all requests to an expensive function) this can turn into [memoization](https://en.wikipedia.org/wiki/Memoization)
+
+If in the real world repeated requests are sufficiently rare, it can be more
+expensive to keep cached responses around than to simply recompute them when
+needed.
 
 I've done experiments with a network trace for a service that showed even an optimal
 cache wasn't worth it. Your expected hit ratio is important. You'll want to
