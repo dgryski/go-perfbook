@@ -291,34 +291,44 @@ Ideas for augmenting your data structure:
 
 * Extra fields
 
-  For example, store the size of a linked lists rather than iterating when asked
-  for it. Or storing additional pointers to frequently needed other nodes to
-  multiple searches (for example, "backwards" links in a doubly-linked list to
-  make removal O(1) ). These sorts of changes are useful when the data you need
-  is cheap to store and keep up-to-date.
+  The classic example of this is storing the length of a linked list in a field in
+  the root node. It takes a bit more work to keep it updated, but then querying
+  the length becomes a simple field lookup instead of an O(n) traversal. Your data
+  structure might present a similar win: a bit of bookkeeping during some
+  operations in exchange for some faster performance on a common use case.
+
+  Similarly, storing pointers to frequently needed nodes instead of performing
+  additional searches.  This covers things like the "backwards" links in a
+  doubly-linked list to make node removal O(1) . Some skips lists keep a "search
+  finger", where you store an pointer to where your just were in your data
+  structure on the assumption it's a good starting point for your next
+  operation.
 
 * Extra search indexes
 
   Most data structures are designed for a single type of query. If you need two
   different query types, having an additional "view" onto your data can be large
-  improvement. For example, `[]struct`, referenced by ID but sometimes
-  `string` -> `map[string]id` (or `*struct`).
+  improvement. For example, a set of structs might have a primary ID (integer)
+  that you use to look up in a slice, but sometimes need to look up with a
+  secondary ID (string). Instead of iterating over the slice, you can augment
+  your data structure with a map either from string to ID or directly to the
+  struct itself.
 
 * Extra information about elements
 
-  For example, a bloom filter. These need to be small and fast to not overwhelm
-  the rest of the data structure.
+  For example, keeping a bloom filter of all the elements you've inserted can let
+  you quickly return "no match" for lookups. These need to be small and fast to
+  not overwhelm the rest of the data structure.  (If a lookup in your main data
+  structure is cheap, the cost of the bloom filter will outweigh any savings.)
 
 * If queries are expensive, add a cache.
 
-  The classic example of this is storing the length of a linked list in a field in
-  the root node. It takes a bit more work to keep it updated, but then querying
-  the length becomes a simple field lookup instead of an O(n) traversal.  Your
-  data structure might present a similar win: a bit of bookkeeping during some
-  operations in exchange for some faster performance on a common use case. For
-  example, some skips lists keep a "search finger", where you store an pointer to
-  where your just were in your data structure on the assumption it's a good
-  starting point for your next operation.
+  At a larger level, an in-process or external cache (like memcache) can help.
+  It might be excessive for a single data structure.  We'll cover more about
+  caches below.
+
+These sorts of changes are useful when the data you need is cheap to store and
+easy to keep up-to-date.
 
 These are all clear examples of "do less work" at the data structure level.
 They all cost space. Most of the time if you're optimizing for CPU, your
