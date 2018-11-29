@@ -886,6 +886,7 @@ Techniques applicable to source code in general
 1. Using -base to look at differences
 1. Memory options: -inuse_space, -inuse_objects, -alloc_space, -alloc_objects
 1. Profiling in production; localhost+ssh tunnels, auth headers, using curl.
+1. How to read flame graphs
 
 ### Tracer
 
