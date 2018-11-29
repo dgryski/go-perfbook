@@ -659,7 +659,7 @@ fewer times. Algorithmic changes also fall into these categories, but we're
 going to be looking at smaller changes. Exactly how you do this varies as
 technologies change.
 
-Making a slow thing fast might be replacing SHA1 or hash/fnv1 with a faster
+Making a slow thing fast might be replacing SHA1 or `hash/fnv1` with a faster
 hash function. Doing a slow thing fewer times might be saving the result of
 the hash calculation of a large file so you don't have to do it multiple
 times.
