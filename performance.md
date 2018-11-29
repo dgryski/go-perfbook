@@ -396,8 +396,8 @@ If you're not changing the data, the other main option is to change the code.
 
 The biggest improvement is likely to come from an algorithmic changes. This
 is the equivalent of replacing bubble sort (`O(n^2)`) with quicksort (`O(n log n)`)
-or replacing a linear scan through an array (`O(n)`) that used to be small
-with a map lookup (`O(1)`).
+or replacing a linear scan through an array (`O(n)`) with a binary search (`O(log n)`)
+or a map lookup (`O(1)`).
 
 This is how software becomes slow. Structures originally designed for one use
 is repurposed for something it wasn't designed for. This happens gradually.
