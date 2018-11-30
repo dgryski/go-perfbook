@@ -570,12 +570,15 @@ TODO:
 
 ### Benchmark Inputs
 
-Know how big each of your input sizes is likely to be in production.
+Real-world inputs rarely match the theoretical "worst case".  Benchmarking is
+vital to understanding how your system behaves in production.
 
-Your benchmarks must use appropriately-sized inputs. As we've seen, different
-algorithms make sense at different input sizes. If your expected input range
-is <100, then your benchmarks should reflect that. Otherwise, choosing an
-algorithm which is optimal for n=10^6 might not be the fastest.
+You need to know what class of inputs your system will be seeing once deployed,
+and your benchmarks must use instances pulled from that same distribution. As
+we've seen, different algorithms make sense at different input sizes. If your
+expected input range is <100, then your benchmarks should reflect that.
+Otherwise, choosing an algorithm which is optimal for n=10^6 might not be the
+fastest.
 
 Be able to generate representative test data. Different distributions of data
 can provoke different behaviours in your algorithm: think of the classic
