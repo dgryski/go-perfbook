@@ -682,10 +682,15 @@ improve allowing you to stop when you hit an acceptable limit.
 
 Cache common cases:
 
-  We're all familiar with memcache, but there are in-process caches.
-
-  * Over the wire, the network + cost of serialization will hurt.
-  * In-process caches, but now you need to worry about expiration and added GC pressure
+We're all familiar with memcache, but there are also in-process caches.  Using
+an in-process cache saves the cost of both the network call and the cost of
+serialization. On the other hand, this increases GC pressure as there is more
+memory to keep track of.  You also need to consider eviction strategies, cache
+invalidation, and thread-safety.  An external cache will generally handle
+eviction for you, but cache invalidation remains a problem.  Thread-safety can
+also be an issue with external caches as it becomes effectively shared mutable
+state either between different goroutines in the same service or even different
+service instances if the external cache is shared.
 
 A cache saves information you've just spent time computing in the hopes that
 you'll be able to reuse it again soon and save the computation time. A cache
