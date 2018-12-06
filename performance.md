@@ -971,7 +971,7 @@ allocate it. But you also pay every time the garbage collection runs.
 * Reusing HTTP connections...; ensure the body is drained (issue #?)
 * rand.Int() and friends are 1) mutex protected and 2) expensive to create
   * consider alternate random number generation (go-pcgr, xorshift)
-* binary.Read and binary.Write use reflection and are slow; do it by hand.
+* binary.Read and binary.Write use reflection and are slow; do it by hand. (https://github.com/conformal/yubikey/commit/613e3b04ae2eeb78e6a19636b8ff8e9106d2e7bc)
 * use strconv instead of fmt if possible
 * ...
 
