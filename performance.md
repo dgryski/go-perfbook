@@ -556,6 +556,8 @@ Similarly, using a simpler algorithm means that tradeoffs, analysis, and
 implementation deals are more likely to be more studied and well understood
 than more esoteric or exotic and complex ones.
 
+TODO: notes on algorithm selection
+
 TODO:
   improve worst-case behaviour at slight cost to average runtime
   linear-time regexp matching
