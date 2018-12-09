@@ -927,6 +927,7 @@ allocate it. But you also pay every time the garbage collection runs.
 * GOGC
 * buffer reuse (sync.Pool vs or custom via go-slab, etc)
 * slicing vs. offset: pointer writes while GC is running need writebarrier: https://github.com/golang/go/commit/b85433975aedc2be2971093b6bbb0a7dc264c8fd
+  * no writebarrier if writing to stack https://github.com/golang/go/commit/2140975ebde164ea1eaa70fc72775c03567f2bc9
 * use error variables instead of errors.New() / fmt.Errorf() at call site  (performance or style? interface requires pointer, so it escapes to heap anyway)
 * use structured errors to reduce allocation (pass struct value), create string at error printing time
 * size classes
