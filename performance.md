@@ -556,6 +556,8 @@ Similarly, using a simpler algorithm means that tradeoffs, analysis, and
 implementation deals are more likely to be more studied and well understood
 than more esoteric or exotic and complex ones.
 
+TODO: notes on algorithm selection
+
 TODO:
   improve worst-case behaviour at slight cost to average runtime
   linear-time regexp matching
@@ -682,10 +684,15 @@ improve allowing you to stop when you hit an acceptable limit.
 
 Cache common cases:
 
-  We're all familiar with memcache, but there are in-process caches.
-
-  * Over the wire, the network + cost of serialization will hurt.
-  * In-process caches, but now you need to worry about expiration and added GC pressure
+We're all familiar with memcache, but there are also in-process caches.  Using
+an in-process cache saves the cost of both the network call and the cost of
+serialization. On the other hand, this increases GC pressure as there is more
+memory to keep track of.  You also need to consider eviction strategies, cache
+invalidation, and thread-safety.  An external cache will generally handle
+eviction for you, but cache invalidation remains a problem.  Thread-safety can
+also be an issue with external caches as it becomes effectively shared mutable
+state either between different goroutines in the same service or even different
+service instances if the external cache is shared.
 
 A cache saves information you've just spent time computing in the hopes that
 you'll be able to reuse it again soon and save the computation time. A cache
@@ -966,7 +973,7 @@ allocate it. But you also pay every time the garbage collection runs.
 * Reusing HTTP connections...; ensure the body is drained (issue #?)
 * rand.Int() and friends are 1) mutex protected and 2) expensive to create
   * consider alternate random number generation (go-pcgr, xorshift)
-* binary.Read and binary.Write use reflection and are slow; do it by hand.
+* binary.Read and binary.Write use reflection and are slow; do it by hand. (https://github.com/conformal/yubikey/commit/613e3b04ae2eeb78e6a19636b8ff8e9106d2e7bc)
 * use strconv instead of fmt if possible
 * ...
 
