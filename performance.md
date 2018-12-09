@@ -124,7 +124,7 @@ negative change. Always make sure you undo your fix in these cases.
 The benchmarks you are using must be correct and provide reproducible numbers
 on representative workloads. If individual runs have too high a variance, it
 will make small improvements more difficult to spot. You will need to use
-[benchstat](https://golang.org/x/perf/benchstat) or equivalent statistical tests and won't be able just eyeball it.
+[benchstat](https://golang.org/x/perf/benchstat) or equivalent statistical tests and won't be able to just eyeball it.
 (Note that using statistical tests is a good idea anyway.) The steps to run
 the benchmarks should be documented, and any custom scripts and tooling
 should be committed to the repository with instructions for how to run them.
@@ -394,7 +394,7 @@ forced to fetch the entire dataset each time.
 
 If you're not changing the data, the other main option is to change the code.
 
-The biggest improvement is likely to come from an algorithmic changes. This
+The biggest improvement is likely to come from an algorithmic change. This
 is the equivalent of replacing bubble sort (`O(n^2)`) with quicksort (`O(n log n)`)
 or replacing a linear scan through an array (`O(n)`) with a binary search (`O(log n)`)
 or a map lookup (`O(1)`).
@@ -634,7 +634,7 @@ My RC6 cipher implementation had a 10% speed up for the inner loop just by
 switching to `encoding/binary` and `math/bits` instead of my hand-rolled
 version.
 
-Similarly, the `compress/bzip2` package was sped by by switching to [simpler
+Similarly, the `compress/bzip2` package was sped by switching to [simpler
 code the compiler was better able to
 optimize](https://github.com/golang/go/commit/9eb219480e8de08d380ee052b7bff293856955f8)
 
@@ -652,7 +652,7 @@ Program tuning is an iterative process. Keep revisiting your code and seeing
 what changes can be made. Ensure you're making progress at each step.
 Frequently one improvement will enable others to be made. (Now that I'm not
 doing A, I can simplify B by doing C instead.) This means you need to keep
-looking at the entire picture and not get to obsessed with one small set of
+looking at the entire picture and not get too obsessed with one small set of
 lines.
 
 Once you've settled on the right algorithm, program tuning is the process of
