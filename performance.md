@@ -620,6 +620,10 @@ Use geometric mean to compare groups of benchmarks.
 
 * <https://www.cse.unsw.edu.au/~cs9242/current/papers/Fleming_Wallace_86.pdf>
 
+Evaluating Benchmark Accuracy:
+
+* <http://www.brendangregg.com/blog/2018-06-30/benchmarking-checklist.html>
+
 ### Program Tuning
 
 Program tuning used to be an art form, but then compilers got better. So now
