@@ -75,6 +75,10 @@ is genuinely too slow, and there is some expectation that it can be made
 faster while maintaining correctness, robustness, and clarity."
 -- The Practice of Programming, Kernighan and Pike
 
+Premature optimization can also hurt you by tying you into certain decisions.
+The optimized code can be harder to modify if requirements change and harder to
+throw away (sunk-cost falacy) if needed.
+
 [BitFunnel performance estimation](http://bitfunnel.org/strangeloop) has some
 numbers that make this trade-off explicit. Imagine a hypothetical search
 engine needing 30,000 machines across multiple data centers. These machines
