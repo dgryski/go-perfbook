@@ -932,7 +932,8 @@ allocate it. But you also pay every time the garbage collection runs.
   * allow passing in buffers so caller can reuse rather than forcing an allocation
   * you can even modify a slice in place carefully while you scan over it
 * reducing pointers to reduce gc scan times
-  * pointer-free map keys/values
+  * pointer-free slices
+  * maps with both pointer-free keys and values
 * GOGC
 * buffer reuse (sync.Pool vs or custom via go-slab, etc)
 * slicing vs. offset: pointer writes while GC is running need writebarrier: https://github.com/golang/go/commit/b85433975aedc2be2971093b6bbb0a7dc264c8fd
