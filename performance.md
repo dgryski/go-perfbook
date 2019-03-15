@@ -941,6 +941,7 @@ allocate it. But you also pay every time the garbage collection runs.
 * use error variables instead of errors.New() / fmt.Errorf() at call site  (performance or style? interface requires pointer, so it escapes to heap anyway)
 * use structured errors to reduce allocation (pass struct value), create string at error printing time
 * size classes
+* beware pinning larger allocation with smaller substrings or slices
 
 ## Runtime and compiler
 
