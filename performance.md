@@ -875,7 +875,7 @@ All optimizations should follow these steps:
     are 'sufficiently' different for an optimization to be worth the added
     code complexity.
 1. use <https://github.com/tsenart/vegeta> for load testing http services
-    (+ other fancy ones: k6, fortio, ...)
+    (+ other fancy ones: k6, fortio, fbender)
 1. make sure your latency numbers make sense
 
 The first step is important. It tells you when and where to start optimizing.
