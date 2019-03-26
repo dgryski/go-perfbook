@@ -139,6 +139,7 @@ asm:
     minio posts + tooling
     https://github.com/teh-cmc/go-internals/blob/master/chapter1_assembly_primer/README.md
     https://blog.hackercat.ninja/post/quick_intro_to_go_assembly/
+		https://quasilyte.dev/blog/post/go-asm-complementary-reference/
 
 posts:
     http://www.eecs.berkeley.edu/~rcs/research/interactive_latency.html
