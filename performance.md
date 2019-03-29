@@ -1091,7 +1091,7 @@ TODO: reasons parallel implementation might be slower (communication overhead, b
 * replace as little as possible to make an impact; maintenance cost is high
 * good reasons: SIMD instructions or other things outside of what Go and the compiler can provide
 * very important to benchmark: improvements can be huge (10x for go-highway)
-  zero (go-speck), or even slower (no inlining)
+  zero (go-speck/rc6/farm32), or even slower (no inlining)
 * rebenchmark with new versions to see if you can delete your code yet
    * TODO: link to 1.11 patches removing asm code
 * always have pure-Go version (noasm build tag): testing, arm, gccgo
@@ -1100,7 +1100,7 @@ TODO: reasons parallel implementation might be slower (communication overhead, b
 * calling convention
 * using opcodes unsupported by the asm (asm2plan9, but this is getting rarer)
 * notes about why inline assembly is hard
-* all the tooling to make this easier: asmfmt, peachpy, c2goasm, ...
+* all the tooling to make this easier: asmfmt, peachypy/avo, c2goasm, ...
 * https://github.com/golang/go/wiki/AssemblyPolicy
 
 ## Optimizing an entire service
