@@ -883,6 +883,8 @@ More importantly, it also tells you when to stop. Pretty much all optimizations
 add code complexity in exchange for speed. And you can *always* make code
 faster. It's a balancing act.
 
+TODO(dgryski): How much of this is superfluous given Dave's workshop?
+
 ## Tooling
 
 ### Introductory Profiling
