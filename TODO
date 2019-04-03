@@ -68,6 +68,8 @@
   - https://segment.com/blog/allocation-efficiency-in-high-performance-go-services/
   - https://www.cockroachlabs.com/blog/how-to-optimize-garbage-collection-in-go/
   - https://hashrocket.com/blog/posts/go-performance-observations
+	- https://lists.freebsd.org/pipermail/freebsd-current/2010-August/019310.html
+	- https://marcellanz.com/post/file-read-challenge/
 
 cgo:
     cgo has overhead
@@ -126,6 +128,9 @@ videos:
 
     CppCon 2015: Bryce Adelstein-Lelbach “Benchmarking C++ Code"
     https://www.youtube.com/watch?v=zWxSZcpeS8Q
+
+		CppCon 2018: Fedor Pikus “Design for Performance”
+    https://www.youtube.com/watch?v=m25p3EtBua4
 
 asm:
     https://golang.org/doc/asm
