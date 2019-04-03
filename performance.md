@@ -560,6 +560,10 @@ Similarly, using a simpler algorithm means that tradeoffs, analysis, and
 implementation deals are more likely to be more studied and well understood
 than more esoteric or exotic and complex ones.
 
+Simpler algorithms can also be faster.  These two examples are not isolated cases
+  https://go-review.googlesource.com/c/crypto/+/169037
+  https://go-review.googlesource.com/c/go/+/170322/
+
 TODO: notes on algorithm selection
 
 TODO:
