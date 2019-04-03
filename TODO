@@ -70,6 +70,7 @@
   - https://hashrocket.com/blog/posts/go-performance-observations
 	- https://lists.freebsd.org/pipermail/freebsd-current/2010-August/019310.html
 	- https://marcellanz.com/post/file-read-challenge/
+	- https://boyter.org/posts/sloc-cloc-code/
 
 cgo:
     cgo has overhead
