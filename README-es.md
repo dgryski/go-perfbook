@@ -1,0 +1,33 @@
+# go-perfbook
+
+[![Cómprame un café](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/dgryski)
+
+Este documento describe las mejores prácticas para escribir código en Go de alto rendimiento.
+
+Las primeras secciones cubren cómo escribir código optimizado en cualquier lenguaje.
+Las secciones posteriores cubren las técnicas específicas de Go.
+
+### Versiones en varios idiomas
+
+* [English](README.md)
+* [中文](performance-zh.md)
+* [Español](README-es.md)
+
+### Tabla de contenidos
+
+1. [Escribir y optimizar código en Go](performance-es.md#escribir-y-optimizar-codigo-en-go)
+
+### Cómo contribuir
+
+Este es un libro en desarrollo sobre rendimiento y optimización en Go.
+
+Hay diferentes maneras de contribuir:
+
+    1) agregar o resumir los recursos en el fichero [TODO](TODO)
+    2) agregar puntos o nuevos temas a cubrir
+    3) completa las secciones en el libro escribiendo el contenido
+
+Eventualmente se necesitarán programas de ejemplo para optimizar y ejercicios (tal vez).
+
+La coordinación se realizará en el canal #performance del slack de Gophers.
+
