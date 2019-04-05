@@ -2,7 +2,7 @@
 
 [![Cómprame un café](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/dgryski)
 
-Este documento describe las mejores prácticas para escribir código en Go de alto rendimiento.
+Este documento describe las mejores prácticas para escribir código de alto rendimiento en Go.
 
 Las primeras secciones cubren cómo escribir código optimizado en cualquier lenguaje.
 Las secciones posteriores cubren las técnicas específicas de Go.
@@ -27,7 +27,7 @@ Hay diferentes maneras de contribuir:
     2) agregar puntos o nuevos temas a cubrir
     3) completa las secciones en el libro escribiendo el contenido
 
-Eventualmente se necesitarán programas de ejemplo para optimizar y ejercicios (tal vez).
+Eventualmente se necesitarán ejercicios y ejemplos de programas para optimizar (tal vez).
 
 La coordinación se realizará en el canal #performance del slack de Gophers.
 

@@ -1,6 +1,6 @@
 # Escribir y optimizar código en Go
 
-Este documento describe las mejores prácticas para escribir código en Go de alto rendimiento.
+Este documento describe las mejores prácticas para escribir código de alto rendimiento en Go.
 
 Si bien se discutirán maneras de optimizar servicios individuales (almacenamiento en caché, etc.), el diseño de sistemas distribuidos de alto rendimiento está fuera del alcance de este trabajo. Ya hay buenos textos sobre monitorización y diseño de sistemas distribuidos. Este tema abarca un conjunto completamente diferente de investigación y concesiones en el diseño.
 
