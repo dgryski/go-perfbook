@@ -5,7 +5,7 @@
 Este documento describe las mejores prácticas para escribir código de alto rendimiento en Go.
 
 Las primeras secciones cubren cómo escribir código optimizado en cualquier lenguaje.
-Las secciones posteriores cubren las técnicas específicas de Go.
+Las secciones posteriores cubren técnicas específicas de Go.
 
 ### Versiones en varios idiomas
 
@@ -15,7 +15,7 @@ Las secciones posteriores cubren las técnicas específicas de Go.
 
 ### Tabla de contenidos
 
-1. [Escribir y optimizar código en Go](performance-es.md#escribir-y-optimizar-codigo-en-go)
+1. [Escribiendo y optimizando código en Go](performance-es.md#escribir-y-optimizar-codigo-en-go)
 
 ### Cómo contribuir
 
@@ -25,7 +25,7 @@ Hay diferentes maneras de contribuir:
 
     1) agregar o resumir los recursos en el fichero [TODO](TODO)
     2) agregar puntos o nuevos temas a cubrir
-    3) completa las secciones en el libro escribiendo el contenido
+    3) completar las secciones en el libro escribiendo el contenido
 
 Eventualmente se necesitarán ejercicios y ejemplos de programas para optimizar (tal vez).
 
