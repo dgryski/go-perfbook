@@ -21,27 +21,27 @@ Podemos resumir estas tres secciones como:
 2. "Sé deliberado"
 3. "Sé peligroso"
 
-# Cuando y donde optimizar
+# Cuándo y dónde optimizar
 
 Escribo esta sección primero porque es el paso más importante. Deberías estar haciendo esto?
 
-Todas las optimizaciones tienen un costo. Generalmente, este costo es expresado en terminos de complejidad de codigo o carga cognitiva -- un codigo optimizado es rara vez más simple que una versión sin optimizar.
+Toda optimización tiene un coste. Generalmente, este coste se expresa en términos de complejidad de código o carga cognitiva -- un código optimizado es rara vez más simple que una versión sin optimizar.
 
-Pero hay otro aspecto que llamaré la economía de la optimización. Como programador, tu tiempo es valioso. Existe el costo oportuno de algun otro proyecto en el que puedas estar trabajando, que `bug` puedes arreglar, cual mejora puedeas agregar. Optimizar cosas es divertido, pero no siempre es la tarea correcta para escoger. El rendimiento de un programa es una característica, pero también lo es terminarlo y cuan correcto está hecho.
+Pero hay otro aspecto que llamaré la economía de la optimización. Como programador, tu tiempo es valioso. Está el coste de oportunidad de otras cosas que podrías estar haciendo en tu proyecto, `bug` que podrías arreglar, mejoras que podrías agregar. Optimizar cosas es divertido, pero no siempre es la tarea correcta a hacer. El rendimiento de un programa es una característica, pero también lo es terminarlo y cuan correcto está hecho.
 
-Escoge lo más importanted en que debas trabajar. A veces, eso no significa una optimización de CPU, sino una de experiencia de usuario. Algo tán simple como agregar una barra de progreso, o modificar la página para que sea más veloz mediante cálculos en el fondo después de reproducir la página.
+Escoge lo más importante en lo que debas trabajar. A veces esto no es una optimización del uso de CPU, sino una de experiencia de usuario. Algo tan simple como agregar una barra de progreso, o modificar una página para que sea más veloz ejecutando cálculos en segundo plano después de mostrarla.
 
-Algunas veces esto será obvio: un reporte de cada hora que demora 3 horas en completar es menos ùtil que uno que termina en menos de una hora.
+Algunas veces esto será obvio: un informe que se genera cada hora y tarda 3 horas en completar es menos útil que uno que termina en menos de una hora.
 
-Solo porque algo es fácil de optimizar no significa que valga la pena hacerlo. Ignorar lo simple es una estrategia de desarrollo válida.
+Sólo porque algo sea fácil de optimizar no significa que valga la pena hacerlo. Ignorar lo simple es una estrategia de desarrollo válida.
 
 Considera esto como optimizar *tu* tiempo.
 
-Tú decides que optimizar y cuando hacerlo. Puedes mover la manilla entre "Software Veloz" y "Desarrollo Rápido".
+Tú decides qué optimizar y cuándo optimizar. Puedes mover la manilla entre "Software Veloz" y "Desarrollo Rápido".
 
-Las personas escuchan y repiten sin pensarlo que "la optimización premature es el origen del problema", pero ellos ignoran el contexto completo del mensaje.
+Las personas escuchan y repiten sin pensar que "la optimización prematura es la raíz de todo mal", pero ellos ignoran el contexto completo de la frase.
 
-"Programadores desperdician una enorme cantidad de tiempo pensando sobre, o preocupandose sobre, la velocidad de partes no tán críticas de sus programas, y estos intentos de eficiencias en realidad causan un gran impacto negativo cuando mantenimiento o depuración son considerados. Deberiamos olvidarnos sobre eficiencias diminutas, digamos que 97% del tiempo: la optimización premature es el origen del problema. Sin embargo, no deberiamos dejar pasar la oportunidad de optimizar en ese 3% crítico." -- Knuth
+"Los Programadores gastan una enorme cantidad de tiempo pensando, o preocupandose, por la velocidad de las partes no críticas de sus programas, y estos intentos por ser más eficientes en realidad causan un gran impacto negativo cuando el mantenimiento o la depuración son considerados. Debemos olvidarnos de las pequeñas eficiencias, digamos el 97% del tiempo: la optimización prematura es la raíz de todo mal. Sin embargo, no deberíamos dejar pasar la oportunidad de optimizar en ese otro 3% crítico." -- Knuth
 
 https://www.youtube.com/watch?time_continue=429&v=RT46MpK39rQ
 
@@ -50,10 +50,10 @@ https://www.youtube.com/watch?time_continue=429&v=RT46MpK39rQ
 
 "Deberías optimizar tu código? Si, pero sólo si el problema es importante, el programa es genuinamente lento, y si hay alguna expectativa de que se puede mejorar mientras se mantenga la exactitud, robustez, y claridad" -- The Practice of Programming, Kernighan and Pike
 
-Optimización premature también puede afectarte al atarte a ciertas decisiones. El código final puede ser más difícil de modificar si los requerimientos cambian y más difícil de desechar(falacia de costo) si es necesario.
+La optimización prematura también puede afectarte al atarte a ciertas decisiones. El código final puede ser más difícil de modificar si los requerimientos cambian y más difícil de desechar (falacia de coste) si es necesario.
 
-[La estimacioón de desempeño BitFunnel](http://bitfunnel.org/strangeloop) muestra datos que hacen esta compensación mas explícita. Imagina una plataforma de búsqueda hipotética que necesite 30,000 servidores en varios centros de datos. Estos servidores tienen un costo aproximado de $1,000 USD por año. Si duplicaras la velocidad del software, este cambio puede ahorrarle a la compañia $15M USD por año. Incluso un solo desarrollador trabajando un año completo para mejorar el rendimiento por solo 1% valdría la pena.
+[La estimación de desempeño BitFunnel](http://bitfunnel.org/strangeloop) muestra datos que hacen este equilibrio más explícito. Imagina una plataforma de búsqueda hipotética que necesite 30,000 servidores en varios centros de datos. Estos servidores tienen un coste aproximado de $1,000 USD por año. Si duplicaras la velocidad del software, este cambio puede ahorrarle a la compañia $15M USD por año. Incluso un solo desarrollador trabajando un año completo para mejorar el rendimiento por solo 1% valdría la pena.
 
-En la gran mayoría de casos, el tamaño y velocidad del programa no es la preocupación. La optimización más fácil es no hacerla. La segunda alternativa más fácil es simplemente comprar mejor hardware.
+En la gran mayoría de casos, el tamaño y velocidad del programa no es el problema. La optimización más fácil es no hacerla. La segunda alternativa más fácil es simplemente comprar mejor hardware.
 
 Cuando hayas decidido cambiar tu programa, sigue leyendo.
