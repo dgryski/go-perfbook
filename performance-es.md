@@ -61,7 +61,7 @@ Cuando hayas decidido cambiar tu programa, sigue leyendo.
 ### Modificar los datos
 
 Modificar los datos significa agregar o alterar la representación de los datos
-que estas procesando. Desde el punto de vista de la performance, algunos de
+que estas procesando. Desde el punto de vista del rendimiento, algunos de
 estos acabaran cambiando la complejidad O() asociada a diferentes aspectos de
 la estructura de datos.
 
@@ -69,16 +69,16 @@ Ideas para mejorar tu estructura de datos:
 
 * Campos adicionales
 
-  El clásico ejemplo de esto es almacenar el largo de una lista enlazada en un
+  El clásico ejemplo de esto es almacenar la longitud de una lista enlazada en un
   campo en el nodo raíz. Mantenerla actualizada lleva un poco más de trabajo,
-  pero consultar el largo se vuelve un simple field lookup en vez de una
-  operación de complejidad O(n). Tu estructura de datos puede presentar una
+  pero consultar la longitud se convierte en un simple acceso a un campo en vez de una
+  busqueda transversal con complejidad O(n). Tu estructura de datos puede presentar una
   mejora similar: un poco de mantenimiento en algunas operaciones a cambio de
-  mejor la performance en un caso de uso común.
+  mejorar el rendimiento en un caso de uso común.
 
   De manera similar, almacenar punteros a nodos frecuentemente utilizados en vez
   de realizar búsquedas adicionales. Esto cubre cosas como el link "hacia atrás"
-  en una lista doblemente enlazada para eliminación de nodos de complejidad O(1).
+  en una lista doblemente enlazada para hacer que la eliminación de nodos tenga una complejidad O(1).
   Algunas listas de salto guardan un "puntero de búsqueda", donde almacenan un
   puntero a donde recientemente estuviste en tu estructura de datos, bajo la
   suposición de que es un buen punto de partida para la siguiente operación.
@@ -101,11 +101,11 @@ Ideas para mejorar tu estructura de datos:
   la estructura de datos. (Si una búsqueda en tu estructura de datos principal
   es barato, el costo del filtro de Bloom superará cualquier ahorro.)
 
-* Si las búsquedas son costosas, agrega caché
+* Si las búsquedas son costosas, agrega una cache
 
-  A mayor escala, una cache interna o externa (como memcache) pueden ayudar.
-  Puede ser excesivo para una única estructura de datos. Cubriremos más sobre
-  cache más adelante.
+  A mayor escala, una cache interna o externa (como memcache) puede ayudar.
+  Puede ser excesivo para una única estructura de datos. Hablaremos más sobre
+  caches más adelante.
 
 Este tipo de cambios son útiles cuando los datos que necesitan son baratos de
 almacenar y fáciles de mantener actualizados.
@@ -146,13 +146,13 @@ manejen gran cantidad de datos.
 
 Hablaremos más sobre la disposición de datos más adelante.
 
-Las computadoras modernas y la jerarquía de memoria hacen del compromiso
-memoria/espacio menos claro. Es muy fácil para las tablas de búsqueda estar
-"lejos" en memoria (y por ser costosas de acceder) haciendo que sea más rápido
+Las computadoras modernas y la jerarquía de memoria hacen que el compromiso
+entre memoria/espacio sea menos claro. Es muy fácil para las tablas de búsqueda estar
+"lejos" en memoria (y por lo tanto ser costosas de acceder) haciendo que sea más rápido
 simplemente recalcular un valor cada vez que se necesita.
 
 Esto también significa que el benchmarking frecuentemente mostrará mejoras que no
-son realizadas en producción debido a la contención de caché (e.g., tablas de
+aparecen en producción debido a la contención de cache (e.g., tablas de
 búsqueda que estan en la cache del procesador durante el benchmarking pero
 que siempre son purgadas cuando son utilizadas por un sistema real.)
 El [Jump Hash paper](https://arxiv.org/pdf/1406.2294.pdf) de Google de hecho
@@ -166,7 +166,7 @@ acceso a disco y de red es muy lento, y por lo tanto ser capaz de cargar un
 bloque comprimido va a resultar en un proceso mucho más rápido incluso teniendo
 en cuenta el tiempo que lleva descomprimirlo. Como siempre, realiza benchmarks.
 Un formato binario generalmente va a ser mas liviano y rápido de parsear que uno
-de texto, pero a costo de no ser legible por un humano.
+de texto, pero el coste es que no será legible para un humano.
 
 Para la transferencia de datos, cambia a un protocol menos verboso, o
 mejora el API para aceptar consultas parciales. Por ejemplo, usa una consulta
