@@ -168,6 +168,6 @@ en cuenta el tiempo que lleva descomprimirlo. Como siempre, realiza benchmarks.
 Un formato binario generalmente va a ser mas liviano y rápido de parsear que uno
 de texto, pero a costo de no ser legible por un humano.
 
-Para la transferencia de datos, cambia a un protocol menos verborrajico, o
+Para la transferencia de datos, cambia a un protocol menos verboso, o
 mejora el API para aceptar consultas parciales. Por ejemplo, usa una consulta
 incremental en lugar de forzar a traer siempre el set de datos completo.
