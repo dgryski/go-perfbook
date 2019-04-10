@@ -70,7 +70,7 @@ Ideas para mejorar tu estructura de datos:
 * Campos adicionales
 
   El clásico ejemplo de esto es almacenar la longitud de una lista enlazada en un
-  campo en el nodo raíz. Mantenerla actualizada lleva un poco más de trabajo,
+  campo en el nodo raíz. Mantenerla actualizada toma un poco más de trabajo,
   pero consultar la longitud se convierte en un simple acceso a un campo en vez de una
   búsqueda transversal con complejidad O(n). Tu estructura de datos puede presentar una
   mejora similar: un poco de mantenimiento en algunas operaciones a cambio de
@@ -91,7 +91,7 @@ Ideas para mejorar tu estructura de datos:
   structs puede tener un ID primario (integer) que usas para buscar en un
   slice, pero a veces necesitas buscar por un ID secundario (string). En lugar
   de iterar sobre el slice, puedes mejorar tu estructura de datos con un mapa de
-  cadena a ID o directamente al struct en cuestión.
+  string a ID o directamente al struct en cuestión.
 
 * Información adicional sobre los elementos
 
