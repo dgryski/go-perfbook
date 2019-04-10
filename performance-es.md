@@ -72,7 +72,7 @@ Ideas para mejorar tu estructura de datos:
   El clásico ejemplo de esto es almacenar la longitud de una lista enlazada en un
   campo en el nodo raíz. Mantenerla actualizada lleva un poco más de trabajo,
   pero consultar la longitud se convierte en un simple acceso a un campo en vez de una
-  busqueda transversal con complejidad O(n). Tu estructura de datos puede presentar una
+  búsqueda transversal con complejidad O(n). Tu estructura de datos puede presentar una
   mejora similar: un poco de mantenimiento en algunas operaciones a cambio de
   mejorar el rendimiento en un caso de uso común.
 
