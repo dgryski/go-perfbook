@@ -100,93 +100,71 @@ Las clases básicas de complejidad son:
 
 Link: <http://bigocheatsheet.com>
 
-Let's say you need to search through of an unsorted set of data. "I should
-use a binary search" you think, knowing that a binary search is O(log n) which
-is faster than the O(n) linear scan. However, a binary search requires that
-the data is sorted, which means you'll need to sort it first, which will take
-O(n log n) time. If you're doing lots of searches, then the upfront cost of
-sorting will pay off. On the other hand, if you're mostly doing lookups,
-maybe having an array was the wrong choice and you'd be better off paying the
-O(1) lookup cost for a map instead.
+Supongamos que tienes que buscar en un conjunto desordenado de datos. "Debería
+usar busqueda binaria" piensas, sabiendo que una busqueda binaria es O(log n)
+que es más rapido que el O(n) de una busqueda linear. Sin embargo, una busqueda
+binaria requiere que los datos estén ordenados, lo que significa que tendrás
+que ordenarlos antes, que tarda O(n log n). Si haces muchas busquedas, el coste
+inicial de la ordenación merecerá la pena. Pero, si sobre todo estas haciendo
+**lookups**, quizás usar un array fue una decisión equivocada y sería mejor usar un mapa
+con coste O(1).
 
-If your data structure is static, then you can generally do much better than
-the dynamic case. It becomes easier to build an optimal data structure
-customized for exactly your lookup patterns. Solutions like minimal perfect
-hashing can make sense here, or precomputed bloom filters. This also make
-sense if your data structure is "static" for long enough and you can amortize
-the up-front cost of construction across many lookups.
+Si tu estructura de datos es estática, entonces generalmente puede hacerlo mucho
+mejor que en el caso de que fuera dinámica. Resultará más facil construir una estructura
+de datos óptima para tus patrones de busqueda. Soluciones como minimal perfect
+hashing pueden tener más sentido aquí, o filtros de Bloom precalculados. Esto también
+tiene sentido si tu estructura de datos es "estática" durante un periodo largo de
+manera que puedas amortizar el coste inicial de su construcción en muchas busquedas.
 
-Choose the simplest reasonable data structure and move on. This is CS 101 for
-writing "not-slow software". This should be your default development
-mode. If you know you need random access, don't choose a linked-list.
-If you know you need in-order traversal, don't use a map.
-Requirements change and you can't always guess the future. Make a reasonable
-guess at the workload.
+Escoje la estructura de datos más simple que sea razonable y continua. Esto es de primero de carrera para escribir "software no lento". Este debe ser tu modo de desarrollar por defecto. Si sabes que necesitas acceso aleatorio, no escojas una lista enlazada. Si sabes
+que necesitas recorrer los datos en orden, no uses un mapa. Los requerimientos cambian
+y no siempre puedes averiguar el futuro. Haz una suposición razonable de la carga de trabajo.
 
 <http://daslab.seas.harvard.edu/rum-conjecture/>
 
-Data structures for similar problems will differ in when they do a piece of
-work. A binary tree sorts a little at a time as inserts happen. A unsorted
-array is faster to insert but it's unsorted: at the end to "finalize" you
-need to do the sorting all at once.
+Estructuras de datos para problemas similares diferirán cuando hagan una parte
+de su trabajo. Un árbol binario se ordena a medida que se insertan elementos. Un array
+no-ordenado es más rapido al insertar pero no está ordenado: al acabar, para "finalizar", tienes que hacer la ordenación.
 
-When writing a package to be used by others, avoid the temptation to
-optimize up front for every single use case. This will result in unreadable
-code. Data structures by design are effectively single-purpose. You can
-neither read minds nor predict the future. If a user says "Your package is
-too slow for this use case", a reasonable answer might be "Then use this
-other package over here". A package should "do one thing well".
+Cuando escribas un paquete para ser usado por otros, evita la tentación de
+optimizar por adelantado para cada caso de uso individual. Esto resultará en código
+ilegible. Las estructura de datos tienen por diseño un solo proposito. No puedes
+ni leer mentes ni predecir el futuro. Si un usuario dice "Tu paquete es
+demasiado lento para este caso de uso", una respuesta razonable puede ser "Entonces
+usa este otro paquete". Un paquete debe "hacer una cosa bien".
 
-Sometimes hybrid data structures will provide the performance improvement you
-need. For example, by bucketing your data you can limit your search to a
-single bucket. This still pays the theoretical cost of O(n), but the constant
-will be smaller. We'll revisit these kinds of tweaks when we get to program
-tuning.
+A veces, estructuras de datos hibridas proveerán las mejoras de rendimiento que
+necesitas. Por ejemplo, agrupando tus datos puedes limitar tu busqueda a una sola
+agrupación. Esto todavía tiene un coste teórico de O(n), pero la constante será
+mas pequeña. Volveremos a visitar estos tipos de ajustes cuando lleguemos a
+la parte de afinar programas.
 
-Two things that people forget when discussion big-O notation:
+Dos cosas que la gente olvida cuando se discuten notaciones big-O:
 
-One, there's a constant factor involved. Two algorithms which have the same
-algorithmic complexity can have different constant factors. Imagine looping
-over a list 100 times vs just looping over it once. Even though both are O(n),
-one has a constant factor that's 100 times higher.
+Primero, hay un factor constante. Dos algoritmos que tienen la misma
+complejidad algorítmica pueden tener diferentes factores constantes. Imagina que
+iteras una lista 100 veces frente a iterar una sola vez. Aunque ambas son O(n),
+una de ellas tiene un factor constante que es 100 veces mayor.
 
-These constant factors are why even though merge sort, quicksort, and
-heapsort all O(n log n), everybody uses quicksort because it's the fastest.
-It has the smallest constant factor.
+Estos factores constantes explican que aunque merger sort, quicksort y
+heapsort son todos O(n log n), todo el mundo use quicksort porque es el más rapido.
+Tiene el factor constante mas pequeño.
 
-The second thing is that big-O only says "as n grows to infinity". It talks
-about the growth trend, "As the numbers get big, this is the growth factor
-that will dominate the run time." It says nothing about the actual
-performance, or how it behaves with small n.
+La segunda cosa es que big-O solo dice "a medida que n crece hacia infinito". Habla
+de la tendencia de crecimiento, "A medida que los números se hacen grandes, este es el factor de crecimiento que dominará el tiempo de ejecución". No dice nada sobre el rendimiento real o sobre como se comporta cuando n es pequeño.
 
-There's frequently a cut-off point below which a dumber algorithm is faster.
-A nice example from the Go standard library's `sort` package. Most of the
-time it's using quicksort, but it has a shell-sort pass then insertion sort
-when the partition size drops below 12 elements.
+Con frecuencia hay un punto de corte por debajo del cual un algoritmo más tonto es más rápido. Un buen ejemplo del paquete `sort` de la librería estandar de Go. La mayoría del tiempo usa quicksort, pero hace una pasada con shell sort y luego con insertion sort cuando el tamaño de la partición está por debajo de 12 elementos.
 
-For some algorithms, the constant factor might be so large that this cut-off
-point may be larger than all reasonable inputs. That is, the O(n^2) algorithm
-is faster than the O(n) algorithm for all inputs that you're ever likely to
-deal with.
+Para algunos algoritmos, el factor constante puede ser tan grande que este punto de corte puede ser mayor que cualquier input razonable. Esto es, el algoritmo O(n^2) es más rapido que el algoritmo O(n) para cualquier input con el que te vayas a encontrar.
 
-This also means you need to know representative input sizes, both for
-choosing the most appropriate algorithm and for writing good benchmarks.
-10 items?  1000 items?  1000000 items?
+Esto también significa que necesitas tener muestras representativas del tamaño de tu input tanto para escoger el algoritmo más apropiado como para escribir buenos benchmarks. ¿10 elementos? ¿1000 elementos? ¿1000000 elementos?
 
-This also goes the other way: For example, choosing to use a more complicated
-data structure to give you O(n) scaling instead of O(n^2), even though the
-benchmarks for small inputs got slower. This also applies to most lock-free
-data structures. They're generally slower in the single-threaded case but
-more scalable when many threads are using it.
+Esto también funcion en sentido contrario: por ejemplo, escoger una estructura de datos mas compleja para obtener un crecimiento O(n) en lugar de O(n^2), aunque los benchmarks para inputs mas pequeños sean más lentos. Esto también aplica para la mayoría de estructuras de datos que son lock-free. Son generalmente más lentas cuando se usan en un sólo hilo pero más escalables cuando hay muchos hilos usandolas.
 
-The memory hierarchy in modern computers confuses the issue here a little
-bit, in that caches prefer the predictable access of scanning a slice to the
-effectively random access of chasing a pointer. Still, it's best to begin
-with a good algorithm. We will talk about this in the hardware-specific
-section.
+La jerarquía de memoria en los ordenadores modernos confunde un poco el tema, en el sentido de que las caches prefieren el predecible acceso de recorrer un slice que el acceso aleatorio de seguir un puntero. Aún así, es mejor empezar con un buen algoritmo. Hablaremos de esto en la sección sobre hardware.
 
-> The fight may not always go to the strongest, nor the race to the fastest,
-> but that's the way to bet.
+> La pelea no siempre será para el más fuerte, la carrera para el más rapido, pero esa es
+> es la manera de apostar.
 > -- <cite>Rudyard Kipling</cite>
 
 Sometimes the best algorithm for a particular problem is not a single
