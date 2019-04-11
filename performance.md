@@ -5,8 +5,8 @@ This document outlines best practices for writing high-performance Go code.
 While some discussions will be made for making individual services faster
 (caching, etc), designing performant distributed systems is beyond the scope
 of this work. There are already good texts on monitoring and distributed
-system design. It encompasses an entirely different set of research and design
-trade-offs.
+system design. Optimizing distributed systems encompasses an entirely different
+set of research and design trade-offs.
 
 All the content will be licensed under CC-BY-SA.
 
