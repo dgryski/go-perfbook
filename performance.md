@@ -360,11 +360,26 @@ applicable for programs on modern hardware dealing with huge amounts of data.
 
 * Custom compression format for your data
 
-  []byte (snappy, gzip, lz4), floating point (go-tsz), integers (delta, xor + huffman)
-  Lots of resources on compression.  Do you need to inspect the data or can it stay compressed?
-  Do you need random access or only streaming?  Compress blocks with extra index.
-  If not just in-process but written to disk, what about migration or adding/removing fields.
-  You'll now be dealing with raw []byte instead of nice structured Go types.
+  Compression algorithms depend very heavily on what is being compressed.  It's
+  best to choose one that suites your data.  If you have []byte, the something
+  like snappy, gzip, lz4, behaves well. For floating point data there is go-tsz
+  for time series and fpc for scientific data. Lots of research has been done
+  around compressing integers, generally for information retrieval in search
+  engines.  Examples include delta encoding and varints to more complex schemes
+  involving Huffman encoded xor-differences.  You can also come up with custom
+  compression formats optimized for exactly your data.
+
+  Do you need to inspect the data or can it stay compressed? Do you need random
+  access or only streaming?  If you need access to individual entries but don't
+  want to decompress the entire thing, you can compress the data in smaller
+  blocks and keep an index indicating what range of entries are in each block.
+  Access to a single entry just needs to check the index and unpack the smaller
+  data block.
+
+  If your data is not just in-process but will be written to disk, what about
+  data migration or adding/removing fields. You'll now be dealing with raw
+  []byte instead of nice structured Go types, so you'll need unsafe and to
+  consider serialization options.
 
 We will talk more about data layouts later.
 
