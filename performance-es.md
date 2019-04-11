@@ -70,7 +70,7 @@ Ideas para mejorar tu estructura de datos:
 * Campos adicionales
 
   El clásico ejemplo de esto es almacenar la longitud de una lista enlazada en un
-  campo en el nodo raíz. Mantenerla actualizada toma un poco más de trabajo,
+  campo en el nodo raíz. Mantenerla actualizada conlleva un poco más de trabajo,
   pero consultar la longitud se convierte en un simple acceso a un campo en vez de una
   búsqueda transversal con complejidad O(n). Tu estructura de datos puede presentar una
   mejora similar: un poco de mantenimiento en algunas operaciones a cambio de
@@ -139,7 +139,7 @@ manejen gran cantidad de datos.
 
   []byte (snappy, gzip, lz4), floating point (go-tsz), integers (delta, xor + huffman)
   Varios recursos sobre compresión. ¿Necesitas inspeccionar los datos o pueden
-  mantenerse compromidos? ¿Necesitas acceso aleatorio o únicamente streaming?
+  mantenerse comprimidos? ¿Necesitas acceso aleatorio o únicamente streaming?
   Compress blocks with extra index. Si no es solo en memoria, sino escritura a
   disco, ¿qué sucede con la migración o agregár o eliminár campos?. Estarás ahora
   lidiando simplemente con []byte en vez de los convenientes tipos estructurados de Go.
