@@ -79,7 +79,7 @@ Ideas para mejorar tu estructura de datos:
   De manera similar, almacenar punteros a nodos frecuentemente utilizados en vez
   de realizar búsquedas adicionales. Esto cubre cosas como el link "hacia atrás"
   en una lista doblemente enlazada para hacer que la eliminación de nodos tenga una complejidad O(1).
-  Algunas listas de salto guardan un "puntero de búsqueda", donde almacenan un
+  Algunas listas de salto guardan un "puntero de búsqueda", donde almacenas un
   puntero a donde recientemente estuviste en tu estructura de datos, bajo la
   suposición de que es un buen punto de partida para la siguiente operación.
 
