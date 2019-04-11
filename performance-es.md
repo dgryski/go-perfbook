@@ -99,7 +99,7 @@ Ideas para mejorar tu estructura de datos:
   insertado puede permitirte retornar rápidamente "sin coincidencias" a las
   búsquedas. Estos necesitan ser pequeños y rápidos para no abrumar el resto de
   la estructura de datos. (Si una búsqueda en tu estructura de datos principal
-  es barato, el costo del filtro de Bloom superará cualquier ahorro.)
+  es barata, el costo del filtro de Bloom superará cualquier ahorro.)
 
 * Si las búsquedas son costosas, agrega una cache
 
