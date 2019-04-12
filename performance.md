@@ -1119,7 +1119,7 @@ TODO: reasons parallel implementation might be slower (communication overhead, b
   zero (go-speck/rc6/farm32), or even slower (no inlining)
 * rebenchmark with new versions to see if you can delete your code yet
    * TODO: link to 1.11 patches removing asm code
-* always have pure-Go version (noasm build tag): testing, arm, gccgo
+* always have pure-Go version (purego build tag): testing, arm, gccgo
 * brief intro to syntax
 * how to type the middle dot
 * calling convention
