@@ -167,35 +167,15 @@ La jerarquía de memoria en los ordenadores modernos confunde un poco el tema, e
 > es la manera de apostar.
 > -- <cite>Rudyard Kipling</cite>
 
-Sometimes the best algorithm for a particular problem is not a single
-algorithm, but a collection of algorithms specialized for slightly different
-input classes. This "polyalgorithm" quickly detects what kind of input it
-needs to deal with and then dispatches to the appropriate code path. This is
-what the sorting package mentioned above does: determine the problem size and
-choose a different algorithm. In addition to combining quicksort, shell sort,
-and insertion sort, it also tracks recursion depth of quicksort and calls
-heapsort if necessary. The `string` and `bytes` packages do something similar,
-detecting and specializing for different cases. As with data compression, the
-more you know about what your input looks like, the better your custom
-solution can be. Even if an optimization is not always applicable,
-complicating your code by determining that it's safe to use and executing
-different logic can be worth it.
+A veces el mejor algoritmo para un problema específico no es un sólo algoritmo, sino un conjunto de algoritmos especializados en tipos de input ligeramente diferentes. Este "polialgoritmo" inmediatamente detecta el tipo de input que tiene que tratar y dirige al code path apropiado. De esta manera funciona el paquete `sort` mencionado anteriormente: determina el tamaño del problema y elige un algoritmo distinto. Además de combinar quicksort, shell sort e insertion sort, también controla el nivel de recursividad de quicksort y usa heapsort si es necesario. Los paquetes `string` y `bytes` hacen algo similar, detectando y especializando para diferentes casos. Como con la compresión de datos, cuanto más sepas sobre el aspecto de tu input, mejor será tu solución a medida. Incluso si una optimización no siempre se puede aplicar, complicar tu código determinando que es seguro de usar y ejecutando una lógica diferente puede valer la pena.
 
-This also applies to subproblems your algorithm needs to solve. For example,
-being able to use radix sort can have a significant impact on performance, or
-using quickselect if you only need a partial sort.
+Esto también aplica en subproblemas que tu algoritmo tiene que solucionar. Por ejemplo, poder usar radix sort puede tener un impacto significativo en el rendimiento, o usando quicksort si sólo necesitas una ordenación parcial.
 
-Sometimes rather than specialization for your particular task, the best
-approach is to abstract it into a more general problem space that has been
-well-studied by researchers.  Then you can apply the more general solution to
-your specific problem.  Mapping your problem into a domain that already has
-well-researched implementations can be a significant win.
+A veces, en vez de una especialización para tu tarea en particular, la mejor solución es abstraer la tarea a un espacio mas general de problemas que ya haya sido estudiado. Así podrás aplicar soluciones mas genéricas a tu problema especifico. Mapear tus problemas a un dominio con implementaciones bien estudiadas puede ser una ganancia significativa.
 
-Similarly, using a simpler algorithm means that tradeoffs, analysis, and
-implementation deals are more likely to be more studied and well understood
-than more esoteric or exotic and complex ones.
+De manera similar, usar un algoritmo más simple significa que es más probable que las concesiones, analisis y detalles de la implementación hayan sido más estudiados y sean mejor entendidos que aquellos mas esótericos, exóticos y complejos.
 
-Simpler algorithms can also be faster.  These two examples are not isolated cases
+Los algoritmos más simples pueden ser más rápidos. Estos dos ejemplos no son casos aislados
   https://go-review.googlesource.com/c/crypto/+/169037
   https://go-review.googlesource.com/c/go/+/170322/
 
