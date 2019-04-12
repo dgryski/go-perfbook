@@ -81,7 +81,6 @@ cgo:
     https://www.youtube.com/watch?v=lhMhApWQp2E : cgo gophercon
     cgo performance tracking bug: https://github.com/golang/go/issues/9704
 
-
 videos:
     https://gophervids.appspot.com/#tags=optimization
         -- figure out which of these are specifically worth listing
@@ -190,7 +189,6 @@ trace:
 papers:
     https://www.akkadia.org/drepper/cpumemory.pdf
     https://software.intel.com/sites/default/files/article/392271/aos-to-soa-optimizations-using-iterative-closest-point-mini-app.pdf
-
 
 optimization guides:
     http://developer.amd.com/resources/developer-guides-manuals/
