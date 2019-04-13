@@ -135,14 +135,20 @@ manejen gran cantidad de datos.
   requerimientos de memoria. Por ejemplo, cambiar una estructura tipo arbol con
   uso extensivo de punteros a un slice y búsqueda lineal.
 
-* Compresión a medido para tus datos
+* Compresión a medida para tus datos
 
-  []byte (snappy, gzip, lz4), floating point (go-tsz), integers (delta, xor + huffman)
-  Varios recursos sobre compresión. ¿Necesitas inspeccionar los datos o pueden
-  mantenerse comprimidos? ¿Necesitas acceso aleatorio o únicamente streaming?
-  Compress blocks with extra index. Si no es solo en memoria, sino escritura a
-  disco, ¿qué sucede con la migración o agregár o eliminár campos?. Estarás ahora
-  lidiando simplemente con []byte en vez de los convenientes tipos estructurados de Go.
+  Los algoritmos de compresión dependen fuertemente de qué este siendo comprimido. Lo mejor es
+  elegir uno que se ajuste a tus datos. Si tienes un []byte, entonces algo como snappy, gzip, lz4,
+  funciona bien. Para datos de punto flotante existe go-tsz para series temporales y fpc para datos
+  scientificos. Se ha realizado mucha investigación sobre la compresion de integers, generalmente
+  para la obtención de datos en motores de búsqueda. Algunos ejemplos son delta encoding y variantes
+  o esquemas más complejos que involucran diferencias xor codificadas con el algoritmo de Huffman.
+  También puedes usar tu propio algoritmo optimizado exactamente para tus datos.
+
+  Si no es solo en memoria, sino escritura a disco, ¿qué sucede con la migración o agregár o
+  eliminár campos?. Estarás ahora lidiando simplemente con []byte en vez de los convenientes tipos
+  estructurados de Go, por lo que necesitaras hacer uso del paquete unsafe y considerar opciones de
+  serialización.
 
 Hablaremos más sobre la disposición de datos más adelante.
 
