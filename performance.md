@@ -5,8 +5,8 @@ This document outlines best practices for writing high-performance Go code.
 While some discussions will be made for making individual services faster
 (caching, etc), designing performant distributed systems is beyond the scope
 of this work. There are already good texts on monitoring and distributed
-system design. It encompasses an entirely different set of research and design
-trade-offs.
+system design. Optimizing distributed systems encompasses an entirely different
+set of research and design trade-offs.
 
 All the content will be licensed under CC-BY-SA.
 
@@ -360,11 +360,26 @@ applicable for programs on modern hardware dealing with huge amounts of data.
 
 * Custom compression format for your data
 
-  []byte (snappy, gzip, lz4), floating point (go-tsz), integers (delta, xor + huffman)
-  Lots of resources on compression.  Do you need to inspect the data or can it stay compressed?
-  Do you need random access or only streaming?  Compress blocks with extra index.
-  If not just in-process but written to disk, what about migration or adding/removing fields.
-  You'll now be dealing with raw []byte instead of nice structured Go types.
+  Compression algorithms depend very heavily on what is being compressed.  It's
+  best to choose one that suites your data.  If you have []byte, the something
+  like snappy, gzip, lz4, behaves well. For floating point data there is go-tsz
+  for time series and fpc for scientific data. Lots of research has been done
+  around compressing integers, generally for information retrieval in search
+  engines.  Examples include delta encoding and varints to more complex schemes
+  involving Huffman encoded xor-differences.  You can also come up with custom
+  compression formats optimized for exactly your data.
+
+  Do you need to inspect the data or can it stay compressed? Do you need random
+  access or only streaming?  If you need access to individual entries but don't
+  want to decompress the entire thing, you can compress the data in smaller
+  blocks and keep an index indicating what range of entries are in each block.
+  Access to a single entry just needs to check the index and unpack the smaller
+  data block.
+
+  If your data is not just in-process but will be written to disk, what about
+  data migration or adding/removing fields. You'll now be dealing with raw
+  []byte instead of nice structured Go types, so you'll need unsafe and to
+  consider serialization options.
 
 We will talk more about data layouts later.
 
@@ -887,17 +902,19 @@ More importantly, it also tells you when to stop. Pretty much all optimizations
 add code complexity in exchange for speed. And you can *always* make code
 faster. It's a balancing act.
 
-TODO(dgryski): How much of this is superfluous given Dave's workshop?
-
 ## Tooling
 
 ### Introductory Profiling
 
-Techniques applicable to source code in general
+This is a quick cheat-sheet for using the pprof tooling.  There are plenty of other guides available on this.
+Check out https://github.com/davecheney/high-performance-go-workshop.
+
+TODO(dgryski): videos?
 
 1. Introduction to pprof
    * go tool pprof (and <https://github.com/google/pprof>)
 1. Writing and running (micro)benchmarks
+   * small, like unit tests
    * profile, extract hot code to benchmark, optimize benchmark, profile.
    * -cpuprofile / -memprofile / -benchmem
    * 0.5 ns/op means it was optimized away -> how to avoid
@@ -907,7 +924,9 @@ Techniques applicable to source code in general
   * malloc, gc workers
   * runtime.\_ExternalCode
 1. Macro-benchmarks (Profiling in production)
-   * net/http/pprof
+   * larger, like end-to-end tests
+   * net/http/pprof, debug muxer
+   * because it's sampling, hitting 10 servers at 100hz is the same as hitting 1 server at 1000hz
 1. Using -base to look at differences
 1. Memory options: -inuse_space, -inuse_objects, -alloc_space, -alloc_objects
 1. Profiling in production; localhost+ssh tunnels, auth headers, using curl.
@@ -1100,7 +1119,7 @@ TODO: reasons parallel implementation might be slower (communication overhead, b
   zero (go-speck/rc6/farm32), or even slower (no inlining)
 * rebenchmark with new versions to see if you can delete your code yet
    * TODO: link to 1.11 patches removing asm code
-* always have pure-Go version (noasm build tag): testing, arm, gccgo
+* always have pure-Go version (purego build tag): testing, arm, gccgo
 * brief intro to syntax
 * how to type the middle dot
 * calling convention
