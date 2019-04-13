@@ -140,9 +140,9 @@ A veces el mejor algoritmo para un problema específico no es un único algoritm
 
 Esto también aplica a los subproblemas que tu algoritmo tiene que solucionar. Por ejemplo, poder usar radix sort puede tener un impacto significativo en el rendimiento, o usar quicksort si sólo necesitas una ordenación parcial.
 
-A veces, en vez de una especialización para tu tarea, el mejor enfoque es abstraer la tarea a un categoría de problemas más general que ya haya sido estudiada. Así podrás aplicar la solución más general en tu problema especifico. Mapear tu problema a un dominio con implementaciones bien estudiadas puede resultar en una ganancia significativa.
+A veces, en vez de una especialización para tu tarea, el mejor enfoque es abstraer la tarea a un categoría de problemas más general que ya haya sido estudiada. Así podrás aplicar la solución más general a tu caso concreto. Mapear tu problema a un dominio con implementaciones bien estudiadas puede resultar en una ganancia significativa.
 
-De manera similar, usar un algoritmo más simple significa que es más probable que las concesiones, analisis y detalles de la implementación hayan sido más estudiados y sean mejor entendidos que otros algoritmos mas esótericos, exóticos y complejos.
+De manera similar, usar un algoritmo más simple significa que es más probable que las concesiones, analisis y detalles de la implementación hayan sido más estudiados y sean mejor entendidos que en otros algoritmos más esótericos, exóticos y complejos.
 
 Los algoritmos más simples pueden ser más rápidos. Estos dos ejemplos no son casos aislados:
   https://go-review.googlesource.com/c/crypto/+/169037
