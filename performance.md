@@ -908,44 +908,6 @@ More importantly, it also tells you when to stop. Pretty much all optimizations
 add code complexity in exchange for speed. And you can *always* make code
 faster. It's a balancing act.
 
-## Tooling
-
-### Introductory Profiling
-
-This is a quick cheat-sheet for using the pprof tooling.  There are plenty of other guides available on this.
-Check out https://github.com/davecheney/high-performance-go-workshop.
-
-TODO(dgryski): videos?
-
-1. Introduction to pprof
-   * go tool pprof (and <https://github.com/google/pprof>)
-1. Writing and running (micro)benchmarks
-   * small, like unit tests
-   * profile, extract hot code to benchmark, optimize benchmark, profile.
-   * -cpuprofile / -memprofile / -benchmem
-   * 0.5 ns/op means it was optimized away -> how to avoid
-   * tips for writing good microbenchmarks (remove unnecessary work, but add baselines)
-1. How to read it pprof output
-1. What are the different pieces of the runtime that show up
-  * malloc, gc workers
-  * runtime.\_ExternalCode
-1. Macro-benchmarks (Profiling in production)
-   * larger, like end-to-end tests
-   * net/http/pprof, debug muxer
-   * because it's sampling, hitting 10 servers at 100hz is the same as hitting 1 server at 1000hz
-1. Using -base to look at differences
-1. Memory options: -inuse_space, -inuse_objects, -alloc_space, -alloc_objects
-1. Profiling in production; localhost+ssh tunnels, auth headers, using curl.
-1. How to read flame graphs
-
-### Tracer
-
-### Look at some more interesting/advanced tooling
-
-* other tooling in /x/perf
-* perf (perf2pprof)
-* intel vtune / amd codexl / apple instruments
-* https://godoc.org/github.com/aclements/go-perf
 
 ## Garbage Collection
 
@@ -1151,6 +1113,45 @@ tip.golang.org/doc/diagnostics.html
 * query patterns for querying a single server instead of in bulk
 * your performance issues may not be your code, but you'll have to work around them anyway
 * https://docs.microsoft.com/en-us/azure/architecture/antipatterns/
+
+## Tooling
+
+### Introductory Profiling
+
+This is a quick cheat-sheet for using the pprof tooling.  There are plenty of other guides available on this.
+Check out https://github.com/davecheney/high-performance-go-workshop.
+
+TODO(dgryski): videos?
+
+1. Introduction to pprof
+   * go tool pprof (and <https://github.com/google/pprof>)
+1. Writing and running (micro)benchmarks
+   * small, like unit tests
+   * profile, extract hot code to benchmark, optimize benchmark, profile.
+   * -cpuprofile / -memprofile / -benchmem
+   * 0.5 ns/op means it was optimized away -> how to avoid
+   * tips for writing good microbenchmarks (remove unnecessary work, but add baselines)
+1. How to read it pprof output
+1. What are the different pieces of the runtime that show up
+  * malloc, gc workers
+  * runtime.\_ExternalCode
+1. Macro-benchmarks (Profiling in production)
+   * larger, like end-to-end tests
+   * net/http/pprof, debug muxer
+   * because it's sampling, hitting 10 servers at 100hz is the same as hitting 1 server at 1000hz
+1. Using -base to look at differences
+1. Memory options: -inuse_space, -inuse_objects, -alloc_space, -alloc_objects
+1. Profiling in production; localhost+ssh tunnels, auth headers, using curl.
+1. How to read flame graphs
+
+### Tracer
+
+### Look at some more interesting/advanced tooling
+
+* other tooling in /x/perf
+* perf (perf2pprof)
+* intel vtune / amd codexl / apple instruments
+* https://godoc.org/github.com/aclements/go-perf
 
 ## Appendix: Implementing Research Papers
 
