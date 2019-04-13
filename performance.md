@@ -769,16 +769,19 @@ Tunings can take many forms.
 * "Sufficient" means including edge cases, as those are the ones likely to get
    affected by tuning as you aim to improve performance in the general case.
 * Exploit a mathematical identity:
-  * <https://github.com/golang/go/commit/ed6c6c9c11496ed8e458f6e0731103126ce60223>
-  * <https://gist.github.com/dgryski/67e6a7ff94c3a1add30eb26ec0ad8b0f>
-  * multiplication with addition
-  * use WolframAlpha, Maxima, sympy and similar to specialize, optimize or create lookup-tables
-  * (Also, https://users.ece.cmu.edu/~franzf/papers/gttse07.pdf)
+  * Note that implementing and optimizing numerical calculations is almost its own field
+    * <https://github.com/golang/go/commit/ed6c6c9c11496ed8e458f6e0731103126ce60223>
+    * <https://gist.github.com/dgryski/67e6a7ff94c3a1add30eb26ec0ad8b0f>
+    * multiplication with addition
+    * use WolframAlpha, Maxima, sympy and similar to specialize, optimize or create lookup-tables
+    * (Also, https://users.ece.cmu.edu/~franzf/papers/gttse07.pdf)
+    * moving from floating point math to integer math
+    * or mandelbrot removing sqrt, or lttb removing abs,  `a < b/c` => `a * c < b`
+    * consider different number representations: fixed-point, floating-point, (smaller) integers,
+    * fancier: integers with error accumulators (e.g. Bresenham's line and circle), multi-base numbers / redundant number systems
   * "pay only for what you use, not what you could have used"
     * zero only part of an array, rather than the whole thing
   * best done in tiny steps, a few statements at a time
-  * moving from floating point math to integer math
-  * or mandelbrot removing sqrt, or lttb removing abs,  `a < b/c` => `a * c < b`
   * cheap checks before more expensive checks:
     * e.g., strcmp before regexp, (q.v., bloom filter before query)
     "do expensive things fewer times"
@@ -790,8 +793,6 @@ Tunings can take many forms.
   * remove bounds checks and nil checks from loops: https://go-review.googlesource.com/c/go/+/151158
   * other tricks for the prove pass
   * this is where pieces of Hacker's Delight fall
-  * consider different number representations: fixed-point, floating-point, (smaller) integers,
-    * fancier: integers with error accumulators (e.g. Bresenham's line and circle), multi-base numbers / redundant number systems
 
 Many folklore performance tips for tuning rely on poorly optimizing compilers
 and encourage the programmer to do these transformations by hand. Compilers
