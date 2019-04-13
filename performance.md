@@ -659,7 +659,7 @@ compiler optimization became slower once the compiler was improved.
 
 My RC6 cipher implementation had a 10% speed up for the inner loop just by
 switching to `encoding/binary` and `math/bits` instead of my hand-rolled
-version.
+versions.
 
 Similarly, the `compress/bzip2` package was sped by switching to [simpler
 code the compiler was better able to
@@ -724,26 +724,32 @@ service instances if the external cache is shared.
 A cache saves information you've just spent time computing in the hopes that
 you'll be able to reuse it again soon and save the computation time. A cache
 doesn't need to be complex.  Even storing a single item -- the most recently
-seen query/response -- can be a big win.
+seen query/response -- can be a big win, as seen in the `time.Parse()` example
+below.
 
-* Your cache doesn't even need to be huge.
-  * see `time.Parse()` example below; just a single value made an impact
-* But beware cache invalidation, concurrent access / updates, etc.
-* Random cache eviction is fast and sufficiently effective.
-* Random cache insertion can limit cache to popular items with minimal logic.
-* Compare cost (time, complexity) of cache logic to cost of refetching the data.
-* A large cache can increase GC pressure and keep blowing processor cache.
-* At the extreme (little or no eviction, caching all requests to an expensive function) this can turn into [memoization](https://en.wikipedia.org/wiki/Memoization)
+With caches it's important to compare the cost (in terms of actual wall-clock
+and code complexity) of your caching logic to simply refetching or recomputing
+the data.  The more complex algorithms that give higher hit rates are generally
+not cheap themselves.  Randomized cache eviction is simple and fast and can be
+effective in many cases.  Similarly, randomized cache *insertion* can limit your
+cache to only popular items with minimal logic.  While these may not be as effective
+as the more complex algorithms, the big improvement will be adding a cache in the first
+place: choosing exactly which caching algorithm gives only minor improvements.
 
-If in the real world repeated requests are sufficiently rare, it can be more
-expensive to keep cached responses around than to simply recompute them when
-needed.
+It's important to benchmark your choice of cache eviction algorithm with
+real-world traces. If in the real world repeated requests are sufficiently rare,
+it can be more expensive to keep cached responses around than to simply
+recompute them when needed. I've had services where testing with production data
+showed even an optimal cache wasn't worth it. we simply did't have sufficient
+repeated requests to make the added complexity of a cache make sense.
 
-I've done experiments with a network trace for a service that showed even an optimal
-cache wasn't worth it. Your expected hit ratio is important. You'll want to
-export the ratio to your monitoring stack. Changing ratios will show a
-shift in traffic. Then it's time to revisit the cache size or the
-expiration policy.
+Your expected cache hit ratio is important. You'll want to export the ratio to
+your monitoring stack. Changing ratios will show a shift in traffic. Then it's
+time to revisit the cache size or the expiration policy.
+
+A large cache can increase GC pressure. At the extreme (little or no eviction,
+caching all requests to an expensive function) this can turn into
+[memoization](https://en.wikipedia.org/wiki/Memoization)
 
 Program tuning:
 
