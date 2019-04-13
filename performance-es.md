@@ -137,7 +137,7 @@ manejen gran cantidad de datos.
 
 * Compresión a medida para tus datos
 
-  Los algoritmos de compresión dependen fuertemente de qué este siendo comprimido. Lo mejor es
+  Los algoritmos de compresión dependen fuertemente de qué esté siendo comprimido. Lo mejor es
   elegir uno que se ajuste a tus datos. Si tienes un []byte, entonces algo como snappy, gzip, lz4,
   funciona bien. Para datos de punto flotante existe go-tsz para series temporales y fpc para datos
   científicos. Se ha realizado mucha investigación sobre la compresión de integers, generalmente
