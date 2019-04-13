@@ -145,10 +145,16 @@ manejen gran cantidad de datos.
   o esquemas más complejos que involucran diferencias xor codificadas con el algoritmo de Huffman.
   También puedes usar tu propio algoritmo optimizado exactamente para tus datos.
 
-  Si no es solo en memoria, sino escritura a disco, ¿qué sucede con la migración o agregár o
-  eliminár campos?. Estarás ahora lidiando simplemente con []byte en vez de los convenientes tipos
-  estructurados de Go, por lo que necesitaras hacer uso del paquete unsafe y considerar opciones de
-  serialización.
+  ¿Necesitas inspeccionar los datos o pueden permanecer comprimidos? ¿Necesitas acceso arbitrario o
+  sólo streaming? Si necesitas acceso a entradas individuales pero no quieres descomprimirlo todo,
+  puedes comprimir los datos en bloques mas pequeños y mantener un índice que indíque qué rangos de
+  entradas está en cada bloque. El acceso a una entrada singular requiere únicamente verificar el
+  índice y descomprimir ese bloque pequeño.
+
+  Si tus datos no estan sólo en memoria, sino que vas a escribirlos a disco, ¿qué sucede con la
+  migración o agregár o eliminár campos?. Estarás ahora lidiando simplemente con []byte en vez de
+  los convenientes tipos estructurados de Go, por lo que necesitaras hacer uso del paquete unsafe
+  y considerar opciones de serialización.
 
 Hablaremos más sobre la disposición de datos más adelante.
 
