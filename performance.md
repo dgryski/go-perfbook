@@ -572,7 +572,7 @@ your specific problem.  Mapping your problem into a domain that already has
 well-researched implementations can be a significant win.
 
 Similarly, using a simpler algorithm means that tradeoffs, analysis, and
-implementation deals are more likely to be more studied and well understood
+implementation details are more likely to be more studied and well understood
 than more esoteric or exotic and complex ones.
 
 Simpler algorithms can also be faster.  These two examples are not isolated cases
