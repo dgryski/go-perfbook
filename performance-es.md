@@ -140,7 +140,7 @@ manejen gran cantidad de datos.
   Los algoritmos de compresión dependen fuertemente de qué este siendo comprimido. Lo mejor es
   elegir uno que se ajuste a tus datos. Si tienes un []byte, entonces algo como snappy, gzip, lz4,
   funciona bien. Para datos de punto flotante existe go-tsz para series temporales y fpc para datos
-  scientificos. Se ha realizado mucha investigación sobre la compresion de integers, generalmente
+  científicos. Se ha realizado mucha investigación sobre la compresión de integers, generalmente
   para la obtención de datos en motores de búsqueda. Algunos ejemplos son delta encoding y variantes
   o esquemas más complejos que involucran diferencias xor codificadas con el algoritmo de Huffman.
   También puedes usar tu propio algoritmo optimizado exactamente para tus datos.
