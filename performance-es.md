@@ -58,11 +58,11 @@ En la gran mayoría de casos, el tamaño y velocidad del programa no es el probl
 
 Cuando hayas decidido cambiar tu programa, sigue leyendo.
 
-### Cambios algorítmicos
+### Cambios en los algoritmos
 
-Si no estas cambiando los datos, la otra opción más importante es cambiar el código.
+Si no estás cambiando los datos, la otra opción más importante es cambiar el código.
 
-Las mayores mejoras es muy posible que vengan de un cambio algorítmico. Esto es equivalente a sustituir bubble sort (`O(n^2)`) con quicksort (`O(n log n)`) o reemplazar un acceso linear a un array (`O(n)`) con una busqueda binaria (`O(log n)`) o una busqueda en un mapa (`O(1)`).
+Es muy posible que las mejoras más importantes vengan de un cambio de algoritmo. Esto es equivalente a sustituir bubble sort (`O(n^2)`) con quicksort (`O(n log n)`) o reemplazar un acceso linear a un array (`O(n)`) con una busqueda binaria (`O(log n)`) o una busqueda en un mapa (`O(1)`).
 
 Así es como el software se vuelve lento. Estructuras originalmente diseñadas para un proposito se reusan para algo que no habian sido diseñadas. Esto ocurre gradualmente.
 
@@ -96,25 +96,13 @@ Las clases básicas de complejidad son:
 
 * O(b ^ n), O(n!): exponencial y mayor
 
-  Consejo: buena suerte si tienes más de una o dos docenas de datos
+  Consejo: vas a necesitar suerte si tienes más de una o dos docenas de datos
 
 Link: <http://bigocheatsheet.com>
 
-Supongamos que tienes que buscar en un conjunto desordenado de datos. "Debería
-usar busqueda binaria" piensas, sabiendo que una busqueda binaria es O(log n)
-que es más rapido que el O(n) de una busqueda linear. Sin embargo, una busqueda
-binaria requiere que los datos estén ordenados, lo que significa que tendrás
-que ordenarlos antes, que tarda O(n log n). Si haces muchas busquedas, el coste
-inicial de la ordenación merecerá la pena. Pero, si sobre todo estas haciendo
-**lookups**, quizás usar un array fue una decisión equivocada y sería mejor usar un mapa
-con coste O(1).
+Supongamos que tienes que buscar en un conjunto desordenado de datos. "Debería usar busqueda binaria" piensas, sabiendo que una busqueda binaria es O(log n) que es más rapido que el O(n) de una busqueda linear. Sin embargo, una busqueda binaria requiere que los datos estén ordenados, lo que significa que tendrás que ordenarlos antes, que tarda O(n log n). Si haces muchas busquedas, el coste inicial de la ordenación merecerá la pena. Pero, si sobre todo estas haciendo **lookups**, quizás usar un array fue una decisión equivocada y sería mejor usar un mapa con coste O(1).
 
-Si tu estructura de datos es estática, entonces generalmente puede hacerlo mucho
-mejor que en el caso de que fuera dinámica. Resultará más facil construir una estructura
-de datos óptima para tus patrones de busqueda. Soluciones como minimal perfect
-hashing pueden tener más sentido aquí, o filtros de Bloom precalculados. Esto también
-tiene sentido si tu estructura de datos es "estática" durante un periodo largo de
-manera que puedas amortizar el coste inicial de su construcción en muchas busquedas.
+Si tu estructura de datos es estática, entonces generalmente podrás hacerlo mucho mejor que en el caso de que fuera dinámica. Resultará más facil construir una estructura de datos óptima para tus patrones de busqueda. Soluciones como minimal perfect hashing pueden tener más sentido aquí, o filtros de Bloom precalculados. Esto también tiene sentido si tu estructura de datos es "estática" durante un periodo largo de manera que puedas amortizar el coste inicial de su construcción en muchas busquedas.
 
 Escoje la estructura de datos más simple que sea razonable y continua. Esto es de primero de carrera para escribir "software no lento". Este debe ser tu modo de desarrollar por defecto. Si sabes que necesitas acceso aleatorio, no escojas una lista enlazada. Si sabes
 que necesitas recorrer los datos en orden, no uses un mapa. Los requerimientos cambian
@@ -122,36 +110,19 @@ y no siempre puedes averiguar el futuro. Haz una suposición razonable de la car
 
 <http://daslab.seas.harvard.edu/rum-conjecture/>
 
-Estructuras de datos para problemas similares diferirán cuando hagan una parte
-de su trabajo. Un árbol binario se ordena a medida que se insertan elementos. Un array
-no-ordenado es más rapido al insertar pero no está ordenado: al acabar, para "finalizar", tienes que hacer la ordenación.
+Estructuras de datos para problemas similares diferirán cuando hagan una parte de su trabajo. Un árbol binario se ordena a medida que se insertan elementos. Un array no-ordenado es más rapido al insertar pero no está ordenado: al acabar, para "finalizar", tienes que hacer la ordenación.
 
-Cuando escribas un paquete para ser usado por otros, evita la tentación de
-optimizar por adelantado para cada caso de uso individual. Esto resultará en código
-ilegible. Las estructura de datos tienen por diseño un solo proposito. No puedes
-ni leer mentes ni predecir el futuro. Si un usuario dice "Tu paquete es
-demasiado lento para este caso de uso", una respuesta razonable puede ser "Entonces
-usa este otro paquete". Un paquete debe "hacer una cosa bien".
+Cuando escribas un paquete para ser usado por otros, evita la tentación de optimizar por adelantado para cada caso de uso individual. Esto resultará en código ilegible. Las estructura de datos tienen por diseño un solo proposito. No puedes ni leer mentes ni predecir el futuro. Si un usuario dice "Tu paquete es demasiado lento para este caso de uso", una respuesta razonable puede ser "Entonces usa este otro paquete". Un paquete debe "hacer una cosa bien".
 
-A veces, estructuras de datos hibridas proveerán las mejoras de rendimiento que
-necesitas. Por ejemplo, agrupando tus datos puedes limitar tu busqueda a una sola
-agrupación. Esto todavía tiene un coste teórico de O(n), pero la constante será
-mas pequeña. Volveremos a visitar estos tipos de ajustes cuando lleguemos a
-la parte de afinar programas.
+A veces, estructuras de datos hibridas proveerán las mejoras de rendimiento que necesitas. Por ejemplo, agrupando tus datos puedes limitar tu busqueda a una sola agrupación. Esto todavía tiene un coste teórico de O(n), pero la constante será mas pequeña. Volveremos a visitar estos tipos de ajustes cuando lleguemos a la parte de afinar programas.
 
 Dos cosas que la gente olvida cuando se discuten notaciones big-O:
 
-Primero, hay un factor constante. Dos algoritmos que tienen la misma
-complejidad algorítmica pueden tener diferentes factores constantes. Imagina que
-iteras una lista 100 veces frente a iterar una sola vez. Aunque ambas son O(n),
-una de ellas tiene un factor constante que es 100 veces mayor.
+Primero, hay un factor constante. Dos algoritmos que tienen la misma complejidad algorítmica pueden tener diferentes factores constantes. Imagina que iteras una lista 100 veces frente a iterar una sola vez. Aunque ambas son O(n), una de ellas tiene un factor constante que es 100 veces mayor.
 
-Estos factores constantes explican que aunque merger sort, quicksort y
-heapsort son todos O(n log n), todo el mundo use quicksort porque es el más rapido.
-Tiene el factor constante mas pequeño.
+Estos factores constantes explican que aunque merger sort, quicksort y heapsort son todos O(n log n), todo el mundo use quicksort porque es el más rapido. Tiene el factor constante mas pequeño.
 
-La segunda cosa es que big-O solo dice "a medida que n crece hacia infinito". Habla
-de la tendencia de crecimiento, "A medida que los números se hacen grandes, este es el factor de crecimiento que dominará el tiempo de ejecución". No dice nada sobre el rendimiento real o sobre como se comporta cuando n es pequeño.
+La segunda cosa es que big-O solo dice "a medida que n crece a infinito". Habla de la tendencia de crecimiento, "A medida que los números se hacen grandes, este es el factor de crecimiento que dominará el tiempo de ejecución". No dice nada sobre el rendimiento real o sobre como se comporta cuando n es pequeño.
 
 Con frecuencia hay un punto de corte por debajo del cual un algoritmo más tonto es más rápido. Un buen ejemplo del paquete `sort` de la librería estandar de Go. La mayoría del tiempo usa quicksort, pero hace una pasada con shell sort y luego con insertion sort cuando el tamaño de la partición está por debajo de 12 elementos.
 
@@ -159,23 +130,21 @@ Para algunos algoritmos, el factor constante puede ser tan grande que este punto
 
 Esto también significa que necesitas tener muestras representativas del tamaño de tu input tanto para escoger el algoritmo más apropiado como para escribir buenos benchmarks. ¿10 elementos? ¿1000 elementos? ¿1000000 elementos?
 
-Esto también funcion en sentido contrario: por ejemplo, escoger una estructura de datos mas compleja para obtener un crecimiento O(n) en lugar de O(n^2), aunque los benchmarks para inputs mas pequeños sean más lentos. Esto también aplica para la mayoría de estructuras de datos que son lock-free. Son generalmente más lentas cuando se usan en un sólo hilo pero más escalables cuando hay muchos hilos usandolas.
+Esto también funcion en sentido contrario: por ejemplo, escoger una estructura de datos mas compleja para obtener un crecimiento O(n) en lugar de O(n^2), aunque los benchmarks para inputs mas pequeños sean más lentos. Esto también aplica para la mayoría de estructuras de datos que son lock-free. Son generalmente más lentas cuando se usan en un sólo hilo pero más escalables cuando hay muchos hilos usándolas.
 
-La jerarquía de memoria en los ordenadores modernos confunde un poco el tema, en el sentido de que las caches prefieren el predecible acceso de recorrer un slice que el acceso aleatorio de seguir un puntero. Aún así, es mejor empezar con un buen algoritmo. Hablaremos de esto en la sección sobre hardware.
+La jerarquía de memoria en los ordenadores modernos confunde un poco el tema, en el sentido de que las caches prefieren el predecible acceso linear al recorrer un slice que el acceso aleatorio de seguir un puntero. Aún así, es mejor empezar con un buen algoritmo. Hablaremos más de esto en la sección sobre hardware.
 
-> La pelea no siempre será para el más fuerte, la carrera para el más rapido, pero esa es
-> es la manera de apostar.
-> -- <cite>Rudyard Kipling</cite>
+> La pelea no siempre la ganará el más fuerte, ni la carrera el más rapido, pero esa es es la manera de apostar. -- <cite>Rudyard Kipling</cite>
 
-A veces el mejor algoritmo para un problema específico no es un sólo algoritmo, sino un conjunto de algoritmos especializados en tipos de input ligeramente diferentes. Este "polialgoritmo" inmediatamente detecta el tipo de input que tiene que tratar y dirige al code path apropiado. De esta manera funciona el paquete `sort` mencionado anteriormente: determina el tamaño del problema y elige un algoritmo distinto. Además de combinar quicksort, shell sort e insertion sort, también controla el nivel de recursividad de quicksort y usa heapsort si es necesario. Los paquetes `string` y `bytes` hacen algo similar, detectando y especializando para diferentes casos. Como con la compresión de datos, cuanto más sepas sobre el aspecto de tu input, mejor será tu solución a medida. Incluso si una optimización no siempre se puede aplicar, complicar tu código determinando que es seguro de usar y ejecutando una lógica diferente puede valer la pena.
+A veces el mejor algoritmo para un problema específico no es un único algoritmo, sino un conjunto de algoritmos especializados en tipos de input ligeramente diferentes. Este "polialgoritmo" primero detecta el tipo de input que tiene que tratar y luego sigue el code path apropiado. De esta manera funciona el paquete `sort` mencionado anteriormente: determina el tamaño del problema y elige un algoritmo distinto. Además de combinar quicksort, shell sort e insertion sort, también controla el nivel de recursividad de quicksort y usa heapsort si es necesario. Los paquetes `string` y `bytes` hacen algo similar, detectando y especializando para diferentes casos. Como con la compresión de datos, cuanto más sepas sobre las características de tu input, mejor será tu solución especifica. Incluso si una optimización no siempre se puede aplicar, complicar tu código determinando que es seguro de usar y ejecutando una lógica diferente puede valer la pena.
 
-Esto también aplica en subproblemas que tu algoritmo tiene que solucionar. Por ejemplo, poder usar radix sort puede tener un impacto significativo en el rendimiento, o usando quicksort si sólo necesitas una ordenación parcial.
+Esto también aplica a los subproblemas que tu algoritmo tiene que solucionar. Por ejemplo, poder usar radix sort puede tener un impacto significativo en el rendimiento, o usar quicksort si sólo necesitas una ordenación parcial.
 
-A veces, en vez de una especialización para tu tarea en particular, la mejor solución es abstraer la tarea a un espacio mas general de problemas que ya haya sido estudiado. Así podrás aplicar soluciones mas genéricas a tu problema especifico. Mapear tus problemas a un dominio con implementaciones bien estudiadas puede ser una ganancia significativa.
+A veces, en vez de una especialización para tu tarea, el mejor enfoque es abstraer la tarea a un categoría de problemas más general que ya haya sido estudiada. Así podrás aplicar la solución más general en tu problema especifico. Mapear tu problema a un dominio con implementaciones bien estudiadas puede resultar en una ganancia significativa.
 
-De manera similar, usar un algoritmo más simple significa que es más probable que las concesiones, analisis y detalles de la implementación hayan sido más estudiados y sean mejor entendidos que aquellos mas esótericos, exóticos y complejos.
+De manera similar, usar un algoritmo más simple significa que es más probable que las concesiones, analisis y detalles de la implementación hayan sido más estudiados y sean mejor entendidos que otros algoritmos mas esótericos, exóticos y complejos.
 
-Los algoritmos más simples pueden ser más rápidos. Estos dos ejemplos no son casos aislados
+Los algoritmos más simples pueden ser más rápidos. Estos dos ejemplos no son casos aislados:
   https://go-review.googlesource.com/c/crypto/+/169037
   https://go-review.googlesource.com/c/go/+/170322/
 
