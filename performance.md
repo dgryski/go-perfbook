@@ -1047,7 +1047,7 @@ Techniques specific to the architecture running the code
     TODO: ASCII class counts example, with benchmarks
 
 * sorting data can help improve performance via both cache locality and branch prediction, even taking into account the time it takes to sort
-* function call overhead
+* function call overhead: inliner is getting better
 * reduce data copies
 
 * Comment about Jeff Dean's 2002 numbers (plus updates)
@@ -1096,11 +1096,20 @@ TODO: reasons parallel implementation might be slower (communication overhead, b
 * always have pure-Go version (purego build tag): testing, arm, gccgo
 * brief intro to syntax
 * how to type the middle dot
-* calling convention
+* calling convention: everything is on the stack, followed by the return values.
+  - everything is on the stack, followed by the return values
+  - this might change https://github.com/golang/go/issues/18597
+  - https://science.raphael.poss.name/go-calling-convention-x86-64.html
 * using opcodes unsupported by the asm (asm2plan9, but this is getting rarer)
-* notes about why inline assembly is hard
-* all the tooling to make this easier: asmfmt, peachypy/avo, c2goasm, ...
+* notes about why inline assembly is hard: (link to mailing list and issues)
+* all the tooling to make this easier:
+  - asmfmt: gofmt for assembly https://github.com/klauspost/asmfmt
+  - c2goasm: convert assembly from gcc/clang to goasm https://github.com/minio/c2goasm
+   - go2asm: convert go to assembly you can link https://rsc.io/tmp/go2asm
+   - peachpy/avo: higher-level assembler in python (peachpy) or Go (avo)
+   - differences of above
 * https://github.com/golang/go/wiki/AssemblyPolicy
+* Design of the Go Assembler: https://talks.golang.org/2016/asm.slide
 
 ## Optimizing an entire service
 
