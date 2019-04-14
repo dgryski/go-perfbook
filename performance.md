@@ -1101,7 +1101,7 @@ TODO: reasons parallel implementation might be slower (communication overhead, b
   - this might change https://github.com/golang/go/issues/18597
   - https://science.raphael.poss.name/go-calling-convention-x86-64.html
 * using opcodes unsupported by the asm (asm2plan9, but this is getting rarer)
-* notes about why inline assembly is hard: (link to mailing list and issues)
+* notes about why inline assembly is hard: https://github.com/golang/go/issues/26891
 * all the tooling to make this easier:
   - asmfmt: gofmt for assembly https://github.com/klauspost/asmfmt
   - c2goasm: convert assembly from gcc/clang to goasm https://github.com/minio/c2goasm
