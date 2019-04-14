@@ -995,8 +995,10 @@ Popular replacements for standard library packages:
 * serialization
   * encoding/gob -> <https://github.com/alecthomas/go_serialization_benchmarks>
   * protobuf -> <https://github.com/gogo/protobuf>
-  * all formats have trade-offs: choose one that matches what you need
-    encoded space, decoding speed, language/tooling compatibility, ...
+  * all serialization formats have trade-offs: choose one that matches what you need
+    - Write heavy workload -> fast encoding speed
+    - Read-heavy workload -> fast decoding speed
+    - Other considerations: encoded size, language/tooling compatibility
 * database/sql -> has tradeoffs that affect performance
   *  look for drivers that don't use it: jackx/pgx, crawshaw sqlite, ...
 * gccgo (benchmark!), gollvm (WIP)
