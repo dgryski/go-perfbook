@@ -1006,6 +1006,9 @@ Popular replacements for standard library packages:
 
 ## cgo
 
+> cgo is not go
+> -- Rob Pike
+
 * Performance characteristics of cgo calls
 * Tricks to reduce the costs: batching
 * Rules on passing pointers between Go and C
