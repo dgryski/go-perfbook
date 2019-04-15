@@ -57,3 +57,129 @@ La optimización prematura también puede afectarte al atarte a ciertas decision
 En la gran mayoría de casos, el tamaño y velocidad del programa no es el problema. La optimización más fácil es no hacerla. La segunda alternativa más fácil es simplemente comprar mejor hardware.
 
 Cuando hayas decidido cambiar tu programa, sigue leyendo.
+
+### Modificar los datos
+
+Modificar los datos significa agregar o alterar la representación de los datos
+que estas procesando. Desde el punto de vista del rendimiento, algunos de
+estos acabaran cambiando la complejidad O() asociada a diferentes aspectos de
+la estructura de datos.
+
+Ideas para mejorar tu estructura de datos:
+
+* Campos adicionales
+
+  El clásico ejemplo de esto es almacenar la longitud de una lista enlazada en un
+  campo en el nodo raíz. Mantenerla actualizada conlleva un poco más de trabajo,
+  pero consultar la longitud se convierte en un simple acceso a un campo en vez de una
+  búsqueda transversal con complejidad O(n). Tu estructura de datos puede presentar una
+  mejora similar: un poco de mantenimiento en algunas operaciones a cambio de
+  mejorar el rendimiento en un caso de uso común.
+
+  De manera similar, almacenar punteros a nodos frecuentemente utilizados en vez
+  de realizar búsquedas adicionales. Esto cubre cosas como el link "hacia atrás"
+  en una lista doblemente enlazada para hacer que la eliminación de nodos tenga una complejidad O(1).
+  Algunas listas de salto guardan un "puntero de búsqueda", donde almacenas un
+  puntero a donde recientemente estuviste en tu estructura de datos, bajo la
+  suposición de que es un buen punto de partida para la siguiente operación.
+
+* Índices de búsqueda adicionales
+
+  La mayoría de las estructuras de datos están diseñadas para un único tipo de
+  consulta. Si necesitas dos tipos de consultas, disponer de una "vista"
+  adicional a tus datos puede ser una gran mejora. Por ejemplo, un set de
+  structs puede tener un ID primario (integer) que usas para buscar en un
+  slice, pero a veces necesitas buscar por un ID secundario (string). En lugar
+  de iterar sobre el slice, puedes mejorar tu estructura de datos con un mapa de
+  string a ID o directamente al struct en cuestión.
+
+* Información adicional sobre los elementos
+
+  Por ejemplo, mantener un filtro de Bloom de todos los elementos que has
+  insertado puede permitirte retornar rápidamente "sin coincidencias" a las
+  búsquedas. Estos necesitan ser pequeños y rápidos para no abrumar el resto de
+  la estructura de datos. (Si una búsqueda en tu estructura de datos principal
+  es barata, el costo del filtro de Bloom superará cualquier ahorro.)
+
+* Si las búsquedas son costosas, agrega una cache
+
+  A mayor escala, una cache interna o externa (como memcache) puede ayudar.
+  Puede ser excesivo para una única estructura de datos. Hablaremos más sobre
+  caches más adelante.
+
+Este tipo de cambios son útiles cuando los datos que necesitan son baratos de
+almacenar y fáciles de mantener actualizados.
+
+Estos son todos ejemplos claros de "realizar menos trabajo" a nivel de
+la estructura de datos. Todos cuestan espacio. La mayoría de las veces, si estás
+optimizando para CPU, tu programa usará más memoria. Se trata del clásico [space-time trade-off](https://en.wikipedia.org/wiki/Space%E2%80%93time_tradeoff).
+
+Si tu programa utiliza demasiada memoria, también es posible ir por el otro
+camino. Reduce el uso de espacio a cambio de una mayor carga computacional. En
+lugar de almacenar cosas, calcúlalas cada vez. También puedes comprimir los datos
+en memoria y descomprimirlos cuando los necesites.
+
+[Small Memory Software](http://smallmemory.com/book.html) es un libro disponible
+online que cubre técnicas para reducir el espacio utilizado por tus programas.
+Aunque fue originalmente escrito dirigído a desarrolladores de sistemas
+embebidos, sus ideas son aplicables para programas en hardware moderno que
+manejen gran cantidad de datos.
+
+* Reorganiza tus datos
+
+  Elimina el padding. Remueve campos extra. Utiliza tipos de datos mas pequeños.
+
+* Cambia a una estructura de datos más lenta
+
+  Estructuras de datos más simples frecuentemente presentan menores
+  requerimientos de memoria. Por ejemplo, cambiar una estructura tipo arbol con
+  uso extensivo de punteros a un slice y búsqueda lineal.
+
+* Compresión a medida para tus datos
+
+  Los algoritmos de compresión dependen fuertemente de qué esté siendo comprimido. Lo mejor es
+  elegir uno que se ajuste a tus datos. Si tienes un []byte, entonces algo como snappy, gzip, lz4,
+  funciona bien. Para datos de punto flotante existe go-tsz para series temporales y fpc para datos
+  científicos. Se ha realizado mucha investigación sobre la compresión de integers, generalmente
+  para la obtención de datos en motores de búsqueda. Algunos ejemplos son delta encoding y variantes
+  o esquemas más complejos que involucran diferencias xor codificadas con el algoritmo de Huffman.
+  También puedes usar tu propio algoritmo optimizado exactamente para tus datos.
+
+  ¿Necesitas inspeccionar los datos o pueden permanecer comprimidos? ¿Necesitas acceso aleatorio o
+  sólo streaming? Si necesitas acceso a entradas individuales pero no quieres descomprimirlo todo,
+  puedes comprimir los datos en pequeños bloques y mantener un índice que indique qué rangos de
+  entradas hay en cada bloque. El acceso a una única entrada solo requiere consultar el
+  índice y descomprimir ese bloque pequeño.
+
+  Si tus datos no estan sólo en memoria, sino que vas a escribirlos a disco, ¿qué sucede con la
+  migración o agregár o eliminár campos?. Estarás ahora lidiando simplemente con []byte en vez de
+  los convenientes tipos estructurados de Go, por lo que necesitaras hacer uso del paquete unsafe
+  y considerar opciones de serialización.
+
+Hablaremos más sobre la disposición de datos más adelante.
+
+Las computadoras modernas y la jerarquía de memoria hacen que el compromiso
+entre memoria/espacio sea menos claro. Es muy fácil para las tablas de búsqueda estar
+"lejos" en memoria (y por lo tanto ser costosas de acceder) haciendo que sea más rápido
+simplemente recalcular un valor cada vez que se necesita.
+
+Esto también significa que el benchmarking frecuentemente mostrará mejoras que no
+aparecen en producción debido a la contención de cache (e.g., tablas de
+búsqueda que estan en la cache del procesador durante el benchmarking pero
+que siempre son purgadas cuando son utilizadas por un sistema real.)
+El [Jump Hash paper](https://arxiv.org/pdf/1406.2294.pdf) de Google de hecho
+abordó esto directamente, comparando la performance de caché con y sin problemas
+de contención. (Ver gráficos 4 y 5 del artículo)
+
+TODO: how to simulate a contended cache, show incremental cost
+
+Otro aspecto a considerar es el tiempo de transmisión de datos. Generalmente el
+acceso a disco y de red es muy lento, y por lo tanto ser capaz de cargar un
+bloque comprimido va a resultar en un proceso mucho más rápido incluso teniendo
+en cuenta el tiempo que lleva descomprimirlo. Como siempre, realiza benchmarks.
+Un formato binario generalmente va a ser mas liviano y rápido de parsear que uno
+de texto, pero el coste es que no será legible para un humano.
+
+Para la transferencia de datos, cambia a un protocol menos verboso, o
+mejora el API para aceptar consultas parciales. Por ejemplo, usa una consulta
+incremental en lugar de forzar a traer siempre el set de datos completo.
