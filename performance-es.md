@@ -145,7 +145,7 @@ manejen gran cantidad de datos.
   o esquemas más complejos que involucran diferencias xor codificadas con el algoritmo de Huffman.
   También puedes usar tu propio algoritmo optimizado exactamente para tus datos.
 
-  ¿Necesitas inspeccionar los datos o pueden permanecer comprimidos? ¿Necesitas acceso arbitrario o
+  ¿Necesitas inspeccionar los datos o pueden permanecer comprimidos? ¿Necesitas acceso aleatorio o
   sólo streaming? Si necesitas acceso a entradas individuales pero no quieres descomprimirlo todo,
   puedes comprimir los datos en pequeños bloques y mantener un índice que indique qué rangos de
   entradas hay en cada bloque. El acceso a una única entrada solo requiere consultar el
