@@ -24,9 +24,6 @@ The later sections cover Go-specific techniques.
 1. [Benchmark Inputs](performance.md#benchmark-inputs)
 1. [Program Tuning](performance.md#program-tuning)
 1. [Optimization Workflow Summary](performance.md#optimization-workflow-summary)
-1. [Tooling](performance.md#tooling)
-   1. [Profiling](performance.md#introductory-profiling)
-   1. [Tracer](performance.md#tracer)
 1. [Garbage Collection](performance.md#garbage-collection)
 1. [Runtime and Compiler](performance.md#runtime-and-compiler)
 1. [Unsafe](performance.md#unsafe)
@@ -36,6 +33,9 @@ The later sections cover Go-specific techniques.
 1. [Advanced Techniques](performance.md#advanced-techniques)
 1. [Assembly](performance.md#assembly)
 1. [Optimizing an Entire Service](performance.md#optimizing-an-entire-service)
+1. [Tooling](performance.md#tooling)
+   1. [Profiling](performance.md#introductory-profiling)
+   1. [Tracer](performance.md#tracer)
 1. Appendix
    1. [Implementing Research Papers](performance.md#appendix-implementing-research-papers)
 
