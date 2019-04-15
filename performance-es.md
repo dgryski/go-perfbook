@@ -21,7 +21,7 @@ Podemos resumir estas tres secciones como:
 2. "Sé deliberado"
 3. "Sé peligroso"
 
-# Cuándo y dónde optimizar
+## Cuándo y dónde optimizar
 
 Escribo esta sección primero porque es el paso más importante. Deberías estar haciendo esto?
 
@@ -57,6 +57,8 @@ La optimización prematura también puede afectarte al atarte a ciertas decision
 En la gran mayoría de casos, el tamaño y velocidad del programa no es el problema. La optimización más fácil es no hacerla. La segunda alternativa más fácil es simplemente comprar mejor hardware.
 
 Cuando hayas decidido cambiar tu programa, sigue leyendo.
+
+## Cómo optimizar
 
 ### Modificar los datos
 
