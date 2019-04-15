@@ -147,8 +147,8 @@ manejen gran cantidad de datos.
 
   ¿Necesitas inspeccionar los datos o pueden permanecer comprimidos? ¿Necesitas acceso arbitrario o
   sólo streaming? Si necesitas acceso a entradas individuales pero no quieres descomprimirlo todo,
-  puedes comprimir los datos en bloques mas pequeños y mantener un índice que indíque qué rangos de
-  entradas está en cada bloque. El acceso a una entrada singular requiere únicamente verificar el
+  puedes comprimir los datos en pequeños bloques y mantener un índice que indique qué rangos de
+  entradas hay en cada bloque. El acceso a una única entrada solo requiere consultar el
   índice y descomprimir ese bloque pequeño.
 
   Si tus datos no estan sólo en memoria, sino que vas a escribirlos a disco, ¿qué sucede con la
