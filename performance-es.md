@@ -129,7 +129,7 @@ manejen gran cantidad de datos.
 
 * Reorganiza tus datos
 
-  Elimina el padding. Remueve campos extra. Utiliza tipos de datos mas pequeños.
+  Elimina el padding. Remueve campos extra. Utiliza tipos de datos más pequeños.
 
 * Cambia a una estructura de datos más lenta
 
@@ -179,7 +179,7 @@ Otro aspecto a considerar es el tiempo de transmisión de datos. Generalmente el
 acceso a disco y de red es muy lento, y por lo tanto ser capaz de cargar un
 bloque comprimido va a resultar en un proceso mucho más rápido incluso teniendo
 en cuenta el tiempo que lleva descomprimirlo. Como siempre, realiza benchmarks.
-Un formato binario generalmente va a ser mas liviano y rápido de parsear que uno
+Un formato binario generalmente va a ser más liviano y rápido de parsear que uno
 de texto, pero el coste es que no será legible para un humano.
 
 Para la transferencia de datos, cambia a un protocol menos verboso, o
@@ -190,11 +190,11 @@ incremental en lugar de forzar a traer siempre el set de datos completo.
 
 Si no estás cambiando los datos, la alternativa más importante es cambiar el código.
 
-Es muy posible que las mejoras más importantes vengan de un cambio de algoritmo. Esto es equivalente a sustituir bubble sort (`O(n^2)`) con quicksort (`O(n log n)`) o reemplazar un acceso linear a un array (`O(n)`) con una busqueda binaria (`O(log n)`) o una busqueda en un mapa (`O(1)`).
+Es muy posible que las mejoras más importantes vengan de un cambio de algoritmo. Esto es equivalente a sustituir bubble sort (`O(n^2)`) con quicksort (`O(n log n)`) o reemplazar un acceso linear a un array (`O(n)`) con una búsqueda binaria (`O(log n)`) o una búsqueda en un mapa (`O(1)`).
 
-Así es como el software se vuelve lento. Estructuras originalmente diseñadas para un proposito se reusan para algo que no habian sido diseñadas. Esto ocurre gradualmente.
+Así es como el software se vuelve lento. Estructuras originalmente diseñadas para un propósito se reusan para algo que no habían sido diseñadas. Esto ocurre gradualmente.
 
-Es importante tener un entendimiento intuitivo de los diferentes niveles de big-O. Elige la estructura de datos para tu problema. Esto no siempre ahorra ciclos de CPU, pero previene problemas de rendimiento que pueden no ser detectados hasta muchos más adelante.
+Es importante tener un entendimiento intuitivo de los diferentes niveles de big-O. Elige la estructura de datos para tu problema. Esto no siempre ahorra ciclos de CPU, pero previene problemas de rendimiento que pueden no ser detectados hasta mucho más adelante.
 
 Las clases básicas de complejidad son:
 
@@ -202,7 +202,7 @@ Las clases básicas de complejidad son:
 
   Consejo: no te preocupes por ellos
 
-* O(log n): busqueda binaria
+* O(log n): búsqueda binaria
 
   Consejo: sólo es un problema si se hace en un bucle
 
@@ -228,11 +228,11 @@ Las clases básicas de complejidad son:
 
 Link: <http://bigocheatsheet.com>
 
-Supongamos que tienes que buscar en un conjunto desordenado de datos. "Debería usar busqueda binaria" piensas, sabiendo que una busqueda binaria es O(log n) que es más rapido que el O(n) de una busqueda linear. Sin embargo, una busqueda binaria requiere que los datos estén ordenados, lo que significa que tendrás que ordenarlos antes, que tarda O(n log n). Si haces muchas busquedas, el coste inicial de la ordenación merecerá la pena. Pero, si sobre todo estas haciendo **lookups**, quizás usar un array fue una decisión equivocada y sería mejor usar un mapa con coste O(1).
+Supongamos que tienes que buscar en un conjunto desordenado de datos. "Debería usar búsqueda binaria" piensas, sabiendo que una búsqueda binaria es O(log n) que es más rapido que el O(n) de una búsqueda linear. Sin embargo, una búsqueda binaria requiere que los datos estén ordenados, lo que significa que tendrás que ordenarlos antes, que tarda O(n log n). Si haces muchas búsquedas, el coste inicial de la ordenación merecerá la pena. Pero, si sobre todo estas haciendo **lookups**, quizás usar un array fue una decisión equivocada y sería mejor usar un mapa con coste O(1).
 
-Si tu estructura de datos es estática, entonces generalmente podrás hacerlo mucho mejor que en el caso de que fuera dinámica. Resultará más facil construir una estructura de datos óptima para tus patrones de busqueda. Soluciones como minimal perfect hashing pueden tener más sentido aquí, o filtros de Bloom precalculados. Esto también tiene sentido si tu estructura de datos es "estática" durante un periodo largo de manera que puedas amortizar el coste inicial de su construcción en muchas busquedas.
+Si tu estructura de datos es estática, entonces generalmente podrás hacerlo mucho mejor que en el caso de que fuera dinámica. Resultará más facil construir una estructura de datos óptima para tus patrones de búsqueda. Soluciones como minimal perfect hashing pueden tener más sentido aquí, o filtros de Bloom precalculados. Esto también tiene sentido si tu estructura de datos es "estática" durante un periodo largo de manera que puedas amortizar el coste inicial de su construcción en muchas búsquedas.
 
-Escoje la estructura de datos más simple que sea razonable y continua. Esto es de primero de carrera para escribir "software no lento". Este debe ser tu modo de desarrollar por defecto. Si sabes que necesitas acceso aleatorio, no escojas una lista enlazada. Si sabes
+Escoje la estructura de datos más simple que sea razonable y continúa. Esto es de primero de carrera para escribir "software no lento". Este debe ser tu modo de desarrollar por defecto. Si sabes que necesitas acceso aleatorio, no escojas una lista enlazada. Si sabes
 que necesitas recorrer los datos en orden, no uses un mapa. Los requerimientos cambian
 y no siempre puedes averiguar el futuro. Haz una suposición razonable de la carga de trabajo.
 
@@ -242,15 +242,15 @@ Estructuras de datos para problemas similares diferirán cuando hagan una parte 
 
 Cuando escribas un paquete para ser usado por otros, evita la tentación de optimizar por adelantado para cada caso de uso individual. Esto resultará en código ilegible. Las estructura de datos tienen por diseño un solo proposito. No puedes ni leer mentes ni predecir el futuro. Si un usuario dice "Tu paquete es demasiado lento para este caso de uso", una respuesta razonable puede ser "Entonces usa este otro paquete". Un paquete debe "hacer una cosa bien".
 
-A veces, estructuras de datos hibridas proveerán las mejoras de rendimiento que necesitas. Por ejemplo, agrupando tus datos puedes limitar tu busqueda a una sola agrupación. Esto todavía tiene un coste teórico de O(n), pero la constante será mas pequeña. Volveremos a visitar estos tipos de ajustes cuando lleguemos a la parte de afinar programas.
+A veces, estructuras de datos hibridas proveerán las mejoras de rendimiento que necesitas. Por ejemplo, agrupando tus datos puedes limitar tu búsqueda a una sola agrupación. Esto todavía tiene un coste teórico de O(n), pero la constante será más pequeña. Volveremos a visitar estos tipos de ajustes cuando lleguemos a la parte de afinar programas.
 
 Dos cosas que la gente olvida cuando se discuten notaciones big-O:
 
 Primero, hay un factor constante. Dos algoritmos que tienen la misma complejidad algorítmica pueden tener diferentes factores constantes. Imagina que iteras una lista 100 veces frente a iterar una sola vez. Aunque ambas son O(n), una de ellas tiene un factor constante que es 100 veces mayor.
 
-Estos factores constantes explican que aunque merger sort, quicksort y heapsort son todos O(n log n), todo el mundo use quicksort porque es el más rapido. Tiene el factor constante mas pequeño.
+Estos factores constantes explican que aunque merge sort, quicksort y heapsort son todos O(n log n), todo el mundo use quicksort porque es el más rapido. Tiene el factor constante más pequeño.
 
-La segunda cosa es que big-O solo dice "a medida que n crece a infinito". Habla de la tendencia de crecimiento, "A medida que los números se hacen grandes, este es el factor de crecimiento que dominará el tiempo de ejecución". No dice nada sobre el rendimiento real o sobre como se comporta cuando n es pequeño.
+La segunda cosa es que big-O solo dice "a medida que n crece a infinito". Habla de la tendencia de crecimiento, "A medida que los números crezcan, este es el factor de crecimiento que dominará el tiempo de ejecución". No dice nada sobre el rendimiento real o sobre como se comporta cuando n es pequeño.
 
 Con frecuencia hay un punto de corte por debajo del cual un algoritmo más tonto es más rápido. Un buen ejemplo del paquete `sort` de la librería estandar de Go. La mayoría del tiempo usa quicksort, pero hace una pasada con shell sort y luego con insertion sort cuando el tamaño de la partición está por debajo de 12 elementos.
 
@@ -258,7 +258,7 @@ Para algunos algoritmos, el factor constante puede ser tan grande que este punto
 
 Esto también significa que necesitas tener muestras representativas del tamaño de tu input tanto para escoger el algoritmo más apropiado como para escribir buenos benchmarks. ¿10 elementos? ¿1000 elementos? ¿1000000 elementos?
 
-Esto también funcion en sentido contrario: por ejemplo, escoger una estructura de datos mas compleja para obtener un crecimiento O(n) en lugar de O(n^2), aunque los benchmarks para inputs mas pequeños sean más lentos. Esto también aplica para la mayoría de estructuras de datos que son lock-free. Son generalmente más lentas cuando se usan en un sólo hilo pero más escalables cuando hay muchos hilos usándolas.
+Esto también funcion en sentido contrario: por ejemplo, escoger una estructura de datos más compleja para obtener un crecimiento O(n) en lugar de O(n^2), aunque los benchmarks para inputs más pequeños sean más lentos. Esto también aplica para la mayoría de estructuras de datos que son lock-free. Son generalmente más lentas cuando se usan en un sólo hilo pero más escalables cuando hay muchos hilos usándolas.
 
 La jerarquía de memoria en los ordenadores modernos confunde un poco el tema, en el sentido de que las caches prefieren el predecible acceso linear al recorrer un slice que el acceso aleatorio de seguir un puntero. Aún así, es mejor empezar con un buen algoritmo. Hablaremos más de esto en la sección sobre hardware.
 
