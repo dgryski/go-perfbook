@@ -232,7 +232,7 @@ Supongamos que tienes que buscar en un conjunto desordenado de datos. "Debería 
 
 Si tu estructura de datos es estática, entonces generalmente podrás hacerlo mucho mejor que en el caso de que fuera dinámica. Resultará más facil construir una estructura de datos óptima para tus patrones de búsqueda. Soluciones como minimal perfect hashing pueden tener más sentido aquí, o filtros de Bloom precalculados. Esto también tiene sentido si tu estructura de datos es "estática" durante un periodo largo de manera que puedas amortizar el coste inicial de su construcción en muchas búsquedas.
 
-Escoje la estructura de datos más simple que sea razonable y continúa. Esto es de primero de carrera para escribir "software no lento". Este debe ser tu modo de desarrollar por defecto. Si sabes que necesitas acceso aleatorio, no escojas una lista enlazada. Si sabes
+Escoje la estructura de datos más simple que sea razonable y continúa. Esto es elemental para escribir "software no lento". Este debe ser tu modo de desarrollar por defecto. Si sabes que necesitas acceso aleatorio, no escojas una lista enlazada. Si sabes
 que necesitas recorrer los datos en orden, no uses un mapa. Los requerimientos cambian
 y no siempre puedes averiguar el futuro. Haz una suposición razonable de la carga de trabajo.
 
@@ -258,7 +258,7 @@ Para algunos algoritmos, el factor constante puede ser tan grande que este punto
 
 Esto también significa que necesitas tener muestras representativas del tamaño de tu input tanto para escoger el algoritmo más apropiado como para escribir buenos benchmarks. ¿10 elementos? ¿1000 elementos? ¿1000000 elementos?
 
-Esto también funcion en sentido contrario: por ejemplo, escoger una estructura de datos más compleja para obtener un crecimiento O(n) en lugar de O(n^2), aunque los benchmarks para inputs más pequeños sean más lentos. Esto también aplica para la mayoría de estructuras de datos que son lock-free. Son generalmente más lentas cuando se usan en un sólo hilo pero más escalables cuando hay muchos hilos usándolas.
+Esto también funciona en sentido contrario: por ejemplo, escoger una estructura de datos más compleja para obtener un crecimiento O(n) en lugar de O(n^2), aunque los benchmarks para inputs más pequeños sean más lentos. Esto también aplica para la mayoría de estructuras de datos que son lock-free. Son generalmente más lentas cuando se usan en un sólo hilo pero más escalables cuando hay muchos hilos usándolas.
 
 La jerarquía de memoria en los ordenadores modernos confunde un poco el tema, en el sentido de que las caches prefieren el predecible acceso linear al recorrer un slice que el acceso aleatorio de seguir un puntero. Aún así, es mejor empezar con un buen algoritmo. Hablaremos más de esto en la sección sobre hardware.
 
