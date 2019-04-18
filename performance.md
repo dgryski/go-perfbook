@@ -987,11 +987,11 @@ allocate it. But you also pay every time the garbage collection runs.
 
 Popular replacements for standard library packages:
 
-* encoding/json -> ffjson, easyjson, jingo, etc
+* encoding/json -> [ffjson](https://github.com/pquerna/ffjson), [easyjson](https://github.com/mailru/easyjson), [jingo](https://github.com/bet365/jingo) (only encoder), etc
 * net/http
-  * fasthttp (but incompatible API, not RFC compliant in subtle ways)
-  * httprouter (has other features besides speed; I've never actually seen routing in my profiles)
-* regexp -> ragel (or other regular expression package)
+  * [fasthttp](https://github.com/valyala/fasthttp/) (but incompatible API, not RFC compliant in subtle ways)
+  * [httprouter](https://github.com/julienschmidt/httprouter) (has other features besides speed; I've never actually seen routing in my profiles)
+* regexp -> [ragel](https://www.colm.net/open-source/ragel/) (or other regular expression package)
 * serialization
   * encoding/gob -> <https://github.com/alecthomas/go_serialization_benchmarks>
   * protobuf -> <https://github.com/gogo/protobuf>
