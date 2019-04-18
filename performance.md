@@ -987,7 +987,7 @@ allocate it. But you also pay every time the garbage collection runs.
 
 Popular replacements for standard library packages:
 
-* encoding/json -> ffjson, easyjson, etc
+* encoding/json -> ffjson, easyjson, jingo, etc
 * net/http
   * fasthttp (but incompatible API, not RFC compliant in subtle ways)
   * httprouter (has other features besides speed; I've never actually seen routing in my profiles)
