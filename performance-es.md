@@ -186,9 +186,9 @@ Para la transferencia de datos, cambia a un protocol menos verboso, o
 mejora el API para aceptar consultas parciales. Por ejemplo, usa una consulta
 incremental en lugar de forzar a traer siempre el set de datos completo.
 
-### Cambiar de algoritmo
+### Modificar los algoritmos
 
-Si no estás cambiando los datos, la alternativa más importante es cambiar el código.
+Si no estás modificando los datos, la alternativa más importante es modificar el código.
 
 Es muy posible que las mejoras más importantes vengan de un cambio de algoritmo. Esto es equivalente a sustituir bubble sort (`O(n^2)`) con quicksort (`O(n log n)`) o reemplazar un acceso linear a un array (`O(n)`) con una búsqueda binaria (`O(log n)`) o una búsqueda en un mapa (`O(1)`).
 
