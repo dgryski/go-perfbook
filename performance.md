@@ -999,6 +999,7 @@ Popular replacements for standard library packages:
     - Write heavy workload -> fast encoding speed
     - Read-heavy workload -> fast decoding speed
     - Other considerations: encoded size, language/tooling compatibility
+    - tradeoffs of packed binary formats vs. self-describing text formats
 * database/sql -> has tradeoffs that affect performance
   *  look for drivers that don't use it: jackx/pgx, crawshaw sqlite, ...
 * gccgo (benchmark!), gollvm (WIP)
