@@ -180,7 +180,7 @@ will give a skewed view of where the bottlenecks will be in the finished system.
 
 TODO: How to avoid/detect "Death by 1000 cuts" from poorly written software.
 Solution: "Premature pessimization is the root of all evil".  This matches with
-my Rule 1: Be deliberate.  You don't need to write every line of code to be code
+my Rule 1: Be deliberate.  You don't need to write every line of code 
 to be fast, but neither should by default do wasteful things.
 
 "Premature pessimization is when you write code that is slower than it needs to
