@@ -16,6 +16,9 @@ Las secciones posteriores cubren técnicas específicas de Go.
 ### Tabla de contenidos
 
 1. [Escribiendo y optimizando código en Go](performance-es.md#escribir-y-optimizar-codigo-en-go)
+1. [Cuándo y dónde optimizar](performance-es.md#cuándo-y-dónde-optimizar)
+1. [Modificar los datos](performance-es.md#modificar-los-datos)
+1. [Modificar los algoritmos](performance-es.md#modificar-los-algoritmos)
 
 ### Cómo contribuir
 
