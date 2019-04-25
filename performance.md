@@ -206,7 +206,8 @@ also give you an idea of where to start. If you need only a 10-20%
 performance improvement, you can probably get that with some implementation
 tweaks and smaller fixes. If you need a factor of 10x or more, then just
 replacing a multiplication with a left-shift isn't going to cut it. That's
-probably going to call for changes up and down your stack.
+probably going to call for changes up and down your stack, possibly redesigning
+large portions of the system with these performance goals in mind.
 
 Good performance work requires knowledge at many different levels, from
 system design, networking, hardware (CPU, caches, storage), algorithms,
@@ -466,6 +467,12 @@ O(n log n) time. If you're doing lots of searches, then the upfront cost of
 sorting will pay off. On the other hand, if you're mostly doing lookups,
 maybe having an array was the wrong choice and you'd be better off paying the
 O(1) lookup cost for a map instead.
+
+Being able to analyze your problem in terms of big-O notation also means you can
+figure out if you're already at the limit for what is possible for your problem,
+and if you need to change approaches in order to speed things up.  For example,
+finding the minimum of an unsorted list is `O(n)`, because you have to look at
+every single item.  There's no way to make that faster.
 
 If your data structure is static, then you can generally do much better than
 the dynamic case. It becomes easier to build an optimal data structure
@@ -926,6 +933,7 @@ allocate it. But you also pay every time the garbage collection runs.
 * API design to limit allocations:
   * allow passing in buffers so caller can reuse rather than forcing an allocation
   * you can even modify a slice in place carefully while you scan over it
+  * passing in a struct could allow caller to stack allocate it
 * reducing pointers to reduce gc scan times
   * pointer-free slices
   * maps with both pointer-free keys and values
@@ -965,6 +973,7 @@ allocate it. But you also pay every time the garbage collection runs.
   * but "off-heap", so ignored by gc (but so would a pointerless slice)
 * need to think about serialization format: how to deal with pointers, indexing (mph, index header)
 * speedy de-serialization
+* binary wire protocol to struct when you already have the buffer
 * string <-> slice conversion, []byte <-> []uint32, ...
 * int to bool unsafe hack (but cmov) (but != 0 is also branch-free)
 * padding:
@@ -1023,7 +1032,7 @@ Techniques specific to the architecture running the code
 * introduction to CPU caches
   * performance cliffs
   * building intuition around cache-lines: sizes, padding, alignment
-  * OS tools to view cache-misses
+  * OS tools to view cache-misses (perf)
   * maps vs. slices
   * SOA vs AOS layouts: row-major vs. column major; when you have an X, do you need another X or do you need a Y?
   * temporal and spacial locality: use what you have and what's nearby as much as possible
@@ -1050,7 +1059,7 @@ Techniques specific to the architecture running the code
 
 * sorting data can help improve performance via both cache locality and branch prediction, even taking into account the time it takes to sort
 * function call overhead: inliner is getting better
-* reduce data copies
+* reduce data copies (including for repeated large lists of function params)
 
 * Comment about Jeff Dean's 2002 numbers (plus updates)
   * cpus have gotten faster, but memory hasn't kept up
