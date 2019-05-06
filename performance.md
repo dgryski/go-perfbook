@@ -431,7 +431,7 @@ The basic classes of complexity are:
 
 * O(1): a field access, array or map lookup
 
-  Advice: don't worry about it
+  Advice: don't worry about it (but keep in mind the constant factor.)
 
 * O(log n): binary search
 
