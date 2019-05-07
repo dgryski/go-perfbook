@@ -59,21 +59,25 @@ slider between "Fast Software" and "Fast Deployment"
 People hear and mindlessly repeat "premature optimization is the root of all
 evil", but they miss the full context of the quote.
 
-"Programmers waste enormous amounts of time thinking about, or worrying about,
+> "Programmers waste enormous amounts of time thinking about, or worrying about,
 the speed of noncritical parts of their programs, and these attempts at
 efficiency actually have a strong negative impact when debugging and
 maintenance are considered. We should forget about small efficiencies, say
 about 97% of the time: premature optimization is the root of all evil. Yet we
-should not pass up our opportunities in that critical 3%." -- Knuth
+should not pass up our opportunities in that critical 3%."
+>
+> -- <cite>Knuth</cite>
 
 Add: https://www.youtube.com/watch?time_continue=429&v=RT46MpK39rQ
    * don't ignore the easy optimizations
    * more knowledge of algorithms and data structures makes more optimizations "easy" or "obvious"
 
-"Should you optimize? "Yes, but only if the problem is important, the program
+Should you optimize?
+> Yes, but only if the problem is important, the program
 is genuinely too slow, and there is some expectation that it can be made
 faster while maintaining correctness, robustness, and clarity."
--- The Practice of Programming, Kernighan and Pike
+>
+> -- <cite>The Practice of Programming, Kernighan and Pike</cite>
 
 Premature optimization can also hurt you by tying you into certain decisions.
 The optimized code can be harder to modify if requirements change and harder to
@@ -180,12 +184,14 @@ will give a skewed view of where the bottlenecks will be in the finished system.
 
 TODO: How to avoid/detect "Death by 1000 cuts" from poorly written software.
 Solution: "Premature pessimization is the root of all evil".  This matches with
-my Rule 1: Be deliberate.  You don't need to write every line of code 
+my Rule 1: Be deliberate.  You don't need to write every line of code
 to be fast, but neither should by default do wasteful things.
 
-"Premature pessimization is when you write code that is slower than it needs to
+> "Premature pessimization is when you write code that is slower than it needs to
 be, usually by asking for unnecessary extra work, when equivalently complex code
-would be faster and should just naturally flow out of your fingers." -- Herb Sutter
+would be faster and should just naturally flow out of your fingers."
+>
+> -- <cite>Herb Sutter</cite>
 
 Benchmarking as part of CI is hard due to noisy neighbours and even different
 CI boxes if it's just you.  Hard to gate on performance metrics.  A good middle
@@ -551,7 +557,7 @@ with a good algorithm. We will talk about this in the hardware-specific
 section.
 
 > The fight may not always go to the strongest, nor the race to the fastest,
-> but that's the way to bet.
+but that's the way to bet.
 > -- <cite>Rudyard Kipling</cite>
 
 Sometimes the best algorithm for a particular problem is not a single
@@ -1018,7 +1024,7 @@ Popular replacements for standard library packages:
 ## cgo
 
 > cgo is not go
-> -- Rob Pike
+> -- <cite>Rob Pike</cite>
 
 * Performance characteristics of cgo calls
 * Tricks to reduce the costs: batching
@@ -1201,7 +1207,7 @@ faster.
 
 > The fastest algorithm can frequently be replaced by one that is almost as fast and much easier to understand.
 >
-> Douglas W. Jones, University of Iowa
+> -- <cite>Douglas W. Jones, University of Iowa</cite>
 
 The added complexity has to be enough that the payoff is actually worth it.
 Another example is cache eviction algorithms. Different algorithms can have
