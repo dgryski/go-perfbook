@@ -247,7 +247,7 @@ performance every 18 *months*. Algorithmic improvements work at larger magnitude
 Algorithms for mixed integer programming [improved by a factor of 30,000
 between 1991 and 2008](https://agtb.wordpress.com/2010/12/23/progress-in-algorithms-beats-moore%E2%80%99s-law/).
 For a more concrete example, consider [this breakdown](https://medium.com/@buckhx/unwinding-uber-s-most-efficient-service-406413c5871d)
-of replacing a brute force geo-spacial algorithm described in an Uber blog post with
+of replacing a brute force geo-spatial algorithm described in an Uber blog post with
 more specialized one more suited to the presented task. There is no compiler switch
 that will give you an equivalent boost in performance.
 
