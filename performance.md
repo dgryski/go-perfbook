@@ -304,7 +304,7 @@ Ideas for augmenting your data structure:
 
   Similarly, storing pointers to frequently needed nodes instead of performing
   additional searches.  This covers things like the "backwards" links in a
-  doubly-linked list to make node removal O(1) . Some skips lists keep a "search
+  doubly-linked list to make node removal O(1). Some skip lists keep a "search
   finger", where you store an pointer to where your just were in your data
   structure on the assumption it's a good starting point for your next
   operation.
