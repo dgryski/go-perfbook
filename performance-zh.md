@@ -502,7 +502,7 @@ https://godoc.org/github.com/aclements/go-perf
 	* encoding/json -> ffjson
 	* net/http -> fasthttp(但不兼容的API)
 	* regexp -> ragel(或其他正则表达式包)
-* 系列化
+* 序列化
 	* encoding/gob - > https://github.com/alecthomas/go_serialization_benchmarks
 	* protobuf - > https://github.com/gogo/protobuf
 	* 所有格式都有权衡:选择一种符合你需要的编码空间，解码速度，语言/工具兼容性......
