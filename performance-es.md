@@ -60,6 +60,99 @@ Cuando hayas decidido cambiar tu programa, sigue leyendo.
 
 ## Cómo optimizar
 
+### Flujo de trabajo de optimización
+
+Antes de entrar en detalle, hablemos del proceso general de optimización.
+
+La optimización es una forma de refactoring. Pero cada paso, en vez de mejorar algún aspecto del código (código duplicado, claridad, etc...), mejora algún aspecto relacionado con el rendimiento: menor uso de CPU, de memoria, latencia, etc... Estas mejoras generalmente se hacen a costa de la legibilidad. Esto supone que además de un completo conjunto de pruebas unitarias (para garantizar que tus cambios no han roto nada), necesitarás un buen conjunto de benchmarks para garantizar que tus cambios tienen el efecto deseado sobre el rendimiento. Tienes que ser capaz de verificar que tu cambio realmente *está* reduciendo el uso de CPU. A veces, un cambio que pensabas iba a mejorar el rendimiento realmente no tiene impacto o tiene un impacto negativo. Asegúrate de deshacer tus cambios en estos casos.
+
+<cite>[What is the best comment in source code you have ever encountered? - Stack Overflow](https://stackoverflow.com/questions/184618/what-is-the-best-comment-in-source-code-you-have-ever-encountered)</cite>:
+<pre>
+//
+// Dear maintainer:
+//
+// Once you are done trying to 'optimize' this routine,
+// and have realized what a terrible mistake that was,
+// please increment the following counter as a warning
+// to the next guy:
+//
+// total_hours_wasted_here = 42
+//
+</pre>
+
+Los benchmarks que estés usando deben ser correctos y generar medidas reproducibles con cargas de trabajo representativas. Si las ejecuciones individuales tienen variaciones muy altas, hará muy difícil identificar pequeñas mejoras. Necesitarás usar [benchstat](https://golang.org/x/perf/benchstat) o similares tests estadísticos y no podrás valorar los cambios a ojo.
+
+(Ten en cuenta que el uso de tests estadísticos es una buena idea en cualquier caso). Los pasos para ejecutar los benchmarks deben estar documentandos, y cualquier script y herramienta personalizada debe ser añadida al repositorio con instrucciones para ejecutarlos. Se cuidadoso con los grandes conjuntos de benchmarks que tardan mucho en ejecutarse: harán el proceso de desarollo más lento.
+
+Ten también en cuenta que cualquier cosa que puede ser medida puede ser optimizada. Asegúrate de estar midiendo lo correcto.
+
+El siguiente paso es decidir qué vas a optimimizar. Si el objetivo es mejorar el uso de CPU, ¿cuál es una velocidad aceptable? ¿Quieres mejorar el rendimiento actual por 2? ¿Por 10? ¿Puedes describirlo como "un problema de tamaño N en un tiempo menor a T"? ¿Estás intentando reducir el uso de memoria? ¿Por cuánto? ¿Cuánto más lento es aceptable a cambio de reducir el uso de memoria? ¿Qué estás dispuesto a perder a cambio de reducir los requerimientos de espacio?
+
+Optimizar la latencia de un servicio es más complejo. Se han escrito libros enteros explicando como probar el rendimiento de servidores web. El principal problema es que para una única función, el rendimiento es bastante consistente para un problema de un tamaño dado. Para servicios web no tienes un único número. Un conjunto de benchmarks adecuado para un servicio web proporcionará una distribución de latencia para un determinado nivel de peticiones/segundo. Esta charla da una buena visión general de algunos de estos temas:
+["How NOT to Measure Latency" by Gil Tene](https://youtu.be/lJ8ydIuPFeU)
+
+TODO: See the later section on optimizing web services
+
+Los objetivos de rendimientos deben ser específicos. (Casi) siempre serás capaz de hacer que algo sea más rapido. Optimizar es frecuentemente un juego de rendimientos decrecientes. Debes saber cuando parar. ¿Cuánto esfuerzo vas a dedicar para conseguir ese pequeño paso final? ¿Cuánto estás dispuesto a ensuciar y a dificultar el mantenimiento del código?
+
+La charla de Dan Luu que se menciona más arriba sobre [estimación del rendimiento de BitFunnel](http://bitfunnel.org/strangeloop) muestra un ejemplo del uso de cálculos aproximados para determinar si tus objetivos de rendimiento son razonables.
+
+TODO: Programming Pearls has "Fermi Problems".  Knowing Jeff Dean's slide helps.
+
+Cuando se empieza el desarrollo, no debes dejar el benchmarking y los objetivos de rendimiento para el final. Es fácil decir "arreglaremos esto más adelante", pero si el rendimiento es realmente importante, será una consideración de diseño desde el principio. Cualquier cambio significativo en la arquitectura requerido para arreglar problemas de rendimiento será demasiado arriesgado cerca de la fecha límite. Ten en cuenta que *durante* el desarrollo, el foco debe estar en diseños, algoritmos y estructura de datos razonables. Optimizar los niveles más bajos del stack debe esperar hasta más adelante en el ciclo de desarrollo cuando se tenga una visión más completa del rendimiento del sistema. Cualquier perfilado global del sistema que se haga cuando el sistema esté incompleto dará una vista sesgada de donde estarán los cuellos de botella una vez que el sistema se finalize.
+
+TODO: How to avoid/detect "Death by 1000 cuts" from poorly written software.
+Solution: "Premature pessimization is the root of all evil".  This matches with
+my Rule 1: Be deliberate.  You don't need to write every line of code 
+to be fast, but neither should by default do wasteful things.
+
+"Pesimismo prematuro es cuando escribes código que es más lento de lo que debería ser, generalmente porque se realiza trabajo adicional innecesario, cuando un código con un nivel de complejidad equivalente será más rápido y fluye de namera natural de tus dedos." -- Herb Sutter
+
+Incluir benchmarking como una parte de CI es difícil debido a los vecinos ruidosos e incluso en el caso de no tener vecinos a diferencias en los entornos de CI. Es difícil controlar las métricas de rendimiento. Un buen término medio es tener benchmarks que son ejecutadas por el desarrollador (en hardware adecuado) e incluidas en el mensaje de commit para commits que tratan especificamente con temas de rendimiento. Para aquellos commits más generales, intenta detectar problemas de rendimiento "a ojo" en la revisión del código.
+
+TODO: how to track performance over time?
+
+Escribe código para el que puedas aplicar benchmark. El perfilado se puede hacer en sistemas de mayor tamaño. Mediante benchmarking quieres probar partes aisladas. Debes poder extraer y preparar un contexto suficente como para que los benchmarks prueben lo necesario y sean representativos.
+
+La diferencia entre tu redimiento objetivo y tu rendimiento actual te dará una idea de por donde empezar. Si sólo necesitas una mejora de un 10-20%, probablemente podrás conseguirla con algunos ajustes en la implementación y pequeños arreglos. Si necesitas mejorar por un factor de 10x o más, entonces no lo vas a conseguir reemplazando una multiplicación con un left-shift. En este caso probablemente tengas que hacer cambios de arriba a abajo en tu stack, posiblemente rediseñando grandes partes del sistema teniendo los objetivos de rendimiento en mente.
+
+Un buen trabajo que afecte al rendimiento requiere conocimiento en muchos niveles diferentes, desde el diseño de sistemas, redes, hardware (CPU, caches, almacenamiento), algoritmos, tuning y debugging. Con tiempo y recursos limitados, considera en que nivel tendrás mayores mejoras: no siempre será un cambio de algoritmo o tuning del programa.
+
+En general, las optimizaciones deben hacerse de arriba a abajo. Optimizaciones a nivel de sistema tendrán más impacto que optimizaciones a nivel de expresión. Asegúrate de estar resolviendo el problema en el nivel apropiado.
+
+Este libro va a hablar sobre todo de como reducir el uso de CPU, el uso de memoria y la latencia. Es importante indicar que raramente podrás conseguir las tres cosas. Quizás el tiempo de CPU sea más rapido, pero ahora tu programa usa más memoria. Quizás necesites reducir el espacio en memoria, pero ahora el programa tarda más.
+
+[La ley de Amdahl](https://en.wikipedia.org/wiki/Amdahl%27s_law) dice que pongamos el foco en los cuellos de botella. Si doblas la velocidad de una rutina que solo ocupa el 5% del tiempo de ejecución, solo resulta en una mejora total del 2.5%. Por otro lado, acelerar una rutima que ocupa el 80% del tiempo en tan solo un 10%, mejorará el tiempo de ejecución en casi un 8%. El perfilado te ayudará a identificar donde realmente se ocupa el tiempo.
+
+Al optimizar, quieres reducir la cantidad de trabajo que la CPU tiene que hacer. Quick sort es más rapido que Bubble sort porque resuelve el mismo problema (ordenar) en menos pasos. Es un algoritmo más eficiente. Has reducido el trabajo que la CPU tiene que hacer para conseguir el mismo resultado.
+
+El tuning de un programa, como las optimizaciones del compilador, generalmente solo resultará en una pequeña reducción del tiempo de ejecución total. Las grandes ganancias vendrán casi siempre de un cambio de algoritmo o de un cambio en la estructura de datos, un cambio fundamental en cómo está organizado tu programa. [La ley de Proebsting](http://proebsting.cs.arizona.edu/law.html) dice que los compiladores doblan su rendimientos cada 18 *años*, un contraste evidente con la (ligeramente malinterpretada) Ley de Moore que dice que el rendimiento del procesador se dobla cada 18 *meses*. Las mejoras en los algoritmos funcionan en magnitudes mayores. Los algoritmos de mixed integer programming, [mejoraron en un factor de 30.000 entre 1991 y 2008](https://agtb.wordpress.com/2010/12/23/progress-in-algorithms-beats-moore%E2%80%99s-law). Para un ejemplo más concreto, considera [este análisis](https://medium.com/@buckhx/unwinding-uber-s-most-efficient-service-406413c5871d) sobre reemplazar un algoritmo geoespacial de fuerza bruta descrito en un blog post de Uber con una especialización más adecuada para la tarea presentada. No hay un cambio en el compilador que resulte en un incremento equivalente del rendimiento.
+
+TODO: Optimizing floating point FFT and MMM algorithm differences in gttse07.pdf
+
+Un profiler quizás te muestre que se pasa mucho tiempo en una rutina en particular. Puede ser que sea una rutina pesada o puede ser una rutina ligera que se llama muchas, muchas veces. En lugar de inmediatamente intentar acelerar esta rutina, mira si puedes reducir el número de veces que se llama o eliminarla completamente. Discutiremos estrategias de optimización más concretas en la siguiente sección.
+
+Las Tres Preguntas de Optimización:
+
+* ¿Hace falta hacer esto? El código más rapido es aquel que nunca se ejecuta.
+* Si sí, ¿es este el mejor algoritmo?.
+* Si sí, ¿es esta la mejor *implementación* de este algoritmo?.
+
+## Consejos concretos para optimizar
+
+La obra de 1982 de Jon Bentley "Writing Efficient Programs", abordó la optimización de programas como un problema de ingeniería: Mide. Analiza. Mejora. Verifica. Itera. Unos cuantos de sus consejos son aplicados automaticamente por los compiladores. El trabajo de un programador es aplicar las transformaciones que los compiladores *no pueden* hacer.
+
+Hay resumenes del libro:
+
+* <http://www.crowl.org/lawrence/programming/Bentley82.html>
+* <http://www.geoffprewett.com/BookReviews/WritingEfficientPrograms.html>
+
+y de las reglas de tuning de programas:
+
+* <https://web.archive.org/web/20080513070949/http://www.cs.bell-labs.com/cm/cs/pearls/apprules.html>
+
+Cuando pienses en los cambios que puedes hacer en tu programa, hay dos opciones básicas: puedes modificar los datos o puedes modificar tu código.
+
 ### Modificar los datos
 
 Modificar los datos significa agregar o alterar la representación de los datos
