@@ -56,3 +56,15 @@ Adicione: https://www.youtube.com/watch?time_continue=429&v=RT46MpK39rQ
 Na grande maioria dos casos, o tamanho e a velocidade de um programa não são uma preocupação. A otimização mais fácil é não ter que fazê-la. A segunda otimização mais fácil está apenas comprando hardware mais rápido.
 
 Uma vez decidido que você irá mudar seu programa, continue lendo.
+
+## Como otimizar
+
+### Fluxo da otimização.
+
+Antes de entrarmos nos detalhes, vamos falar sobre o processo geral de
+otimização.
+
+Otimização é uma forma de refatoração. Mas cada passo, ao invés de melhorar
+algum aspecto do código-fonte (duplicação de código, clareza, etc), melhora
+algum aspecto do desempenho: menos CPU, uso de memória, latência, etc.
+Essa melhoria geralmente vem ao custo da legibilidade. Isso significa que, além de um conjunto abrangente de testes de unidade (para garantir que suas alterações não tenham quebrado nada), você também precisa de um bom conjunto de benchmarks para garantir que suas alterações tenham o efeito desejado no desempenho. Você deve ser capaz de verificar se sua alteração está realmente diminuindo o uso de CPU. Às vezes, uma mudança que você acha que melhoraria o desempenho acabará tendo uma mudança nula ou negativa. Sempre certifique-se de desfazer sua correção nesses casos.
