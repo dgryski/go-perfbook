@@ -997,6 +997,7 @@ allocate it. But you also pay every time the garbage collection runs.
   * consider alternate random number generation (go-pcgr, xorshift)
 * binary.Read and binary.Write use reflection and are slow; do it by hand. (https://github.com/conformal/yubikey/commit/613e3b04ae2eeb78e6a19636b8ff8e9106d2e7bc)
 * use strconv instead of fmt if possible
+* Use `strings.EqualFold(str1, str2)` instead of `strings.ToLower(str1) == strings.ToLower(str2)` or `strings.ToUpper(str1) == strings.ToUpper(str2)` to efficiently compare strings if possible.
 * ...
 
 ## Alternate implementations
