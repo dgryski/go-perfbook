@@ -129,3 +129,58 @@ As três perguntas da otimização:
 * Nós precisamos fazer isso mesmo? O código mais rápido é aquele nunca executado.
 * Se sim, esse é o melhor algoritmo?
 * Se sim, essa é a melhor *implementação* desse algoritmo?
+
+## Dicas concretas sobre otimização
+
+O trabalho de Jon Bentley em 1982, "Writing Efficient Programs", abordou a otimização de programas como um problema de engenharia: Benchmark. Analisar. Melhorar. Verificar. Iterar. Várias de suas dicas agora são feitas automaticamente por compiladores. Um dos trabalhos dos programadores é  usar as "Transformações" que um compilador *Não pode* realizar.
+
+
+Há resumos deste livro:
+
+* <http://www.crowl.org/lawrence/programming/Bentley82.html>
+* <http://www.geoffprewett.com/BookReviews/WritingEfficientPrograms.html>
+
+e as regras de ajuste de programas:
+
+* <https://web.archive.org/web/20080513070949/http://www.cs.bell-labs.com/cm/cs/pearls/apprules.html>
+
+Ao pensar em mudanças que você pode fazer no seu programa, existem duas opções básicas:
+você pode alterar seus dados ou alterar seu código.
+
+### Alterações nos dados
+
+Alterar seus dados significa adicionar ou alterar a representação dos dados que você está processando. Do ponto de vista de desempenho, alguns desses vão acabar mudando a complexidade O() que é associada a diferentes aspectos das estruturas de dados.
+
+Idéias para melhorar sua estrutura de dados:
+
+* Campos extras
+
+  O exemplo clássico disso é armazenar o tamanho de uma lista encadeada em um campo
+  do nó raiz. Temos um pouco mais de trabalho para mantê-la atualizada, porém, em seguida, consultar
+  o comprimento se torna uma pesquisa de campo simples em vez de um percurso O (n). Sua estrutura de dados
+  pode apresentar um ganho semelhante: um pouco de *bookkeeping* durante algumas
+  operações em troca de um desempenho melhor em um caso de uso comum.
+
+  Da mesma forma, armazenar ponteiros para nós frequentemente necessários em vez de executar
+  pesquisas adicionais. Isso abrange coisas como os links "para trás" em uma
+  lista duplamente ligada para fazer a remoção do nó ter complexidade O (1). Algumas Skip lists mantêm uma "search
+  finger ", onde você armazena um ponteiro de onde você estava em sua estrutura no pressuposto de que é um bom ponto de partida para a sua próxima operação.
+
+* Índices extras de pesquisa
+
+  A maioria das estruturas de dados é projetada para um único tipo de consulta. Se você precisar de dois
+  tipos de consulta diferentes, ter uma "visualização" adicional nos seus dados pode ser uma grande
+  melhoria. Por exemplo, um conjunto de estruturas pode ter um ID primário (inteiro)
+  que você usa para procurar em uma fatia, mas às vezes precisa procurar com um
+  ID secundário (string). Em vez de iterar sobre a fatia, você pode incrementar
+  sua estrutura de dados com um mapa de string para ID ou diretamente para própria estrutura.
+
+* Informação extra sobre elementos
+
+  Por exemplo, manter um bloom filter de todos os elementos inseridos pode fazer com que você retorne rapidamente consultas sem resultado. Estes precisam ser pequenos e rápidos para não sobrecarregar o resto da estrutura de dados. (Se uma pesquisa em seus dados principais é barata, o custo do *bloom filter* superará qualquer economia.)
+
+* Se as consultas forem caras, adicione um cache.
+
+  Em um nível maior, um cache interno ou externo (como o memcache) pode ajudar.
+  Pode ser excessivo para uma única estrutura de dados, nós vamos cobrir mais sobre caches abaixo.
+
