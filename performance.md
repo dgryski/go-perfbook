@@ -169,7 +169,13 @@ Dan Luu's previously mentioned talk on [BitFunnel performance
 estimation](http://bitfunnel.org/strangeloop) shows an example of using rough
 calculations to determine if your target performance figures are reasonable.
 
-TODO: Programming Pearls has "Fermi Problems".  Knowing Jeff Dean's slide helps.
+Simon Eskildsen has a talk from SRECon covering this topic in more depth:
+[Advanced Napkin Math: Estimating System Performance from First Principles](https://www.youtube.com/watch?v=IxkSlnrRFqc)
+
+Finally, Jon Bentley's "Programming Pearls" has a chapter titled "The Back of
+the Envelope" covering Fermi problems.  Sadly, these kind of estimation skills
+got a bad wrap thanks to their use in Microsoft style "puzzle interview
+questions" in the 1990s and early 2000s.
 
 For greenfield development, you shouldn't leave all benchmarking and
 performance numbers until the end. It's easy to say "we'll fix it later", but
