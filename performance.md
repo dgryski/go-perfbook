@@ -379,6 +379,10 @@ Reduce space usage in exchange for increased computation. Rather than storing
 things, calculate them every time. You can also compress the data in memory
 and decompress it on the fly when you need it.
 
+If the data you're processing is on disk, instead of loading everything into
+RAM, you could create an index for the pieces you need and keep that in
+memory, or pre-process the file into smaller workable chunks.
+
 [Small Memory Software](http://smallmemory.com/book.html) is a book available
 online covering techniques for reducing the space used by your programs.
 While it was originally written targeting embedded developers, the ideas are
