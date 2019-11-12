@@ -626,7 +626,7 @@ TODO: notes on algorithm selection
 TODO:
   improve worst-case behaviour at slight cost to average runtime
   linear-time regexp matching
-  randomized algorithms: MC vs. LV
+  randomized algorithms: MC vs. LV: MC gamble with correctness, LV with time/termination
     improve worse-case running time
     skip-list, treap, randomized marking,
     primality testing, randomized pivot for quicksort
