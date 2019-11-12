@@ -302,7 +302,8 @@ you can either change your data or you can change your code.
 Changing your data means either adding to or altering the representation of
 the data you're processing. From a performance perspective, some of these
 will end up changing the O() associated with different aspects of the data
-structure.
+structure. This may even include preprocessing the input to be in a
+different, more useful format.
 
 Ideas for augmenting your data structure:
 
@@ -350,6 +351,28 @@ easy to keep up-to-date.
 These are all clear examples of "do less work" at the data structure level.
 They all cost space. Most of the time if you're optimizing for CPU, your
 program will use more memory. This is the classic [space-time trade-off](https://en.wikipedia.org/wiki/Space%E2%80%93time_tradeoff).
+
+It's important to examine how this tradeoff can affect your solutions -- it's
+not always straight-forward. Sometimes a small amount of memory can give a
+significant speed, sometimes the tradeoff is linear (2x memory usage == 2x
+performance speedup), sometimes it's significantly worse: a huge amount of
+memory gives only a small speedup. Where you need to be on this
+memory/performance curve can affect what algorithm choices are reasonable.
+It's not always possible to just tune an algorithm parameter. Different
+memory usages might be completely different algorithmic approaches.
+
+Lookup tables also fall into this space-time trade-off. A simple lookup table
+might just be a cache of previously requested computations.
+
+If the domain is small enough, the *entire* set of results could be
+precomputed and stored in the table. As an example, this could be the
+approach taken for a fast popcount implementation, where by the number of set
+bits in byte is stored in a 256-entry table. A larger table could store the
+bits required for all 16-bit words. In this case, they're storing exact
+results.
+
+A number of algorithms for trigonometric functions use lookup tables as a
+starting point for a calculation.
 
 If your program uses too much memory, it's also possible to go the other way.
 Reduce space usage in exchange for increased computation. Rather than storing
