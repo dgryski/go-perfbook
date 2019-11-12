@@ -627,10 +627,10 @@ TODO:
   improve worst-case behaviour at slight cost to average runtime
   linear-time regexp matching
   randomized algorithms: MC vs. LV: MC gamble with correctness, LV with time/termination
-    improve worse-case running time
-    skip-list, treap, randomized marking,
-    primality testing, randomized pivot for quicksort
-    power of two random choices
+    improve worse-case running time by avoiding bad choices with randomness
+    treap (tree space: "mostly" balanced with high probability), skip-list similarly O(log n) w/h/p, other caching algorithms
+    primality testing: (Miller-Rabin: just run 200 times), randomized pivot for quicksort (easy, simpler than median-of-medians, low probability of failure)
+    power of two random choices: move from O(log n) to O(log log n) with high probability, with an entire field of applications
     statistical approximations (frequently depend on sample size and not population size)
 
  TODO: batching to reduce overhead: https://lemire.me/blog/2018/04/17/iterating-in-batches-over-data-structures-can-be-much-faster/
