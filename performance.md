@@ -630,11 +630,51 @@ TODO: notes on algorithm selection
 TODO:
   improve worst-case behaviour at slight cost to average runtime
   linear-time regexp matching
-  randomized algorithms: MC vs. LV: MC gamble with correctness, LV with time/termination
-    improve worse-case running time by avoiding bad choices with randomness
-    treap (tree space: "mostly" balanced with high probability), skip-list similarly O(log n) w/h/p, other caching algorithms
-    primality testing: (Miller-Rabin: just run 200 times), randomized pivot for quicksort (easy, simpler than median-of-medians, low probability of failure)
-    power of two random choices: move from O(log n) to O(log log n) with high probability, with an entire field of applications
+
+While most algorithms are deterministic, there are a class of algorithms that
+use randomness as a way to simplify otherwise complex decision making step.
+Instead of having code that does the Right Thing, you use randomness do
+select a probably not *bad* thing. For example, a treap is a
+probabilistically balanced binary tree. Each node has a key, but also is
+assigned a random value. When inserting into the tree, the normal binary tree
+insertion path is followed but the nodes also obey the heap property based
+on each nodes randomly assigned weight. This simpler approach replaces
+otherwise complicated tree rotating solutions (like AVL and Red Black trees)
+but still maintains a balanced tree with O(log n) insert/lookup "with high
+probability.  Skip lists are another similar, simple data structure that uses
+randomness to produce "probably" O(log n) insertion and lookups.
+
+Similarly, choosing a random pivot for quicksort can be simpler than a more
+complex median-of-medians approach to finding a good pivot, and the
+probability that bad pivots are continually (randomly) chosen and degrading
+quicksort's performance to O(n^2) is vanishingly small.
+
+Randomized algorithms are classed as either "Monte Carlo" algorithms or "Las
+Vegas" algorithms, after two well known gambling locations. A Monte Carlo
+algorithm gambles with correctness: it might output a wrong answer (or in the
+case of the above, an unbalanced binary tree). A Las Vegas algorithm always
+outputs a correct answer, but might take a very long time to terminate.
+
+Another well-known example of a randomized algorithm is the Miller-Rabin
+primality testing algorithm. Each iteration will output either "not prime" or
+"maybe prime". While "not prime" is certain, the "maybe prime" is correct
+with probability at least 1/2. That is, there are non-primes for which "maybe
+prime" will still be output. By running many iterations of Miller-Rabin, we
+can make the probability of failure (that is, outputing "maybe prime" for a
+composite number) as small as we'd like. If it passes 200 iterations, then we
+can say the number is composite with probability at most 1/(2^200).
+
+Another area where randomness plays a part is called "The power of two random
+choices". While initially the research was applied to load balancing, it
+turned out to be widely applicable to a number of selection problems. The
+idea is that rather than trying to find the best selection out of a group of
+items, pick two at random and select the best from that. Returning to load
+balancing (or hash table chains), the power of two random choices reduces the
+expected load (or hash chain length) from O(log n) items to O(log log n)
+items. For more information, see [The Power of Two Random Choices: A Survey of Techniques and Results](https://www.eecs.harvard.edu/~michaelm/postscripts/handbook2001.pdf)
+
+randomized algorithms:
+    other caching algorithms
     statistical approximations (frequently depend on sample size and not population size)
 
  TODO: batching to reduce overhead: https://lemire.me/blog/2018/04/17/iterating-in-batches-over-data-structures-can-be-much-faster/
