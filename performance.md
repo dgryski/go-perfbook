@@ -633,7 +633,7 @@ TODO:
 
 While most algorithms are deterministic, there are a class of algorithms that
 use randomness as a way to simplify otherwise complex decision making step.
-Instead of having code that does the Right Thing, you use randomness do
+Instead of having code that does the Right Thing, you use randomness to
 select a probably not *bad* thing. For example, a treap is a
 probabilistically balanced binary tree. Each node has a key, but also is
 assigned a random value. When inserting into the tree, the normal binary tree
