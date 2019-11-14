@@ -679,6 +679,11 @@ randomized algorithms:
 
  TODO: batching to reduce overhead: https://lemire.me/blog/2018/04/17/iterating-in-batches-over-data-structures-can-be-much-faster/
 
+TODO: - Algorithm Design Manual: http://algorist.com/algorist.html
+      - How To Solve It By Computer
+      - to what extent is this a "how to write algorithms" book?  If you're going to change
+      the code to speed it up, by definition you're writing new algorithms.  Soo... maybe?
+
 ### Benchmark Inputs
 
 Real-world inputs rarely match the theoretical "worst case".  Benchmarking is
