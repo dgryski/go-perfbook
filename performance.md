@@ -30,7 +30,7 @@ We can summarize these three sections as:
 I'm putting this first because it's really the most important step. Should
 you even be doing this at all?
 
-Every optimization has a cost. Generally this cost is expressed in terms of
+Every optimization has a cost. Generally, this cost is expressed in terms of
 code complexity or cognitive load -- optimized code is rarely simpler than
 the unoptimized version.
 
@@ -81,7 +81,7 @@ faster while maintaining correctness, robustness, and clarity."
 
 Premature optimization can also hurt you by tying you into certain decisions.
 The optimized code can be harder to modify if requirements change and harder to
-throw away (sunk-cost falacy) if needed.
+throw away (sunk-cost fallacy) if needed.
 
 [BitFunnel performance estimation](http://bitfunnel.org/strangeloop) has some
 numbers that make this trade-off explicit. Imagine a hypothetical search
@@ -92,7 +92,7 @@ developer spending an entire year to improve performance by only 1% will pay
 for itself.
 
 In the vast majority of cases, the size and speed of a program is not a concern.
-Easiest optimization is not having to do it. The second easiest optimization
+The easiest optimization is not having to do it. The second easiest optimization
 is just buying faster hardware.
 
 Once you've decided you're going to change your program, keep reading.
@@ -101,7 +101,7 @@ Once you've decided you're going to change your program, keep reading.
 
 ### Optimization Workflow
 
-Before we get into the specifics, lets talk about the general process of
+Before we get into the specifics, let's talk about the general process of
 optimization.
 
 Optimization is a form of refactoring. But each step, rather than improving
@@ -132,7 +132,8 @@ negative change. Always make sure you undo your fix in these cases.
 The benchmarks you are using must be correct and provide reproducible numbers
 on representative workloads. If individual runs have too high a variance, it
 will make small improvements more difficult to spot. You will need to use
-[benchstat](https://golang.org/x/perf/benchstat) or equivalent statistical tests and won't be able to just eyeball it.
+[benchstat](https://golang.org/x/perf/benchstat) or equivalent statistical tests 
+and won't be able just to eyeball it.
 (Note that using statistical tests is a good idea anyway.) The steps to run
 the benchmarks should be documented, and any custom scripts and tooling
 should be committed to the repository with instructions for how to run them.
@@ -173,7 +174,7 @@ Simon Eskildsen has a talk from SRECon covering this topic in more depth:
 [Advanced Napkin Math: Estimating System Performance from First Principles](https://www.youtube.com/watch?v=IxkSlnrRFqc)
 
 Finally, Jon Bentley's "Programming Pearls" has a chapter titled "The Back of
-the Envelope" covering Fermi problems.  Sadly, these kind of estimation skills
+the Envelope" covering Fermi problems.  Sadly, these kinds of estimation skills
 got a bad wrap thanks to their use in Microsoft style "puzzle interview
 questions" in the 1990s and early 2000s.
 
@@ -224,7 +225,7 @@ large portions of the system with these performance goals in mind.
 Good performance work requires knowledge at many different levels, from
 system design, networking, hardware (CPU, caches, storage), algorithms,
 tuning, and debugging. With limited time and resources, consider which level
-will give the most improvement: it won't always be algorithm or program
+will give the most improvement: it won't always be an algorithm or program
 tuning.
 
 In general, optimizations should proceed from top to bottom. Optimizations at
@@ -283,7 +284,7 @@ The Three Optimization Questions:
 Jon Bentley's 1982 work "Writing Efficient Programs" approached program
 optimization as an engineering problem: Benchmark. Analyze. Improve. Verify.
 Iterate. A number of his tips are now done automatically by compilers. A
-programmers job is to use the transformations compilers *can't* do.
+programmer's job is to use the transformations compilers *can't* do.
 
 There are summaries of the book:
 
@@ -437,6 +438,7 @@ addressed this directly, comparing performance on both a contended and
 uncontended processor cache. (See graphs 4 and 5 in the Jump Hash paper)
 
 TODO: how to simulate a contended cache, show incremental cost
+TODO: sync.Map as a Go-ish example of cache-contention addressing
 
 Another aspect to consider is data-transfer time. Generally network and disk
 access is very slow, and so being able to load a compressed chunk will be
@@ -535,7 +537,7 @@ array is faster to insert but it's unsorted: at the end to "finalize" you
 need to do the sorting all at once.
 
 When writing a package to be used by others, avoid the temptation to
-optimize up front for every single use case. This will result in unreadable
+optimize upfront for every single use case. This will result in unreadable
 code. Data structures by design are effectively single-purpose. You can
 neither read minds nor predict the future. If a user says "Your package is
 too slow for this use case", a reasonable answer might be "Then use this
@@ -588,6 +590,9 @@ bit, in that caches prefer the predictable access of scanning a slice to the
 effectively random access of chasing a pointer. Still, it's best to begin
 with a good algorithm. We will talk about this in the hardware-specific
 section.
+
+TODO: extending last paragraph, mention O() notation is an model where each 
+operation has fixed cost. That's a wrong assumption on modern hardware. 
 
 > The fight may not always go to the strongest, nor the race to the fastest,
 but that's the way to bet.
@@ -718,12 +723,12 @@ benchmark input consists only a single query, then every request will hit the
 cache giving potentially a very unrealistic view of how the system will behave
 in the real world with a more varied request pattern.
 
-Also note that some issues that are not apparent on your laptop might be visible
+Also, note that some issues that are not apparent on your laptop might be visible
 once you deploy to production and are hitting 250k reqs/second on a 40 core
 server. Similarly, the behaviour of the garbage collector during benchmarking
 can misrepresent real-world impact.  There are (rare) cases where a
 microbenchmark will show a slow-down, but real-world performance improves.
-Microbenchmarks can help nudge you in the right direction, but being able to
+Microbenchmarks can help nudge you in the right direction but being able to
 fully test the impact of a change across the entire system is best.
 
 Writing good benchmarks can be difficult.
@@ -996,6 +1001,8 @@ All optimizations should follow these steps:
     - if possible, test ramp-up/ramp-down in addition to steady-state load
 1. make sure your latency numbers make sense
 
+TODO: mention github.com/aclements/perflock as cpu noise reduction tool
+
 The first step is important. It tells you when and where to start optimizing.
 More importantly, it also tells you when to stop. Pretty much all optimizations
 add code complexity in exchange for speed. And you can *always* make code
@@ -1148,6 +1155,8 @@ Techniques specific to the architecture running the code
 
 * Comment about Jeff Dean's 2002 numbers (plus updates)
   * cpus have gotten faster, but memory hasn't kept up
+
+TODO: little comment about code-aligment free optimization (or unoptimization)
 
 ## Concurrency
 
