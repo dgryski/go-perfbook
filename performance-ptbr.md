@@ -181,6 +181,83 @@ Idéias para melhorar sua estrutura de dados:
 
 * Se as consultas forem caras, adicione um cache.
 
-  Em um nível maior, um cache interno ou externo (como o memcache) pode ajudar.
-  Pode ser excessivo para uma única estrutura de dados, nós vamos cobrir mais sobre caches abaixo.
+  Em um nível maior, um cache interno ou externo (como o memcache) pode ajudar. Isso pode soar excessivo para somente uma estrutura de dados. Falaremos mais sobre cache abaixo.
 
+Esses tipos de alterações são utéis quando os dados necessários são baratos para armanezar e fáceis de se manterem atualizados.
+
+Estes são exemplos claros de "Tenha menos trabalho" pensando no nível de estrutura de dados. Todos eles custam espaço. Na maior parte do tempo se você está otimizando pensando em uso de CPU, seu programa usará mais memório este é a clássica [compensação espaço-tempora](https://en.wikipedia.org/wiki/Space%E2%80%93time_tradeoff).
+
+É importante pensar como essa compensação pode afetar as suas soluções -- de maneira não direta. Às vezes, uma pequena quantidade de memória pode resultar em uma melhoria significativa de velocidade, em outras situações este tradeoff é linear (2x o uso da memória == 2x a melhora de desempenho), em outras vezes é significativamente pior: uma enorme quantidade de memória fornece apenas uma pequena melhora de desempenho. Onde você precisa estar nesta curva de memória/desempenho  pode afetar quais opções de algoritmos são razoáveis. Nem sempre é possível somente ajustar um parâmetro de um algoritmo. Diferentes usos de memória pode ter abordagens algorítimicas completamente diferentes.
+ 
+
+Tabelas de pesquisa também se enquadram nessa compensação espaço-temporal. Uma tabela de pesquisa simples
+pode ser apenas um cache de cálculos que foram solicitados anteriormente.
+
+
+Se o domínio for pequeno o suficiente, o conjunto * inteiro de resultados poderá ser
+pré-computado e armazenado na tabela. 
+
+Como exemplo, essa poderia ser a abordagem adotada para uma implementação rápida de popcount, em que pelo número de bits ativos em um byte são armazenados em uma tabela de 256 entradas. Uma tabela maior pode armazenar os bits necessários para todas as palavras de 16 bits. Nesse caso, eles estão armazenando resultados exatos.
+
+
+Vários algoritmos para funções trigonométricas usam tabelas de pesquisa como um
+ponto de partida para realizar um cálculo.
+
+
+Se o seu programa usa muita memória, também é possível seguir  outro caminho.
+Reduza o uso de espaço em troca do aumento da computação. Em vez de armazenar
+coisas, calcule-as sempre. Você também pode compactar os dados na memória
+e descompactar rapidamente quando precisar.
+
+Se os dados que você está processando estiverem em disco, em vez de carregar tudo na memória
+RAM, você pode criar um índice para as peças necessárias e mantê-las
+memória ou pré-processe o arquivo em pequenos pedaços viáveis.
+
+[Small Memory Software](http://smallmemory.com/book.html)  é um livro disponível online que cobre técnicas utilizadas para o reduzir o espaço usado por seus programas.
+Embora tenha sido originalmente escrito para desenvolvedores de software embarcado, as idéias são
+aplicáveis a programas que rodam em hardware moderno que lidam com grandes quantidades de dados.
+
+* Reorganize seus dados
+
+  Elimine o preenchimento da estrutura. Remova campos extras. Use um tipo de dados menor.
+
+* Mude para uma estrutura de dados mais lenta
+
+  Estruturas de dados mais simples freqüentemente têm requisitos de memória mais baixos. Por exemplo, mudar de uma estrutura de árvore pesada com ponteiro para usar busca linear e slice em arrays.
+  
+* Formato de compactação personalizado para seus dados
+
+  Algoritmos de compressão dependem muito do que está sendo compactado. É
+  melhor escolher um que combine com seus dados. Se você tiver [] byte, algo
+  como snappy, gzip, lz4, se comporta bem. Para dados de ponto flutuante, existe go-tsz
+  para séries temporais e fpc para dados científicos. Muita pesquisa foi feita
+  compactar números inteiros, geralmente para recuperação de informações em motores de pesquisa. Exemplos incluem codificação delta e varints para esquemas mais complexos envolvendo Huffman códificado com diferenças de OU-exclusivo. Você também pode criar
+  formatos de compactação otimizados para seus tipos exatos de dados.
+
+
+Você precisa inspecionar os dados ou eles podem permanecer compactados? Você precisa de acesso aleatório ou apenas streaming? 
+Se você precisar acessar entradas individuais, mas não quer descomprimir a coisa toda, você pode compactar os dados em blocos menores e manter um índice indicando o intervalo de entradas em cada bloco. O acesso a uma única entrada só precisa verificar o índice e descompactar o bloco de dados menor.
+
+Se seus dados não estão apenas sendo processados, mas também serão gravados em disco, que tal  migração de dados ou adição / remoção de campos. Agora você estará lidando com os [] byte em sua forma crua, em vez de bons tipos estruturados de Go, portanto, você precisará não ser seguro e considerar as opções de serialização.
+
+Falaremos mais sobre layouts de dados posteriormente.
+
+Computadores modernos e a hierarquia de memória 
+fazem o trade-off espaço / tempo menos claro. É fácil que as tabelas de pesquisa estejam "distantes" na memória (e
+portanto, tornam seu acesso custoso), tornando mais rápido apenas recalcular um valor toda vez que for necessário.
+
+
+Isso também significa que o benchmarking frequentemente mostrará melhorias que não são percebidos no sistema de produção devido à contenção de cache
+(por exemplo, tabelas de pesquisa estão no cache do processador durante o benchmarking, mas sempre são liberadas por "dados reais" quando usados ​​em um sistema real.)
+Google's [Jump Hash paper](https://arxiv.org/pdf/1406.2294.pdf) 
+de fato abordou isso diretamente, comparando o desempenho em um cache de processador contido e não contido. (Veja os gráficos 4 e 5 no artigo Jump Hash)
+
+
+TODO: como simular um cache contencioso, mostrar custos incrementais
+TODO: sync.Map como um exemplo go-ish de endereçamento de contenção de cache
+
+Outro aspecto a considerar é o tempo de transferência de dado. Geralmente, o acesso à rede e ao disco é muito lento e, portanto, poder carregar um pedaço compactado será muito mais rápido que o tempo extra da CPU necessário para descomprimir os dados, uma vez que foi buscado. Como sempre, benchmark. Um formato binário geralmente será menor e mais rápido de analisar do que um texto, mas com o custo de não ser mais legível por humanos.
+
+
+Para transferência de dados, vá para um protocolo menos falador ou aumente a API para permitir consultas parciais. Por exemplo, uma consulta incremental em vez de ser
+forçado a buscar o conjunto de dados inteiro a cada vez.
