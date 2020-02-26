@@ -185,9 +185,9 @@ Idéias para melhorar sua estrutura de dados:
 
 Esses tipos de alterações são utéis quando os dados necessários são baratos para armanezar e fáceis de se manterem atualizados.
 
-Estes são exemplos claros de "Tenha menos trabalho" pensando no nível de estrutura de dados. Todos eles custam espaço. Na maior parte do tempo se você está otimizando pensando em uso de CPU, seu programa usará mais memório este é a clássica [compensação espaço-tempora](https://en.wikipedia.org/wiki/Space%E2%80%93time_tradeoff).
+Estes são exemplos claros de "Tenha menos trabalho" pensando no nível de estrutura de dados. Todos eles custam espaço. Na maior parte do tempo se você está otimizando pensando em uso de CPU, seu programa usará mais memória esta é a clássica [compensação espaço-temporal](https://en.wikipedia.org/wiki/Space%E2%80%93time_tradeoff).
 
-É importante pensar como essa compensação pode afetar as suas soluções -- de maneira não direta. Às vezes, uma pequena quantidade de memória pode resultar em uma melhoria significativa de velocidade, em outras situações este tradeoff é linear (2x o uso da memória == 2x a melhora de desempenho), em outras vezes é significativamente pior: uma enorme quantidade de memória fornece apenas uma pequena melhora de desempenho. Onde você precisa estar nesta curva de memória/desempenho  pode afetar quais opções de algoritmos são razoáveis. Nem sempre é possível somente ajustar um parâmetro de um algoritmo. Diferentes usos de memória pode ter abordagens algorítimicas completamente diferentes.
+É importante pensar como essa compensação pode afetar as suas soluções -- de maneira indireta. Às vezes, uma pequena quantidade de memória pode resultar em uma melhoria significativa de velocidade, em outras situações este tradeoff é linear (2x o uso da memória == 2x a melhora de desempenho), em outras vezes é significativamente pior: uma enorme quantidade de memória fornece apenas uma pequena melhora de desempenho. Onde você precisa estar nesta curva de memória/desempenho podem afetar quais opções de algoritmos são razoáveis. Nem sempre é possível somente ajustar um parâmetro de um algoritmo. Diferentes usos de memória pode ter abordagens algorítimicas completamente diferentes.
  
 
 Tabelas de pesquisa também se enquadram nessa compensação espaço-temporal. Uma tabela de pesquisa simples
@@ -231,12 +231,9 @@ aplicáveis a programas que rodam em hardware moderno que lidam com grandes quan
   melhor escolher um que combine com seus dados. Se você tiver [] byte, algo
   como snappy, gzip, lz4, se comporta bem. Para dados de ponto flutuante, existe go-tsz
   para séries temporais e fpc para dados científicos. Muita pesquisa foi feita
-  compactar números inteiros, geralmente para recuperação de informações em motores de pesquisa. Exemplos incluem codificação delta e varints para esquemas mais complexos envolvendo Huffman códificado com diferenças de OU-exclusivo. Você também pode criar
-  formatos de compactação otimizados para seus tipos exatos de dados.
+  compactar números inteiros, geralmente para recuperação de informações em motores de pesquisa. Exemplos incluem codificação delta e varints para esquemas mais complexos envolvendo Huffman códificado com diferenças de OU-exclusivo. Você também pode criar formatos de compactação otimizados para seus tipos exatos de dados.
 
-
-Você precisa inspecionar os dados ou eles podem permanecer compactados? Você precisa de acesso aleatório ou apenas streaming? 
-Se você precisar acessar entradas individuais, mas não quer descomprimir a coisa toda, você pode compactar os dados em blocos menores e manter um índice indicando o intervalo de entradas em cada bloco. O acesso a uma única entrada só precisa verificar o índice e descompactar o bloco de dados menor.
+Você precisa inspecionar os dados ou eles podem permanecer compactados? Você precisa de acesso aleatório ou apenas streaming? Se você precisar acessar entradas individuais, mas não quer descomprimir a coisa toda, você pode compactar os dados em blocos menores e manter um índice indicando o intervalo de entradas em cada bloco. O acesso a uma única entrada só precisa verificar o índice e descompactar o bloco de dados menor.
 
 Se seus dados não estão apenas sendo processados, mas também serão gravados em disco, que tal  migração de dados ou adição / remoção de campos. Agora você estará lidando com os [] byte em sua forma crua, em vez de bons tipos estruturados de Go, portanto, você precisará não ser seguro e considerar as opções de serialização.
 
@@ -248,15 +245,14 @@ portanto, tornam seu acesso custoso), tornando mais rápido apenas recalcular um
 
 
 Isso também significa que o benchmarking frequentemente mostrará melhorias que não são percebidos no sistema de produção devido à contenção de cache
-(por exemplo, tabelas de pesquisa estão no cache do processador durante o benchmarking, mas sempre são liberadas por "dados reais" quando usados ​​em um sistema real.)
-Google's [Jump Hash paper](https://arxiv.org/pdf/1406.2294.pdf) 
-de fato abordou isso diretamente, comparando o desempenho em um cache de processador contido e não contido. (Veja os gráficos 4 e 5 no artigo Jump Hash)
+(por exemplo, tabelas de pesquisa estão no cache do processador durante o benchmarking, mas sempre são liberadas por "dados reais" quando usados ​​em um sistema real). O artigo do Google sobre [Jump Hash paper](https://arxiv.org/pdf/1406.2294.pdf) 
+abordou isso diretamente, comparando o desempenho em um cache de processador com e sem contenção. (Veja os gráficos 4 e 5 no artigo Jump Hash)
 
 
 TODO: como simular um cache contencioso, mostrar custos incrementais
 TODO: sync.Map como um exemplo go-ish de endereçamento de contenção de cache
 
-Outro aspecto a considerar é o tempo de transferência de dado. Geralmente, o acesso à rede e ao disco é muito lento e, portanto, poder carregar um pedaço compactado será muito mais rápido que o tempo extra da CPU necessário para descomprimir os dados, uma vez que foi buscado. Como sempre, benchmark. Um formato binário geralmente será menor e mais rápido de analisar do que um texto, mas com o custo de não ser mais legível por humanos.
+Outro aspecto a considerar é o tempo de transferência de dados. Geralmente, o acesso à rede e ao disco é muito lento e, portanto,poder carregar um conjunto de dados compactos será muito mais rápido que o tempo extra da CPU necessário para descomprimir estes dados quando carregados. Como sempre, benchmark. Um formato binário geralmente será menor e mais rápido de analisar do que um texto, mas com o custo de não ser mais legível por humanos.
 
 
 Para transferência de dados, vá para um protocolo menos falador ou aumente a API para permitir consultas parciais. Por exemplo, uma consulta incremental em vez de ser
