@@ -235,7 +235,7 @@ aplicáveis a programas que rodam em hardware moderno que lidam com grandes quan
 
 Você precisa inspecionar os dados ou eles podem permanecer compactados? Você precisa de acesso aleatório ou apenas streaming? Se você precisar acessar entradas individuais, mas não quer descomprimir a coisa toda, você pode compactar os dados em blocos menores e manter um índice indicando o intervalo de entradas em cada bloco. O acesso a uma única entrada só precisa verificar o índice e descompactar o bloco de dados menor.
 
-Se seus dados não estão apenas sendo processados, mas também serão gravados em disco, que tal  migração de dados ou adição / remoção de campos. Agora você estará lidando com os [] byte em sua forma crua, em vez de bons tipos estruturados de Go, portanto, você precisará não ser seguro e considerar as opções de serialização.
+Se seus dados não estão apenas sendo processados, mas também serão gravados em disco, que tal  migração de dados ou adição / remoção de campos. Agora você estará lidando com os [] byte em sua forma crua, em vez de bons tipos estruturados de Go, portanto, então você irá precisar do pacote unsafe e considerar as suas opções de serialização.
 
 Falaremos mais sobre layouts de dados posteriormente.
 
