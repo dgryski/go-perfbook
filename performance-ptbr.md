@@ -44,7 +44,7 @@ As pessoas ouvem e repetem "a otimização prematura é a raiz de todo mal", mas
 "Os programadores gastam muito tempo pensando ou se preocupando com a velocidade de partes não-críticas de seus programas. Estas tentativas de conseguir eficiência tem um forte impacto negativo quando a depuração e manutenção são consideradas. Devemos esquecer pequenas eficiências, digamos cerca de 97% do tempo: a otimização prematura é a raiz de todo o mal. Porém, não devemos deixar passar nossas oportunidades nesses 3% críticos."
 -- Knuth (*tradução livre*)
 
-Adicione: https://www.youtube.com/watch?time_continue=429&v=RT46MpK39rQ
+Adicione: https://www.youtube.com/watch?time_continue=429&v=3WBaY61c9sE
    * não ignore as otimizações fáceis
    * mais conhecimento de algoritmos e estruturas de dados torna mais otimizações "fáceis" ou "óbvias"
 

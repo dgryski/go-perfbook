@@ -43,7 +43,7 @@ Las personas escuchan y repiten sin pensar que "la optimización prematura es la
 
 "Los Programadores gastan una enorme cantidad de tiempo pensando, o preocupandose, por la velocidad de las partes no críticas de sus programas, y estos intentos por ser más eficientes en realidad causan un gran impacto negativo cuando el mantenimiento o la depuración son considerados. Debemos olvidarnos de las pequeñas eficiencias, digamos el 97% del tiempo: la optimización prematura es la raíz de todo mal. Sin embargo, no deberíamos dejar pasar la oportunidad de optimizar en ese otro 3% crítico." -- Knuth
 
-https://www.youtube.com/watch?time_continue=429&v=RT46MpK39rQ
+https://www.youtube.com/watch?time_continue=429&v=3WBaY61c9sE
 
 - No ignores las optimizaciones fáciles
 - Más conocimiento de algoritmos y estructuras de datos hacen que la optización sea más "fácil" u "obvia"

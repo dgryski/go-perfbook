@@ -68,7 +68,7 @@ should not pass up our opportunities in that critical 3%."
 >
 > -- <cite>Knuth</cite>
 
-Add: https://www.youtube.com/watch?time_continue=429&v=RT46MpK39rQ
+Add: https://www.youtube.com/watch?time_continue=429&v=3WBaY61c9sE
    * don't ignore the easy optimizations
    * more knowledge of algorithms and data structures makes more optimizations "easy" or "obvious"
 
