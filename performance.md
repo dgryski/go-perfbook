@@ -1297,6 +1297,16 @@ faster.
 >
 > -- <cite>Douglas W. Jones, University of Iowa</cite>
 
+and
+
+>    Rule 3. Fancy algorithms are slow when n is small, and n is usually small.
+>    Fancy algorithms have big constants. Until you know that n is frequently going
+>    to be big, don't get fancy.
+>
+>    Rule 4. Fancy algorithms are buggier than simple ones, and they're much
+>    harder to implement. Use simple algorithms as well as simple data structures.
+> -- <cite>"Notes on C Programming" (Rob Pike, 1989)</cite>
+
 The added complexity has to be enough that the payoff is actually worth it.
 Another example is cache eviction algorithms. Different algorithms can have
 much higher complexity for only a small improvement in hit ratio. Of course,
