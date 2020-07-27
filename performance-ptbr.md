@@ -334,7 +334,7 @@ Duas coisas que as pessoas esquecem quando discutem a notação Grande-O:
 
 Primeiramente, há um fator constante envolvido. Dois algoritmos que têm a mesma complexidade algorítmica podem ter diferentes fatores constantes. Imagine repetir uma lista 100 vezes ou apenas repetir uma vez. Embora ambos sejam O (n), um tem um fator constante 100 vezes maior.
 
-Esses fatores constantes são o motivo pelo qual, embora a classificação por mesclagem, a classificação rápida e a classificação geral de todos os O (nlogn), todos usem a classificação rápida porque é a mais rápida. Tem o menor fator constante.
+Esses fatores constantes são o motivo pelo qual, embora merge sort, quick sort e heap sort sejam O (nlogn), todo mundo usa quick sort porque é a mais rápida. Este método de ordenação tem o menor fator constante.
 
 A segunda coisa é que Grande-O diz apenas "à medida que n cresce até o infinito". Ele fala sobre a tendência de crescimento: "À medida que os números aumentam, esse é o fator de crescimento que dominará o tempo de execução". Não diz nada sobre o desempenho real, ou como ele se comporta com um valor de n pequeno.
 
