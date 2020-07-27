@@ -267,7 +267,7 @@ A maior melhoria provavelmente virá de uma alteração algorítmica. Isso equiv
 É assim que o software se torna lento. As estruturas projetadas originalmente para um uso são reaproveitadas para algo que não foram projetadas. Isso acontece gradualmente.
 
 
-É importante ter uma compreensão intuitiva dos diferentes níveis de grandeza O.
+É importante ter uma compreensão intuitiva dos diferentes níveis Grande-O.
 Escolha a estrutura de dados certa para o seu problema. Você não precisa cortar ciclos sempre, mas isso evita problemas de desempenho bobos que podem não ser percebidos até muito mais tarde.
 
 As classes básicas de complexidade são:
