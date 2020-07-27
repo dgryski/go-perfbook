@@ -438,7 +438,7 @@ em dados aleatórios e, portanto, terá um desempenho pior, enquanto uma árvore
 melhor com valores aleatórios, pois eles tendem a manter a árvore equilibrada. (Isto é
 a ideia por trás de uma armadilha, a propósito.)
 
-Por outro lado, considere o caso de testar um sistema com um cache. Se seu
+Por outro lado, considere o caso de testar um sistema com um cache. 
 Se sua entrada benchmark consiste apenas em uma única consulta, então cada solicitação atingirá o
 cache, fornecendo uma visão potencialmente muito irreal de como o sistema se comportará
 no mundo real com um padrão de solicitação mais variado.
