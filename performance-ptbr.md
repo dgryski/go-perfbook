@@ -346,7 +346,7 @@ Para alguns algoritmos, o fator constante pode ser tão grande que esse ponto de
 Isso também significa que você precisa conhecer os tamanhos de entrada representativos, tanto para escolher o algoritmo mais apropriado quanto para escrever boas avaliações. 10 itens? 1000 itens? 1000000 itens?
 
 Isso também acontece de outra maneira: por exemplo, optar por usar uma estrutura de dados mais complicada para fornecer o escalonamento de O (n) em vez de O (n^2),
-mesmo que com os parâmetros de referência para pequenas entradas tenham ficado mais lentos. Isso também se aplica à maioria das estruturas de dados sem bloqueio. 
+mesmo que com os parâmetros de referência para pequenas entradas tenham ficado mais lentos. Isso também se aplica à maioria das estruturas de dados sem contenção. 
 Eles geralmente são mais lentos no caso de uma única thread, mas são mais escaláveis quando muitas threads o estão usando.
 
 A hierarquia de memória nos computadores modernos confunde um pouco o problema aqui, pois os caches preferem o acesso previsível da varredura de uma fatia ao acesso efetivamente aleatório da perseguição de um ponteiro. Ainda assim, é melhor começar com um bom algoritmo. Falaremos sobre isso na seção específica de hardware.
