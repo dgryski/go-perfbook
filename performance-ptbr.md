@@ -264,7 +264,7 @@ Se você não estiver alterando os dados, a outra opção principal é alterar o
 
 A maior melhoria provavelmente virá de uma alteração algorítmica. Isso equivale a substituir um bubble sort (`O(n^2)`)  por um quicksort (`O(n log n)`) ou substituir a varredura linear de uma matriz (`O(n)`) por uma pesquisa binária (`O (log n)`) ou pesquisa em um mapa (`O(1)`).
 
-É assim que o software se torna lento. As estruturas projetadas originalmente para um uso são reaproveitadas para algo para o qual não foram projetadas. Isso acontece gradualmente.
+É assim que o software se torna lento. As estruturas projetadas originalmente para um uso são reaproveitadas para algo que não foram projetadas. Isso acontece gradualmente.
 
 
 É importante ter uma compreensão intuitiva dos diferentes níveis de grandeza O.
@@ -462,5 +462,4 @@ Use média geométrica para comparar grupos de benchmarks.
 Avaliando a precisão do benchmark:
 
 * <http://www.brendangregg.com/blog/2018-06-30/benchmarking-checklist.html>
-
 
