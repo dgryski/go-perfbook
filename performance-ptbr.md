@@ -330,7 +330,7 @@ Ao escrever um pacote para ser usado por outras pessoas, evite a tentação de o
 
 Às vezes, estruturas de dados híbridas fornecem a melhoria de desempenho que você precisa. Por exemplo, ao reunir seus dados, você pode limitar sua pesquisa a um único intervalo. Isso ainda paga o custo teórico de O(n), mas a constante será menor. Revisitaremos esses tipos de ajustes quando chegarmos em otimizações.
 
-Duas coisas que as pessoas esquecem quando discutem a notação grande-O:
+Duas coisas que as pessoas esquecem quando discutem a notação Grande-O:
 
 Um, há um fator constante envolvido. Dois algoritmos que têm a mesma complexidade algorítmica podem ter diferentes fatores constantes. Imagine repetir uma lista 100 vezes ou apenas repetir uma vez. Embora ambos sejam O (n), um tem um fator constante 100 vezes maior.
 
