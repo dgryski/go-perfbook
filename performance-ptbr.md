@@ -395,7 +395,7 @@ probabilidade". As Skip lists são outra estrutura de dados simples e semelhante
 Da mesma forma, a escolha de um pivô aleatório para quicksort pode ser mais simples do que uma abordagem de média mediana mais complexa para encontrar um bom pivô, 
 e a probabilidade de maus pivôs serem continuamente escolhidos (aleatoriamente) e degradar o desempenho do quicksort para O(n^2) é muito pequeno.
 
-Os algoritmos aleatórios são classificados como algoritmos "Monte Carlo" ou "Las Vegas", depois de dois locais de jogo bem conhecidos. 
+Os algoritmos aleatórios são classificados como algoritmos "Monte Carlo" ou "Las Vegas", a partir de dois locais de jogo bem conhecidos. 
 Um algoritmo de Monte Carlo joga com exatidão: pode gerar uma resposta errada (ou, no caso acima, uma árvore binária desequilibrada). Um algoritmo de Las Vegas sempre
 gera uma resposta correta, mas pode levar muito tempo para terminar.
 
