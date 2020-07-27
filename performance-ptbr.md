@@ -382,7 +382,7 @@ TODO: notas sobre seleção de algoritmo
 
 TODO:
   melhore o comportamento do pior caso a um custo leve para o tempo de execução médio
-  correspondência de Expressão regular de tempo linear
+  da correspondência de expressão regular de tempo linear
 
 
 Embora a maioria dos algoritmos seja determinísticp, há uma classe de algoritmos que usam a aleatoriedade como uma maneira de simplificar etapas de tomada de decisão complexas.
