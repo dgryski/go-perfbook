@@ -354,7 +354,7 @@ A hierarquia de memória nos computadores modernos confunde um pouco o problema 
 TODO: estendendo o último parágrafo, mencione a notação O () é um modelo em que cada 
 operação tem custo fixo. Essa é uma suposição errada no hardware moderno.
 
-> A luta pode nem sempre ser a mais forte, nem a corrida a mais rápida,
+> A luta nem sempre é vencida pelo mais forte, nem a corrida pelo mais rápido,
 mas essa é a maneira de apostar.
 > -- <cite>Rudyard Kipling</cite>
 
