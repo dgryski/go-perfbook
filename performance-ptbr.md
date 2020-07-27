@@ -439,7 +439,7 @@ melhor com valores aleatórios, pois eles tendem a manter a árvore equilibrada.
 a ideia por trás de uma armadilha, a propósito.)
 
 Por outro lado, considere o caso de testar um sistema com um cache. Se seu
-A entrada de benchmark consiste apenas em uma única consulta, então cada solicitação atingirá o
+Se sua entrada benchmark consiste apenas em uma única consulta, então cada solicitação atingirá o
 cache, fornecendo uma visão potencialmente muito irreal de como o sistema se comportará
 no mundo real com um padrão de solicitação mais variado.
 
