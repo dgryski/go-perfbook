@@ -385,7 +385,7 @@ TODO:
   da correspondência de expressão regular de tempo linear
 
 
-Embora a maioria dos algoritmos seja determinísticp, há uma classe de algoritmos que usam a aleatoriedade como uma maneira de simplificar etapas de tomada de decisão complexas.
+Embora a maioria dos algoritmos seja determinística, há uma classe de algoritmos que usam a aleatoriedade como uma maneira de simplificar etapas de tomada de decisão complexas.
 Em vez de ter um código que faz a coisa certa, você usa a aleatoriedade para selecionar uma coisa provavelmente não *ruim*. Por exemplo, um treap é uma árvore binária probabilisticamente equilibrada. Cada nó tem uma chave, mas também recebe um valor aleatório. 
 Ao inserir na árvore, o caminho de inserção normal da árvore binária é seguido, mas os nós também obedecem à propriedade heap
 com base no peso atribuído aleatoriamente a cada nó. Essa abordagem mais simples substitui soluções de 
