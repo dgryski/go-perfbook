@@ -328,7 +328,7 @@ de cada vez à medida que as inserções acontecem. Uma matriz não ordenada é 
 
 Ao escrever um pacote para ser usado por outras pessoas, evite a tentação de otimizar antecipadamente todos os casos de uso. Isso resultará em código ilegível. Por projeto, as estruturas de dados são efetivamente de propósito único. Você não pode ler mentes nem prever o futuro. Se um usuário disser "Seu pacote está muito lento para este caso de uso", uma resposta razoável pode ser "Então use este outro pacote aqui". Um pacote deve "fazer uma coisa bem".
 
-Às vezes, estruturas de dados híbridas fornecem a melhoria de desempenho que você precisa. Por exemplo, ao reunir seus dados, você pode limitar sua pesquisa a um único intervalo. Isso ainda paga o custo teórico de O(n), mas a constante será menor. Revisitaremos esses tipos de ajustes quando chegarmos ao ajuste do programa.
+Às vezes, estruturas de dados híbridas fornecem a melhoria de desempenho que você precisa. Por exemplo, ao reunir seus dados, você pode limitar sua pesquisa a um único intervalo. Isso ainda paga o custo teórico de O(n), mas a constante será menor. Revisitaremos esses tipos de ajustes quando chegarmos em otimizações.
 
 Duas coisas que as pessoas esquecem quando discutem a notação grande-O:
 
