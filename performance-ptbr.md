@@ -324,7 +324,7 @@ Os requisitos mudam e você nem sempre pode adivinhar o futuro. Faça um palpite
 <http://daslab.seas.harvard.edu/rum-conjecture/>
 
 As estruturas de dados para problemas semelhantes diferem quando executam um trabalho. Uma árvore binária é classificada um pouco
-de cada vez à medida que as inserções acontecem. Uma matriz não ordenada é mais rápida de inserir, mas não é ordenada: no final para "finalizar", você precisa fazer a ordenação de uma só vez.
+de cada vez à medida que as inserções acontecem. Uma matriz não ordenada é mais rápida de inserir, mas não é ordenada: ao final, para "finalizar", você precisa fazer a ordenação de uma só vez.
 
 Ao escrever um pacote para ser usado por outras pessoas, evite a tentação de otimizar antecipadamente todos os casos de uso. Isso resultará em código ilegível. As estruturas de dados por design são efetivamente de propósito único. Você não pode ler mentes nem prever o futuro. Se um usuário disser "Seu pacote está muito lento para este caso de uso", uma resposta razoável pode ser "Então use este outro pacote aqui". Um pacote deve "fazer uma coisa bem".
 
