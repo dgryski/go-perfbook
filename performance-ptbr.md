@@ -432,7 +432,7 @@ Se os dados que você está usando para testar não são representativos de carg
 "ajustando demais" seu código para funcionar melhor com um conjunto específico de entradas.
 
 Isso também significa que seus dados de referência precisam ser representativos do mundo real.
-mundo. O uso de entradas puramente aleatórias pode distorcer o comportamento do seu algoritmo.
+ O uso de entradas puramente aleatórias pode distorcer o comportamento do seu algoritmo.
 Os algoritmos de cache e compactação exploram distribuições distorcidas ausentes
 em dados aleatórios e, portanto, terá um desempenho pior, enquanto uma árvore binária executará
 melhor com valores aleatórios, pois eles tendem a manter a árvore equilibrada. (Isto é
