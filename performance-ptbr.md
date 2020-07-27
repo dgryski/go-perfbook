@@ -332,7 +332,7 @@ Ao escrever um pacote para ser usado por outras pessoas, evite a tentação de o
 
 Duas coisas que as pessoas esquecem quando discutem a notação Grande-O:
 
-Um, há um fator constante envolvido. Dois algoritmos que têm a mesma complexidade algorítmica podem ter diferentes fatores constantes. Imagine repetir uma lista 100 vezes ou apenas repetir uma vez. Embora ambos sejam O (n), um tem um fator constante 100 vezes maior.
+Primeiramente, há um fator constante envolvido. Dois algoritmos que têm a mesma complexidade algorítmica podem ter diferentes fatores constantes. Imagine repetir uma lista 100 vezes ou apenas repetir uma vez. Embora ambos sejam O (n), um tem um fator constante 100 vezes maior.
 
 Esses fatores constantes são o motivo pelo qual, embora a classificação por mesclagem, a classificação rápida e a classificação geral de todos os O (nlogn), todos usem a classificação rápida porque é a mais rápida. Tem o menor fator constante.
 
