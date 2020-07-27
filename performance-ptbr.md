@@ -362,7 +362,7 @@ mas essa é a maneira de apostar.
 e classificação de inserção, também rastreia a profundidade de recursão do quicksort e chama heapsort, se necessário. Os pacotes `string` e` bytes` fazem algo semelhante, detectando e se especializando para casos diferentes. Assim como na compactação de dados, quanto mais você souber sobre a aparência de sua entrada, melhor poderá ser sua solução personalizada. Mesmo que uma otimização nem sempre seja aplicável, vale a pena complicar seu código, determinando que é seguro usar e executar lógicas diferentes.
 
 Isso também se aplica aos subproblemas que seu algoritmo precisa resolver. 
-Por exemplo, poder usar a classificação radix pode ter um impacto significativo no desempenho ou 
+Por exemplo, ter o usar radix sort a disposição pode ter um impacto significativo no desempenho ou 
 usar a seleção rápida se você precisar apenas de uma classificação parcial.
 
 Às vezes, em vez de especialização para sua tarefa específica, a melhor abordagem é abstraí-la para um espaço de 
