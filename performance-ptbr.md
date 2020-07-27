@@ -436,7 +436,7 @@ mundo. O uso de entradas puramente aleatórias pode distorcer o comportamento do
 Os algoritmos de cache e compactação exploram distribuições distorcidas ausentes
 em dados aleatórios e, portanto, terá um desempenho pior, enquanto uma árvore binária executará
 melhor com valores aleatórios, pois eles tendem a manter a árvore equilibrada. (Isto é
-a ideia por trás de uma armadilha, a propósito.)
+a ideia por trás de uma treap, a propósito.)
 
 Por outro lado, considere o caso de testar um sistema com um cache. 
 Se sua entrada benchmark consiste apenas em uma única consulta, então cada solicitação atingirá o
