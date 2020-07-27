@@ -338,7 +338,7 @@ Esses fatores constantes são o motivo pelo qual, embora merge sort, quick sort 
 
 A segunda coisa é que Grande-O diz apenas "à medida que n cresce até o infinito". Ele fala sobre a tendência de crescimento: "À medida que os números aumentam, esse é o fator de crescimento que dominará o tempo de execução". Não diz nada sobre o desempenho real, ou como ele se comporta com um valor de n pequeno.
 
-Freqüentemente há um ponto de corte abaixo do qual um algoritmo mais burro é mais rápido. Um bom exemplo do pacote sort da biblioteca padrão Go. Na maioria das vezes, ele usa o quicksort, mas ele passa por uma classificação por shell e depois por inserção quando o tamanho da partição cai abaixo de 12 elementos.
+Freqüentemente há um ponto de corte abaixo do qual um algoritmo  ingênuo é mais rápido. Um bom exemplo do pacote sort da biblioteca padrão Go. Na maioria das vezes, ele usa o quicksort, mas ele passa por uma classificação por shell e depois por inserção quando o tamanho da partição cai abaixo de 12 elementos.
 
 Para alguns algoritmos, o fator constante pode ser tão grande que esse ponto de corte pode ser maior que todas as entradas razoáveis. Ou seja, o algoritmo O(n^2) é mais rápido que o algoritmo O(n) para todas as entradas com as quais você provavelmente lida.
 
