@@ -44,7 +44,7 @@ As pessoas ouvem e repetem "a otimização prematura é a raiz de todo mal", mas
 "Os programadores gastam muito tempo pensando ou se preocupando com a velocidade de partes não-críticas de seus programas. Estas tentativas de conseguir eficiência tem um forte impacto negativo quando a depuração e manutenção são consideradas. Devemos esquecer pequenas eficiências, digamos cerca de 97% do tempo: a otimização prematura é a raiz de todo o mal. Porém, não devemos deixar passar nossas oportunidades nesses 3% críticos."
 -- Knuth (*tradução livre*)
 
-Adicione: https://www.youtube.com/watch?time_continue=429&v=3WBaY61c9sE
+Adicione: https://www.youtube.com/watch?time_continue=429&v=RT46MpK39rQ
    * não ignore as otimizações fáceis
    * mais conhecimento de algoritmos e estruturas de dados torna mais otimizações "fáceis" ou "óbvias"
 
@@ -257,3 +257,211 @@ Outro aspecto a considerar é o tempo de transferência de dados. Geralmente, o 
 
 Para transferência de dados, vá para um protocolo menos falador ou aumente a API para permitir consultas parciais. Por exemplo, uma consulta incremental em vez de ser
 forçado a buscar o conjunto de dados inteiro a cada vez.
+
+### Alterações algorítmicas
+
+Se você não estiver alterando os dados, a outra opção principal é alterar o código.
+
+A maior melhoria provavelmente virá de uma alteração algorítmica. Isso equivale a substituir um bubble sort (`O(n^2)`)  por um quicksort (`O(n log n)`) ou substituir uma varredura linear de uma matriz (`O(n)`) por uma pesquisa binária (`O (log n)`) ou uma pesquisa de mapa (`O(1)`).
+
+É assim que o software se torna lento. As estruturas projetadas originalmente para um uso são reaproveitadas para algo para o qual não foram projetadas. Isso acontece gradualmente.
+
+
+É importante ter uma compreensão intuitiva dos diferentes níveis de grandeza O.
+Escolha a estrutura de dados certa para o seu problema. Você não precisa sempre cortar os ciclos, mas isso apenas evita problemas de desempenho burros que podem não ser percebidos até muito mais tarde.
+
+As classes básicas de complexidade são:
+
+* O (1): um acesso ao campo, matriz ou pesquisa de mapa
+
+  Conselho: não se preocupe (mas lembre-se do fator constante).
+
+* O (log n): pesquisa binária
+
+  Conselho: apenas um problema se estiver em loop
+
+* O (n): loop simples
+
+  Conselho: você está fazendo isso o tempo todo
+
+* O (n log n): dividir e conquistar, classificação
+
+  Conselho: ainda bastante rápido
+
+* O(n\*m): loop aninhado / quadrático
+
+  Conselho: tenha cuidado e restrinja os tamanhos.
+
+* Qualquer outra coisa entre quadrático e subexponencial
+
+  Conselho: não execute isso em um milhão de linhas
+
+* O(b ^ n), O(n!): Exponencial e acima
+
+  Conselho: boa sorte se você tiver mais de uma dúzia ou dois pontos de dados
+
+Link: <http://bigocheatsheet.com>
+
+Digamos que você precise pesquisar um conjunto de dados não classificado. "Eu devo usar uma pesquisa binária", 
+você pensa, sabendo que uma pesquisa binária é O (log n) mais rápida que a varredura linear O (n). 
+No entanto, uma pesquisa binária exige que os dados sejam classificados, o que significa que você precisará classificá-los primeiro, o que levará tempo O (n log n).
+Se você estiver fazendo muitas pesquisas, o custo inicial da classificação será recompensado. 
+Por outro lado, se você estiver pesquisando principalmente em mapas, talvez ter uma matriz seja a escolha errada e seria melhor pagar o custo de pesquisa O (1) para um mapa.
+
+Ser capaz de analisar seu problema em termos de notação Grande-O também significa que você pode descobrir se já está no limite do que é possível para o seu problema e se precisa mudar de abordagem para acelerar as coisas. Por exemplo, encontrar o mínimo de uma lista não classificada é `O(n)`, porque você precisa examinar cada item. Não há como tornar isso mais rápido.
+
+
+Se sua estrutura de dados é estática, geralmente você pode fazer muito melhor do que o caso dinâmico. 
+Torna-se mais fácil criar uma estrutura de dados ideal personalizada para exatamente seus padrões de pesquisa. 
+Soluções como o hash perfeito mínimo podem fazer sentido aqui, ou filtros de bloom pré-computados. 
+Isso também faz sentido se sua estrutura de dados for "estática" por tempo suficiente e você puder amortizar o custo inicial de construção em muitas pesquisas.
+
+Escolha a estrutura de dados razoável mais simples e siga em frente. Este é o CS 101 para escrever "software não lento". 
+Esse deve ser o seu modo de desenvolvimento padrão. Se você sabe que precisa de acesso aleatório, não escolha uma lista vinculada.
+Se você sabe que precisa de uma travessia em ordem, não use um mapa. 
+Os requisitos mudam e você nem sempre pode adivinhar o futuro. Faça um palpite razoável sobre a carga de trabalho.
+
+<http://daslab.seas.harvard.edu/rum-conjecture/>
+
+As estruturas de dados para problemas semelhantes diferem quando executam um trabalho. Uma árvore binária é classificada um pouco
+de cada vez à medida que as inserções acontecem. Uma matriz não ordenada é mais rápida de inserir, mas não é ordenada: no final para "finalizar", você precisa fazer a ordenação de uma só vez.
+
+Ao escrever um pacote para ser usado por outras pessoas, evite a tentação de otimizar antecipadamente todos os casos de uso. Isso resultará em código ilegível. As estruturas de dados por design são efetivamente de propósito único. Você não pode ler mentes nem prever o futuro. Se um usuário disser "Seu pacote está muito lento para este caso de uso", uma resposta razoável pode ser "Então use este outro pacote aqui". Um pacote deve "fazer uma coisa bem".
+
+Às vezes, estruturas de dados híbridas fornecem a melhoria de desempenho que você precisa. Por exemplo, ao reunir seus dados, você pode limitar sua pesquisa a um único intervalo. Isso ainda paga o custo teórico de O(n), mas a constante será menor. Revisitaremos esses tipos de ajustes quando chegarmos ao ajuste do programa.
+
+Duas coisas que as pessoas esquecem quando discutem a notação grande-O:
+
+Um, há um fator constante envolvido. Dois algoritmos que têm a mesma complexidade algorítmica podem ter diferentes fatores constantes. Imagine repetir uma lista 100 vezes ou apenas repetir uma vez. Embora ambos sejam O (n), um tem um fator constante 100 vezes maior.
+
+Esses fatores constantes são o motivo pelo qual, embora a classificação por mesclagem, a classificação rápida e a classificação geral de todos os O (nlogn), todos usem a classificação rápida porque é a mais rápida. Tem o menor fator constante.
+
+A segunda coisa é que Grande-O diz apenas "à medida que n cresce até o infinito". Ele fala sobre a tendência de crescimento: "À medida que os números aumentam, esse é o fator de crescimento que dominará o tempo de execução". Não diz nada sobre o desempenho real, ou como ele se comporta com um valor de n pequeno.
+
+Freqüentemente há um ponto de corte abaixo do qual um algoritmo mais burro é mais rápido. Um bom exemplo do pacote sort da biblioteca padrão Go. Na maioria das vezes, ele usa o quicksort, mas ele passa por uma classificação por shell e depois por inserção quando o tamanho da partição cai abaixo de 12 elementos.
+
+Para alguns algoritmos, o fator constante pode ser tão grande que esse ponto de corte pode ser maior que todas as entradas razoáveis. Ou seja, o algoritmo O(n^2) é mais rápido que o algoritmo O(n) para todas as entradas com as quais você provavelmente lida.
+
+
+Isso também significa que você precisa conhecer os tamanhos de entrada representativos, tanto para escolher o algoritmo mais apropriado quanto para escrever boas avaliações. 10 itens? 1000 itens? 1000000 itens?
+
+Isso também acontece de outra maneira: por exemplo, optar por usar uma estrutura de dados mais complicada para fornecer o escalonamento de O (n) em vez de O (n^2),
+mesmo que com os parâmetros de referência para pequenas entradas tenham ficado mais lentos. Isso também se aplica à maioria das estruturas de dados sem bloqueio. 
+Eles geralmente são mais lentos no caso de uma única thread, mas são mais escaláveis quando muitas threads o estão usando.
+
+A hierarquia de memória nos computadores modernos confunde um pouco o problema aqui, pois os caches preferem o acesso previsível da varredura de uma fatia ao acesso efetivamente aleatório da perseguição de um ponteiro. Ainda assim, é melhor começar com um bom algoritmo. Falaremos sobre isso na seção específica de hardware.
+
+TODO: estendendo o último parágrafo, mencione a notação O () é um modelo em que cada 
+operação tem custo fixo. Essa é uma suposição errada no hardware moderno.
+
+> A luta pode nem sempre ser a mais forte, nem a corrida a mais rápida,
+mas essa é a maneira de apostar.
+> -- <cite>Rudyard Kipling</cite>
+
+Às vezes, o melhor algoritmo para um problema específico não é um único algoritmo, mas uma coleção de algoritmos especializados para classes de entrada ligeiramente diferentes. Esse "polialgoritmo" detecta rapidamente com que tipo de entrada ele precisa lidar e despacha para o caminho de código apropriado. É isso que o pacote de classificação mencionado acima: determina o tamanho do problema e escolhe um algoritmo diferente. Além de combinar quicksort, classificação de shell,
+e classificação de inserção, também rastreia a profundidade de recursão do quicksort e chama heapsort, se necessário. Os pacotes `string` e` bytes` fazem algo semelhante, detectando e se especializando para casos diferentes. Assim como na compactação de dados, quanto mais você souber sobre a aparência de sua entrada, melhor poderá ser sua solução personalizada. Mesmo que uma otimização nem sempre seja aplicável, vale a pena complicar seu código, determinando que é seguro usar e executar lógicas diferentes.
+
+Isso também se aplica aos subproblemas que seu algoritmo precisa resolver. 
+Por exemplo, poder usar a classificação radix pode ter um impacto significativo no desempenho ou 
+usar a seleção rápida se você precisar apenas de uma classificação parcial.
+
+Às vezes, em vez de especialização para sua tarefa específica, a melhor abordagem é abstraí-la para um espaço de 
+problemas mais geral que foi bem estudado pelos pesquisadores. 
+Em seguida, você pode aplicar a solução mais geral ao seu problema específico. 
+Mapear seu problema em um domínio que já possui implementações bem pesquisadas pode ser uma vitória significativa.
+
+Da mesma forma, usar um algoritmo mais simples significa que os detalhes das trocas, análises e implementação 
+têm mais probabilidade de serem mais estudados e bem compreendidos do que os mais esotéricos ou exóticos e complexos.
+
+
+Algoritmos mais simples também podem ser mais rápidos. Esses dois exemplos não são casos isolados
+  https://go-review.googlesource.com/c/crypto/+/169037
+  https://go-review.googlesource.com/c/go/+/170322/
+
+TODO: notas sobre seleção de algoritmo
+
+TODO:
+  melhore o comportamento do pior caso a um custo leve para o tempo de execução médio
+  correspondência de Expressão regular de tempo linear
+
+
+Embora a maioria dos algoritmos seja determinísticp, há uma classe de algoritmos que usam a aleatoriedade como uma maneira de simplificar etapas de tomada de decisão complexas.
+Em vez de ter um código que faz a coisa certa, você usa a aleatoriedade para selecionar uma coisa provavelmente não *ruim*. Por exemplo, um treap é uma árvore binária probabilisticamente equilibrada. Cada nó tem uma chave, mas também recebe um valor aleatório. 
+Ao inserir na árvore, o caminho de inserção normal da árvore binária é seguido, mas os nós também obedecem à propriedade heap
+com base no peso atribuído aleatoriamente a cada nó. Essa abordagem mais simples substitui soluções de 
+rotação de árvores complicadas (como árvores AVL e Rubro negras), mas ainda mantém uma árvore equilibrada com inserção/pesquisa de O (log n) "com alta
+probabilidade". As Skip lists são outra estrutura de dados simples e semelhante que usa aleatoriedade para produzir "provavelmente" inserção e pesquisas de O (log n).
+
+Da mesma forma, a escolha de um pivô aleatório para quicksort pode ser mais simples do que uma abordagem de média mediana mais complexa para encontrar um bom pivô, 
+e a probabilidade de maus pivôs serem continuamente escolhidos (aleatoriamente) e degradar o desempenho do quicksort para O(n^2) é muito pequeno.
+
+Os algoritmos aleatórios são classificados como algoritmos "Monte Carlo" ou "Las Vegas", depois de dois locais de jogo bem conhecidos. 
+Um algoritmo de Monte Carlo joga com exatidão: pode gerar uma resposta errada (ou, no caso acima, uma árvore binária desequilibrada). Um algoritmo de Las Vegas sempre
+gera uma resposta correta, mas pode levar muito tempo para terminar.
+
+Outro exemplo bem conhecido de um algoritmo aleatório é o algoritmo de teste de primalidade de Miller-Rabin. Cada iteração produzirá "não primo" ou "talvez primo". Enquanto "não primo" é certo, o "talvez primo" está correto com probabilidade de pelo menos 1/2. Ou seja, existem não primos para os quais "talvez primo" ainda será produzido. Ao executar muitas iterações de Miller-Rabin, podemos tornar a probabilidade de falha (ou seja, gerar "talvez primo" para um número composto) tão pequena quanto gostaríamos. Se passar 200 iterações, podemos dizer que o número é composto com probabilidade no máximo 1/(2^200).
+
+
+Outra área em que a aleatoriedade desempenha um papel é chamada "O poder de duas escolhas aleatórias". Embora inicialmente a pesquisa tenha sido aplicada ao balanceamento de carga, ela se mostrou amplamente aplicável a vários problemas de seleção. A idéia é que, em vez de tentar encontrar a melhor seleção dentre um grupo de itens, escolha dois aleatoriamente e selecione o melhor. Voltando ao balanceamento de carga (ou cadeias de tabelas de hash), o poder de duas opções aleatórias reduz a carga esperada (ou o comprimento da cadeia de hash) dos itens O(log n) para O(log log n)
+Itens. Para obter mais informações, consulte [The Power of Two Random Choices: A Survey of Techniques and Results (https://www.eecs.harvard.edu/~michaelm/postscripts/handbook2001.pdf)
+
+algoritmos aleatórios:
+     outros algoritmos de armazenamento em cache
+     aproximações estatísticas (frequentemente dependem do tamanho da amostra e não do tamanho da população)
+
+  TODO: lote para reduzir a sobrecarga: https://lemire.me/blog/2018/04/17/iterating-in-batches-over-data-structures-can-be-much-faster/
+
+TODO: - Algorithm Design Manual: http://algorist.com/algorist.html
+       - Como resolvê-lo por computador
+       - até que ponto é este livro "como escrever algoritmos"? Se você vai mudar
+       o código para acelerar, por definição, você está escrevendo novos algoritmos. Então ... talvez?
+
+### Entradas para avaliação de desempenho
+
+As contribuições do mundo real raramente correspondem ao "pior caso" teórico. 
+O benchmarking é vital para entender como o sistema se comporta na produção.
+
+Você precisa saber qual classe de entradas seu sistema verá depois de implantado e seus benchmarks devem usar instâncias extraídas dessa mesma distribuição. 
+Como vimos, algoritmos diferentes fazem sentido em diferentes tamanhos de entrada.
+Se o seu intervalo de entrada esperado for <100, seus benchmarks devem refletir isso. Caso contrário, escolher um algoritmo ideal para n = 10^6 pode não ser o mais rápido.
+
+Ser capaz de gerar dados de teste representativos. Diferentes distribuições de dados podem provocar comportamentos diferentes em seu algoritmo: 
+pense no exemplo clássico de "quicksort é O (n^2) quando os dados são classificados". Da mesma forma, a pesquisa de interpolação é O (log log n) para dados aleatórios 
+uniformes, mas O (n) no pior caso. Saber como são as suas entradas é a chave para os benchmarks representativos e para escolher o melhor algoritmo. 
+Se os dados que você está usando para testar não são representativos de cargas de trabalho reais, você pode facilmente otimizar um determinado conjunto de dados,
+"ajustando demais" seu código para funcionar melhor com um conjunto específico de entradas.
+
+Isso também significa que seus dados de referência precisam ser representativos dos reais
+mundo. O uso de entradas puramente aleatórias pode distorcer o comportamento do seu algoritmo.
+Os algoritmos de cache e compactação exploram distribuições distorcidas ausentes
+em dados aleatórios e, portanto, terá um desempenho pior, enquanto uma árvore binária executará
+melhor com valores aleatórios, pois eles tendem a manter a árvore equilibrada. (Isto é
+a ideia por trás de uma armadilha, a propósito.)
+
+Por outro lado, considere o caso de testar um sistema com um cache. Se seu
+A entrada de benchmark consiste apenas em uma única consulta, então cada solicitação atingirá o
+cache, fornecendo uma visão potencialmente muito irreal de como o sistema se comportará
+no mundo real com um padrão de solicitação mais variado.
+
+Além disso, observe que alguns problemas que não são aparentes no seu laptop podem estar visíveis
+depois de implantar na produção e atingir 250k reqs / segundo em um núcleo de 40
+servidor. Da mesma forma, o comportamento do coletor de lixo durante o benchmarking
+pode deturpar o impacto no mundo real. Existem casos (raros) em que um
+O microbenchmark mostrará uma desaceleração, mas o desempenho no mundo real melhora.
+Microbenchmarks podem ajudar a empurrá-lo na direção certa, mas ser capaz de
+testar completamente o impacto de uma mudança em todo o sistema é melhor.
+
+Escrever boas referências pode ser difícil.
+
+* <https://timharris.uk/misc/five-ways.pdf>
+
+Use média geométrica para comparar grupos de benchmarks.
+
+* <https://www.cse.unsw.edu.au/~cs9242/current/papers/Fleming_Wallace_86.pdf>
+
+Avaliando a precisão do benchmark:
+
+* <http://www.brendangregg.com/blog/2018-06-30/benchmarking-checklist.html>
+
+
+
