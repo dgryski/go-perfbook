@@ -431,7 +431,7 @@ uniformes, mas O (n) no pior caso. Saber como são as suas entradas é a chave p
 Se os dados que você está usando para testar não são representativos de cargas de trabalho reais, você pode facilmente otimizar um determinado conjunto de dados,
 "ajustando demais" seu código para funcionar melhor com um conjunto específico de entradas.
 
-Isso também significa que seus dados de referência precisam ser representativos dos reais
+Isso também significa que seus dados de referência precisam ser representativos do mundo real.
 mundo. O uso de entradas puramente aleatórias pode distorcer o comportamento do seu algoritmo.
 Os algoritmos de cache e compactação exploram distribuições distorcidas ausentes
 em dados aleatórios e, portanto, terá um desempenho pior, enquanto uma árvore binária executará
