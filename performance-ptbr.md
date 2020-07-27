@@ -349,7 +349,7 @@ Isso também acontece de outra maneira: por exemplo, optar por usar uma estrutur
 mesmo que com os parâmetros de referência para pequenas entradas tenham ficado mais lentos. Isso também se aplica à maioria das estruturas de dados sem contenção. 
 Elas geralmente são mais lentas no caso de uma única thread, mas são mais escaláveis quando estão sendo usadas por muitas threads.
 
-A hierarquia de memória nos computadores modernos confunde um pouco o problema aqui, pois os caches preferem o acesso previsível da varredura de uma fatia ao acesso efetivamente aleatório da perseguição de um ponteiro. Ainda assim, é melhor começar com um bom algoritmo. Falaremos sobre isso na seção específica de hardware.
+A hierarquia de memória nos computadores modernos confunde um pouco o problema aqui, isto pois os caches preferem o acesso previsível de uma varredura ao acesso aleatório que temos com a perseguição de um ponteiro. Ainda assim, é melhor começar com um bom algoritmo. Falaremos sobre isso na seção específica de hardware.
 
 TODO: estendendo o último parágrafo, mencione a notação O () é um modelo em que cada 
 operação tem custo fixo. Essa é uma suposição errada no hardware moderno.
