@@ -358,7 +358,7 @@ operação tem custo fixo. Essa é uma suposição errada no hardware moderno.
 mas essa é a maneira de apostar.
 > -- <cite>Rudyard Kipling</cite>
 
-Às vezes, o melhor algoritmo para um problema específico não é um único algoritmo, mas uma coleção de algoritmos especializados para classes de entrada ligeiramente diferentes. Esse "polialgoritmo" detecta rapidamente com que tipo de entrada ele precisa lidar e despacha para o caminho de código apropriado. É isso que o pacote de classificação mencionado acima: determina o tamanho do problema e escolhe um algoritmo diferente. Além de combinar quicksort, classificação de shell,
+Às vezes, o melhor algoritmo para um problema específico não é um único algoritmo, mas uma coleção de algoritmos especializados para classes de entrada ligeiramente diferentes. Esse "polialgoritmo" detecta rapidamente com que tipo de entrada ele precisa lidar e despacha para o caminho de código apropriado. É isso que faz o pacote de classificação mencionado acima: determina o tamanho do problema e escolhe um algoritmo diferente. Além de combinar quicksort, classificação de shell,
 e classificação de inserção, também rastreia a profundidade de recursão do quicksort e chama heapsort, se necessário. Os pacotes `string` e` bytes` fazem algo semelhante, detectando e se especializando para casos diferentes. Assim como na compactação de dados, quanto mais você souber sobre a aparência de sua entrada, melhor poderá ser sua solução personalizada. Mesmo que uma otimização nem sempre seja aplicável, vale a pena complicar seu código, determinando que é seguro usar e executar lógicas diferentes.
 
 Isso também se aplica aos subproblemas que seu algoritmo precisa resolver. 
