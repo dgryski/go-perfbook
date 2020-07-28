@@ -609,11 +609,7 @@ Para cada linha, nós iremos chamar `time.Parse()` para transformá-la em época
 o perfilamento nos mostra que `time.Parse()`  é um gargalo, nós temos algumas opções para
 speed things up.
 
-The easiest is to keep a single-item cache of the previously seen time stamp
-and the associated epoch.  As long as our log file has multiple lines for a single
-second, this will be a win.  For the case of a 10 million line log file,
-this strategy reduces the number of expensive calls to `time.Parse()` from
-10,000,000 to 86400 -- one for each unique second.
+A mais fácil é manter um cache contendo uma única linha, o tempo anterior e a época associada. Enquanto o nosso arquivo de log tiver múltiplas linhas para um mesmo segundo, teremos uma vitória. Para o caso de um arquivo de log com 10 milhões de linhas, essa estratégia reduz o número de chamadas caras `time.Parse()` de 10.000.000 to 86.400 -- uma para cada segundo único.
 
 TODO: exemplo de código para cache de item único
 
