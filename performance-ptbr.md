@@ -465,7 +465,7 @@ Avaliando a precisão do benchmark:
 
 ### Melhoria do programa.
 
-A melhoria do programa costumava ser uma forma de arte, mas os compiladores ficaram melhores. Portanto, agora os compiladores podem otimizar o código direto melhor do que complicar aquele código. 
+A melhoria do programa costumava ser uma forma de arte, mas os compiladores ficaram melhores. Portanto, agora os compiladores podem otimizar o código melhor do que complicar aquele código. 
 O compilador Go ainda tem um longo caminho a percorrer para corresponder ao gcc e ao clang, mas isso significa que você precisa 
 ter cuidado ao ajustar e principalmente ao atualizar as versões de Go para que seu código não se torne "pior".
 Definitivamente, há casos em que os ajustes para solucionar a falta de uma otimização específica do compilador
