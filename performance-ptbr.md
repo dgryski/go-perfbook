@@ -469,7 +469,7 @@ A melhoria do programa costumava ser uma forma de arte, mas os compiladores fica
 O compilador Go ainda tem um longo caminho a percorrer para corresponder ao gcc e ao clang, mas isso significa que você precisa 
 ter cuidado ao ajustar e principalmente ao atualizar as versões de Go para que seu código não se torne "pior".
 Definitivamente, há casos em que os ajustes para solucionar a falta de uma otimização específica do compilador
-façam o código se tornar mais lentos depois que ao compilador foi aprimorado.
+façam o código se tornar mais lento depois que o compilador foi aprimorado.
 
 
 Minha implementação de cifra RC6 teve um aumento de velocidade de 10% para o loop interno apenas mudando para `encoding / binary` e` math / bits` em vez de usar uma de minhas versões feitas manualmente.
