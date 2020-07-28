@@ -606,7 +606,7 @@ Sun  4 Mar 2018 14:35:09 PST <...........................>
 ```
 
 Para cada linha, nós iremos chamar `time.Parse()` para transformá-la em época. Se
-profiling shows us `time.Parse()` is the bottleneck, we have a few options to
+o perfilamento nos mostra que `time.Parse()`  é um gargalo, nós temos algumas opções para
 speed things up.
 
 The easiest is to keep a single-item cache of the previously seen time stamp
