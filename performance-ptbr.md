@@ -493,7 +493,7 @@ Depois de escolher o algoritmo certo, a melhoria do programa é o processo de
 melhorar a implementação desse algoritmo. Na notação Grande-O, isso é
 o processo de redução das constantes associadas ao seu programa.
 
-Toda a melhoria do programa é uma das seguintes: Tornar uma coisa lenta em algo mais rápido ou fazer algo que é lento a menor quantidade de vezes.
+Toda a melhoria no programa ou vai tornar mais rápido algo que era mais lento ou fazer algo que é lento uma menor quantidade de vezes.
 As mudanças algorítmicas também se enquadram nessas categorias, mas veremos mudanças menores. Exatamente como você faz isso varia conforme as tecnologias mudam.
 
 Fazer uma coisa lenta rapidamente pode estar substituindo SHA1 ou `hash/fnv1` por uma função hash mais rápida. Fazer um processo lento menos vezes pode salvar o resultado do cálculo de hash de um arquivo grande, para que você não precise fazer isso várias vezes.
