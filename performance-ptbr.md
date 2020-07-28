@@ -487,7 +487,7 @@ que mudanças podem ser feitas. Verifique se você está progredindo em cada eta
 Freqüentemente, uma melhoria permitirá que outras sejam feitas. (Agora que eu não estou
 fazendo A, eu posso simplificar B fazendo C em vez disso). Isso significa que você precisa manter-se
 olhando para a foto inteira e não fique muito obcecado com um pequeno conjunto de
-linhas
+linhas.
 
 Depois de escolher o algoritmo certo, a melhoria do programa é o processo de
 melhorar a implementação desse algoritmo. Na notação Grande-O, isso é
