@@ -485,7 +485,7 @@ abordado por seus próprios méritos. Mesmo se algo funcionou anteriormente, cer
 A melhoria do programa é um processo iterativo. Continue revisitando seu código e vendo
 que mudanças podem ser feitas. Verifique se você está progredindo em cada etapa.
 Freqüentemente, uma melhoria permitirá que outras sejam feitas. (Agora que eu não estou
-fazendo A, eu posso simplificar B fazendo C em vez disso.) Isso significa que você precisa manter-se
+fazendo A, eu posso simplificar B fazendo C em vez disso). Isso significa que você precisa manter-se
 olhando para a foto inteira e não fique muito obcecado com um pequeno conjunto de
 linhas
 
