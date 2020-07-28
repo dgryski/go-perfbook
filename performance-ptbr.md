@@ -573,7 +573,7 @@ com o objetivo de melhorar o desempenho no caso geral.
   * é aqui que pedaços de prazer para um hacker caem
 
 Muitas dicas de desempenho do folclore para ajuste dependem de compiladores de otimização insuficiente e incentivam o programador a fazer essas transformações manualmente. Os
-compiladores usam turnos em vez de multiplicar ou dividir por uma potência de dois há 15 anos - ninguém deve fazer isso manualmente. Da mesma forma, içar
+compiladores usam deslocamentos de bits em vez de multiplicar ou dividir por uma potência de dois há 15 anos - ninguém deve fazer isso manualmente. Da mesma forma, içar
 cálculos invariantes a partir de loops, desenrolamento básico do loop, eliminação de subexpressão e muitos outros são feitos automaticamente pelo gcc e clang e similares. O compilador da Go faz muitas delas e continua a melhorar. Como sempre, faça uma referência antes de se comprometer com a nova versão.
 
 As transformações que o compilador não pode fazer dependem de você saber coisas sobre o algoritmo,
