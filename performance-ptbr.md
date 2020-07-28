@@ -496,7 +496,7 @@ o processo de redução das constantes associadas ao seu programa.
 Toda a melhoria no programa ou vai tornar mais rápido algo que era mais lento ou fazer algo que é lento uma menor quantidade de vezes.
 As mudanças algorítmicas também se enquadram nessas categorias, mas veremos mudanças menores. Exatamente como você faz isso varia conforme as tecnologias mudam.
 
-Fazer uma coisa lenta rapidamente pode estar substituindo SHA1 ou `hash/fnv1` por uma função hash mais rápida. Fazer um processo lento menos vezes pode salvar o resultado do cálculo de hash de um arquivo grande, para que você não precise fazer isso várias vezes.
+Como exemplo, fazer uma coisa lenta rapidamente pode ser substituir SHA1 ou `hash/fnv1` por uma função hash mais rápida. Fazer um processo lento menos vezes pode ser salvar o resultado do cálculo de hash de um arquivo grande para que você não precise fazer isso várias vezes.
 
 Mantenha comentários. Se algo não precisar ser feito, explique o porquê. Freqüentemente, ao otimizar um algoritmo, você descobrirá etapas que não precisam ser executadas sob algumas circunstâncias. Documente-as. Outra pessoa pode pensar que é um bug.
 
