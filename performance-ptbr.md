@@ -605,7 +605,7 @@ e cada linha começa com um carimbo de hora.
 Sun  4 Mar 2018 14:35:09 PST <...........................>
 ```
 
-For each line, we're going to call `time.Parse()` to turn it into a epoch. If
+Para cada linha, nós iremos chamar `time.Parse()` para transformá-la em época. Se
 profiling shows us `time.Parse()` is the bottleneck, we have a few options to
 speed things up.
 
