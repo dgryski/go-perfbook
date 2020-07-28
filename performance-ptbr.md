@@ -476,7 +476,7 @@ Minha implementação de cifra RC6 teve um aumento de velocidade de 10% para o l
 
 Da mesma forma, o pacote `compress / bzip2` foi acelerado ao mudar para [código mais simples que o compilador conseguiu otimizar] (https://github.com/golang/go/commit/9eb219480e8de08d380ee052b7bff293856955f8)
 
-Se você estiver trabalhando em torno de um tempo de execução específico ou geração de código do compilador sempre documente sua alteração com um link para a edição anterior. este permitirá que você revisite rapidamente sua otimização depois que o bug for corrigido.
+Se você estiver trabalhando em torno de um tempo de execução específico ou geração de código do compilador sempre documente sua alteração com um link para a edição anterior. Este link permitirá que você revisite rapidamente sua otimização depois que o bug for corrigido.
 
 Lute contra a tentação de "dicas de desempenho" baseadas no folclore cult, ou até
 generalizar demais a partir de sua própria experiência. Cada bug de desempenho precisa ser
