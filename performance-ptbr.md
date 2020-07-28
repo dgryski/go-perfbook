@@ -510,7 +510,7 @@ A "correção" pode depender do problema. Os algoritmos heurísticos mais corret
 Casos comuns de cache:
 
 Todos conhecemos o memcache, mas também existem caches em processo. O uso de um cache em processo economiza o custo da chamada de rede e o custo da serialização. Por outro lado, isso aumenta a pressão do GC, pois há mais memória para acompanhar. Você também precisa considerar estratégias de remoção, invalidação de cache e segurança de threads. 
-Um cache externo geralmente lida com o despejo, mas a invalidação do cache permanece um problema. A segurança da thread também pode ser um problema com caches externos, pois se torna um estado mutável efetivamente compartilhado entre goroutines diferentes no mesmo serviço ou até diferentes instâncias de serviço se o cache externo for compartilhado.
+Um cache externo geralmente lida com o despejo, mas a invalidação do cache permanece um problema. As condições de corrida também podem ser um problema com caches externos, pois se torna um estado mutável efetivamente compartilhado entre goroutines diferentes no mesmo serviço ou até diferentes instâncias de serviço se o cache externo for compartilhado.
 
 Um cache salva as informações que você acabou de gastar em tempo de computação, na esperança de poder reutilizá-las novamente em breve e economizar tempo. Um cache não precisa ser complexo. Mesmo o armazenamento de um único item - a consulta / resposta vista mais recentemente - pode ser uma grande vitória, como visto no exemplo `time.Parse ()` abaixo.
 
