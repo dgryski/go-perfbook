@@ -980,6 +980,9 @@ had optimized process startup time with a complex set of mmap, reflect, and
 unsafe. Once we changed how the system was deployed, this code was no longer
 required and I replaced it with much more readable regular file operations.
 
+TODO(dgryski): hash function work should fall here; manually inlining, removing structs,
+unrolling loops, removing bounds checks
+
 ### Optimization workflow summary
 
 All optimizations should follow these steps:
