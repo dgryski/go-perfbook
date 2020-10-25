@@ -82,4 +82,16 @@
 
 下一步，是決定我們要優化什麼。如果我們要優化的，是CPU的使用率，那我們可以接受的優化後執行速度是多少？是比現在快兩倍？十倍？我們可以把這個問題，定義成「處理大小為Ｎ的任務，花費了Ｔ時間」嗎？或是我們希望降低記憶體的使用量？那要降低多少？我們願意犧牲多少執行速度來換取較低的記憶體使用量？我們願意為了較低的記憶體需求犧牲什麼？
 
-優化降低網路服務（web service）的延遲是更困難的問題，甚至有一整本書都在解釋如何去對web server做效能測試。
+優化降低網路服務（web service）的延遲是更困難的問題。坊間有一整本書都在解釋如何去對web server做效能測試。
+會困難最主要的原因，在於單一的一個函數，做效能評測的結果通常不會都一樣。對於web service來說，我們不會只拿到一個數字，一個好的評測套件，通常會給出一個延遲分佈(latency distribution)。讀者可以參考這個演講["How NOT to Measure Latency" by Gil Tene](https://youtu.be/lJ8ydIuPFeU)
+
+TODO: 參考下面幾章關於優化網路服務的部分
+
+優化的目標要很明確。我們幾乎總是可以讓某項指標更快一點、好一點。優化帶來的進步通常是遞減的，我們必須先想好什麼時候要停、願意付出多少的成本，來換取些許的進步、願意犧牲可讀性到什麼程度，來換取性能上的進步。
+
+Dan Luu的演講[BitFunnel performance
+estimation](http://bitfunnel.org/strangeloop)提供了一個例子，示範如何大概的估算優化目標是否是合理的。Simon Eskildsen在SRECon的演講[Advanced Napkin Math: Estimating System Performance from First Principles](https://www.youtube.com/watch?v=IxkSlnrRFqc)針對這個主題更深入的解釋。
+
+最後，Jon Bentley的書"Programming Pearls"有一章節在討論Fermi problems。可惜的是，由於微軟在1990年代和2000年代早期，把這些估算技巧當成面試考題（puzzle interview
+questions），讓大家對這些技巧有著不太好的印象。
+
