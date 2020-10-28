@@ -111,3 +111,12 @@ be, usually by asking for unnecessary extra work, when equivalently complex code
 would be faster and should just naturally flow out of your fingers."
 >
 > -- <cite>Herb Sutter</cite>
+
+因為摻雜了除了程式碼本身以外的其他因素，我們很難把評測作為持續整合（CI）的一部分，也很難制定評測的目標。比較好的做法，是讓工程師在適當的硬體上自己跑評測，並把評測結果放到提交記錄（commit message）裡。至於其他一般的提交，盡量在複審程式碼（code review）時用”肉眼“去判斷對效能的影響。
+
+TODO: 如何追蹤效能變化？
+
+編寫可以被評測的程式碼，對整個大系統作效能分析。若想分析部分的程式碼，那部分程式碼必須可以被獨立抽取出來，並由工程師提供必要的相關背景資料（context），讓評測可以跑，並跑出具代表性的結果。
+
+根據優化目標效能和當前的效能之間的差距，我們可以知道應該從哪裡下手。如果我們想要增進10%~20%的效能，我們可能可以透過一些coding技巧和簡單的修改來達成。如果我們想要的，是10倍以上的效能進步，這就不是簡單的把乘法改成左移運算就能完成的事。我們可能就需要把整個技術堆（technical stack）做改動，甚至是重新設計整個架構。
+
