@@ -11,6 +11,7 @@ The later sections cover Go-specific techniques.
 
 * [English](performance.md)
 * [中文](performance-zh.md)
+* [繁體中文](performance-zh_TW.md)
 * [Español](README-es.md)
 * [Português Brasileiro](performance-ptbr.md)
 
