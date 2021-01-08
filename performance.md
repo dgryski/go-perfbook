@@ -836,7 +836,7 @@ It's important to benchmark your choice of cache eviction algorithm with
 real-world traces. If in the real world repeated requests are sufficiently rare,
 it can be more expensive to keep cached responses around than to simply
 recompute them when needed. I've had services where testing with production data
-showed even an optimal cache wasn't worth it. we simply did't have sufficient
+showed even an optimal cache wasn't worth it. we simply didn't have sufficient
 repeated requests to make the added complexity of a cache make sense.
 
 Your expected cache hit ratio is important. You'll want to export the ratio to
@@ -1100,6 +1100,7 @@ Popular replacements for standard library packages:
 * serialization
   * encoding/gob -> <https://github.com/alecthomas/go_serialization_benchmarks>
   * protobuf -> <https://github.com/gogo/protobuf>
+  * fnv hashing -> four times faster than `hash/fnv1` for short hashes, see benchmark <https://github.com/2d4d/fnv1a_cracker/tree/main/bench>
   * all serialization formats have trade-offs: choose one that matches what you need
     - Write heavy workload -> fast encoding speed
     - Read-heavy workload -> fast decoding speed
@@ -1159,7 +1160,7 @@ Techniques specific to the architecture running the code
 * Comment about Jeff Dean's 2002 numbers (plus updates)
   * cpus have gotten faster, but memory hasn't kept up
 
-TODO: little comment about code-aligment free optimization (or unoptimization)
+TODO: little comment about code-alignment free optimization (or unoptimization)
 
 ## Concurrency
 
