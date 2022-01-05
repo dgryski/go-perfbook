@@ -384,7 +384,7 @@ If the data you're processing is on disk, instead of loading everything into
 RAM, you could create an index for the pieces you need and keep that in
 memory, or pre-process the file into smaller workable chunks.
 
-[Small Memory Software](http://smallmemory.com/book.html) is a book available
+[Small Memory Software](https://smallmemory.charlesweir.com/book.html) is a book available
 online covering techniques for reducing the space used by your programs.
 While it was originally written targeting embedded developers, the ideas are
 applicable for programs on modern hardware dealing with huge amounts of data.
